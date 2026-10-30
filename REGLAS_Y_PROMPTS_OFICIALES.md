@@ -23,10 +23,10 @@
    - Jamás mencionar nombres propios reales como ejemplos de formato ni pedir buscar un nombre concreto durante la transcripción de un folio.
 5. **`[L-24 / L-26]` Modelo de Identificación en Dos Capas (PK Física Inmutable + Cita Archivística + Metadato ARK):**
    - Queda prohibido el prefijo ambiguo `NAVA-`. Se aplican obligatoriamente los códigos de 4 letras definidos en [`04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md`](file:///c:/TRABAJOS/personal/genealo/04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md): `NRDL` (Navarredondilla), `NMRL` (Navalmoral), `NCRZ` (Navalacruz), `JMOL` (Molinillo), `NDRN` (Navandrinal), `VLLR` (Villarejo), `BHND` (Burgohondo).
-   - **Capa 1: Soporte Físico Inmutable y Entidad Acta Desacoplada del Orden:**
-     * **Soporte Digital Inmutable:** `ID_Soporte = {DGS}_{FOTOGRAMA}_{CARA}` (ej: `004306112_01874_L`, `004306112_01874_R`, `004306112_01870_U`). Realidad física y archivística que no depende de la extracción de la IA.
-     * **Entidad Acta en Base de Datos (ArcadeDB):** Cada acta pertenece a su soporte (`pertenece_a: ID_Soporte`) y cuenta con su propio identificador único interno (UUIDv7 o ID de registro).
-     * **Desacoplamiento del número de asiento:** El orden (`orden_en_cara: 1, 2, 3...`) se guarda como **propiedad descriptiva visual de lectura**, no como clave primaria rígida. Así, si en una revisión humana posterior se descubre un asiento omitido entre el 1 y el 2, o se separa una partida que la IA había fusionado erróneamente, se añade el registro sin provocar efecto dominó ni alterar los identificadores del resto de actas del libro.
+   - **Capa 1: Soporte Físico Inmutable (Fotograma = Archivo JPG) y Entidad Acta:**
+     * **Soporte Digital Inmutable:** `ID_Soporte = {DGS}_{FOTOGRAMA}` (ej: `004306112_01874`). Coincide 1:1 con el nombre del archivo en disco (`004306112_01874.jpg`), con el fotograma en FamilySearch y con el titular de la **URL ARK**.
+     * **Entidad Acta en Base de Datos (ArcadeDB):** Cada acta pertenece a su imagen soporte (`pertenece_a: 004306112_01874`) y cuenta con su propio identificador único interno (UUIDv7 o ID de registro).
+     * **Localización dentro de la imagen:** Si la imagen contiene una doble página, la ubicación (`lado: "izquierda" / "derecha" / "plena"`) y el orden (`asiento_en_foto: 1, 2, 3...`) se guardan como **atributos descriptivos de apoyo**, no como claves rígidas del archivo. Esto elimina el efecto dominó si una revisión posterior añade un asiento omitido o divide una partida.
    - **Capa 2: Identificador Archivístico Revisable (Cita Humana y Publicación):**
      `ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`
      *Ejemplos:* `ES-AV-NRDL-BAUT-L01-F002V-A06`, `ES-AV-JMOL-CONF-L03-F012R-C01`.
@@ -123,11 +123,10 @@ REGLAS DE OBLIGADO CUMPLIMIENTO:
 
 FORMATO DE BLOQUE ESTRICTO (Genera un bloque idéntico a este por cada partida o asiento):
 
-### Asiento: [DGS_FOTOGRAMA_CARA_SEQ, ej: 004306112_01874_L_01]
-- **Clave Primaria Física (PK):** [DGS_FOTOGRAMA_CARA_SEQ, ej: 004306112_01874_L_01]
+### [004306112_XXXXX.jpg] - Asiento [Nº] (Lado: [Izquierda / Derecha / Plana única])
 - **Archivo de Imagen:** [004306112_XXXXX.jpg] (Toma complementaria: [si aplica])
 - **URL ARK (FamilySearch):** [https://www.familysearch.org/ark:/61903/3:1:... o PENDIENTE]
-- **Posición Física:** [Página Izquierda (L) / Página Derecha (R) / Fotograma Único (U)], Asiento [Nº]
+- **Ubicación en Imagen:** [Página Izquierda / Página Derecha / Plana única], Asiento [Nº de arriba a abajo]
 - **Foliado visible:** [Fol. Xr / Fol. Xv / S/F (si carece de numeración original)]
 - **ID Archivístico:** [ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}, ej: ES-AV-NRDL-BAUT-L01-F002V-A06]
 - **Localidad:** [NRDL / NMRL / NCRZ / JMOL / NDRN / VLLR / BHND]

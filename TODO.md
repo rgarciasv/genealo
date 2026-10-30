@@ -75,6 +75,32 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 
 ---
 
+## 📌 AGENDA Y TAREAS PENDIENTES PARA LA PRÓXIMA SESIÓN (MAÑANA)
+
+1. **Estructurar y generar `catalogo_corpus.json` (`D7`):**
+   - Crear el mapa físico-lógico estructurado en JSON de las 7.868 imágenes de los 9 rollos DGS.
+   - Definir para cada imagen: `id_imagen` (clave única = nombre del archivo JPG, ej: `004306112_01874`), `rollo_dgs`, `fotograma`, `libro`, `serie`, `anios_estimados`, `toma_hermana_de`, `es_descarte`, `orden_lectura_real` y campo `url_ark`.
+2. **Prioridad Funcional del Proyecto (Decisión estratégica del usuario):**
+   - Resolver si se continúa en **profundidad libro a libro** (culminar Bautismos de Navarredondilla 1594–1695, empezando por Pareja 5: 1596–1597).
+   - O si se realiza una **batida transversal de censos/listas nominales** (Padrones de Confirmaciones 1649/1681, Índice de Bautismos de Molinillo 1750–1914, Catastro de Ensenada 1752) para poblar el grafo con un censo previo amplio de vecinos y familias.
+3. **Codificación Geográfica (Consenso de estándar):**
+   - Decidir si se mantienen exclusivamente los códigos cuatriletrados de dominio (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`, `NVTG`, `NCRZ`, `BHND`).
+   - O si se añade a la ficha del lugar el código municipal oficial del INE (ej: 05164 para Navarredondilla) para cruces externos automáticos con censos y nomenclátores.
+4. **Debate Metodológico sobre Criterios de Transcripción (`[ECDOTICA-01]`):**
+   - Consensuar qué nivel exacto debe entregar NotebookLM en cada sección del bloque de salida:
+     * **Transcripción Literal:** Fidelidad pura al trazo, sin tocar nada.
+     * **Transcripción Diplomática / Semidiplomática:** Desarrollo de abreviaturas con corchetes `[ ]`, separación de palabras soldadas (*destayglesia* $\rightarrow$ *de esta yglesia*), respeto a grafías antiguas (`u/v`, `b/v`, `i/j/y`, consonantes dobles).
+     * **Transcripción Crítica / Ecdótica Normalizada:** Forma moderna para indexación onomástica y motores de búsqueda.
+5. **Protocolo de Verificación Humana y Calibración de NotebookLM (`[VAL-01]`):**
+   - Diseñar el método de inspección y muestreo manual del usuario para evaluar el grado de aproximación a la realidad documental (asumiendo con realismo que nunca se alcanzará el 100 %).
+   - Establecer ciclos de iteración empírica sobre los prompts y micro-lotes de NotebookLM para minimizar errores y exprimir su potencial.
+6. **Extracción de URLs ARK de FamilySearch (`[ARK-01]`):**
+   - El usuario ejecutará [`extraer_arks_familysearch.js`](file:///c:/TRABAJOS/personal/genealo/extraer_arks_familysearch.js) en la consola DevTools de FamilySearch para volcar el mapa de enlaces permanentes ARK.
+7. **Catalogación de Fondos Parroquiales de Navalmoral de la Sierra (`[NMRL-01]`):**
+   - Identificar y registrar en el catálogo los números de microfilm/DGS de Navalmoral de la Sierra en FamilySearch para cubrir la ascendencia pre-1715 de San Juan del Molinillo, Navandrinal y El Villarejo.
+
+---
+
 ## 📋 3. DESGLOSE DE FASES Y TAREAS
 
 ### 🟢 FASE 0: Catalogación Programática y Entorno Local
@@ -152,8 +178,8 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 *Objetivo: Blindar la estructura de datos para soportar la riqueza documental sacramental y polimórfica.*
 
 - [x] **2.1. Modelo de Identificación en Dos Capas (Soporte Físico Inmutable + Entidad Acta Desacoplada + ARK) (`L-26`):**
-  - [x] Soporte Físico Inmutable: `{DGS}_{FOTOGRAMA}_{CARA}` (ej. `004306112_01874_L`). Realidad matemática que no depende de la extracción de la IA.
-  - [x] Entidad Acta Desacoplada del Orden: Cada acta posee identificador único propio (UUID / ID interno) y un atributo `orden_en_cara` orientativo. Elimina el efecto dominó en base de datos si la IA omite un asiento, fusiona dos partidas indebidamente o divide una nota marginal.
+  - [x] Soporte Físico Inmutable: Archivo JPG / Fotograma `{DGS}_{FOTOGRAMA}` (ej. `004306112_01874`). Coincidencia 1:1 con el fichero en disco, con FamilySearch y con la URL ARK persistente. No se fuerza división física en L/R.
+  - [x] Entidad Acta Desacoplada del Orden: Cada acta posee identificador único propio (UUID / ID interno) y propiedades descriptivas de ubicación (`lado: izquierda/derecha`, `orden_en_imagen: 1, 2...`). Elimina el efecto dominó en base de datos si la IA omite un asiento, fusiona dos partidas indebidamente o divide una nota marginal.
   - [x] Atributos descriptivos revisables: `folio_manuscrito`, `folio_moderno`, `id_archivistico` (`ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`).
   - [x] Metadato digital persistente: `url_ark` (FamilySearch ARK URL) a nivel de soporte e imagen.
   - [x] Trazabilidad y protocolos de partidas bipartitas (Intra-imagen verso $\rightarrow$ recto unificada; e Inter-imagen recto $N \rightarrow$ verso $N+1$ con enlace direccional).
