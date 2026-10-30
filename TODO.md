@@ -136,16 +136,26 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
   - [x] Prueba de fusión completada en **Pareja 3 (`004306112_01876.jpg` + `004306112_01877.jpg`)**: 12 asientos extraídos en Folios 2v y 3r (1595), resolución perfecta de la costura apretada en el lomo (*gutter shadow*), cero duplicados y rescate de Fray Francisco de Oropesa. Guardado en [`transcripciones/004306112_01876_01877.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01876_01877.md). Total acumulado en pruebas: **56 actas sacramentales**.
   - [x] Prueba de fusión completada en **Pareja 4 (`004306112_01878.jpg` + `004306112_01879.jpg`)**: 11 asientos extraídos en Folios 3v y 4r (1596), aislamiento de *bleed-through* parásito, desambiguación de trazos de tinta del reverso y confirmación forense de *omissio scribae* en el último asiento. Guardado en [`transcripciones/004306112_01878_01879.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01878_01879.md).
   - [x] Validación del mecanismo de reautenticación desatendida de NotebookLM MCP vía perfil persistente de Chromium (`L-21`).
+- [ ] **1.5. [VAL-01] [TAREA USUARIO] Protocolo de Verificación Humana y Calibración de NotebookLM:**
+  - [ ] Muestreo e inspección manual directa por el usuario sobre un conjunto acotado de folios para medir el porcentaje real de acierto y tipología de errores (asumiendo de forma realista que nunca se alcanzará el 100%).
+  - [ ] Ciclos de iteración empírica sobre los prompts y micro-lotes para exprimir al máximo las capacidades de visión multimodal de NotebookLM y minimizar fallos.
+- [ ] **1.6. [ECDOTICA-01] [METODOLOGÍA PALEOGRÁFICA] Debate y Consenso de Criterios de Transcripción:**
+  - [ ] Sesión de definición metodológica con el usuario para clarificar las fronteras entre:
+    * **Transcripción Literal Estricta:** Grafías puras, abreviaturas sin desarrollar, respeto absoluto a la disposición física.
+    * **Transcripción Diplomática vs. Semidiplomática:** Tratamiento de letras dobles, `u/v`, `b/v`, `i/j/y`, separación de palabras unidas (*scriptio continua* tipo `destayglesia`) y desarrollo de abreviaturas con corchetes `[ ]`.
+    * **Transcripción Crítica / Ecdótica Normalizada:** Forma moderna estándar para motores de búsqueda, n-gramas y grafos genealógicos.
+  - [ ] Consensuar el contrato exacto de salida para que NotebookLM devuelva el equilibrio idóneo entre fidelidad paleográfica e indexación.
 
 ---
 
 ### 📦 FASE 2: Especificación y Contratos de Salida
 *Objetivo: Blindar la estructura de datos para soportar la riqueza documental sacramental y polimórfica.*
 
-- [x] **2.1. Modelo de Identificación en Dos Capas (PK Física Inmutable + Cita Archivística + ARK) (`L-26`):**
-  - [x] Clave Primaria Física Inmutable (PK): `{DGS}_{FOTOGRAMA}_{CARA}_{ASIENTO}` (ej. `004306112_01874_L_01`). Idempotencia matemática garantizada.
+- [x] **2.1. Modelo de Identificación en Dos Capas (Soporte Físico Inmutable + Entidad Acta Desacoplada + ARK) (`L-26`):**
+  - [x] Soporte Físico Inmutable: `{DGS}_{FOTOGRAMA}_{CARA}` (ej. `004306112_01874_L`). Realidad matemática que no depende de la extracción de la IA.
+  - [x] Entidad Acta Desacoplada del Orden: Cada acta posee identificador único propio (UUID / ID interno) y un atributo `orden_en_cara` orientativo. Elimina el efecto dominó en base de datos si la IA omite un asiento, fusiona dos partidas indebidamente o divide una nota marginal.
   - [x] Atributos descriptivos revisables: `folio_manuscrito`, `folio_moderno`, `id_archivistico` (`ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`).
-  - [x] Metadato digital persistente: `url_ark` (FamilySearch ARK URL) a nivel de imagen y de asiento.
+  - [x] Metadato digital persistente: `url_ark` (FamilySearch ARK URL) a nivel de soporte e imagen.
   - [x] Trazabilidad y protocolos de partidas bipartitas (Intra-imagen verso $\rightarrow$ recto unificada; e Inter-imagen recto $N \rightarrow$ verso $N+1$ con enlace direccional).
 - [ ] **2.2. Validación empírica de Contratos Polimórficos (`L-23`):**
   - [ ] Formato de Padrones de Confirmación (`PADRON_CONFIRMACION`) probado en Padrón de 1649 (`02067`–`02070`).

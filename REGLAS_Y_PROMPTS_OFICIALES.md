@@ -23,10 +23,10 @@
    - Jamás mencionar nombres propios reales como ejemplos de formato ni pedir buscar un nombre concreto durante la transcripción de un folio.
 5. **`[L-24 / L-26]` Modelo de Identificación en Dos Capas (PK Física Inmutable + Cita Archivística + Metadato ARK):**
    - Queda prohibido el prefijo ambiguo `NAVA-`. Se aplican obligatoriamente los códigos de 4 letras definidos en [`04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md`](file:///c:/TRABAJOS/personal/genealo/04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md): `NRDL` (Navarredondilla), `NMRL` (Navalmoral), `NCRZ` (Navalacruz), `JMOL` (Molinillo), `NDRN` (Navandrinal), `VLLR` (Villarejo), `BHND` (Burgohondo).
-   - **Capa 1: Clave Primaria Física Inmutable (PK de Base de Datos y Grafo):**
-     $$\text{PK} = \{\text{DGS}\}\_\{\text{FOTOGRAMA}\}\_\{\text{CARA}\}\_\{\text{ASIENTO}\}$$
-     *Ejemplos:* `004306112_01874_L_01`, `004306112_01874_L_02`, `004306112_01874_R_01`.
-     *Propósito:* Garantizar idempotencia absoluta. No cambia jamás aunque se corrija la interpretación de un folio carcomido.
+   - **Capa 1: Soporte Físico Inmutable y Entidad Acta Desacoplada del Orden:**
+     * **Soporte Digital Inmutable:** `ID_Soporte = {DGS}_{FOTOGRAMA}_{CARA}` (ej: `004306112_01874_L`, `004306112_01874_R`, `004306112_01870_U`). Realidad física y archivística que no depende de la extracción de la IA.
+     * **Entidad Acta en Base de Datos (ArcadeDB):** Cada acta pertenece a su soporte (`pertenece_a: ID_Soporte`) y cuenta con su propio identificador único interno (UUIDv7 o ID de registro).
+     * **Desacoplamiento del número de asiento:** El orden (`orden_en_cara: 1, 2, 3...`) se guarda como **propiedad descriptiva visual de lectura**, no como clave primaria rígida. Así, si en una revisión humana posterior se descubre un asiento omitido entre el 1 y el 2, o se separa una partida que la IA había fusionado erróneamente, se añade el registro sin provocar efecto dominó ni alterar los identificadores del resto de actas del libro.
    - **Capa 2: Identificador Archivístico Revisable (Cita Humana y Publicación):**
      `ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`
      *Ejemplos:* `ES-AV-NRDL-BAUT-L01-F002V-A06`, `ES-AV-JMOL-CONF-L03-F012R-C01`.
