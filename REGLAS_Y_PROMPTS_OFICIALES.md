@@ -21,11 +21,18 @@
    - Ejecutar siempre `chat_configure` con `response_length="longer"` y el System Prompt de la Sección 2 de este documento.
 4. **`[L-01 / L-02]` Neutralidad absoluta e higiene de ejemplos:**
    - Jamás mencionar nombres propios reales como ejemplos de formato ni pedir buscar un nombre concreto durante la transcripción de un folio.
-5. **`[L-24]` Estándar Geográfico Cuatriletrado e ID Canónico Universal:**
+5. **`[L-24 / L-26]` Modelo de Identificación en Dos Capas (PK Física Inmutable + Cita Archivística + Metadato ARK):**
    - Queda prohibido el prefijo ambiguo `NAVA-`. Se aplican obligatoriamente los códigos de 4 letras definidos en [`04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md`](file:///c:/TRABAJOS/personal/genealo/04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md): `NRDL` (Navarredondilla), `NMRL` (Navalmoral), `NCRZ` (Navalacruz), `JMOL` (Molinillo), `NDRN` (Navandrinal), `VLLR` (Villarejo), `BHND` (Burgohondo).
-   - **Estructura del ID Canónico Universal de Acta:**
+   - **Capa 1: Clave Primaria Física Inmutable (PK de Base de Datos y Grafo):**
+     $$\text{PK} = \{\text{DGS}\}\_\{\text{FOTOGRAMA}\}\_\{\text{CARA}\}\_\{\text{ASIENTO}\}$$
+     *Ejemplos:* `004306112_01874_L_01`, `004306112_01874_L_02`, `004306112_01874_R_01`.
+     *Propósito:* Garantizar idempotencia absoluta. No cambia jamás aunque se corrija la interpretación de un folio carcomido.
+   - **Capa 2: Identificador Archivístico Revisable (Cita Humana y Publicación):**
      `ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`
      *Ejemplos:* `ES-AV-NRDL-BAUT-L01-F002V-A06`, `ES-AV-JMOL-CONF-L03-F012R-C01`.
+     *Propósito:* Estándar archivístico descriptivo para cotejo documental e indexación histórica.
+   - **Metadato Digital Persistente (`url_ark`):**
+     Cada fotograma y asiento debe conservar (o enlazar al catálogo de) su URL ARK oficial de FamilySearch (`https://www.familysearch.org/ark:/61903/3:1:...`) como enlace inmutable a la imagen fuente en los servidores centrales.
 6. **`[L-25]` Protocolo de Trazabilidad Total y Tratamiento de Partidas Cortadas (Split Acts):**
    - **Trazabilidad:** Cada bloque extraído debe registrar obligatoriamente tanto el **nombre del archivo de imagen** (`004306112_01874.jpg`) como el **folio físico manuscrito** visible en tinta o lápiz (`Fol. 2r`, o `S/F` si carece de numeración original).
    - **Partidas Bipartitas Intra-imagen (Verso $\rightarrow$ Recto):** Cuando una partida comienza al pie de la página izquierda (verso) y termina en la cabecera de la derecha (recto) dentro del mismo fotograma, el modelo debe restituirla en un único bloque continuo, indicando `Folio: F001v-F002r` y `Continúa en otra página: No (Resuelto en la misma imagen)`.
@@ -116,10 +123,14 @@ REGLAS DE OBLIGADO CUMPLIMIENTO:
 
 FORMATO DE BLOQUE ESTRICTO (Genera un bloque idéntico a este por cada partida o asiento):
 
-### [Archivo de Imagen] - [Página Izquierda (Verso) / Página Derecha (Recto)] - Asiento [Nº]
-- **ID Canónico:** [ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}, ej: ES-AV-NRDL-BAUT-L01-F002V-A06]
+### Asiento: [DGS_FOTOGRAMA_CARA_SEQ, ej: 004306112_01874_L_01]
+- **Clave Primaria Física (PK):** [DGS_FOTOGRAMA_CARA_SEQ, ej: 004306112_01874_L_01]
+- **Archivo de Imagen:** [004306112_XXXXX.jpg] (Toma complementaria: [si aplica])
+- **URL ARK (FamilySearch):** [https://www.familysearch.org/ark:/61903/3:1:... o PENDIENTE]
+- **Posición Física:** [Página Izquierda (L) / Página Derecha (R) / Fotograma Único (U)], Asiento [Nº]
+- **Foliado visible:** [Fol. Xr / Fol. Xv / S/F (si carece de numeración original)]
+- **ID Archivístico:** [ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}, ej: ES-AV-NRDL-BAUT-L01-F002V-A06]
 - **Localidad:** [NRDL / NMRL / NCRZ / JMOL / NDRN / VLLR / BHND]
-- **Folio Físico Original:** [Fol. Xr / Fol. Xv / S/F (si carece de numeración original)]
 - **Tipo:** [Bautismo / Matrimonio / Defunción / Confirmación / Inventario / Auto de Visita / Minuta / Partida Cortada]
 - **Fecha Literal:** [Texto exacto de la fecha tal como aparece escrito, o "Heredada del asiento anterior: ..." si dice "en dicho día"]
 - **Fecha ISO:** [AAAA-MM-DD, o CIRCA/RANGO si está rota; verifica el candado cronológico del libro]
@@ -129,7 +140,7 @@ FORMATO DE BLOQUE ESTRICTO (Genera un bloque idéntico a este por cada partida o
 - **Filiación y Estado Civil:** [Padre, Madre (indicando si dice 1ª/2ª/legítima mujer), y Abuelos si constan]
 - **Red FAN (Padrinos / Testigos / Otros):** [Lista completa de padrinos, madrinas, testigos y vecindad/parentesco si consta]
 - **Continúa en otra página:** [No / Viene de página anterior / Continúa en página siguiente / Resuelto en misma imagen]
-- **Nivel de Certeza y Dudas Paleográficas:** [100% Segura / Dudas específicas en: ...]
+- **Nivel de Certeza y Dudas Paleográficas:** [Segura / Dudas específicas en: ...]
 - **Transcripción Literal Diplomática:**
 > [Texto íntegro extraído de principio a fin respetando grafías originales, abreviaturas y etiquetas [ROTO] / [ILEGIBLE]]
 ```

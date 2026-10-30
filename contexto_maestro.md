@@ -13,7 +13,7 @@
 ---
 
 ## 1. OBJETIVO DEL SISTEMA
-Pipeline automatizado de reconocimiento de texto manuscrito (HTR paleográfico) y extracción genealógica para los fondos parroquiales y catastrales del **Alto Alberche (Diócesis de Ávila, 1594–1902)**: **Navarredondilla**, **San Juan del Molinillo**, **Navandrinal**, **El Villarejo** y **Navalmoral de la Sierra**, inyectando los datos en un grafo híbrido de 2 capas en **ArcadeDB 26.10.2** local (`http://localhost:2480`).
+Pipeline de reconocimiento de texto manuscrito (HTR paleográfico asistido por **NotebookLM Pro**) y extracción genealógica para los fondos parroquiales y catastrales del **Alto Alberche (Diócesis de Ávila, 1594–1902)**: **Navarredondilla**, **San Juan del Molinillo**, **Navandrinal**, **El Villarejo** y **Navalmoral de la Sierra**, con validación humana iterativa e inyección de los datos en un grafo híbrido de 2 capas en **ArcadeDB 26.10.2** local (`http://localhost:2480`). *(Decisión de proyecto ratificada: descarte formal de la API de Gemini; foco en optimización de micro-lotes, modularización de prompts y control de calidad empírico en NotebookLM).*
 
 ---
 
@@ -53,7 +53,8 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 13. **`[L-22]` Transversalidad del Ductus Eclesiástico (Desacoplamiento Libro-Escribano):** La mano y los tics de un cura no cambian entre bautismos, matrimonios y entierros. Las fichas técnicas de caligrafía residen de forma centralizada en [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md).
 14. **`[L-23]` Extracción Polimórfica Obligatoria:** Tratamiento estructurado y riguroso de documentos no sacramentales presentes en los libros: padrones de confirmaciones (`PADRON_CONFIRMACION`), decretos de visitas pastorales (`AUTO_VISITA`), índices alfabéticos (`INDICE_PARROQUIAL`) y minutas de sacristía (`MINUTA_SACRISTIA`).
 15. **`[L-24]` Estándar Geográfico Cuatriletrado y Redirección Canónica Pre-1715:** Sustitución de `NAVA-` por `NRDL`, `NMRL`, `NCRZ`, `JMOL`, `NDRN`, `VLLR`, `BHND`. Redirección obligatoria de las búsquedas genealógicas de Molinillo y anejos anteriores a 1715 hacia Navalmoral de la Sierra (`NMRL`) y Navarredondilla (`NRDL`).
-16. **`[L-25]` Protocolo de Trazabilidad Total e ID Canónico Universal:** Todo asiento se ancla al archivo de imagen, al folio físico manuscrito (`Fol. Xr/v` o `S/F`) y al ID canónico `ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`. Las partidas bipartitas (pie de plana a cabecera de la siguiente) se restituyen sin pérdida de padrinos ni firmas.
+16. **`[L-25]` Protocolo de Trazabilidad Total y Tratamiento de Partidas Bipartitas (Split Acts):** Las partidas que arrancan al pie de una plana y concluyen en la siguiente (intra-imagen verso $\rightarrow$ recto, o inter-imagen recto $N \rightarrow$ verso $N+1$) se restituyen sin pérdida de padrinos ni firmas, vinculando mitades con marcadores direccionales.
+17. **`[L-26]` Modelo de Identificación en Dos Capas (PK Física Inmutable + Cita Archivística + Metadato ARK):** Separación tajante entre la **clave primaria física de base de datos** (`{DGS}_{FOTOGRAMA}_{CARA}_{ASIENTO}`, ej. `004306112_01874_L_01`, matemática e inmutable) y el **foliado manuscrito / ID archivístico** (`ES-AV-NRDL-BAUT-L01-F001V-A01`, descriptivo y revisable). Se incorpora el metadato digital persistente **URL ARK de FamilySearch** (`https://www.familysearch.org/ark:/61903/3:1:...`) a nivel de imagen y de asiento para citas permanentes.
 
 ---
 
@@ -62,7 +63,7 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 
 | Nº | Título Oficial del Cuaderno | ID en NotebookLM (`notebook_id`) | Fuentes | Contenido y Estado |
 | :-: | :--- | :--- | :-: | :--- |
-| **1** | **`Lib. Baut. Navarre Vol. 1 (1594-1695)`** | `7967d647-8ca2-4863-a576-11843e8e8802` | 186 | **Cuaderno principal saneado de Bautismos de Navarredondilla (1594–1695, DGS 004306112).** 183 imágenes únicas + 3 fuentes maestras (`00`, `01`, `02`). Configurado `chat_configure` con System Prompt oficial. |
+| **1** | **`Lib. Baut. Navarre Vol. 1 (1594-1695)`** | `7967d647-8ca2-4863-a576-11843e8e8802` | 188 | **Cuaderno principal saneado de Bautismos de Navarredondilla (1594–1695, DGS 004306112).** 183 imágenes únicas + 5 fuentes maestras (`00`, `01`, `02`, `03`, `04`). Configurado `chat_configure` con System Prompt oficial. |
 | **2** | **`libro bautismos navarre 1594-1637`** | `d28c82d0-e15f-4d4d-8333-61f529d52815` | 91 | Cuaderno experimental inicial (nombres antiguos `S3HT-...jpg`). Auditados sus 20 turnos de chat y 3 artefactos Studio (`L-01` a `L-09`). |
 | **3** | **`matrimonio navarre 1698-1761`** | `b973ffbb-0097-4b1b-a518-25aefd9a46c9` | 79 | Libro de Matrimonios de Navarredondilla (1698–1761). Pendiente de auditoría. |
 | **4** | **`Libro personas ensenada Navarredondilla`** | `d634b10e-386d-4397-96d1-d271eb71a70d` | 91 | Catastro del Marqués de la Ensenada (1752) de Navarredondilla. |

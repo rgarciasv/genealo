@@ -44,8 +44,8 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
   * `rollo 004469028`: Libro del Personal Seglar H-669 (El Villarejo: 00901–00951, Molinillo: 00952–00979, Navandrinal: 00980–01013), Personal Navalmoral H-670 (01014–01166) y Bienes de Navandrinal H-667 (01581–02205).
   * `rollo 004469027`: Libros de Bienes H-666 de San Juan del Molinillo (01824–02363) y El Villarejo (02364–03145), y Bienes de Navalmoral (00014–01823).
   * `rollo 004469026`, `rollo 004469033`, `rollo 004273954` y carpeta `catastro ensenada Navarredondilla` (681 imgs).
-* **Árboles Genealógicos Previos (Ground Truth Onomástico):**
-  * Archivos `.ged`: `Navarredondilla_1594_1606.ged`, `Navarredondilla_1594_1616 v1.ged`, `Navarredondilla_1594_1620.ged`, `gramps.ged` y carpeta `desde geneanet arboles/`.
+* **Árboles Genealógicos Previos (Vocabulario Onomástico de Referencia — No es Ground Truth):**
+  * Archivos `.ged`: `Navarredondilla_1594_1606.ged`, `Navarredondilla_1594_1616 v1.ged`, `Navarredondilla_1594_1620.ged`, `gramps.ged` y carpeta `desde geneanet arboles/` (utilidad exclusiva como n-gramas y vocabulario léxico comarcal; la validación relacional es humana e iterativa).
 
 ---
 
@@ -83,7 +83,10 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 - [x] Documento de contexto inicial consolidado (`contexto_maestro.md`).
 - [x] Auditoría documental de los 3 inventarios maestros en PDF (Navarredondilla, Molinillo y Ensenada).
 - [ ] **0.1. Generación de `catalogo_corpus.json` (Mapa Físico-Lógico):**
-  - [ ] Script Python que mapee cada archivo `DGS_XXXXX.jpg` a su metadato real: `parroquia`, `libro`, `tipo_sacramento`, `rango_anios`, `es_descarte`, resolviendo los saltos de encuadernación del *Elemento 13 ("Cajón de sastre")* y del *Elemento 6 ("Libro Bífido")*.
+  - [ ] **[ARK-01] [TAREA USUARIO] Extracción de URLs ARK de FamilySearch:**
+    - [ ] Ejecutar script en consola DevTools de FamilySearch para volcar mapa `archivo_imagen.jpg -> URL ARK`.
+    - [ ] Integrar captura automática de ARK en `descargar_v2.js` para nuevas descargas de rollos.
+  - [ ] Script Python que mapee cada archivo `DGS_XXXXX.jpg` a su metadato real: `parroquia`, `libro`, `tipo_sacramento`, `rango_anios`, `url_ark`, `es_descarte`, resolviendo los saltos de encuadernación del *Elemento 13 ("Cajón de sastre")* y del *Elemento 6 ("Libro Bífido")*.
 - [x] **0.2. Extracción del Diccionario Onomástico y Toponímico (Bootstrapping):**
   - [x] Extraer de los archivos `.ged` (`Navarredondilla_1594_1620.ged`, `gramps.ged`) la lista de apellidos, nombres, oficios, matrimonios y notas paleográficas reales de la comarca.
   - [x] Generar el archivo [`01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md`](file:///c:/TRABAJOS/personal/genealo/01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md) con el candado cronológico, topónimos de mundo cerrado y tabla de curas por año para subirlo como **Fuente de Anclaje 01** en NotebookLM.
@@ -139,10 +142,11 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 ### 📦 FASE 2: Especificación y Contratos de Salida
 *Objetivo: Blindar la estructura de datos para soportar la riqueza documental sacramental y polimórfica.*
 
-- [x] **2.1. Diseño del Schema Universal y Bloque Estricto (Documentado en REGLAS v2.0):**
-  - [x] Estructura de ID Canónico Universal: `ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}` (ej. `ES-AV-NRDL-BAUT-L01-F002V-A06`).
-  - [x] Trazabilidad triple: archivo JPG (`archivo_imagen`), foliado físico original (`folio_fisico`), y código cuatriletrado de localidad (`localidad`).
-  - [x] Protocolo de partidas bipartitas (Intra-imagen verso $\rightarrow$ recto unificada; e Inter-imagen recto $N \rightarrow$ verso $N+1$ con enlace direccional).
+- [x] **2.1. Modelo de Identificación en Dos Capas (PK Física Inmutable + Cita Archivística + ARK) (`L-26`):**
+  - [x] Clave Primaria Física Inmutable (PK): `{DGS}_{FOTOGRAMA}_{CARA}_{ASIENTO}` (ej. `004306112_01874_L_01`). Idempotencia matemática garantizada.
+  - [x] Atributos descriptivos revisables: `folio_manuscrito`, `folio_moderno`, `id_archivistico` (`ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`).
+  - [x] Metadato digital persistente: `url_ark` (FamilySearch ARK URL) a nivel de imagen y de asiento.
+  - [x] Trazabilidad y protocolos de partidas bipartitas (Intra-imagen verso $\rightarrow$ recto unificada; e Inter-imagen recto $N \rightarrow$ verso $N+1$ con enlace direccional).
 - [ ] **2.2. Validación empírica de Contratos Polimórficos (`L-23`):**
   - [ ] Formato de Padrones de Confirmación (`PADRON_CONFIRMACION`) probado en Padrón de 1649 (`02067`–`02070`).
   - [ ] Formato de Autos de Visita Pastoral (`AUTO_VISITA`) probado en Visita de 1638 (`02052`).
