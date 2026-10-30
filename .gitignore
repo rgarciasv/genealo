@@ -1,0 +1,37 @@
+# Entornos virtuales y dependencias
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Archivos pesados binarios e imágenes microfilmadas
+*.jpg
+*.jpeg
+*.png
+*.ai
+*.pdf
+catastro ensenada Navarredondilla/
+San Juan Bautista. Bautismos*/
+1x/
+desde geneanet arboles/
+imagenes/rollo*/
+
+# Logs y volcados temporales
+*.log
+scraper.log
+
+# Credenciales y perfiles de sesión
+storage_state.json
+*.session
+*browser_profile*
+.notebooklm/
+
+# Archivos del sistema
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# Arboles genealogicos y volcados locales
+*.ged
+prueba_tabla_partidas.csv

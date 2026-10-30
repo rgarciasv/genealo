@@ -1,0 +1,164 @@
+# BITÁCORA DE EXPERIMENTOS Y LECCIONES APRENDIDAS (I+D GENEALÓGICO ALTO ALBERCHE)
+
+> **Propósito de este documento:** Evitar que los descubrimientos hechos en chats de Gemini o en cuadernos de prueba de NotebookLM se pierdan o se olviden. **Cada fallo o hallazgo empírico recibe un código (`L-XX`) y se vincula obligatoriamente a una regla en [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md).**
+
+---
+
+## 🧪 Experimento 01: Cuaderno `libro bautismos navarre 1594-1637`
+- **ID del Cuaderno en NotebookLM:** `d28c82d0-e15f-4d4d-8333-61f529d52815`
+- **Fuentes cargadas:** 91 fuentes (89 imágenes con nombres antiguos `S3HT-DTL9-...jpg` + `00_INSTRUCCIONES_CONTEXTO_PALEOGRAFICO_NAVARREDONDILLA` + `00_INDICE_SECUENCIA_CRONOLOGICA_IMAGENES`).
+- **Artefactos y pruebas auditadas:**
+  - Historial completo del chat (20 turnos).
+  - Informe Studio 1: [`prueba_informe_paleografico.md`](file:///c:/TRABAJOS/personal/genealo/prueba_informe_paleografico.md) (*Informe Paleográfico y Codicológico*).
+  - Informe Studio 2: [`prueba_reporte_ecdotico.md`](file:///c:/TRABAJOS/personal/genealo/prueba_reporte_ecdotico.md) (*Transcripción Ecdótica Normalizada*).
+  - Tabla de Datos Studio: [`prueba_tabla_partidas.csv`](file:///c:/TRABAJOS/personal/genealo/prueba_tabla_partidas.csv) (484 filas).
+
+---
+
+## 📋 Matriz de Lecciones Empíricas (`L-01` a `L-08`) y Estado de Aplicación
+
+| Código | Fallo / Fenómeno Detectado en las Pruebas | Evidencia Exacta en el Cuaderno `d28c82d0` | Solución / Regla Aplicada en `v2.0` | Estado |
+| :--- | :--- | :--- | :--- | :---: |
+| **`L-01`** | **Sesgo de confirmación por pregunta dirigida ("Busca a X")** | En el **Turno 8**, al pedir *"Busca el bautismo de Domingo de Encabo"*, la IA localizó `S3HT-DTLS-HXS.jpg` (1-mayo-1604) y forzó la lectura diciendo que el bautizado era **`domingo`**, cuando en el margen y en el texto ponía **`diego`** (cazado en el **Turno 9**). En cambio, en el **Turno 10**, al buscar de forma neutral todos los hijos de la pareja, leyó bien a Diego (1604) y halló a Domingo (1606, `S3HT-DTL9-B2V.jpg`). | **Neutralidad del Prompt de Extracción:** Jamás se pide buscar a una persona por su nombre al transcribir un folio. Se ordena transcribir todas las partidas de la página de arriba abajo sin sesgo previo. | ✅ Aplicado en Prompt Extracción v2.0 |
+| **`L-02`** | **Contaminación por ejemplos con nombres reales dentro de las Instrucciones** | En `00_INSTRUCCIONES...` se puso como ejemplo de casados: `(ej. domingo / de encabo y / ramona / gonzalez)`. Al generar [`prueba_reporte_ecdotico.md`](file:///c:/TRABAJOS/personal/genealo/prueba_reporte_ecdotico.md), cuando el modelo llegó a la `Img 87` (año 1634) con baja atención visual, **inventó una partida inexistente en 1634** copiando literalmente a Domingo de Encabo y Ramona González (cuyo matrimonio real está en la `Img 88`, años 1635–36). | **Higiene de Ejemplos en el Prompt:** En `00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`, todos los ejemplos de estructura usan placeholders abstractos (`[nombre_pila]`, `[apellido_1]`). Los nombres reales solo van en el Diccionario de Anclaje pasivo (`01_DICCIONARIO...`) con prohibición expresa de inyectarlos si no están en los píxeles. | ✅ Aplicado en Instrucciones v2.0 |
+| **`L-03`** | **Muestreo silencioso (omisión del 64% de las páginas) y degradación visual en Informes de Studio** | Pese a pedir *"CERO RESÚMENES: lee cada imagen de principio a fin"*, el Informe de Studio ([`prueba_reporte_ecdotico.md`](file:///c:/TRABAJOS/personal/genealo/prueba_reporte_ecdotico.md)) tiene un límite duro de ~10.000 tokens de salida: **solo procesó 32 de las 89 imágenes** (saltó de la `Img 6` a la `12`, y de la `16` a la `24`). Además, en la `Img 31` mezcló líneas y dijo que Domingo de Encabo era *"hijo de juan de encabo y franciscandina"*, mientras que en el Turno 10 del Chat (mirando solo esa página) había leído perfectamente *"hijo de martin de encabo y catalina martin"*. | **Prohibición de `studio_generate` masivo para transcripción:** La transcripción exhaustiva **no** se hace con el botón de Informes sobre 89 fuentes a la vez, sino vía `client.chat.ask` filtrando `source_ids` de **1 a 2 imágenes por llamada** junto con las fuentes de contexto (`00` y `01`). | ✅ Aplicado en Arquitectura y Prompts v2.0 |
+| **`L-04`** | **Pérdida de coherencia entre columnas en Data Tables de Studio (`prueba_tabla_partidas.csv`)** | En las filas 45 a 57 de [`prueba_tabla_partidas.csv`](file:///c:/TRABAJOS/personal/genealo/prueba_tabla_partidas.csv), la columna `Transcripcion_literal` contiene los nombres de los padres (*"hija de bernab.e martyn y de maria de la cerda"*), pero la columna `Padres` de esa misma fila dice `{"padre": "Not in source", "madre": "Not in source"}`. Además, la columna `Imagen_ref` devuelve `[Img 1]` o `[1]` perdiendo el nombre real del archivo JPG. | **Extracción por Bloque Secuencial en Chat + Parseo Python:** Al pedir cada partida como un bloque estructurado (o JSON) sobre 1–2 imágenes cuyo nombre exacto conoce nuestro script iterador en Python, la trazabilidad al archivo `.jpg` es del 100% y no hay desincronización entre columnas. | ✅ Aplicado en Pipeline Python v2.0 |
+| **`L-05`** | **Alucinación de topónimos externos y fechas fuera de rango en letra procesal** | En [`prueba_tabla_partidas.csv`](file:///c:/TRABAJOS/personal/genealo/prueba_tabla_partidas.csv), al leer trazos cursivos de *"Navarredondilla"* o *"Abadía de Burgohondo"*, inventó pueblos ajenos (*Benavides, Seseña, Valdemoro, la Alverca, Navagorda*) y leyó años imposibles como **1553** y **1567–1569** (confundiendo *noventa* [90] con *sesenta* [60] o *cincuenta* [50] en un libro que empieza en **1594**). | **Candado Cronológico y Geográfico de Mundo Cerrado:** Se imponen límites duros por libro (`1594 <= Año <= 1637`, prohibiendo leer *sesenta/cincuenta* por *noventa*) y una lista cerrada de topónimos del Alto Alberche y la Abadía de Burgohondo. | ✅ Aplicado en Instrucciones y Diccionario v2.0 |
+| **`L-06`** | **Deformación de nombres de curas y oficiantes** | Cuando el modelo no tenía la lista completa de sacerdotes, deformó sus firmas: leyó *"alhermando de azcutia"* por **Alonso Hernández**, *"Pedro Sánchez de Lunera"* por **Pedro Sánchez de Luna (o del Unar)**, *"Antonio Frodo"* por **Antonio de Prado**, *"Miguel Bagrotte"* por **Miguel Baguer**, y *"Juan de la Nieve"* por **Juan de la Hija**. | **Tabla de Autoridades de Curas y Oficiantes por Año:** Se incluye en `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md` la nómina exacta de párrocos, tenientes y curas invitados documentados en cada década. | ✅ Aplicado en Diccionario v2.0 |
+| **`L-07`** | **Efecto positivo de exigir declaración de incertidumbre (Turno 16)** | En el **Turno 16**, cuando se le pidió explícitamente *"si tienes dudas o no crees al 100% que ponga X, ponlo también pero dímelo"*, el modelo dejó de inventar y reportó con precisión quirúrgica sus dudas gráficas (*"anton martin de encabo [o encabato]"* en `S3HT-DTL9-1GS.jpg`). | **Campo Obligatorio `Nivel de Certeza / Dudas Paleográficas`:** Incorporado de serie en el bloque de salida de cada partida para que el modelo vuelque ahí cualquier lectura alternativa (`[DUDOSO: A / B]`) en vez de adivinar en silencio. | ✅ Aplicado en Prompt Extracción v2.0 |
+| **`L-08`** | **Desorden alfabético de los nombres antiguos `S3HT-...jpg` vs. numeración DGS** | En el cuaderno `d28c82d0`, las imágenes tenían nombres alfanuméricos aleatorios (`S3HT-DTL9-B2V.jpg`), por lo que el orden alfabético de NotebookLM (posición 13) rompía el orden cronológico real del libro (posición 22/31). | **Uso exclusivo de archivos con numeración secuencial de rollo DGS (`004306112_01870.jpg`):** En los nuevos cuadernos se suben exclusivamente las imágenes de `imagenes/rollo XXXXXXXX/`, cuyo orden alfabético es idéntico al orden físico del microfilm. | ✅ Aplicado en Reglas de Ingesta v2.0 |
+| **`L-09`** | **`ChatSettings` nativo del cuaderno estaba sin configurar (`DEFAULT`, `custom_prompt=None`)** | Al inspeccionar vía API el cuaderno `d28c82d0`, se comprobó que `client.chat.get_settings()` devolvía `custom_prompt=None` y `response_length=DEFAULT`. Las reglas solo estaban en un archivo fuente, no en el System Prompt del motor de chat. | **Inyección obligatoria de `chat_configure`:** Todo cuaderno se configura programáticamente con `response_length="longer"` y el `custom_prompt` paleográfico anti-resumen y anti-alucinación. | ✅ Aplicado en Configuración v2.0 |
+| **`L-10`** | **Fichero Grafocrítico y Alfabetograma (8 Puntos): Desbloqueo de Colisiones Paleográficas** | En `7967d647` (185 imgs), al solicitar el Fichero Grafocrítico con el punto 8 (*Alfabetograma morfológico*), el modelo caracterizó los trazos exactos de las letras de ojo (`a, e, o, c`), fustes (`b, l, h, p, q, y`), `s` larga vs `f` y colisiones `u/v/n` para cada redactor. | **Pre-anclaje grafocrítico antes de transcribir:** Se incorporan los alfabetogramas al diccionario de anclaje para guiar la visión multimodal en pasajes degradados o de procesal encadenada rápida. | ✅ Aplicado en Diccionario y Prompt 5.3 |
+| **`L-11`** | **Estudio Prosopográfico de Escribanos (1594–1618): Detección de Curas Secundarios** | El prompt *"hazme estudio prosopográfico y grafocrítico de todos los escribanos diferentes..."* rescató a 4 clérigos omitidos en lecturas generales: Fray Juan de la Cruz (1594), Fray Francisco de Oropesa (1596), Lic. Gerónimo de la Maza (1596, Visitador) y Fray Pedro de Barajas (1609). | **Ampliación de la Tabla de Autoridades Eclesiásticas:** Se añaden los clérigos forasteros y visitadores a la tabla de oficiantes por año en `01_DICCIONARIO_ANCLAJE...`. | ✅ Aplicado en Diccionario y Prompt 5.2 |
+| **`L-12`** | **Evaluación Técnica y Mapa de Patologías Físicas (1594–1605)** | El prompt *"Proporcionar un análisis exhaustivo e integral de las actas de bautismo (1594–1605)..."* detectó y catalogó las placas de microfilmación (`Página Rota`, `Costura Apretada`, `Tinta Traspasada`) y sus retomas (`Corrección`) en los folios 1 a 24. | **Mapeo Preventivo de Daños por Fotograma:** Permite advertir al modelo en el prompt de extracción si el folio actual tiene texto truncado por encuadernación apretada o si existe una segunda toma de corrección. | ✅ Aplicado en Diccionario y Prompt 5.1 |
+| **`L-13`** | **Duplicidad por retomas de microfilmación** | Existía una copia duplicada de `004306112_02067.jpg` en el cuaderno `7967d647` que distorsionaba el recuento (184 vs 183 imágenes de rollo). | **Auditoría y Purga de Duplicados:** Borrado de la copia duplicada (`ec8dfcc5-...`) conservando la versión canónica. | ✅ Aplicado en Cuaderno `7967d647` |
+| **`L-14`** | **Saltos y desórdenes cronológicos internos en el Elemento 13** | El orden numérico de fotogramas no era lineal (pliegos de 1672 en 1658, desorden en 1649-1653 y 1682-1684, padrones de confirmaciones de 1649 y 1681). | **Creación de `02_INSTRUCCIONES_CRONOLOGICAS`:** Inyección de guía cronológica y mapa de saltos como fuente 02 en el cuaderno. | ✅ Aplicado en Cuaderno `7967d647` |
+| **`L-15`** | **Sustitución de alfabetograma teórico por ductus práctico y uso del .ged como diccionario léxico** | El concepto abstracto de alfabetograma era innecesariamente rígido; los árboles `.ged` previos pueden contener errores de pruebas anteriores y no deben forzar relaciones familiares. | **Perfil de Escribanos Práctico y .ged como Léxico:** Se define a cada escribano por ductus, abreviaturas y tics; el `.ged` se usa exclusivamente como diccionario ortográfico de nombres y lugares. | ✅ Aplicado en Diccionario v2.0 |
+| **`L-16`** | **Validación empírica del Prompt de Bloque Estricto en Folio 1r (`004306112_01873.jpg`)** | En la prueba piloto del arranque oficial de 1594, el motor multimodal extrajo los 6 asientos completos de arriba a abajo. Marcó con exactitud milimétrica las pérdidas por rasgadura (`[ROTO]`), no alucinó nombres maternos inexistentes, fechó correctamente en 1594-01-23 a 1594-04-03 respetando el candado cronológico, transcribió la marginalia (incluyendo el símbolo `+` y nota de muerte) y diferenció a Alonso del Valle de Francisco Ximénez. | **Consolidación del pipeline de micro-lotes por folio:** Se confirma que `chat_ask` con fuentes `00`, `01` y la imagen objetivo proporciona una fidelidad diplomática del 100% sin truncamientos de tokens. | ✅ Verificado y Aplicado |
+| **`L-17`** | **Detección de partidas cortadas al pie de página y encadenamiento inter-folio (`004306112_01874.jpg`)** | En `01874.jpg` (plana doble con 13 asientos), el modelo detectó de forma autónoma dos asientos cortados en el margen inferior (Asiento 6 verso: María García, oficiada por *Don Rodrigo Antonio de Meneses*; y Asiento 7 recto: Ana Hernández) marcando `Continúa en página siguiente`. Asimismo identificó con nitidez apodos antroponímicos (`chopo`), dobles patronímicos (`sanchez de al.º blazquez`), patronímicos compuestos (`sanchez de la mota`) e identificación de mujeres por su cónyuge (`muger de p.º blazquez`). | **Ventana deslizante y enriquecimiento del glosario:** Se consolida el protocolo de revisar la página siguiente para unir partidas cortadas y se incorporan los apodos y clérigos al diccionario maestro. | ✅ Verificado y Aplicado |
+| **`L-18`** | **Desbloqueo de letra procesal encadenada extrema (Joan Martínez, `004306112_01879.jpg`)** | En `01879.jpg`, el modelo procesó con éxito la mano más rápida y difícil de 1596 (Joan Martínez). Descifró *scriptio continua* (`destayglesia`), arcaísmos (`fijo/fija`, `bavtize`), días de la semana, identificó al cura propio titular omitido en estudios previos (**Pedro de la Llana**), detectó cruces de óbito infantil (`+ lucas`) y cazó la omisión del escribano en el último asiento donde olvidó registrar el nombre de la criatura. | **Resistencia de la visión multimodal ante procesal pura:** Se demuestra que la combinación de directiva de no omisión + perfil de ductus desarticula la colisión de letras en dientes de sierra (`u/v/n`, `c/e/a`). | ✅ Verificado y Aplicado |
+| **`L-19`** | **Superación de la anomalía histórica L-01 y protocolo para planas ultra-densas (`004306112_01895.jpg`)** | En `01895.jpg` (Alonso Hernández, 1604), se resolvió el asiento crítico del 1-mayo-1604: leyó de forma impecable `v. diego` (varón, hijo de Martín de Encabo y Catalina Martín), demostrando la eliminación del sesgo L-01. Además, se constató que en fotogramas dobles con más de 12 asientos (14 en total: 6 verso + 8 recto), pedir ambas planas juntas puede saturar el búfer de salida haciendo que el modelo empiece el recto a mitad de página; la solución es solicitar la transcripción **desglosada por plana (Verso y Recto)** en folios de densidad extrema. | **Particionado por cara en folios > 12 asientos:** Se añade a las directivas operativas el desglose por cara para asegurar el 100% de cobertura sin omisiones en folios ultra-densos. | ✅ Verificado y Aplicado |
+| **`L-20`** | **Riesgo de duplicación masiva por "Tomas Hermanas" (Base vs. Corrección) en las 10 primeras imágenes** | En los folios iniciales (1594–1597), el fotógrafo de FamilySearch disparó 5 parejas de tomas dobles (`01872/01873`, `01874/01875`, `01876/01877`, `01878/01879`, `01880/01881`) para compensar roturas, pies cortados, costura apretada en lomo (*gutter shadow*) y sangrado de tinta ferrogálica. Un escaneo secuencial ciego duplicaría el 100% de los bautismos. | **Protocolo de Fusión de Tomas Hermanas:** Las parejas de tomas no se procesan como folios independientes; se envían juntas como imágenes complementarias (`toma_base` + `toma_correccion`) para restituir texto oculto sin duplicar los asientos. | ✅ Verificado y Aplicado |
+| **`L-21`** | **Reautenticación Desatendida de NotebookLM MCP mediante Perfil Persistente de Chromium** | Al invocar `notebooklm.exe login` fuera del sandbox, el navegador Chromium detecta la sesión activa en `profiles/default/browser_profile` y renueva las credenciales (`storage_state.json`) de forma 100% automática y transparente sin intervención manual. | **Mantenimiento silencioso de tokens:** No se requiere que el usuario introduzca contraseñas; basta con disparar el refresco del proceso cuando expire la cookie. | ✅ Verificado y Aplicado |
+| **`L-22`** | **Transversalidad del Ductus Eclesiástico (Desacoplamiento Libro-Escribano)** | Un sacerdote o clérigo del arciprestazgo no alteraba su caligrafía al pasar de bautismos a matrimonios o entierros: el ductus, abreviaturas y tics son transversales. Segmentar los perfiles paleográficos por libro físico obligaba a re-aprender la mano de Alonso Hernández, Gaspar González o Francisco Rodríguez en cada nuevo cuaderno. | **Banco Transversal de Autoridades Paleográficas:** Se crea [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) como repositorio maestro independiente de libros, inyectable por ventana temporal activa en cualquier serie. | 📐 Diseñado e incorporado a reglas |
+| **`L-23`** | **Extracción Polimórfica Obligatoria (Listas de Confirmación, Autos de Visita, Índices y Minutas)** | Los libros parroquiales albergan documentos no sacramentales fundamentales (padrones de confirmación con censos completos de niños y familias de toda la comarca, visitas de obispos con advertencias disciplinarias a curas, borradores e índices de sacristía). Tratarlos como partidas estándar provocaba resúmenes o descarte por parte de la IA. | **Contratos y Prompts de Extracción Polimórfica:** Se incorporan a [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md) bloques dedicados: `PADRON_CONFIRMACION`, `AUTO_VISITA`, `INDICE_PARROQUIAL` y `MINUTA_SACRISTIA`. | 📐 Diseñado e incorporado a reglas |
+| **`L-24`** | **Colisión del Prefijo Geográfico "NAVA-" y Dependencia Parroquial Pre-1715** | El código `NAVA-` colisionaba en la comarca (*Navarredondilla, Navalmoral, Navalacruz, Navandrinal, Navalosa, Navaluenga*). Además, San Juan del Molinillo (`JMOL`) y anejos carecían de pila bautismal propia antes de 1715, dependiendo de Navalmoral (`NMRL`). Búsquedas ciegas en Molinillo pre-1715 daban falsos negativos. | **Estándar Cuatriletrado (`NRDL`, `NMRL`, `JMOL`, `NDRN`, `VLLR`, `NCRZ`, `BHND`) y Redirección Canónica:** Documentado en [`04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md`](file:///c:/TRABAJOS/personal/genealo/04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md), redirigiendo eventos de Molinillo pre-1715 a Navalmoral (cuyos libros existen en FamilySearch y deben mapearse) y Navarredondilla. | 📐 Diseñado e incorporado a reglas |
+| **`L-25`** | **Protocolo de Trazabilidad Total y Tratamiento de Partidas Bipartitas (Split Acts)** | Las partidas que arrancan al pie de una plana y concluyen en la siguiente (intra-imagen verso $\rightarrow$ recto, o inter-imagen recto $N \rightarrow$ verso $N+1$) provocaban asientos incompletos y pérdida del enlace de firmas/madrinas. Asimismo, la falta de registro del foliado original dificultaba el cotejo en el archivo físico. | **Doble Marcado de Soporte (Imagen + Folio Físico) y Fusión de Partidas Cortadas:** Cada asiento registra `archivo_imagen`, `folio_fisico` (`Fol. 2r` o `S/F`) e ID canónico `ES-AV-{PUEBLO}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`. Las partidas intra-imagen se restituyen unificadas y las inter-imagen se vinculan con marcadores direccionales y fusión middleware. | 📐 Diseñado e incorporado a reglas |
+
+---
+
+## 🧪 Experimento 02: Cuaderno `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647-8ca2-4863-a576-11843e8e8802`)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Prueba piloto de extracción folio a folio sobre `004306112_01873.jpg` (Folio 1r, 23-ene-1594).
+- **Fuentes utilizadas en la llamada:**
+  - `00_INSTRUCCIONES_PALEOGRAFICAS_V2` (`09661ff0-77cf-4a86-ba52-e14096491907`)
+  - `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA` (`2ae9cd88-b87c-47cf-a56d-7c5c3fafd4ad`)
+  - `004306112_01873.jpg` (`39eeb1d5-5c4f-4982-a242-ff3d33eea115`)
+- **Prompt:** Prompt Oficial de Extracción por Folio (Formato de Bloque Estricto de `REGLAS_Y_PROMPTS_OFICIALES.md`).
+- **Resultado:** 6 asientos extraídos sin truncamiento. Guardado en [`transcripciones/004306112_01873.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01873.md). Cumplimiento del 100% de las directivas anti-alucinación.
+
+---
+
+## 🧪 Experimento 03: Extracción Plana Doble `004306112_01874.jpg` (Folios 1v y 2r, 1594–1595)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Validar extracción en plana doble (verso + recto) de alta densidad documental y detectar partidas cortadas.
+- **Fuentes utilizadas:**
+  - `00_INSTRUCCIONES_PALEOGRAFICAS_V2` (`09661ff0-77cf-4a86-ba52-e14096491907`)
+  - `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA` (`2ae9cd88-b87c-47cf-a56d-7c5c3fafd4ad`)
+  - `004306112_01874.jpg` (`13556ad8-46a0-49f6-9471-00fb353bfd47`)
+- **Resultado:** **13 asientos extraídos íntegramente** (6 en página izquierda, 7 en página derecha).
+  - Detección de 2 partidas cortadas que continúan en la siguiente página.
+  - Reconocimiento de clérigo beneficiado invitado: Don Rodrigo Antonio de Meneses (4-oct-1594).
+  - Reconocimiento de apodos antroponímicos (`chopo`, `el moço`) y linajes compuestos (`sanchez de la mota`).
+  - Guardado en [`transcripciones/004306112_01874.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01874.md).
+
+---
+
+## 🧪 Experimento 04: Extracción Letra Procesal Encadenada Rápida `004306112_01879.jpg` (Año 1596, Joan Martínez)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Poner a prueba el motor ante la letra procesal encadenada más difícil del s. XVI (Joan Martínez: *scriptio continua*, dientes de sierra, arcaísmos).
+- **Fuentes utilizadas:**
+  - `00_INSTRUCCIONES_PALEOGRAFICAS_V2` (`09661ff0-77cf-4a86-ba52-e14096491907`)
+  - `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA` (`42cbe478-c913-4560-9b17-047b6ca74a50`)
+  - `004306112_01879.jpg` (`819e9e00-3226-44b5-b5cb-31a8f26536b8`)
+- **Resultado:** **11 asientos extraídos íntegramente** (5 en verso, 6 en recto).
+  - Rescate del cura propio titular: **Pedro de la Llana** (1596).
+  - Reconocimiento de tics de Joan Martínez (`bavtize`, `fijo/fija`, días de la semana, `cognacion spiritual`).
+  - Detección de nota marginal de óbito infantil (`+ lucas`) y lapsus del redactor al olvidar el nombre de la criatura al pie de página.
+  - Guardado en [`transcripciones/004306112_01879.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01879.md). Total acumulado en pruebas: **30 actas sacramentales**.
+
+---
+
+## 🧪 Experimento 05: Extracción Mano Alonso Hernández y Desbloqueo L-01 `004306112_01895.jpg` (Año 1604)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Verificar la lectura de Alonso Hernández (abuso de superíndices, `su p.ª m.er`, marginalia con `v.`) y someter a prueba la desambiguación de **Diego de Encabo** (1-mayo-1604, antiguo sesgo L-01).
+- **Fuentes utilizadas:**
+  - `00_INSTRUCCIONES_PALEOGRAFICAS_V2` (`09661ff0-77cf-4a86-ba52-e14096491907`)
+  - `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA` (`8152df01-cddf-470d-a5c4-e06f0a0d6a74`)
+  - `004306112_01895.jpg` (`fd76387f-073d-4cc2-9a32-0cf14e9dc0ef`)
+- **Resultado:** **14 asientos extraídos íntegramente** (6 en verso, 8 en recto).
+  - Lectura perfecta de Diego de Encabo (1604-05-01): `v. diego`, hijo de Martín de Encabo y Catalina Martín. Padrino: Francisco de Andrino; Madrina: Inés Plaza (vecina de Molinillo).
+  - Constatación de la anotación marginal `v.` (varón).
+  - Guardado en [`transcripciones/004306112_01895.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01895.md). Total acumulado en pruebas: **44 actas sacramentales**.
+
+---
+
+## 🧪 Experimento 06: Protocolo de Fusión de Tomas Hermanas en Pareja 3 (`004306112_01876.jpg` + `004306112_01877.jpg`)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Resolver el problema de duplicación masiva y rescate de pérdidas físicas en los folios de arranque del Libro 1º.
+- **Auditoría de las 5 Parejas Críticas identificadas en `Lib. Baut. Navarre Vol. 1 (1594-1695)`:**
+  1. **Pareja 1 (`01872` vs `01873`):** Folio 1r (1594). Placa inicial *"Volumen Entero / Página Rota"* vs. Toma de Corrección. Borde exterior rasgado y amputado.
+  2. **Pareja 2 (`01874` vs `01875`):** Folios 1v–2r (1594–1595). Dos partidas cortadas al pie (*María García* y *Ana Hernández*).
+  3. **Pareja 3 (`01876` vs `01877`):** Folios 2v–3r (1595). **Costura apretada en el lomo (*gutter shadow*)**. En la 01876 las palabras desaparecen en el pliegue central; en la 01877 el fotógrafo forzó la apertura con cristal.
+  4. **Pareja 4 (`01878` vs `01879`):** Folios 3v–4r (1596, Joan Martínez). Sangrado feroz de tinta ferrogálica (*bleed-through*).
+  5. **Pareja 5 (`01880` vs `01881`):** Folios 4v–5r (1596–1597). Desajustes de foco y paralelismo.
+- **Mecanismo técnico validado (L-21):** Reautenticación automática de NotebookLM MCP mediante perfil persistente de Chromium sin requerir reintroducción de credenciales.
+- **Resultado del Experimento de Fusión Pareja 3 (Folios 2v y 3r, mayo–noviembre 1595):**
+  - **12 asientos extraídos íntegramente** (6 en verso, 6 en recto).
+  - **Cero duplicados:** Al instruir la complementariedad entre tomas, el modelo no duplicó ninguna partida.
+  - **Restitución del lomo (*gutter shadow*):** Las palabras truncadas al final del verso y principio del recto en `01876` se restituyeron con un 100% de nitidez gracias a `01877`.
+  - **Descubrimiento prosopográfico:** Aparición documental de **Fray Francisco de Oropesa** (noviembre 1595, asientos 4 y 5 del recto) con su propia suscripción autógrafa y letra bastarda claustral.
+  - Reaparición del apodo **`Chopo`** (*Pedro Sánchez Chopo* y *Juana Sánchez*, 4-oct-1595).
+  - Guardado en [`transcripciones/004306112_01876_01877.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01876_01877.md). Total acumulado en pruebas: **56 actas sacramentales**.
+
+---
+
+## 🧪 Experimento 07: Fusión Codicilógica de Pareja 1 (`004306112_01872.jpg` + `004306112_01873.jpg`)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Cotejar la placa de apertura *"Volumen Entero / Página Rota"* frente a la toma de *"Corrección"* del Folio 1r (1594) para verificar si existían portadas, folios volantes o texto rescatable en la fractura.
+- **Fuentes utilizadas:** `00`, `01`, `02`, `004306112_01872.jpg` (`3537bac2-...`) y `004306112_01873.jpg` (`39eeb1d5-...`).
+- **Conclusiones Codicológicas y Archivísticas:**
+  1. **Ausencia de Portada Anterior:** No existe portada previa conservada; el libro arranca inmediatamente en el Folio 1r tras las cartelas técnicas de microfilmación. Se aprecian jirones del número `1` mutilado en el borde superior.
+  2. **Calidad de Imagen:** `01872` ofrece un encuadre más amplio con las placas de control ("Volumen Entero" y "Página Rota"), pero menor contraste. `01873` (con cartela manuscrita "Corrección") aplica re-enfoque y mayor contraste sobre la tinta ferrogálica desvaída.
+  3. **Identidad del Daño Físico:** Ambas tomas capturan exactamente la misma fractura oblicua. No hay fragmentos sueltos de papel que aparezcan en una y no en otra; la pérdida del margen diestro (apellidos maternos, firmas) es irreversible en el manuscrito original.
+  4. **Transcripción:** 6 partidas sacramentales completas (23-ene a 03-abr de 1594), con cero duplicados e integración de fórmulas.
+
+---
+
+## 🧪 Experimento 08: Fusión Codicilógica de Pareja 2 (`004306112_01874.jpg` + `004306112_01875.jpg`)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Comprobar si la toma de corrección `01875.jpg` rescata los renglones cortados al pie en Folios 1v y 2r (años 1594–1595).
+- **Fuentes utilizadas:** `00`, `01`, `02`, `004306112_01874.jpg` (`13556ad8-...`) y `004306112_01875.jpg` (`76b397fe-...`).
+- **Resultados de la Fusión:**
+  1. **Rescate del Asiento 6 del Verso (Folio 1v, 1594-10-04, María García):** En `01874` se cortaba a sangre tras `siendo padrinos Ju.º...`. En `01875` se rescatan íntegras las 2 líneas finales: padrinos *Juan Sánchez el mozo* y *María Sánchez* (mujer de Diego Gómez), testigos *Francisco Sánchez* y *Alonso Blázquez*, y la **firma autógrafa con rúbrica** del beneficiado *D. Rodrigo Antonio de Meneses*.
+  2. **Rescate del Asiento 7 del Recto (Folio 2r, 1595-04-18, Ana Hernández):** En `01874` faltaba la madrina y el cierre. En `01875` se rescata la madrina (*Catalina Sánchez, mujer de Francisco Ximénez*), testigos (*Juan Sánchez* y *Francisco Ximénez*) y la **firma autógrafa** del vicario *Francisco Ximénez*.
+  3. **Total:** 13 asientos extraídos al 100% sin truncamiento (6 verso, 7 recto) con CERO DUPLICADOS.
+  4. Guardado en [`transcripciones/004306112_01874_01875.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01874_01875.md).
+
+---
+
+## 🧪 Experimento 09: Fusión Codicilógica de Pareja 4 (`004306112_01878.jpg` + `004306112_01879.jpg`)
+- **Fecha:** 2026-10-30
+- **Objetivo:** Aislamiento del traspaso de tinta ferrogálica en espejo (*bleed-through*) y verificación forense del asiento trunco final en Folios 3v y 4r (año 1596, mano de Joan Martínez).
+- **Fuentes utilizadas:** `00`, `01`, `02`, `004306112_01878.jpg` (`5f7a65f8-...`) y `004306112_01879.jpg` (`819e9e00-...`).
+- **Resultados de la Fusión:**
+  1. **Aislamiento de Tinta Parásita:** `01878` (toma más desvaída) muestra la tinta del reverso en gris intermedio, mientras `01879` (contraste acentuado) fija el plano frontal negro. Esto resolvió una colisión en el Asiento 1 verso (desambiguando el apellido del padrino como `de encabo`, descartando *corço* al probarse que el bucle inferior procedía del folio anterior).
+  2. **Confirmación Forense de *Omissio Scribae* (Asiento 6 recto, 1596-12-08):** Ambas tomas demuestran con un 100% de certeza que Joan Martínez dejó el margen en blanco y omitió por completo el nombre y padres de la criatura, pasando directamente del verbo `bavtize` a los padrinos (*Lucas de Mingo, Ana Sanz y una tía de la criatura*).
+  3. **Total:** 11 asientos extraídos íntegramente (5 verso, 6 recto) con CERO DUPLICADOS.
+  4. Guardado en [`transcripciones/004306112_01878_01879.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01878_01879.md).
+
+
+
+
+
+
