@@ -40,11 +40,11 @@ Supervise and monitor the background ingestion pipeline for San Juan del Molinil
 
 ## Change Tracker
 - **Files modified**: progress.md, analysis.md, DISPATCH.md, BRIEFING.md
-- **Build status**: Pipeline active (PID 160988 / task-402)
-- **Pending issues**: Supervise active upload across JMOL-DIFU-04 and 5 remaining notebooks to reach 2,731 sources.
+- **Build status**: Pipeline active (PID 181048 / task-566)
+- **Pending issues**: Supervise active upload across JMOL-DIFU-06 and 3 remaining notebooks to reach 2,731 sources.
 
 ## Quality Status
-- **Build/test result**: 2,176/2,731 sources verified in checkpoint; JMOL-DIFU-02 completed (277/277); JMOL-DIFU-04 actively uploading (74/214).
+- **Build/test result**: 2,460/2,731 sources verified in checkpoint (90.1%); JMOL-DIFU-05 completed (99/99); JMOL-DIFU-06 actively uploading (45/177).
 - **Lint status**: N/A
 - **Tests added/modified**: Independent verification harness to be run in M2.
 

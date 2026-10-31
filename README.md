@@ -122,6 +122,12 @@ El repositorio gestiona **23 cuadernos de trabajo especializados** en Google Not
 
 ```text
 genealo/
+├── .agents/skills/                                  # Suite de Skills Operativas del Archivero Virtual
+│   ├── ingesta-parroquial-notebooklm/SKILL.md       # Ingesta masiva, rate-limiting y gestión [L-21]
+│   ├── reconstruccion-codicologica/SKILL.md         # Desarticulación [L-30], híbridas [L-31] y visitas [L-32]
+│   ├── grounding-cuadernos-parroquiales/SKILL.md    # Inyección ecdótica y ChatSettings de cascarones
+│   ├── transcripcion-diplomatica-parroquial/SKILL.md# Fusión tomas hermanas [L-20] y JSON Schema
+│   └── auditoria-integridad-corpus/SKILL.md         # Verificación forense E2E de fuentes READY
 ├── 00_INSTRUCCIONES_PALEOGRAFICAS_V2.md            # Criterios ecdóticos y diplomáticos
 ├── 01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md        # Léxico cerrado y toponimia menor
 ├── 02_INSTRUCCIONES_CRONOLOGICAS_...md              # Guías de secuencia y saltos codicológicos

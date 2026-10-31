@@ -1,10 +1,10 @@
 # Progress — worker_jmol_m1
-Last visited: 2026-10-31T22:14:30+00:00
+Last visited: 2026-10-31T22:50:40+00:00
 
 ## Milestone 1: Ingestion Monitoring & Pipeline Health
-- **Active Pipeline PID**: 160988 (RUNNING) [Task ID: `task-402`]
-- **Overall Progress**: 2,176 / 2,731 sources (79.7%)
-- **Completed Notebooks**: 12 / 18 (JMOL-BAUT-01..05, JMOL-INDICE-BAUT, JMOL-MATR-01..03, JMOL-DIFU-01..03)
+- **Active Pipeline PID**: 181048 (RUNNING) [Task ID: `task-566`]
+- **Overall Progress**: 2,460 / 2,731 sources (90.1%)
+- **Completed Notebooks**: 14 / 18 (JMOL-BAUT-01..05, JMOL-INDICE-BAUT, JMOL-MATR-01..03, JMOL-DIFU-01..05)
 
 ### Notebook Status Checklist
 - [x] `JMOL-BAUT-01`: 175/175 [DONE]
@@ -17,17 +17,17 @@ Last visited: 2026-10-31T22:14:30+00:00
 - [x] `JMOL-MATR-02`: 134/134 [DONE]
 - [x] `JMOL-MATR-03`: 198/198 [DONE]
 - [x] `JMOL-DIFU-01`: 202/202 [DONE]
-- [x] `JMOL-DIFU-02`: 277/277 [DONE] (completed at 23:07:22 UTC)
+- [x] `JMOL-DIFU-02`: 277/277 [DONE]
 - [x] `JMOL-DIFU-03`: 17/17 [DONE] (pilot)
-- [-] `JMOL-DIFU-04`: 74/214 [IN_PROGRESS] (actively uploading, 140 remaining)
-- [ ] `JMOL-DIFU-05`: 0/99 [QUEUED]
-- [ ] `JMOL-DIFU-06`: 0/177 [QUEUED]
+- [x] `JMOL-DIFU-04`: 214/214 [DONE]
+- [x] `JMOL-DIFU-05`: 99/99 [DONE] (completed at 23:35:10 UTC)
+- [-] `JMOL-DIFU-06`: 45/177 [IN_PROGRESS] (actively uploading: 132 remaining)
 - [ ] `JMOL-DIFU-PARVULOS`: 0/27 [QUEUED]
 - [ ] `JMOL-INDICE-DIFU`: 0/21 [QUEUED]
 - [ ] `JMOL-MIXTO-04`: 0/91 [QUEUED]
 
 ### Health & Monitoring Status
-- [x] `JMOL-DIFU-02` completado al 100% (277/277) a las 23:07:22 UTC.
-- [x] `JMOL-DIFU-03` reconocido como completado y saltado limpiamente.
-- [x] `JMOL-DIFU-04` en ingesta activa (74/214 subidas).
-- [x] Cero errores en `JMOL-DIFU-04`, ejecución estable y fluida bajo PID 160988.
+- [x] `JMOL-DIFU-05` finalizado al 100% (99/99).
+- [x] Renovación de sesión [L-21]: rotación de tokens ejecutada de forma desatendida.
+- [x] Relanzamiento exitoso bajo nuevo PID 181048 (Task ID: `task-566`).
+- [x] `JMOL-DIFU-06` subiendo de forma ininterrumpida (>90% del corpus parroquial alcanzado).
