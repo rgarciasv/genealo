@@ -12,9 +12,9 @@
 
 ---
 
-## 🏛️ 1. FUENTES Y CORPUS DE ENTRADA (AUDITADO EN DISCO)
+## 🏛️ 1. FUENTES Y CORPUS DE ENTRADA (AUDITADO EN DISCO: 8.515 IMÁGENES)
 
-Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) provienen de microfilms de FamilySearch (DGS) del Archivo Diocesano de Ávila y del Archivo Histórico Provincial (AHPAv):
+Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md`](file:///c:/TRABAJOS/personal/genealo/GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md) y [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json)) provienen de microfilms de FamilySearch (DGS) del Archivo Diocesano de Ávila y del Archivo Histórico Provincial (AHPAv):
 
 * **Parroquia de Navarredondilla (Sit. Arch. 166/4):**
   * `rollo 004306112` (924 imgs):
@@ -77,9 +77,11 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 
 ## 📌 AGENDA Y TAREAS PENDIENTES PARA LA PRÓXIMA SESIÓN (MAÑANA)
 
-1. **Estructurar y generar `catalogo_corpus.json` (`D7`):**
-   - Crear el mapa físico-lógico estructurado en JSON de las 7.868 imágenes de los 9 rollos DGS.
-   - Definir para cada imagen: `id_imagen` (clave única = nombre del archivo JPG, ej: `004306112_01874`), `rollo_dgs`, `fotograma`, `libro`, `serie`, `anios_estimados`, `toma_hermana_de`, `es_descarte`, `orden_lectura_real` y campo `url_ark`.
+1. **[COMPLETADO] Estructurar y generar `catalogo_corpus.json` (`D7`):**
+   - Compilado el mapa físico-lógico canónico de las **8.515 imágenes** de los 9 rollos DGS (5.223 parroquiales + 3.292 Catastro de Ensenada) en [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json).
+   - Generada la [`GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md`](file:///c:/TRABAJOS/personal/genealo/GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md) con desglose exacto de Elementos, signaturas, años, series y partidas clave.
+   - Particionamiento completo en cuadernos NotebookLM Pro respetando el límite $\le 300$ fuentes (máximo real: 277 imágenes).
+   - Normalización universal de identificadores bajo Regla `[L-28]` (`{DGS}_{FOTOGRAMA}.jpg`) y tomas hermanas `[L-27]`.
 2. **Prioridad Funcional del Proyecto (Decisión estratégica del usuario):**
    - Resolver si se continúa en **profundidad libro a libro** (culminar Bautismos de Navarredondilla 1594–1695, empezando por Pareja 5: 1596–1597).
    - O si se realiza una **batida transversal de censos/listas nominales** (Padrones de Confirmaciones 1649/1681, Índice de Bautismos de Molinillo 1750–1914, Catastro de Ensenada 1752) para poblar el grafo con un censo previo amplio de vecinos y familias.
@@ -115,11 +117,12 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 - [x] Configuración del plugin MCP nativo (`notebooklm` y base de datos) en Antigravity (`mcp_config.json`).
 - [x] Documento de contexto inicial consolidado (`contexto_maestro.md`).
 - [x] Auditoría documental de los 3 inventarios maestros en PDF (Navarredondilla, Molinillo y Ensenada).
-- [ ] **0.1. Generación de `catalogo_corpus.json` (Mapa Físico-Lógico):**
+- [x] **0.1. Generación de `catalogo_corpus.json` (Mapa Físico-Lógico Completo):**
+  - [x] Compilado `catalogo_corpus.json` v1.1 con las 8.515 imágenes mapeadas campo a campo (`id_imagen` bajo `[L-28]`, `rollo_dgs`, `fotograma_numero`, `elemento_numero`, `parroquia_codigo`, `fondo`, `tipo_documento`, `libro_numero`, `signatura_archivo`, `anios_macro`, `descripcion_elemento`, `cuaderno_asignado_id`, `estado_auditoria`, `toma_hermana_de`, `tipo_toma`, `es_descarte`, `notas_paleograficas`, `url_ark`).
+  - [x] Resueltos y documentados los saltos de encuadernación del *Elemento 13 ("Cajón de sastre")*, *Elemento 6 ("Libro Bífido")*, *Elemento 4 (Párvulos Molinillo)* y las 625 imágenes de Bienes de Navandrinal erróneamente rotuladas como Navalosa.
   - [ ] **[ARK-01] [TAREA USUARIO] Extracción de URLs ARK de FamilySearch:**
     - [ ] Ejecutar script en consola DevTools de FamilySearch para volcar mapa `archivo_imagen.jpg -> URL ARK`.
     - [ ] Integrar captura automática de ARK en `descargar_v2.js` para nuevas descargas de rollos.
-  - [ ] Script Python que mapee cada archivo `DGS_XXXXX.jpg` a su metadato real: `parroquia`, `libro`, `tipo_sacramento`, `rango_anios`, `url_ark`, `es_descarte`, resolviendo los saltos de encuadernación del *Elemento 13 ("Cajón de sastre")* y del *Elemento 6 ("Libro Bífido")*.
 - [x] **0.2. Extracción del Diccionario Onomástico y Toponímico (Bootstrapping):**
   - [x] Extraer de los archivos `.ged` (`Navarredondilla_1594_1620.ged`, `gramps.ged`) la lista de apellidos, nombres, oficios, matrimonios y notas paleográficas reales de la comarca.
   - [x] Generar el archivo [`01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md`](file:///c:/TRABAJOS/personal/genealo/01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md) con el candado cronológico, topónimos de mundo cerrado y tabla de curas por año para subirlo como **Fuente de Anclaje 01** en NotebookLM.
@@ -128,7 +131,7 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 ---
 
 ### 🗂️ FASE 0.5: Estrategia de Particionado y Cuadernos en NotebookLM Pro
-*Objetivo: Organizar los 7.868 archivos respetando el límite de 300 fuentes por cuaderno y separando por mano/época paleográfica.*
+*Objetivo: Organizar los 8.515 archivos respetando el límite de 300 fuentes por cuaderno (máximo real actual: 277) y separando por fondo, pueblo y serie.*
 
 - [ ] **Definición de la Estructura de Cuadernos y Codificación Canónica:**
   - [x] `[NRDL-BAUT-01] Navarredondilla - Bautismos Libro 1º y 2º (1594–1695)` (ID: `7967d647-8ca2-4863-a576-11843e8e8802`, 186 fuentes: 183 imágenes + fuentes maestras `00`, `01`, `02`). **En explotación activa.**

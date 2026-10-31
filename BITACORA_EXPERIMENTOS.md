@@ -187,6 +187,20 @@
      * [`informe_prosopografico_004306112_02087_02147.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_02087_02147.md)
   3. **Codificación Normativa:** Se añadió la regla obligatoria 11 `[L-28]` en [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md) y el apartado 5 en [`00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`](file:///c:/TRABAJOS/personal/genealo/00_INSTRUCCIONES_PALEOGRAFICAS_V2.md).
 
+---
+
+## 🧪 Experimento 13: Aislamiento Topográfico y Grafocrítico de Cuadernos y Diferenciación Estamental de Bienes (`[L-29]`)
+- **Fecha:** 2026-10-31
+- **Objetivo:** Garantizar que cada cuaderno de NotebookLM Pro se asocie exclusivamente a una única localidad / código cuatriletrado (`[CUADERNO-MONO-LOCALIDAD]`), y diferenciar nítidamente en el Catastro de Ensenada los `BIENES_LEGOS` (seglares) de los `BIENES_ECLESIASTICOS`.
+- **Fundamento Paleográfico y Metodológico:**
+  1. **Unicidad de Escribiente Comarcal:** Para cada pueblo y operación documental (tanto en el Catastro de Ensenada de 1751–1752 como en las series parroquiales contemporáneas), el redactor material suele ser la misma mano. Aislar por pueblo garantiza que el análisis de ductus, las abreviaturas notariales y los giros de estilo no sufran interferencias ni mezclas entre escribanos de distintos pueblos.
+  2. **Prevención de Alucinación Toponímica y Onomástica:** Evita que el modelo confunda parajes rústicos, pagos, arroyos o términos municipales de una aldea con otra colindante, y blinda contra la fusión indebida de homónimos de pueblos vecinos.
+  3. **Segregación Estamental Estricta:** Se sustituye la categoría genérica de bienes por `BIENES_LEGOS` (estamento `SEGLAR`, 2.600 imgs) y `BIENES_ECLESIASTICOS` (estamento `ECLESIASTICO`, 391 imgs), indexados en [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json).
+  4. **Hipótesis del Escribiente de la Comisión de Ensenada:** Se registra la línea de investigación para verificar si la comisión itinerante de la Real Junta del Catastro empleó al mismo oficial de pluma para Navarredondilla, Molinillo, Navandrinal y El Villarejo, lo cual permitirá desbloquear más de 3.200 imágenes mediante una única ficha grafocrítica transversal.
+- **Acciones y Resultados:**
+  1. Codificada la Regla 12 `[L-29]` en [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md), Regla 20 en [`contexto_maestro.md`](file:///c:/TRABAJOS/personal/genealo/contexto_maestro.md) y Regla 6 en [`00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`](file:///c:/TRABAJOS/personal/genealo/00_INSTRUCCIONES_PALEOGRAFICAS_V2.md).
+  2. Recompilado [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json) con los campos `estamento` (`SACRAMENTAL`, `SEGLAR`, `ECLESIASTICO`, `INSTITUCIONAL`) y `escribano_mano_adscrita`.
+
 
 
 

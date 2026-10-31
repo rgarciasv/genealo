@@ -53,7 +53,11 @@
    - *Prohibición:* Queda estrictamente prohibido asignar como 'redactor' de un folio o bloque de imágenes a un clérigo que solo ofició un bautismo esporádico con licencia o que solo firmó al pie (evitando el error de atribuir planas enteras a sacerdotes invitados como D. Rodrigo Antonio de Meneses en 1594 o Baltasar de Luján en 1624).
 11. **`[L-28]` Identificación Primaria Absoluta mediante Nombre Completo de Archivo:**
    - Toda referencia a un fotograma de imagen debe utilizar OBLIGATORIAMENTE su nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`).
-   - **Prohibición de truncamiento:** Queda terminantemente prohibido truncar la referencia únicamente al número de fotograma (ej. `01874.jpg` o `01874`). El proyecto abarca 9 rollos DGS distintos (más de 7.800 imágenes); por tanto, el nombre de archivo completo es la única clave primaria universal e inequívoca tanto para el archivo físico en disco, como para NotebookLM, ArcadeDB, el árbol genealógico y las URLs ARK de FamilySearch.
+   - **Prohibición de truncamiento:** Queda terminantemente prohibido truncar la referencia únicamente al número de fotograma (ej. `01874.jpg` o `01874`). El proyecto abarca 9 rollos DGS distintos (más de 8.500 imágenes); por tanto, el nombre de archivo completo es la única clave primaria universal e inequívoca tanto para el archivo físico en disco, como para NotebookLM, ArcadeDB, el árbol genealógico y las URLs ARK de FamilySearch.
+12. **`[L-29]` Principio de Aislamiento Topográfico y Grafocrítico en Cuadernos (`[CUADERNO-MONO-LOCALIDAD]`):**
+   - **Regla:** Ningún cuaderno de NotebookLM Pro debe mezclar fondos documentales de diferentes localidades o pueblos. Cada cuaderno debe asociarse estrictamente a **un único código cuatriletrado** (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`).
+   - **Diferenciación Estamental Obligatoria:** En los fondos del Catastro de Ensenada, debe diferenciarse escrupulosamente entre **Bienes de Legos / Seglares** (`BIENES_LEGOS`) y **Bienes Eclesiásticos** (`BIENES_ECLESIASTICOS`), jamás agrupándolos en una categoría genérica.
+   - **Unicidad de Escribiente:** Para cada pueblo y operación catastral (o serie parroquial contemporánea), el escribiente material suele ser el mismo. El aislamiento por localidad garantiza que el análisis de ductus, los modismos notariales y la toponimia menor (pagos, parajes, arroyos) no sufran contaminación cruzada entre núcleos vecinos.
 
 ---
 
