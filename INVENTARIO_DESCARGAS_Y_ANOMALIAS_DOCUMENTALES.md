@@ -349,6 +349,31 @@ Decretos redactados por los visitadores del Obispado de Ávila donde revisaban l
 
 ---
 
+### 5.9. Anomalía Documental Mayor: Ausencia del Libro 3º de Casados de Navarredondilla (1803–1902) y Quiebras del Fondo Matrimonial en FamilySearch
+
+Una de las conclusiones de mayor calado de la auditoría codicológica sobre los microfilms de Navarredondilla (rollos DGS `004306112` y `004306113`) es la extrema escasez y truncamiento de la serie matrimonial: en todo el fondo microfilmado **únicamente existen 106 imágenes de matrimonios**:
+1. **Libro 1º de Casados (`NRDL-MATR-01`, 1634–1686, 36 imágenes):** 33 imágenes procedentes del Elemento 12 (`004306112_01957.jpg` dcha. a `01986.jpg`), complementadas con 3 imágenes del Elemento 13 añadidas bajo regla `[L-31]` (`004306112_02050.jpg` [boda de Alonso Sánchez con Francisca Andrino intercalada en bautismos], `02148.jpg` [tira con 3 bodas de 1667] y `02149.jpg` [tira con bodas de 1667–1668]).
+2. **Libro 2º de Casados (`NRDL-MATR-02`, 1698–1803, 70 imágenes):** Cara B del códice bífido invertido en el Elemento 6 del rollo `004306113` (`004306113_00731.jpg` a `00800.jpg`).
+
+#### Cuadro de Lagunas Temporales del Fondo Matrimonial:
+* **Laguna Fundacional (1594–1634, 40 años):** A pesar de que los bautismos arrancan de manera ininterrumpida el 23 de enero de 1594, no se conserva libro de desposorios anterior a diciembre de 1634. Durante estas cuatro décadas, los vecinos debieron asentar sus matrimonios en la villa matriz de la que dependían o en la colegiata comarcal de Burgohondo.
+* **Laguna Intermedia (1686–1698, 12 años):** Tras la boda de Marcos Sánchez y María Ximénez en 1686 (`004306112_01986.jpg`), se produce una quiebra documental completa de 12 años hasta la apertura del Libro 2º en 1698.
+* **La Gran Omisión del Siglo XIX (1803–1902, 99 años de vacío absoluto en FamilySearch):**
+  - FamilySearch interrumpió la filmación de matrimonios en noviembre de 1803 (fotograma `004306113_00800.jpg`, boda de Francisco Andrés y Estefanía Rodríguez con dispensa de Pío VII), **omitiendo en su totalidad el Libro 3º de Casados (1804–1902)**.
+  - Este descarte u omisión en la campaña de microfilmación resulta patente al comprobar que para Navarredondilla **los Bautismos sí fueron filmados hasta 1889** (Libro 8º, fotograma `004306113_00429.jpg`) y las **Defunciones hasta 1902** (Libro de Difuntos, fotograma `004306113_01535.jpg`).
+  - No existe, por tanto, ni una sola acta de matrimonio decimonónica en los rollos digitalizados de FamilySearch para Navarredondilla.
+
+#### Rutas Críticas de Subsanación Genealógica:
+Para sortear este vacío decimonónico y restituir las uniones conyugales en el grafo de ArcadeDB, se establecen tres vías de recuperación documental:
+1. **Expedientes Matrimoniales del Archivo Diocesano de Ávila:**
+   - La serie de *Informaciones y Expedientes Matrimoniales* custodiada en el Archivo Diocesano de Ávila contiene los legajos originales tramitados previamente a cada boda (amonestaciones, pruebas de soltería de forasteros, y expedientes de dispensa de consanguinidad o afinidad). Estos expedientes contienen transcripciones juradas de partidas de bautismo y datos genealógicos de hasta cuatro generaciones.
+2. **Cruces Canónicos Interparroquiales con San Juan del Molinillo (`JMOL`) y Navalmoral de la Sierra (`NMRL`):**
+   - Dada la intensa endogamia y cercanía geográfica en el Alto Alberche, una proporción significativa de vecinos de Navarredondilla contrajo matrimonio con cónyuges de San Juan del Molinillo, Navandrinal, El Villarejo o Navalmoral de la Sierra. Dado que las series de matrimonios de San Juan del Molinillo (`004298571_00001.jpg` a `00526.jpg`, 1716–1899) y Navalmoral de la Sierra sí están filmadas y preservadas, el cruce canónico de contrayentes forasteros permite reconstruir gran parte de los enlaces.
+3. **Registro Civil de Navarredondilla (desde 1871):**
+   - Para el último tercio del siglo XIX (1871–1902), las actas civiles de matrimonio del Juzgado de Paz / Registro Civil suplen plenamente la omisión de los libros eclesiásticos, aportando además datos completos de los cuatro abuelos de ambos contrayentes.
+
+---
+
 ## 🗂️ 6. PROTOCOLO DE DESCARTE TÉCNICO DE LOCALIDADES AJENAS
 
 Para evitar contaminar NotebookLM o ArcadeDB con partidas de municipios ajenos al Alto Alberche, se deben ignorar estrictamente los siguientes intervalos de fotogramas al procesar los rollos:

@@ -1,85 +1,45 @@
 # Original User Request
 
-## Parameters
-[skip-interview]
-How this run was launched; not part of the task.
+## Initial Request — 2026-10-31T18:37:12Z
 
-## Initial Request — 2026-10-31T09:52:17Z
-
-Usa agentes para esta tarea: "usa agentes que me hace ilusion ver como funcionan, si es que en este caso sirven para algo". Crear en NotebookLM los 4 cuadernos de Personal de Legos del Catastro de Ensenada para Navarredondilla, San Juan del Molinillo, Navandrinal y El Villarejo, y cargar sus 200 fuentes documentales correspondientes para producción en la investigación genealógica del proyecto.
+Organizar, coordinar y ejecutar mediante agentes especializados la ingesta masiva, validación y verificación E2E de los 17 cuadernos restantes de San Juan del Molinillo en Google NotebookLM Pro para producción, aprovechando los aprendizajes de Navarredondilla.
 
 Working directory: c:\TRABAJOS\personal\genealo
 Integrity mode: development
 
+## Verification Resources
+- scripts/ingest_sanjuan_parroquial.py: Pipeline de ingesta desatendida con doble checkpoint atómico y resolver dinámico de rutas.
+- scripts/ingest_checkpoint_jmol.json: Checkpoint atómico local para seguimiento de fuentes procesadas.
+- scripts/verify_sanjuan_parroquial_sources.py: Arnés de verificación independiente para validación de 0 duplicados, 0 faltantes, 0 errores y estado 100% READY.
+- catalogo_corpus.json: Catálogo canónico del corpus (2.731 imágenes totales de San Juan del Molinillo divididas en 18 cuadernos sacramentales).
+
 ## Requirements
 
-### R1. Creación de los cuadernos de Personal de Legos
-Crear en NotebookLM los 4 cuadernos mono-localidad específicos para los padrones de Personal de Legos del Catastro de Ensenada:
-- `NRDL-ENSENADA-LEGOS-01` (Navarredondilla)
-- `JMOL-ENSENADA-LEGOS-01` (San Juan del Molinillo)
-- `VLLR-ENSENADA-LEGOS-01` (El Villarejo)
-- `NDRN-ENSENADA-LEGOS-01` (Navandrinal)
-Cada cuaderno debe ser estrictamente mono-localidad [L-29] y no exceder el límite de 300 fuentes por cuaderno.
+### R1. Ingesta masiva de los 17 cuadernos sacramentales restantes
+Ejecutar la ingesta desatendida de las 2.714 fuentes fotográficas restantes en 17 cuadernos sacramentales de San Juan del Molinillo (Bautismos: 6 cuadernos / 1.069 imágenes; Matrimonios y Códice Transición: 4 cuadernos / 617 imágenes; Defunciones restantes: 7 cuadernos / 1.028 imágenes, sumándose al piloto previo JMOL-DIFU-03 de 17 imágenes ya READY). Cumplir la regla de <= 300 fuentes por cuaderno [L-30]/[L-29] y utilizar el perfil persistente de Chromium [L-21].
 
-### R2. Carga de las 200 fuentes documentales desde el catálogo canónico
-Cargar en cada cuaderno las fuentes documentales asignadas en `catalogo_corpus.json` (rutas físicas en disco y signaturas correspondientes) usando el identificador físico primario `{DGS}_{FOTOGRAMA}.jpg` sin truncar ceros [L-28]:
-- `NRDL-ENSENADA-LEGOS-01`: 87 imágenes (`004469033_00881.jpg` a `004469033_00967.jpg`).
-- `JMOL-ENSENADA-LEGOS-01`: 28 imágenes (`004469028_00952.jpg` a `004469028_00979.jpg`).
-- `VLLR-ENSENADA-LEGOS-01`: 51 imágenes (`004469028_00901.jpg` a `004469028_00951.jpg`).
-- `NDRN-ENSENADA-LEGOS-01`: 34 imágenes (`004469028_00980.jpg` a `004469028_01013.jpg`).
-Total: exactamente 200 imágenes. La elección entre el servidor MCP `notebooklm` o la librería Python `notebooklm-py` en el entorno virtual (`venv`) queda a decisión del equipo.
+### R2. Gestión autónoma de fallos, reintentos y persistencia
+Garantizar la resiliencia del proceso mediante el checkpoint atómico local (scripts/ingest_checkpoint_jmol.json), gestionando desconexiones, reintentos con backoff y reautenticación automática desatendida sin perder el progreso ni duplicar fuentes.
 
-### R3. Preservación del cuaderno activo y exclusión de fases diferidas
-No modificar ni recrear el cuaderno existente `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647-8ca2-4863-a576-11843e8e8802`). No procesar en esta fase los cuadernos de registros parroquiales ni los padrones de Bienes de Legos ni Eclesiásticos del Catastro de Ensenada.
+### R3. Verificación independiente E2E
+Ejecutar el arnés de verificación independiente scripts/verify_sanjuan_parroquial_sources.py para certificar el estado de las 2.731 fuentes fotográficas de San Juan del Molinillo en NotebookLM Pro, asegurando cero duplicados, cero faltantes y cero errores con barrera de cuadernos protegidos intacta.
 
 ## Acceptance Criteria
 
-### Cuadernos y Fuentes en NotebookLM
-- [ ] Existen exactamente 4 cuadernos nuevos creados con los nombres y localidades estipulados (`NRDL-ENSENADA-LEGOS-01`, `JMOL-ENSENADA-LEGOS-01`, `VLLR-ENSENADA-LEGOS-01`, `NDRN-ENSENADA-LEGOS-01`).
-- [ ] El cuaderno activo existente `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647-8ca2-4863-a576-11843e8e8802`) permanece inalterado.
-- [ ] Cada uno de los 4 cuadernos contiene exactamente el conjunto de fuentes asignadas en `catalogo_corpus.json` (87 en NRDL, 28 en JMOL, 51 en VLLR, 34 en NDRN; 200 fuentes en total), nombradas bajo el estándar `{DGS}_{FOTOGRAMA}.jpg`.
+### Completitud del Corpus San Juan del Molinillo en NotebookLM Pro
+- [ ] Los 17 cuadernos sacramentales restantes están creados e ingestados en Google NotebookLM Pro (totalizando 18 cuadernos sacramentales para San Juan del Molinillo).
+- [ ] Las 2.714 fuentes adicionales alcanzan y quedan confirmadas en estado READY (totalizando 2.731 fuentes READY en conjunto con el piloto JMOL-DIFU-03).
+- [ ] El archivo scripts/ingest_checkpoint_jmol.json refleja todas las fuentes completadas sin inconsistencias ni duplicados.
+- [ ] La ejecución del arnés `python scripts/verify_sanjuan_parroquial_sources.py` finaliza exitosamente con resultado PASS (0 missing, 0 duplicates, 0 errors).
 
-### Verificación Programática
-- [ ] Un script de verificación independiente consulta la API de NotebookLM y valida que los 4 cuadernos existen, que cada uno contiene sus fuentes asignadas según `catalogo_corpus.json`, y que el estado de procesamiento de todas las 200 fuentes es correcto, reportando 0 fallos o ausencias.
-## Follow-up — 2026-10-31 11:43:23 UTC
+## Follow-up — 2026-10-31T18:45:03Z
 
-Ejecutar la Opción A: Crear en NotebookLM los 15 cuadernos de los fondos parroquiales de Navarredondilla (todos los restantes excepto NRDL-BAUT-04 que ya existe y es intocable) y cargar sus 2.276 fuentes documentales correspondientes desde catalogo_corpus.json, reutilizando la infraestructura de scripts/ y verificando programáticamente con 0 fallos.
+Coordinación operativa con el background task en ejecución:
+El script `scripts/ingest_sanjuan_parroquial.py` YA SE ENCUENTRA EN EJECUCIÓN en segundo plano (PID activo en background, task-2618).
+Actualmente está subiendo imágenes activamente (va por la imagen 66/175 de JMOL-BAUT-01 y actualizando atómicamente scripts/ingest_checkpoint_jmol.json).
 
----
-### Contexto relevante del proyecto:
-- **Proyecto**: "Proyecto de I+D Genealógico Alto Alberche".
-- **Petición del usuario**:
-  - *"me refiero a los libros parroquiales de los pueblos, no los que faltan del catastro del marques de la ensenada"*
-  - *"y haciendo lo mismo que han hecho los agentes, y usando los mismo agentes para que no comiencen desde cero vamos a ponernos a crear el resto de libros y subir las imagenes (respetando el que ya existe)"*
-  - *"la opcion A"* (Navarredondilla primero: 15 cuadernos, 2.276 imágenes).
-- **Catálogo maestro**: `c:\TRABAJOS\personal\genealo\catalogo_corpus.json` (todas las 2.276 imágenes de Navarredondilla Parroquial mapeadas a sus cuadernos canónicos y rutas físicas en disco).
-- **15 Cuadernos a Crear e Ingestar (Navarredondilla Parroquial)**:
-  1. `NRDL-BAUT-01` (245 imágenes)
-  2. `NRDL-BAUT-02` (157 imágenes)
-  3. `NRDL-BAUT-03` (231 imágenes)
-  4. `NRDL-BAUT-05` (144 imágenes)
-  5. `NRDL-BAUT-06` (183 imágenes)
-  6. `NRDL-BAUT-07` (102 imágenes)
-  7. `NRDL-DIFU-01` (236 imágenes)
-  8. `NRDL-DIFU-01B` (65 imágenes)
-  9. `NRDL-DIFU-02` (171 imágenes)
-  10. `NRDL-DIFU-03` (170 imágenes)
-  11. `NRDL-DIFU-04` (188 imágenes)
-  12. `NRDL-DIFU-05` (211 imágenes)
-  13. `NRDL-MATR-01` (33 imágenes)
-  14. `NRDL-MATR-02` (70 imágenes)
-  15. `NRDL-MIXTO-01` (70 imágenes)
-  Total: 2.276 imágenes en 15 cuadernos. Todos cumplen estrictamente $\le 245$ fuentes por cuaderno ($\le 300$).
-- **Blindaje inmutable de cuadernos existentes**:
-  - `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647-8ca2-4863-a576-11843e8e8802`, que es `NRDL-BAUT-04`) NO debe ser modificado ni recreado.
-  - Los 4 cuadernos recién creados de Ensenada Legos (`ec86de71-...`, `407d5cb4-...`, `e7fba70b-...`, `cd72ef58-...`) tampoco deben tocarse.
-- **Reglas del proyecto**:
-  - `[L-28]`: Identificador físico primario `{DGS}_{FOTOGRAMA}.jpg` sin truncar ceros.
-  - `[L-29]`: Cuadernos mono-localidad, $\le 300$ fuentes por cuaderno.
-  - `[L-21]`: Autenticación desatendida mediante perfil persistente en venv (`notebooklm.exe login` con `BypassSandbox: true` si se requiere refresco).
-- **Herramientas existentes**:
-  - Reutilizar / parametrizar los scripts en `c:\TRABAJOS\personal\genealo\scripts\` (`ingest_ensenada_legos.py` y `verify_notebooklm_sources.py`) adaptándolos a la serie parroquial de Navarredondilla usando `notebooklm-py` (v0.8.5).
-- **Criterio de Aceptación**:
-  - Creación de los 15 cuadernos con nomenclatura canónica.
-  - Carga efectiva de las 2.276 fuentes en estado `READY`.
-  - Verificación programática E2E independiente con 0 fallos o ausencias.
+IMPORTANTE: NO lanzar un segundo proceso de subida python en paralelo para evitar colisiones de sesión o bloqueos por cuota en la cuenta de Google NotebookLM.
+Los agentes del equipo deben enfocar su trabajo en:
+1. Supervisar el progreso y la salud de la subida a través de scripts/ingest_checkpoint_jmol.json y scripts/ingest_sanjuan_parroquial.log.
+2. Si la sesión de Google expirara por límite de 1 hora ([L-21]), refrescar tokens desatendidamente con `notebooklm login`.
+3. Ejecutar y certificar la verificación E2E independiente con `scripts/verify_sanjuan_parroquial_sources.py` una vez completados los cuadernos.

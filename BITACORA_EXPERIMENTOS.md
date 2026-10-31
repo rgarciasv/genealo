@@ -291,6 +291,63 @@
   - **Barrera de cuadernos protegidos:** 5 cuadernos (388 fuentes) auditados y confirmados **100% intactos**.
   - **Veredicto final:** **PASS**. Informe exportado a [`scripts/verification_report_nrdl.json`](file:///c:/TRABAJOS/personal/genealo/scripts/verification_report_nrdl.json).
 
+---
+
+## 🧪 Experimento 20: Puesta a Punto y Blindaje del Cuaderno de Producción NRDL-BAUT-01 (250/250 fuentes READY)
+- **Fecha:** 2026-10-31
+- **Objetivo:** Equipar el cuaderno de producción `NRDL-BAUT-01` (`a187936c-55f4-4319-87db-6bf4e21e8613`) con las 5 fuentes maestras (`00`, `01`, `02`, `03` y `04`) y la configuración de `ChatSettings` aprendida del cuaderno piloto.
+- **Acciones Realizadas:**
+  1. **Actualización de la Guía Codicológica `02`:** Se actualizó [`02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695.md`](file:///c:/TRABAJOS/personal/genealo/02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695.md) para cubrir los dos bloques físicos y las 245 imágenes completas (`01870`–`01954` y `01988`–`02147`), explicitando los 63 fotogramas de defunciones del Elemento 13 cosidos al frente del tomo.
+  2. **Configuración de Chat (`chat_configure`):** Inyectado el System Prompt paleográfico oficial con `response_length="longer"`.
+  3. **Inyección de Fuentes Maestras de Texto:** Subidas las 5 fuentes vía [`scripts/prepare_nrdl_baut01.py`](file:///c:/TRABAJOS/personal/genealo/scripts/prepare_nrdl_baut01.py) (`00_INSTRUCCIONES_PALEOGRAFICAS_V2`, `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA`, `02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695`, `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE`, `04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES`).
+- **Resultados:**
+  - Total fuentes en el cuaderno: **250 / 250 en estado READY** (245 imágenes JPG + 5 fuentes maestras).
+  - Verificación de `ChatSettings`: `goal=ChatGoal.CUSTOM`, `response_length=ChatResponseLength.LONGER`.
+  - **Veredicto:** **PASS (100%)**. `NRDL-BAUT-01` totalmente equipado y listo para extracción.
+
+---
+
+## 🧪 Experimento 21: Reestructuración y Purificación Lógico-Sacramental de Navarredondilla ([L-30], [L-31], [L-32]) y Auditoría de Matrimonios
+- **Fecha:** 2026-10-31
+- **Objetivo:** Ejecutar la reestructuración codicológica definitiva de Navarredondilla en NotebookLM Pro, desarticulando los códices físicos mixtos del rollo `004306112` en series puras correlativas (`[L-30]`), preservando las imágenes con planas dobles híbridas en ambos cuadernos (`[L-31]`), manteniendo los decretos de Visita Pastoral in situ (`[L-32]`) y realizando la auditoría exhaustiva del fondo de matrimonios de la parroquia.
+- **Fundamentación Metodológica y Decisiones Codicilógicas:**
+  1. **Purificación de `NRDL-BAUT-01` (`a187936c-55f4-4319-87db-6bf4e21e8613`):**
+     - El cuaderno contenía originalmente 245 imágenes procedentes de dos tramos físicos (`01870`–`01954` y `01988`–`02147`). De estas, 57 eran fotogramas puros de defunciones encuadernados al frente del Elemento 13 (bloques 1634–1658 y 1695–1701).
+     - Se eliminaron las 57 imágenes puras de entierros para consolidar la serie pura de bautismos.
+     - Se preservaron íntegramente las **5 imágenes híbridas** (`004306112_02023.jpg`, `02044.jpg`, `02048.jpg`, `02049.jpg`, `02050.jpg`) bajo la regla `[L-31]` (prohibición de corte físico del JPG, extracción dirigida por plana).
+     - Se conservaron las 5 fuentes maestras `.md` (`00_INSTRUCCIONES_PALEOGRAFICAS_V2`, `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA`, `02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695`, `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE`, `04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES`).
+     - Configuración de `ChatSettings`: `goal=ChatGoal.CUSTOM`, `response_length=ChatResponseLength.LONGER`, System Prompt maestro oficial.
+     - **Balance final de `NRDL-BAUT-01`:** **193 fuentes en estado READY** (188 imágenes JPG + 5 fuentes maestras).
+  2. **Unificación y Renombrado de `NRDL-DIFU-S17 (1631-1701)` (`14cf46ae-7d73-4f2c-b001-5e5de0f29c6c`):**
+     - El cuaderno (antiguo `NRDL-MIXTO-01` / `NRDL-DIFU-S17-B`) contaba con 70 imágenes iniciales (`004306112_02148.jpg` a `02217.jpg`).
+     - Mediante el script [`scripts/reorganize_nrdl_defunciones_s17.py`](file:///c:/TRABAJOS/personal/genealo/scripts/reorganize_nrdl_defunciones_s17.py), se renombró oficialmente a **`NRDL-DIFU-S17 (1631-1701)`**.
+     - Se inyectaron las 62 imágenes de defunciones del siglo XVII extraídas del Elemento 13 (57 puras + 5 híbridas con subida confirmada antes de cualquier borrado en BAUT).
+     - **Balance final de `NRDL-DIFU-S17`:** **132 imágenes en estado READY** (70 originales + 62 añadidas), abarcando la serie íntegra de difuntos de 1631 a 1701.
+  3. **Ampliación de `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`):**
+     - Mediante el script [`scripts/add_marriages_to_matr01.py`](file:///c:/TRABAJOS/personal/genealo/scripts/add_marriages_to_matr01.py), se incorporaron 3 imágenes con matrimonios dispersos/híbridos del rollo `004306112`:
+       * `004306112_02050.jpg`: Matrimonio de Alonso Sánchez con Francisca Andrino intercalado entre bautismos.
+       * `004306112_02148.jpg`: Tira de papel cosida con 3 bodas de 1667.
+       * `004306112_02149.jpg`: Tira de papel cosida con bodas de 1667–1668.
+     - **Balance final de `NRDL-MATR-01`:** **36 imágenes en estado READY** (33 del Libro 1º de Casados + 3 añadidas).
+  4. **Auditoría Integral del Fondo de Matrimonios de Navarredondilla:**
+     - Se auditó la totalidad de la filmación de FamilySearch (rollos `004306112` y `004306113`), constatando que **solo existen 106 imágenes de matrimonios**:
+       * `NRDL-MATR-01`: 36 imágenes (1634–1686).
+       * `NRDL-MATR-02`: 70 imágenes (1698–1803, códice bífido invertido + despachos nupciales).
+     - **Descubrimiento de quiebras documentales severas:**
+       * *Laguna fundacional:* 1594–1634 (40 años sin libro de matrimonios conservado en la parroquia).
+       * *Laguna intermedia:* 1686–1698 (12 años de interregno sin actas conservadas).
+       * *La Gran Omisión del Siglo XIX (1803–1902, 99 años):* FamilySearch interrumpió la filmación en noviembre de 1803 (fotograma `004306113_00800.jpg`), **omitiendo íntegramente el Libro 3º de Casados**, a pesar de que Bautismos llega a 1889 y Defunciones a 1902.
+     - **Rutas de subsanación archivística:**
+       * Expedientes y legajos matrimoniales del Archivo Diocesano de Ávila (dispensas de consanguinidad, mandatos matrimoniales).
+       * Cruces canónicos con los libros matrimoniales de San Juan del Molinillo (`JMOL`) y Navalmoral de la Sierra (`NMRL`).
+       * Actas de matrimonio del Registro Civil de Navarredondilla a partir de 1871.
+- **Impacto en el Corpus y el Grafo ArcadeDB:**
+  - Desaparición de cuadernos mixtos espurios; los 15 cuadernos de Navarredondilla son ahora series puras unívocas.
+  - Cero pérdida de información textual en las planas dobles híbridas (`[L-31]`).
+  - Total trazabilidad para la capa de evidencia documental de ArcadeDB.
+- **Veredicto:** **ÉXITO TOTAL (100% de coherencia codicológica alcanzada)**. Cuadernos reestructurados y balance documental consolidado.
+
+
 
 
 

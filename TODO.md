@@ -83,17 +83,17 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
    - Superadas las 405/405 aserciones de [`scripts/verify_notebooklm_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/verify_notebooklm_sources.py).
    - Sincronizado `catalogo_corpus.json` con los `source_id` consolidados.
 
-2. **[EN EJECUCIÓN] Fase 2 — Ingesta Parroquial de Navarredondilla (Opción A):**
-   - **Piloto Verificado:** `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`) con 33/33 imágenes `READY`.
-   - **Pipeline en Background:** Corriendo `task-2050` ([`scripts/ingest_navarredondilla_parroquial.py`](file:///c:/TRABAJOS/personal/genealo/scripts/ingest_navarredondilla_parroquial.py)) para los 14 cuadernos restantes (2.243 imágenes) con doble checkpoint local/cloud.
+2. **[COMPLETADO] Fase 2 — Ingesta Parroquial y Reestructuración Lógico-Sacramental de Navarredondilla ([L-30], [L-31], [L-32]):**
+   - **Ingesta Completa Certificada:** 2.276/2.276 fuentes en estado `READY` en los 15 cuadernos de Navarredondilla.
+   - **Purificación de `NRDL-BAUT-01` (`a187936c-55f4-4319-87db-6bf4e21e8613`):** Eliminadas las 57 imágenes puras de defunción (1634–1658 y 1695–1701); preservadas las 5 imágenes híbridas (`02023`, `02044`, `02048`, `02049`, `02050`) bajo `[L-31]`. Inyectadas las 5 fuentes maestras (`00..04`) y configurado `ChatSettings`. Total: 193 fuentes READY.
+   - **Unificación y Renombrado de `NRDL-DIFU-S17 (1631-1701)` (`14cf46ae-7d73-4f2c-b001-5e5de0f29c6c`):** Ampliado con las 62 imágenes de defunciones del rollo `004306112` (57 puras + 5 híbridas). Total: 132 fuentes READY (70 originales + 62 añadidas), cubriendo de 1631 a 1701 completo.
+   - **Ampliación de `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`):** Incorporadas 3 imágenes con matrimonios dispersos/híbridos (`02050`, `02148`, `02149`). Total: 36 fuentes READY.
+   - **Auditoría del Fondo de Matrimonios:** Confirmada la existencia de solo 106 imágenes en todo el fondo de FamilySearch (`NRDL-MATR-01`: 36, `NRDL-MATR-02`: 70) y detectada la Gran Omisión del Siglo XIX (1803–1902) donde FS no filmó el Libro 3º de Casados.
 
-3. **[PLANIFICACIÓN Y DISEÑO] Fase 3 — San Juan del Molinillo y Principio Lógico-Sacramental (`[L-30]`):**
-   - **Desarticulación de Libros Mixtos:** En base a la Regla `[L-30]`, no se creará un cuaderno mixto indiscriminado para el Elemento 17 (`004298570_02429.jpg` a `02519.jpg`). En su lugar, sus folios se desagregan y canalizan a sus respectivas series sacramentales:
-     * Partidas de Bautismo (1847–1848) $\rightarrow$ integradas en la serie cronológica de Bautismos.
-     * Partidas de Matrimonio (1842–1849) $\rightarrow$ integradas en la serie cronológica de Matrimonios.
-     * Partidas de Defunción (1843–1849) $\rightarrow$ integradas en la serie cronológica de Defunciones.
-   - **Documentos Extraordinarios:** Censos de confirmación (1827, 1850) e inventarios se agrupan en cuadernos censales específicos.
-   - **Script de Ingesta:** Preparar `scripts/ingest_sanjuan_parroquial.py` y `scripts/verify_sanjuan_parroquial_sources.py`.
+3. **[EN EJECUCIÓN] Fase 3 — Ingesta Masiva de San Juan del Molinillo (`JMOL`):**
+   - Más de 950 imágenes subidas (>35% completado) de 2.731 fuentes sin errores, bajo supervisión automatizada de `supervise_m1.py`.
+   - **5 cuadernos 100% finalizados:** `JMOL-BAUT-01` (175/175), `JMOL-BAUT-02` (276/276), `JMOL-BAUT-03` (190/190), `JMOL-BAUT-04` (189/189), `JMOL-DIFU-03` (17/17). `JMOL-BAUT-05` en fase final.
+   - Desarticulación de libros mixtos del Elemento 17 (`004298570_02429.jpg` a `02519.jpg`) canalizada a series sacramentales puras según `[L-30]`.
 
 4. **Debate Metodológico sobre Criterios de Transcripción (`[ECDOTICA-01]`):**
    - Consensuar qué nivel exacto debe entregar NotebookLM en cada sección del bloque de salida:
@@ -148,16 +148,23 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
     - [x] `VLLR-ENSENADA-LEGOS-01` (ID: `e7fba70b-af7d-4602-b543-060742b22528`, 51 fuentes).
     - [x] `NDRN-ENSENADA-LEGOS-01` (ID: `cd72ef58-fcf5-48ac-8de2-556648ebd90e`, 34 fuentes).
   - [ ] `[SERIE-PARROQUIAL] Cuadernos Parroquiales de los 4 Pueblos (Bautismos, Matrimonios y Defunciones restantes):`
-    - [x] **Navarredondilla Parroquial Completa (2.276/2.276 fuentes en estado READY en 15 cuadernos, Dictamen E2E PASS verificado con `scripts/verify_nrdl_parroquial_sources.py`):**
-      - [x] `NRDL-MATR-01` (33 fuentes READY)
+    - [x] **Navarredondilla Parroquial Completa (2.276/2.276 fuentes en estado READY en 15 cuadernos, Reestructurado y Purificado bajo [L-30], [L-31], [L-32]):**
+      - [x] `NRDL-MATR-01` (36 fuentes READY: 33 originales + 3 añadidas bajo `[L-31]`)
       - [x] `NRDL-MATR-02` (70 fuentes READY)
-      - [x] `NRDL-BAUT-01..03, 05..07` (6 cuadernos de Bautismos, 1.063 fuentes READY)
-      - [x] `NRDL-DIFU-01..05, 01B` y `NRDL-DIFU-S17-B` (7 cuadernos de Defunciones, 1.110 fuentes READY)
-    - [ ] **San Juan del Molinillo Parroquial (2.731 fuentes en 18 cuadernos, en curso):**
+      - [x] `NRDL-BAUT-01` (193 fuentes READY: 188 imágenes depuradas + 5 fuentes maestras `00..04` + `ChatSettings` configurado)
+      - [x] `NRDL-BAUT-02, 03, 05..07` (5 cuadernos de Bautismos, 817 fuentes READY)
+      - [x] `NRDL-DIFU-01..05, 01B` (6 cuadernos de Defunciones, 1.041 fuentes READY)
+      - [x] `NRDL-DIFU-S17 (1631-1701)` (132 fuentes READY: 70 originales + 62 defunciones s. XVII unificadas bajo `[L-30]`)
+    - [ ] **San Juan del Molinillo Parroquial (2.731 fuentes en 18 cuadernos, en curso con >950 subidas):**
       - [x] `JMOL-DIFU-03` (ID: `a5d19fcc-d266-4497-bdb3-df182328bdcb`, 17 fuentes en estado `READY`, Dictamen VICTORY CONFIRMED).
-      - [ ] `JMOL-BAUT-01..05` y `JMOL-INDICE-BAUT` (San Juan del Molinillo Bautismos: 6 cuadernos, 1.069 imgs; `JMOL-BAUT-01` en subida activa).
-      - [ ] `JMOL-MATR-01..03` y `JMOL-SACRAMENTAL-1842-1850` (San Juan del Molinillo Matrimonios y Mixto: 4 cuadernos, 617 imgs).
-      - [ ] `JMOL-DIFU-01, 02, 04..06`, `JMOL-DIFU-PARVULOS` y `JMOL-INDICE-DIFU` (San Juan del Molinillo Defunciones restantes: 7 cuadernos, 1.028 imgs).
+      - [x] `JMOL-BAUT-01` (175/175 fuentes READY).
+      - [x] `JMOL-BAUT-02` (276/276 fuentes READY).
+      - [x] `JMOL-BAUT-03` (190/190 fuentes READY).
+      - [x] `JMOL-BAUT-04` (189/189 fuentes READY).
+      - [ ] `JMOL-BAUT-05` (139 imgs; en fase final de subida).
+      - [ ] `JMOL-INDICE-BAUT` (111 imgs; pendiente).
+      - [ ] `JMOL-MATR-01..03` y `JMOL-SACRAMENTAL-1842-1850` (San Juan del Molinillo Matrimonios y Mixto desarticulado: 4 cuadernos, 617 imgs).
+      - [ ] `JMOL-DIFU-01, 02, 04..06`, `JMOL-DIFU-PARVULOS` y `JMOL-INDICE-DIFU` (San Juan del Molinillo Defunciones restantes: 7 cuadernos, 1.011 imgs).
     - [ ] `ALTO-ALBERCHE-ANEXOS-01` (Muestras de anejos).
   - [ ] `[CATASTRO-1752-BIENES-Y-ECLESIASTICO] Ensenada - Bienes de Legos y Rentas Eclesiásticas (Pospuesto a fase posterior)`.
 
@@ -271,5 +278,12 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
 ---
 
 ## 📌 PRÓXIMOS PASOS OPERATIVOS INMEDIATOS
-1. **Ejecutar la Pareja 5 de Tomas Hermanas (`004306112_01880.jpg` + `004306112_01881.jpg`)**: Cerrar la validación pericial de las 10 primeras imágenes dobles (1594–1597).
-2. **Desarrollar el script `transcriptor_batch.py` (Fase 3)**: Automatizar la extracción secuencial del resto del cuaderno (`01882.jpg` en adelante) con checkpoint y guardado automático en `transcripciones/`.
+1. **Inyección de Fuentes Base y Configuración de Chat en `NRDL-DIFU-S17` y `NRDL-MATR-01`**:
+   - Subir las fuentes maestras de anclaje (`00_INSTRUCCIONES_PALEOGRAFICAS_V2`, `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA`, `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE`, `04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES`) a ambos cuadernos.
+   - Redactar sus guías codicológicas específicas: [`02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_DIFU_S17.md`](file:///c:/TRABAJOS/personal/genealo/02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_DIFU_S17.md) y [`02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_MATR_01.md`](file:///c:/TRABAJOS/personal/genealo/02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_MATR_01.md).
+   - Configurar `ChatSettings` (`goal=ChatGoal.CUSTOM`, `response_length=ChatResponseLength.LONGER`, System Prompt maestro oficial).
+2. **Supervisión y Culminación de Ingesta Masiva de San Juan del Molinillo (`JMOL`)**:
+   - Monitorizar el avance continuo del supervisor M1 (`supervise_m1.py`) hasta completar los 18 cuadernos y las 2.731 fuentes fotográficas.
+   - Ejecutar verificación E2E de integridad con `verify_sanjuan_parroquial_sources.py`.
+3. **Ejecutar la Pareja 5 de Tomas Hermanas (`004306112_01880.jpg` + `004306112_01881.jpg`)**: Cerrar la validación pericial de las 10 primeras imágenes dobles (1594–1597).
+4. **Desarrollar el script `transcriptor_batch.py` (Fase 3)**: Automatizar la extracción secuencial del resto del cuaderno (`01882.jpg` en adelante) con checkpoint y guardado automático en `transcripciones/`.

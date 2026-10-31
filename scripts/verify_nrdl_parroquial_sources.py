@@ -13,9 +13,9 @@ Validates:
    - 'cd72ef58-fcf5-48ac-8de2-556648ebd90e' ('NDRN-ENSENADA-LEGOS-01'): exactly 34 sources.
    Total protected sources: exactly 388 sources across 5 notebooks.
 
-2. Target Navarredondilla Parroquial Notebooks (15 Notebooks, 2,276 Images):
+2. Target Navarredondilla Parroquial Notebooks (15 Notebooks, 2,289 Sources Reconstructed [L-30]/[L-31]):
    - Existence and exact canonical title match [L-29]:
-     1.  NRDL-BAUT-01 (245 sources)
+     1.  NRDL-BAUT-01 (193 sources: 188 images + 5 master .md instructions)
      2.  NRDL-BAUT-02 (157 sources)
      3.  NRDL-BAUT-03 (231 sources)
      4.  NRDL-BAUT-05 (144 sources)
@@ -27,10 +27,10 @@ Validates:
      10. NRDL-DIFU-03 (170 sources)
      11. NRDL-DIFU-04 (188 sources)
      12. NRDL-DIFU-05 (211 sources)
-     13. NRDL-MATR-01 (33 sources)
+     13. NRDL-MATR-01 (36 sources: 33 original + 3 hybrid/dispersed [L-31])
      14. NRDL-MATR-02 (70 sources)
-     15. NRDL-MIXTO-01 (70 sources)
-     Total: exactly 2,276 sources.
+     15. NRDL-MIXTO-01 / NRDL-DIFU-S17 (1631-1701) (132 sources: 70 original + 62 unified s. XVII [L-30])
+     Total: exactly 2,289 sources.
 
 3. Canonical Corpus Cross-Check (BOM-safe 'utf-8-sig' 'catalogo_corpus.json'):
    - Filtered strictly by 'cuaderno_asignado_id == notebook_title' (prevents range interleaving corruption).
@@ -86,6 +86,35 @@ DEFAULT_REPORT_PATH = BASE_DIR / "scripts" / "verification_report_nrdl.json"
 # Canonical Primary Key Regex [L-28]: 9-digit DGS + 5-digit Fotograma + .jpg
 CANONICAL_FILENAME_REGEX = re.compile(r"^\d{9}_\d{5}\.jpg$")
 
+# Master Markdown Instruction Sources in BAUT-01
+MASTER_MD_SOURCES = {
+    "00_INSTRUCCIONES_PALEOGRAFICAS_V2",
+    "01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA",
+    "02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695",
+    "03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE",
+    "04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES",
+}
+
+# Codicological Reorganization and Logical Transfer Sets [L-30] / [L-31]
+PURE_DIFU_NUMBERS = (
+    list(range(1988, 2023)) +  # 01988 a 02022 (35 imgs)
+    list(range(2024, 2043)) +  # 02024 a 02042 (19 imgs)
+    list(range(2045, 2048))    # 02045 a 02047 (3 imgs)
+)
+PURE_DIFU_FILES = set(f"004306112_{n:05d}.jpg" for n in PURE_DIFU_NUMBERS)
+HYBRID_FILES = {
+    "004306112_02023.jpg",
+    "004306112_02044.jpg",
+    "004306112_02048.jpg",
+    "004306112_02049.jpg",
+    "004306112_02050.jpg",
+}
+MATR_EXTRA_FILES = {
+    "004306112_02050.jpg",
+    "004306112_02148.jpg",
+    "004306112_02149.jpg",
+}
+
 # Protected Active Notebooks Barrier (5 notebooks, 388 sources total)
 PROTECTED_NOTEBOOKS = {
     "7967d647-8ca2-4863-a576-11843e8e8802": {
@@ -123,7 +152,7 @@ TARGET_NOTEBOOKS = {
         "parroquia": "NRDL",
         "tipo": "BAUTISMOS",
         "rollo_dgs": "004306112",
-        "expected_count": 245,
+        "expected_count": 193,  # Post-purificación [L-30]: 188 imágenes (245 - 57 puras difu) + 5 fuentes .md maestras
         "signatura": "Sit. Arch. 166/4",
         "interleaved": True,  # Tramo 1870..1954 y 1988..2147; NRDL-MATR-01 intercalado en 1955..1987
     },
@@ -219,7 +248,7 @@ TARGET_NOTEBOOKS = {
         "parroquia": "NRDL",
         "tipo": "MATRIMONIOS",
         "rollo_dgs": "004306112",
-        "expected_count": 33,
+        "expected_count": 36,  # 33 originales + 3 añadidas bajo [L-31] (02050, 02148, 02149)
         "signatura": "Sit. Arch. 166/4",
         "interleaved": True,  # Fotogramas 1955..1987 encuadernados dentro del rango de BAUT-01
     },
@@ -234,15 +263,15 @@ TARGET_NOTEBOOKS = {
     "NRDL-MIXTO-01": {
         "parroquia": "NRDL",
         "tipo": "DEFUNCIONES",  # Rule [L-30]
-        "cloud_titles": ["NRDL-DIFU-S17-B (1648-1695)", "NRDL-MIXTO-01"],
+        "cloud_titles": ["NRDL-DIFU-S17 (1631-1701)", "NRDL-DIFU-S17-B (1648-1695)", "NRDL-MIXTO-01"],
         "rollo_dgs": "004306112",
-        "expected_count": 70,
+        "expected_count": 132,  # 70 originales + 62 defunciones s. XVII unificadas bajo [L-30]
         "signatura": "Sit. Arch. 166/4",
         "interleaved": False,
     },
 }
 
-TOTAL_EXPECTED_TARGET_SOURCES = sum(meta["expected_count"] for meta in TARGET_NOTEBOOKS.values())  # 2,276
+TOTAL_EXPECTED_TARGET_SOURCES = sum(meta["expected_count"] for meta in TARGET_NOTEBOOKS.values())  # 2,289
 
 
 # -----------------------------------------------------------------------------
@@ -254,7 +283,7 @@ def load_and_verify_canonical_corpus(
 ) -> Dict[str, List[Dict[str, Any]]]:
     """
     Loads 'catalogo_corpus.json' using 'utf-8-sig' to cleanly strip the UTF-8 BOM.
-    Extracts and validates records for target notebooks.
+    Extracts and validates records for target notebooks applying logical reconstruction [L-30]/[L-31].
     Guarantees internal consistency against canonical expectations.
     """
     if not corpus_path.is_file():
@@ -273,16 +302,58 @@ def load_and_verify_canonical_corpus(
             raise ValueError(f"Unknown target notebook title '{k}'. Valid options: {list(TARGET_NOTEBOOKS.keys())}")
 
     expected_records: Dict[str, List[Dict[str, Any]]] = {}
+    corpus_by_id = {r["id_imagen"]: r for r in corpus_data}
 
     for target_title in target_keys:
         meta = TARGET_NOTEBOOKS[target_title]
-        # Strict filtering by cuaderno_asignado_id avoids range interleaving issues
-        matched = [
-            r for r in corpus_data
-            if r.get("cuaderno_asignado_id") == target_title
-        ]
-        # Sort sequentially by fotograma_numero
-        matched.sort(key=lambda r: int(r.get("fotograma_numero", 0)))
+        if target_title == "NRDL-BAUT-01":
+            # 245 initial minus 57 pure defunciones [L-30], keeping 5 hybrid [L-31], plus 5 master md sources
+            matched = [
+                r for r in corpus_data
+                if r.get("cuaderno_asignado_id") == "NRDL-BAUT-01"
+                and r.get("id_imagen") not in PURE_DIFU_FILES
+            ]
+            matched.sort(key=lambda r: int(r.get("fotograma_numero", 0)))
+            for md_title in sorted(list(MASTER_MD_SOURCES)):
+                matched.append({
+                    "id_imagen": md_title,
+                    "rollo_dgs": meta["rollo_dgs"],
+                    "fotograma_numero": 0,
+                    "tipo_documento": "INSTRUCCIONES_MAESTRAS",
+                    "cuaderno_asignado_id": "NRDL-BAUT-01",
+                })
+        elif target_title == "NRDL-MATR-01":
+            # 33 initial plus 3 added under [L-31] (02050, 02148, 02149)
+            matched = [
+                r for r in corpus_data
+                if r.get("cuaderno_asignado_id") == "NRDL-MATR-01"
+            ]
+            for extra_img in sorted(list(MATR_EXTRA_FILES)):
+                if extra_img in corpus_by_id:
+                    rec_copy = dict(corpus_by_id[extra_img])
+                    rec_copy["cuaderno_asignado_id"] = "NRDL-MATR-01"
+                    matched.append(rec_copy)
+            matched.sort(key=lambda r: int(r.get("fotograma_numero", 0)))
+        elif target_title == "NRDL-MIXTO-01":
+            # 70 initial plus 62 defunciones s. XVII unificadas bajo [L-30] (57 pure + 5 hybrid)
+            matched = [
+                r for r in corpus_data
+                if r.get("cuaderno_asignado_id") == "NRDL-MIXTO-01"
+            ]
+            transfer_imgs = sorted(list(PURE_DIFU_FILES.union(HYBRID_FILES)))
+            for tr_img in transfer_imgs:
+                if tr_img in corpus_by_id:
+                    rec_copy = dict(corpus_by_id[tr_img])
+                    rec_copy["cuaderno_asignado_id"] = "NRDL-MIXTO-01"
+                    matched.append(rec_copy)
+            matched.sort(key=lambda r: int(r.get("fotograma_numero", 0)))
+        else:
+            matched = [
+                r for r in corpus_data
+                if r.get("cuaderno_asignado_id") == target_title
+            ]
+            matched.sort(key=lambda r: int(r.get("fotograma_numero", 0)))
+
         expected_records[target_title] = matched
 
         # Verify count
@@ -297,7 +368,7 @@ def load_and_verify_canonical_corpus(
             img_id = rec.get("id_imagen", "")
             dgs = rec.get("rollo_dgs", "")
 
-            if not CANONICAL_FILENAME_REGEX.match(img_id):
+            if not (CANONICAL_FILENAME_REGEX.match(img_id) or img_id in MASTER_MD_SOURCES):
                 raise ValueError(
                     f"Corpus record '{img_id}' in {target_title} violates [L-28] canonical filename pattern"
                 )
@@ -647,8 +718,8 @@ class NavarredondillaParroquialVerifier:
                         f"[{target_title}] Source '{title}' ({getattr(s, 'id', 'unknown')}) is not READY (status={st_str})"
                     )
 
-                # Naming standard check [L-28]
-                if not CANONICAL_FILENAME_REGEX.match(title):
+                # Naming standard check [L-28] (allows canonical filenames or official master markdown titles)
+                if not (CANONICAL_FILENAME_REGEX.match(title) or title in MASTER_MD_SOURCES):
                     nb_res["naming_errors"].append(source_entry)
                     summary_stats["total_naming_violations"] += 1
                     self.discrepancies.append(
@@ -1025,8 +1096,8 @@ async def run_self_tests() -> bool:
     corpus = load_and_verify_canonical_corpus(DEFAULT_CATALOG_PATH)
     test_report_path = BASE_DIR / "scripts" / "test_self_check_nrdl_report.json"
 
-    # Test Case 1: Perfect Passing Scenario (15 notebooks, 2,276 sources + 5 protected notebooks)
-    print(" - Test Case 1: All 15 Parroquial notebooks (2,276 sources) + 5 protected notebooks valid...")
+    # Test Case 1: Perfect Passing Scenario (15 notebooks, 2,289 sources + 5 protected notebooks)
+    print(" - Test Case 1: All 15 Parroquial notebooks (2,289 sources) + 5 protected notebooks valid...")
     passing_client = build_mock_passing_client(corpus)
     verifier1 = NavarredondillaParroquialVerifier(
         client=passing_client,
@@ -1036,7 +1107,7 @@ async def run_self_tests() -> bool:
     )
     ok1, rep1 = await verifier1.execute_verification()
     assert ok1 is True, f"Test 1 failed: expected PASS, got {rep1.get('overall_status')}"
-    assert rep1["summary"]["total_sources_ready"] == 2276
+    assert rep1["summary"]["total_sources_ready"] == 2289
     assert rep1["summary"]["protected_barrier_valid"] is True
     print("   [OK] Test Case 1 passed.")
 
@@ -1138,8 +1209,8 @@ async def run_self_tests() -> bool:
     )
     ok7, rep7 = await verifier7.execute_verification()
     assert ok7 is True, "Test 7 failed: expected single notebook verification to PASS"
-    assert rep7["summary"]["total_sources_expected"] == 33
-    assert rep7["summary"]["total_sources_ready"] == 33
+    assert rep7["summary"]["total_sources_expected"] == 36
+    assert rep7["summary"]["total_sources_ready"] == 36
     print("   [OK] Test Case 7 passed granular notebook verification.")
 
     # Clean up test artifact if exists

@@ -63,7 +63,8 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 19. **`[L-28]` Identificación Primaria Absoluta mediante Nombre Completo de Archivo:** Toda referencia a un fotograma de imagen debe utilizar OBLIGATORIAMENTE su nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`). Queda terminantemente prohibido truncar la referencia únicamente al número de fotograma (ej. `01874.jpg` o `01874`). El proyecto abarca 9 rollos DGS distintos (más de 8.500 imágenes); por tanto, el nombre de archivo completo es la única clave primaria universal e inequívoca tanto para el archivo físico en disco, como para NotebookLM, ArcadeDB, el árbol genealógico y las URLs ARK de FamilySearch.
 20. **`[L-29]` Principio de Aislamiento Topográfico y Grafocrítico en Cuadernos (`[CUADERNO-MONO-LOCALIDAD]`):** Ningún cuaderno de NotebookLM Pro debe mezclar fondos documentales de diferentes localidades o pueblos. Cada cuaderno debe asociarse estrictamente a **un único código cuatriletrado** (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`), garantizando la pureza del escribiente, los modismos notariales y la toponimia menor sin contaminación cruzada. En el Catastro de Ensenada, es obligatorio diferenciar escrupulosamente entre **Bienes de Legos / Seglares** (`BIENES_LEGOS`) y **Bienes Eclesiásticos** (`BIENES_ECLESIASTICOS`).
 21. **`[L-30]` Principio de Reconstrucción Lógico-Sacramental (Desarticulación de Códices Mixtos y Series Puras Correlativas):** Los cuadernos de NotebookLM y las colecciones en el grafo deben organizarse por **Series Sacramentales Puras y Correlativas en el Tiempo** (Bautismos, Matrimonios, Defunciones) para cada localidad. Los códices físicos mixtos (volúmenes donde el párroco encuadernó varios sacramentos juntos por escasez de papel) se desarticulan lógicamente asignando cada fotograma a su serie cronológica correspondiente, reservando cuadernos o anexos independientes para documentos extraordinarios no sacramentales (censos de confirmación, inventarios de bienes de la iglesia, autos de visitas episcopales).
-22. **`[L-31]` Tratamiento de Imágenes Híbridas (Duplicidad Lógica Multi-Cuaderno + Directiva de Extracción por Plana):** En fotogramas fotografiados a doble página que contienen sacramentos distintos en plana izquierda (verso) y derecha (recto), se prohíbe cortar físicamente la imagen. El archivo original `{DGS}_{FOTOGRAMA}.jpg` se mantiene íntegro y se incluye como fuente en los cuadernos sacramentales respectivos, instruyendo a NotebookLM mediante el prompt a transcribir únicamente la plana correspondiente (`lado: izquierda` o `lado: derecha`). En ArcadeDB, cada partida se indexa desacoplada con su tipo sacramental y lado físico de soporte (`[L-26]`).
+22. **`[L-31]` Tratamiento de Imágenes Híbridas (Duplicidad Lógica Multi-Cuaderno + Directiva de Extracción por Plana):** En fotogramas fotografiados a doble página que contienen sacramentos distintos en plana izquierda (verso) y derecha (recto) (ej. `004306112_02023.jpg`, `02044.jpg`, `02048.jpg`, `02049.jpg`, `02050.jpg`), se prohíbe cortar físicamente la imagen JPG. El archivo original `{DGS}_{FOTOGRAMA}.jpg` se mantiene íntegro y se incluye como fuente en ambos cuadernos sacramentales respectivos, instruyendo a NotebookLM mediante el prompt a procesar únicamente la plana correspondiente (`lado: izquierda` o `lado: derecha`). En ArcadeDB, cada partida se indexa desacoplada con su tipo sacramental y lado físico de soporte (`[L-26]`).
+23. **`[L-32]` Autos de Visita Pastoral In Situ:** Los decretos y autos de Santa Visita Pastoral intercalados en los libros sacramentales (ej. `004306112_02052.jpg`, `02064.jpg`, `02088.jpg`, `02109.jpg-02111.jpg`) deben permanecer in situ en su posición cronológica exacta dentro de las series sacramentales, ya que constituyen auditorías canónicas contemporáneas de la diligencia o negligencia del cura y ordenan mandatos ecdóticos y paleográficos vinculantes para el propio libro.
 
 ---
 
@@ -79,9 +80,9 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 | **3** | **`JMOL-ENSENADA-LEGOS-01`** | `407d5cb4-4b83-495f-a23a-309ea44ee8c6` | `JMOL` | 28 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar San Juan del Molinillo (DGS 004469028, 00952–00979). |
 | **4** | **`VLLR-ENSENADA-LEGOS-01`** | `e7fba70b-af7d-4602-b543-060742b22528` | `VLLR` | 51 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar El Villarejo (DGS 004469028, 00901–00951). |
 | **5** | **`NDRN-ENSENADA-LEGOS-01`** | `cd72ef58-fcf5-48ac-8de2-556648ebd90e` | `NDRN` | 34 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar Navandrinal (DGS 004469028, 00980–01013). |
-| **6** | **`NRDL-MATR-01`** | `1e6fec74-1e2f-4dd7-8ad1-6d25411de127` | `NRDL` | 33 | **Verificado E2E (READY).** Matrimonios Navarredondilla (1634–1686, DGS 004306112). 33/33 imágenes READY. |
+| **6** | **`NRDL-MATR-01`** | `1e6fec74-1e2f-4dd7-8ad1-6d25411de127` | `NRDL` | 36 | **Verificado E2E (READY).** Matrimonios Navarredondilla (1634–1686, DGS 004306112). 36 imágenes (33 originales + 3 añadidas bajo `[L-31]`: `004306112_02050.jpg` [boda Alonso Sánchez con Francisca Andrino], `004306112_02148.jpg` [tira con 3 bodas de 1667] y `004306112_02149.jpg` [tira con bodas de 1667–1668]). |
 | **7** | **`JMOL-DIFU-03`** | `a5d19fcc-d266-4497-bdb3-df182328bdcb` | `JMOL` | 17 | **Verificado E2E (READY).** Libro 3º Defunciones San Juan del Molinillo (1849–1851, DGS 004298571). 17/17 imágenes READY. |
-| **8** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 245 | **Verificado E2E (READY).** Bautismos Navarredondilla (DGS 004306112). |
+| **8** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 193 | **Purificado y Preparado (READY).** Bautismos Navarredondilla (1594–1695). 188 imágenes (depuradas 57 defunciones puras, preservadas 5 híbridas `02023`, `02044`, `02048`, `02049`, `02050` bajo `[L-31]`) + 5 fuentes maestras (`00..04`) + ChatSettings configurado. |
 | **9** | **`NRDL-BAUT-02`** | `0a6561ec-ee7c-47bc-8164-bcba8be5acef` | `NRDL` | 157 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
 | **10** | **`NRDL-BAUT-03`** | `6853e55d-3e72-42d3-bf01-6d2a510978b7` | `NRDL` | 231 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
 | **11** | **`NRDL-BAUT-05`** | `9fa0454b-5898-4efc-be90-a02524298906` | `NRDL` | 144 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
@@ -94,9 +95,35 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 | **18** | **`NRDL-DIFU-04`** | `9e03f5d3-3425-456b-9df1-b69bf6a3a1a2` | `NRDL` | 188 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
 | **19** | **`NRDL-DIFU-05`** | `d73e0a6c-7fa9-4c78-aec9-6c0bfcfd2ccf` | `NRDL` | 211 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
 | **20** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Verificado E2E (READY).** Matrimonios Navarredondilla. |
-| **21** | **`NRDL-DIFU-S17-B (1648-1695)`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 70 | **Verificado E2E (READY).** Defunciones 1648–1695 bajo `[L-30]`. |
+| **21** | **`NRDL-DIFU-S17 (1631-1701)`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 132 | **Verificado E2E (READY).** Defunciones Navarredondilla (1631–1701, DGS 004306112). 132 imágenes (70 originales + 62 añadidas [57 puras + 5 híbridas]). Renombrado desde `NRDL-MIXTO-01` / `NRDL-DIFU-S17-B` bajo `[L-30]`. |
 
-### B. Cuadernos Históricos de Pruebas y Referencia
+### B. Estado de Ingesta Masiva de San Juan del Molinillo (`JMOL`) (En Curso)
+- **Total corpus fotográfico JMOL:** 2.731 imágenes en 18 cuadernos parroquiales puros bajo regla `[L-30]`.
+- **Progreso en tiempo real:** Más de 950 imágenes subidas (>35% completado) sin errores.
+- **Cuadernos 100% finalizados:**
+  1. `JMOL-BAUT-01` (`004298570_01599.jpg` a `01773.jpg`): 175/175 fuentes READY.
+  2. `JMOL-BAUT-02` (`004298570_01774.jpg` a `02049.jpg`): 276/276 fuentes READY.
+  3. `JMOL-BAUT-03` (`004298570_02050.jpg` a `02239.jpg`): 190/190 fuentes READY.
+  4. `JMOL-BAUT-04` (`004298570_02240.jpg` a `02428.jpg`): 189/189 fuentes READY.
+  5. `JMOL-DIFU-03` (`004298571_01033.jpg` a `01049.jpg`): 17/17 fuentes READY.
+  6. `JMOL-BAUT-05`: En fase final de culminación.
+
+### C. Balance Integral del Fondo de Matrimonios de Navarredondilla y Detección de Lagunas
+Tras la auditoría exhaustiva de los rollos DGS `004306112` y `004306113`, se constata que en FamilySearch solo existen **106 imágenes de matrimonios en todo el fondo microfilmado** de Navarredondilla:
+1. **`NRDL-MATR-01` (1634–1686, DGS `004306112`):** 36 imágenes (33 del Libro 1º de Casados + 3 imágenes añadidas bajo `[L-31]` con bodas dispersas de 1667–1668 e intercaladas en `02050`).
+2. **`NRDL-MATR-02` (1698–1803, DGS `004306113`):** 70 imágenes (Libro 2º de Casados dentro del códice bífido invertido + despachos nupciales).
+
+#### Lagunas y Quiebras Documentales Constatadas:
+- **Laguna Fundacional (1594–1634, 40 años):** No existe libro de desposorios propio conservado; Navarredondilla dependía de la villa matriz o colegiata comarcal.
+- **Laguna Intermedia (1686–1698, 12 años):** Vacío documental sin registros conservados en la microfilmación.
+- **La Gran Omisión del Siglo XIX (1803–1902, 99 años):** FamilySearch cortó abruptamente la filmación de matrimonios en noviembre de 1803 (fotograma `004306113_00800.jpg`), **omitiendo en su totalidad el Libro 3º de Casados**, a pesar de que la serie de Bautismos llega hasta 1889 (fotograma `004306113_00429.jpg`) y la de Defunciones hasta 1902 (fotograma `004306113_01535.jpg`).
+
+#### Vías Alternativas de Recuperación Genealógica para el Siglo XIX:
+1. **Expedientes Matrimoniales del Archivo Diocesano de Ávila:** Los legajos diocesanos de informaciones matrimoniales, dispensas de consanguinidad/afinidad y despachos de soltería contienen las actas matrimoniales completas omitidas en la filmación.
+2. **Cruces Canónicos Interparroquiales con `JMOL` y `NMRL`:** Numerosos vecinos de Navarredondilla contrajeron nupcias en San Juan del Molinillo o Navalmoral de la Sierra, cuyas series de casados decimonónicas sí están disponibles y preservadas.
+3. **Registro Civil de Navarredondilla (desde 1871):** Vía civil ininterrumpida para matrimonios entre 1871 y 1902.
+
+### D. Cuadernos Históricos de Pruebas y Referencia
 
 | Nº | Título Oficial del Cuaderno | ID en NotebookLM (`notebook_id`) | Fuentes | Contenido y Estado |
 | :-: | :--- | :--- | :-: | :--- |

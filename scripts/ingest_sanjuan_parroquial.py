@@ -449,7 +449,7 @@ async def upload_single_image_with_backoff(
             await asyncio.sleep(pause_seconds)
             return source.id
 
-        except (RateLimitError, RPCError, ServerError, NetworkError, httpx.HTTPError) as e:
+        except (RateLimitError, RPCError, ServerError, NetworkError, NotebookLMError, httpx.HTTPError) as e:
             if attempt == MAX_RETRIES:
                 logger.error("[%s] Fatal failure uploading %s after %d retries: %s", target_id, source_title, attempt, e)
                 raise
