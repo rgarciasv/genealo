@@ -63,6 +63,7 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 19. **`[L-28]` Identificación Primaria Absoluta mediante Nombre Completo de Archivo:** Toda referencia a un fotograma de imagen debe utilizar OBLIGATORIAMENTE su nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`). Queda terminantemente prohibido truncar la referencia únicamente al número de fotograma (ej. `01874.jpg` o `01874`). El proyecto abarca 9 rollos DGS distintos (más de 8.500 imágenes); por tanto, el nombre de archivo completo es la única clave primaria universal e inequívoca tanto para el archivo físico en disco, como para NotebookLM, ArcadeDB, el árbol genealógico y las URLs ARK de FamilySearch.
 20. **`[L-29]` Principio de Aislamiento Topográfico y Grafocrítico en Cuadernos (`[CUADERNO-MONO-LOCALIDAD]`):** Ningún cuaderno de NotebookLM Pro debe mezclar fondos documentales de diferentes localidades o pueblos. Cada cuaderno debe asociarse estrictamente a **un único código cuatriletrado** (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`), garantizando la pureza del escribiente, los modismos notariales y la toponimia menor sin contaminación cruzada. En el Catastro de Ensenada, es obligatorio diferenciar escrupulosamente entre **Bienes de Legos / Seglares** (`BIENES_LEGOS`) y **Bienes Eclesiásticos** (`BIENES_ECLESIASTICOS`).
 21. **`[L-30]` Principio de Reconstrucción Lógico-Sacramental (Desarticulación de Códices Mixtos y Series Puras Correlativas):** Los cuadernos de NotebookLM y las colecciones en el grafo deben organizarse por **Series Sacramentales Puras y Correlativas en el Tiempo** (Bautismos, Matrimonios, Defunciones) para cada localidad. Los códices físicos mixtos (volúmenes donde el párroco encuadernó varios sacramentos juntos por escasez de papel) se desarticulan lógicamente asignando cada fotograma a su serie cronológica correspondiente, reservando cuadernos o anexos independientes para documentos extraordinarios no sacramentales (censos de confirmación, inventarios de bienes de la iglesia, autos de visitas episcopales).
+22. **`[L-31]` Tratamiento de Imágenes Híbridas (Duplicidad Lógica Multi-Cuaderno + Directiva de Extracción por Plana):** En fotogramas fotografiados a doble página que contienen sacramentos distintos en plana izquierda (verso) y derecha (recto), se prohíbe cortar físicamente la imagen. El archivo original `{DGS}_{FOTOGRAMA}.jpg` se mantiene íntegro y se incluye como fuente en los cuadernos sacramentales respectivos, instruyendo a NotebookLM mediante el prompt a transcribir únicamente la plana correspondiente (`lado: izquierda` o `lado: derecha`). En ArcadeDB, cada partida se indexa desacoplada con su tipo sacramental y lado físico de soporte (`[L-26]`).
 
 ---
 
@@ -79,20 +80,21 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 | **4** | **`VLLR-ENSENADA-LEGOS-01`** | `e7fba70b-af7d-4602-b543-060742b22528` | `VLLR` | 51 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar El Villarejo (DGS 004469028, 00901–00951). |
 | **5** | **`NDRN-ENSENADA-LEGOS-01`** | `cd72ef58-fcf5-48ac-8de2-556648ebd90e` | `NDRN` | 34 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar Navandrinal (DGS 004469028, 00980–01013). |
 | **6** | **`NRDL-MATR-01`** | `1e6fec74-1e2f-4dd7-8ad1-6d25411de127` | `NRDL` | 33 | **Verificado E2E (READY).** Matrimonios Navarredondilla (1634–1686, DGS 004306112). 33/33 imágenes READY. |
-| **7** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 245 | **Ingesta en curso (terminal).** Bautismos Navarredondilla (DGS 004306112). |
-| **8** | **`NRDL-BAUT-02`** | `0a6561ec-ee7c-47bc-8164-bcba8be5acef` | `NRDL` | 157 | **Inicializado.** Bautismos Navarredondilla. |
-| **9** | **`NRDL-BAUT-03`** | `6853e55d-3e72-42d3-bf01-6d2a510978b7` | `NRDL` | 231 | **Inicializado.** Bautismos Navarredondilla. |
-| **10** | **`NRDL-BAUT-05`** | `9fa0454b-5898-4efc-be90-a02524298906` | `NRDL` | 144 | **Inicializado.** Bautismos Navarredondilla. |
-| **11** | **`NRDL-BAUT-06`** | `9cdd4e0c-a922-4edc-acfb-4a5dee7a896d` | `NRDL` | 183 | **Inicializado.** Bautismos Navarredondilla. |
-| **12** | **`NRDL-BAUT-07`** | `0a31b8ce-184b-49af-ae17-0df8446ecc5f` | `NRDL` | 102 | **Inicializado.** Bautismos Navarredondilla. |
-| **13** | **`NRDL-DIFU-01`** | `77aff174-b9ae-4273-be03-41d94b20a7d4` | `NRDL` | 236 | **Inicializado.** Defunciones Navarredondilla. |
-| **14** | **`NRDL-DIFU-01B`** | `5820003c-3577-496a-b3db-6903365a201f` | `NRDL` | 65 | **Inicializado.** Defunciones Navarredondilla. |
-| **15** | **`NRDL-DIFU-02`** | `1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb` | `NRDL` | 171 | **Inicializado.** Defunciones Navarredondilla. |
-| **16** | **`NRDL-DIFU-03`** | `ab115a24-e08b-4ee6-b990-9027d7ac1abf` | `NRDL` | 170 | **Inicializado.** Defunciones Navarredondilla. |
-| **17** | **`NRDL-DIFU-04`** | `9e03f5d3-3425-456b-9df1-b69bf6a3a1a2` | `NRDL` | 188 | **Inicializado.** Defunciones Navarredondilla. |
-| **18** | **`NRDL-DIFU-05`** | `d73e0a6c-7fa9-4c78-aec9-6c0bfcfd2ccf` | `NRDL` | 211 | **Inicializado.** Defunciones Navarredondilla. |
-| **19** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Inicializado.** Matrimonios Navarredondilla. |
-| **20** | **`NRDL-MIXTO-01`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 70 | **Inicializado.** Códice Mixto Navarredondilla. |
+| **7** | **`JMOL-DIFU-03`** | `a5d19fcc-d266-4497-bdb3-df182328bdcb` | `JMOL` | 17 | **Verificado E2E (READY).** Libro 3º Defunciones San Juan del Molinillo (1849–1851, DGS 004298571). 17/17 imágenes READY. |
+| **8** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 245 | **Subida completa (245/245).** Bautismos Navarredondilla (DGS 004306112). |
+| **9** | **`NRDL-BAUT-02`** | `0a6561ec-ee7c-47bc-8164-bcba8be5acef` | `NRDL` | 157 | **Subida completa (157/157).** Bautismos Navarredondilla. |
+| **10** | **`NRDL-BAUT-03`** | `6853e55d-3e72-42d3-bf01-6d2a510978b7` | `NRDL` | 231 | **En curso en segundo plano.** Bautismos Navarredondilla. |
+| **11** | **`NRDL-BAUT-05`** | `9fa0454b-5898-4efc-be90-a02524298906` | `NRDL` | 144 | **Inicializado.** Bautismos Navarredondilla. |
+| **12** | **`NRDL-BAUT-06`** | `9cdd4e0c-a922-4edc-acfb-4a5dee7a896d` | `NRDL` | 183 | **Inicializado.** Bautismos Navarredondilla. |
+| **13** | **`NRDL-BAUT-07`** | `0a31b8ce-184b-49af-ae17-0df8446ecc5f` | `NRDL` | 102 | **Inicializado.** Bautismos Navarredondilla. |
+| **14** | **`NRDL-DIFU-01`** | `77aff174-b9ae-4273-be03-41d94b20a7d4` | `NRDL` | 236 | **Inicializado.** Defunciones Navarredondilla. |
+| **15** | **`NRDL-DIFU-01B`** | `5820003c-3577-496a-b3db-6903365a201f` | `NRDL` | 65 | **Inicializado.** Defunciones Navarredondilla. |
+| **16** | **`NRDL-DIFU-02`** | `1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb` | `NRDL` | 171 | **Inicializado.** Defunciones Navarredondilla. |
+| **17** | **`NRDL-DIFU-03`** | `ab115a24-e08b-4ee6-b990-9027d7ac1abf` | `NRDL` | 170 | **Inicializado.** Defunciones Navarredondilla. |
+| **18** | **`NRDL-DIFU-04`** | `9e03f5d3-3425-456b-9df1-b69bf6a3a1a2` | `NRDL` | 188 | **Inicializado.** Defunciones Navarredondilla. |
+| **19** | **`NRDL-DIFU-05`** | `d73e0a6c-7fa9-4c78-aec9-6c0bfcfd2ccf` | `NRDL` | 211 | **Inicializado.** Defunciones Navarredondilla. |
+| **20** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Inicializado.** Matrimonios Navarredondilla. |
+| **21** | **`NRDL-DIFU-S17-B (1648-1695)`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 70 | **Inicializado (renombrado bajo `[L-30]`).** Defunciones 1648–1695. |
 
 ### B. Cuadernos Históricos de Pruebas y Referencia
 

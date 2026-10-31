@@ -149,12 +149,13 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
     - [x] `NDRN-ENSENADA-LEGOS-01` (ID: `cd72ef58-fcf5-48ac-8de2-556648ebd90e`, 34 fuentes).
   - [ ] `[SERIE-PARROQUIAL] Cuadernos Parroquiales de los 4 Pueblos (Bautismos, Matrimonios y Defunciones restantes):`
     - [x] `NRDL-MATR-01` (ID: `1e6fec74-1e2f-4dd7-8ad1-6d25411de127`, 33 fuentes en estado `READY`, Dictamen VICTORY CONFIRMED).
-    - [ ] `NRDL-BAUT-01..03, 05..07` (Navarredondilla Bautismos restantes: 6 cuadernos, 1.063 imgs).
-    - [ ] `NRDL-MATR-02` y `NRDL-MIXTO-01` (Navarredondilla Matrimonios restantes: 2 cuadernos, 140 imgs).
+    - [x] `JMOL-DIFU-03` (ID: `a5d19fcc-d266-4497-bdb3-df182328bdcb`, 17 fuentes en estado `READY`, Dictamen VICTORY CONFIRMED).
+    - [ ] `NRDL-BAUT-01..03, 05..07` (Navarredondilla Bautismos restantes: 6 cuadernos, 1.063 imgs; `NRDL-BAUT-01` y `02` subidos 100%, `03` en curso en segundo plano).
+    - [ ] `NRDL-MATR-02` y `NRDL-DIFU-S17-B` (Navarredondilla Matrimonios restantes y Defunciones s. XVII B: 2 cuadernos, 140 imgs).
     - [ ] `NRDL-DIFU-01..05, 01B` (Navarredondilla Defunciones: 6 cuadernos, 1.041 imgs).
-    - [ ] `JMOL-BAUT-01..05` y `JMOL-INDICE-BAUT` (San Juan del Molinillo Bautismos).
-    - [ ] `JMOL-MATR-01..03` y `JMOL-MIXTO-04` (San Juan del Molinillo Matrimonios).
-    - [ ] `JMOL-DIFU-01..06`, `JMOL-DIFU-PARVULOS` y `JMOL-INDICE-DIFU` (San Juan del Molinillo Defunciones).
+    - [ ] `JMOL-BAUT-01..05` y `JMOL-INDICE-BAUT` (San Juan del Molinillo Bautismos: 6 cuadernos, 1.069 imgs).
+    - [ ] `JMOL-MATR-01..03` y `JMOL-SACRAMENTAL-1842-1850` (San Juan del Molinillo Matrimonios y Mixto: 4 cuadernos, 617 imgs).
+    - [ ] `JMOL-DIFU-01, 02, 04..06`, `JMOL-DIFU-PARVULOS` y `JMOL-INDICE-DIFU` (San Juan del Molinillo Defunciones restantes: 7 cuadernos, 1.028 imgs).
     - [ ] `ALTO-ALBERCHE-ANEXOS-01` (Muestras de anejos).
   - [ ] `[CATASTRO-1752-BIENES-Y-ECLESIASTICO] Ensenada - Bienes de Legos y Rentas Eclesiásticas (Pospuesto a fase posterior)`.
 

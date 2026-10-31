@@ -1,0 +1,15 @@
+{
+  "verified_at": "2026-10-31T15:10:52.087205+00:00",
+  "notebooks": {
+    "JMOL-DIFU-03": {
+      "notebook_id": "a5d19fcc-d266-4497-bdb3-df182328bdcb",
+      "title": "JMOL-DIFU-03",
+      "expected_count": 17,
+      "actual_count": 17,
+      "ready_count": 17,
+      "missing_count": 0,
+      "status": "PASS"
+    }
+  },
+  "overall_status": "PASS"
+}

@@ -250,6 +250,30 @@
 - **Formulación de la Regla Oficial:**
   - **`[L-30]` Principio de Reconstrucción Lógico-Sacramental:** Los cuadernos de NotebookLM y las colecciones del grafo se organizan por **Serie Sacramental Pura y Correlativa en el Tiempo** (Bautismos, Matrimonios, Defunciones) para cada pueblo. Los códices mixtos físicos se desarticulan y sus fotogramas se asignan a su respectiva serie cronológica, reservando cuadernos específicos para documentos censales y extraordinarios (confirmaciones, inventarios, visitas).
 
+---
+
+## 🧪 Experimento 18: Piloto de Ingesta y Calibración E2E de San Juan del Molinillo (`JMOL-DIFU-03`, Opción A)
+- **Fecha:** 2026-10-31
+- **Objetivo:** Ejecutar la calibración en vivo del pipeline de San Juan del Molinillo (`JMOL`) mediante la ingesta y verificación del primer cuaderno canónico sacramental puro: `JMOL-DIFU-03` (Libro 3º de Defunciones 1849–1851, 17 imágenes).
+- **Acciones Realizadas:**
+  1. **Pre-flight Shield Check:** Verificación automática de la integridad de los 6 cuadernos protegidos en NotebookLM (388 fuentes en total):
+     - `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647`): 188 fuentes.
+     - `NRDL-ENSENADA-LEGOS-01` (`ec86de71`): 87 fuentes.
+     - `JMOL-ENSENADA-LEGOS-01` (`407d5cb4`): 28 fuentes.
+     - `VLLR-ENSENADA-LEGOS-01` (`e7fba70b`): 51 fuentes.
+     - `NDRN-ENSENADA-LEGOS-01` (`cd72ef58`): 34 fuentes.
+     - `NRDL-MATR-01` (`1e6fec74`): 33 fuentes.
+  2. **Resolución Dinámica de Rutas:** Activado el resolver dinámico para carpetas con guión tipográfico Unicode en-dash (`\u2013`), validando el 100% (2.731/2.731) de imágenes de Molinillo en disco.
+  3. **Creación del Cuaderno:** Generado en NotebookLM el cuaderno `JMOL-DIFU-03` con ID `a5d19fcc-d266-4497-bdb3-df182328bdcb`.
+  4. **Subida con Backoff y Doble Checkpoint:** Ingestadas las 17 imágenes fotográficas `{DGS}_{FOTOGRAMA}.jpg` (`004298571_01033.jpg` a `004298571_01049.jpg`) registrándose en [`scripts/ingest_checkpoint_jmol.json`](file:///c:/TRABAJOS/personal/genealo/scripts/ingest_checkpoint_jmol.json).
+  5. **Verificación Independiente E2E:** Ejecutado [`scripts/verify_sanjuan_parroquial_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/verify_sanjuan_parroquial_sources.py) generando informe en [`scripts/verification_report_jmol.json`](file:///c:/TRABAJOS/personal/genealo/scripts/verification_report_jmol.json).
+- **Resultados:**
+  - **Estado en NotebookLM:** **17/17 fuentes en estado READY** (100% procesadas por la IA multimodal de Google).
+  - **Fuentes faltantes:** 0.
+  - **Veredicto:** **PASS (100% de éxito)**. Cuaderno certificado para transcripción.
+
+
+
 
 
 
