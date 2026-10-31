@@ -62,24 +62,47 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 18. **`[L-27]` Desglose Obligatorio entre Redactor Material, Oficiante Sacramental y Firmas:** Desacoplamiento estricto en el bloque de extracción y en el modelo de grafo de ArcadeDB entre el **Redactor Material** (quien empuña físicamente la pluma, define el ductus caligráfico y enlaza con la arista `ESCRIBE`), el **Oficiante Sacramental** (quien bautiza/casa canónicamente con licencia o delegación y enlaza con la arista `OFICIA_SACRAMENTO`), y las **Firmas** (quien suscribe autógrafamente al pie con la arista `FIRMA`). Previene asignar páginas completas a sacerdotes que solo oficiaron un bautismo esporádico (como Don Rodrigo Antonio de Meneses en 1594 o Baltasar de Luján en 1624).
 19. **`[L-28]` Identificación Primaria Absoluta mediante Nombre Completo de Archivo:** Toda referencia a un fotograma de imagen debe utilizar OBLIGATORIAMENTE su nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`). Queda terminantemente prohibido truncar la referencia únicamente al número de fotograma (ej. `01874.jpg` o `01874`). El proyecto abarca 9 rollos DGS distintos (más de 8.500 imágenes); por tanto, el nombre de archivo completo es la única clave primaria universal e inequívoca tanto para el archivo físico en disco, como para NotebookLM, ArcadeDB, el árbol genealógico y las URLs ARK de FamilySearch.
 20. **`[L-29]` Principio de Aislamiento Topográfico y Grafocrítico en Cuadernos (`[CUADERNO-MONO-LOCALIDAD]`):** Ningún cuaderno de NotebookLM Pro debe mezclar fondos documentales de diferentes localidades o pueblos. Cada cuaderno debe asociarse estrictamente a **un único código cuatriletrado** (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`), garantizando la pureza del escribiente, los modismos notariales y la toponimia menor sin contaminación cruzada. En el Catastro de Ensenada, es obligatorio diferenciar escrupulosamente entre **Bienes de Legos / Seglares** (`BIENES_LEGOS`) y **Bienes Eclesiásticos** (`BIENES_ECLESIASTICOS`).
+21. **`[L-30]` Principio de Reconstrucción Lógico-Sacramental (Desarticulación de Códices Mixtos y Series Puras Correlativas):** Los cuadernos de NotebookLM y las colecciones en el grafo deben organizarse por **Series Sacramentales Puras y Correlativas en el Tiempo** (Bautismos, Matrimonios, Defunciones) para cada localidad. Los códices físicos mixtos (volúmenes donde el párroco encuadernó varios sacramentos juntos por escasez de papel) se desarticulan lógicamente asignando cada fotograma a su serie cronológica correspondiente, reservando cuadernos o anexos independientes para documentos extraordinarios no sacramentales (censos de confirmación, inventarios de bienes de la iglesia, autos de visitas episcopales).
 
 ---
 
 ## 3. CATÁLOGO OFICIAL DE CUADERNOS EN NOTEBOOKLM (ACCESO VÍA MCP `notebooklm`)
 > **Convención de Nombres Obligatoria:** Llamar siempre a cada cuaderno por su título oficial o descriptor exacto (nunca usar términos ambiguos como *"el primer cuaderno"* o *"el segundo cuaderno"*).
 
+### A. Serie Canónica de Cuadernos Validados y en Producción (v2.0)
+
+| Nº | Identificador / Título Oficial | ID en NotebookLM (`notebook_id`) | Localidad | Fuentes | Estado y Cobertura |
+| :-: | :--- | :--- | :-: | :-: | :--- |
+| **1** | **`Lib. Baut. Navarre Vol. 1 (1594-1695)`** | `7967d647-8ca2-4863-a576-11843e8e8802` | `NRDL` | 188 | **Cuaderno protegido.** Bautismos de Navarredondilla (1594–1695, DGS 004306112). 183 imágenes + 5 fuentes maestras (`00..04`). |
+| **2** | **`NRDL-ENSENADA-LEGOS-01`** | `ec86de71-a11c-4489-bbb9-eea856cccac4` | `NRDL` | 87 | **Verificado E2E (READY).** Catastro Ensenada 1752, Personal Seglar Navarredondilla (DGS 004469033, 00881–00967). |
+| **3** | **`JMOL-ENSENADA-LEGOS-01`** | `407d5cb4-4b83-495f-a23a-309ea44ee8c6` | `JMOL` | 28 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar San Juan del Molinillo (DGS 004469028, 00952–00979). |
+| **4** | **`VLLR-ENSENADA-LEGOS-01`** | `e7fba70b-af7d-4602-b543-060742b22528` | `VLLR` | 51 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar El Villarejo (DGS 004469028, 00901–00951). |
+| **5** | **`NDRN-ENSENADA-LEGOS-01`** | `cd72ef58-fcf5-48ac-8de2-556648ebd90e` | `NDRN` | 34 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar Navandrinal (DGS 004469028, 00980–01013). |
+| **6** | **`NRDL-MATR-01`** | `1e6fec74-1e2f-4dd7-8ad1-6d25411de127` | `NRDL` | 33 | **Verificado E2E (READY).** Matrimonios Navarredondilla (1634–1686, DGS 004306112). 33/33 imágenes READY. |
+| **7** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 245 | **Ingesta en curso (terminal).** Bautismos Navarredondilla (DGS 004306112). |
+| **8** | **`NRDL-BAUT-02`** | `0a6561ec-ee7c-47bc-8164-bcba8be5acef` | `NRDL` | 157 | **Inicializado.** Bautismos Navarredondilla. |
+| **9** | **`NRDL-BAUT-03`** | `6853e55d-3e72-42d3-bf01-6d2a510978b7` | `NRDL` | 231 | **Inicializado.** Bautismos Navarredondilla. |
+| **10** | **`NRDL-BAUT-05`** | `9fa0454b-5898-4efc-be90-a02524298906` | `NRDL` | 144 | **Inicializado.** Bautismos Navarredondilla. |
+| **11** | **`NRDL-BAUT-06`** | `9cdd4e0c-a922-4edc-acfb-4a5dee7a896d` | `NRDL` | 183 | **Inicializado.** Bautismos Navarredondilla. |
+| **12** | **`NRDL-BAUT-07`** | `0a31b8ce-184b-49af-ae17-0df8446ecc5f` | `NRDL` | 102 | **Inicializado.** Bautismos Navarredondilla. |
+| **13** | **`NRDL-DIFU-01`** | `77aff174-b9ae-4273-be03-41d94b20a7d4` | `NRDL` | 236 | **Inicializado.** Defunciones Navarredondilla. |
+| **14** | **`NRDL-DIFU-01B`** | `5820003c-3577-496a-b3db-6903365a201f` | `NRDL` | 65 | **Inicializado.** Defunciones Navarredondilla. |
+| **15** | **`NRDL-DIFU-02`** | `1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb` | `NRDL` | 171 | **Inicializado.** Defunciones Navarredondilla. |
+| **16** | **`NRDL-DIFU-03`** | `ab115a24-e08b-4ee6-b990-9027d7ac1abf` | `NRDL` | 170 | **Inicializado.** Defunciones Navarredondilla. |
+| **17** | **`NRDL-DIFU-04`** | `9e03f5d3-3425-456b-9df1-b69bf6a3a1a2` | `NRDL` | 188 | **Inicializado.** Defunciones Navarredondilla. |
+| **18** | **`NRDL-DIFU-05`** | `d73e0a6c-7fa9-4c78-aec9-6c0bfcfd2ccf` | `NRDL` | 211 | **Inicializado.** Defunciones Navarredondilla. |
+| **19** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Inicializado.** Matrimonios Navarredondilla. |
+| **20** | **`NRDL-MIXTO-01`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 70 | **Inicializado.** Códice Mixto Navarredondilla. |
+
+### B. Cuadernos Históricos de Pruebas y Referencia
+
 | Nº | Título Oficial del Cuaderno | ID en NotebookLM (`notebook_id`) | Fuentes | Contenido y Estado |
 | :-: | :--- | :--- | :-: | :--- |
-| **1** | **`Lib. Baut. Navarre Vol. 1 (1594-1695)`** | `7967d647-8ca2-4863-a576-11843e8e8802` | 188 | **Cuaderno principal saneado de Bautismos de Navarredondilla (1594–1695, DGS 004306112).** 183 imágenes únicas + 5 fuentes maestras (`00`, `01`, `02`, `03`, `04`). Configurado `chat_configure` con System Prompt oficial. |
-| **2** | **`libro bautismos navarre 1594-1637`** | `d28c82d0-e15f-4d4d-8333-61f529d52815` | 91 | Cuaderno experimental inicial (nombres antiguos `S3HT-...jpg`). Auditados sus 20 turnos de chat y 3 artefactos Studio (`L-01` a `L-09`). |
-| **3** | **`matrimonio navarre 1698-1761`** | `b973ffbb-0097-4b1b-a518-25aefd9a46c9` | 79 | Libro de Matrimonios de Navarredondilla (1698–1761). Pendiente de auditoría. |
-| **4** | **`Libro personas ensenada Navarredondilla`** | `d634b10e-386d-4397-96d1-d271eb71a70d` | 91 | Catastro del Marqués de la Ensenada (1752) de Navarredondilla. |
-| **5** | **`Libro de Bautismos de San Juan del Molinillo 1752 1852`** | `ac46f1ed-b0b8-4009-9a62-404171fb0281` | 72 | Bautismos de San Juan del Molinillo y anejos (1752–1852). |
-| **6** | **`Libro parroquial matrimonios SJDM sept 1716 dic 1756`** | `af65bd4d-5a95-4a08-80b2-cec3180904fd` | 95 | Matrimonios de San Juan del Molinillo (1716–1756). |
-| **7** | **`libros parroquiales matrimonios SJDM desde dic 1756 hasta 1789`** | `fa440cab-c682-4c86-8be2-78dacc042daf` | 92 | Matrimonios de San Juan del Molinillo (1756–1789). |
-| **8** | **`Descripcion de la Provincia y Obispado de Avila`** | `528907f8-b1f2-42eb-8a9a-622e279a8bbb` | 49 | Contexto histórico y geográfico diocesano de Ávila. |
-| **9** | **`inventario libros y scripts`** | `7ff7fe9a-5237-42e8-81bb-b68d4491cb77` | 2 | Contiene `Script JavaScript para FamilySearch.pdf` (source `39371fd4-7475-4882-8b1d-d1d2e411db4f`, 1.441.899 chars) con la auditoría visual fotograma a fotograma de los rollos de San Juan del Molinillo y Navarredondilla. |
-| **10** | **`Navarredondilla Parish Records Inventory`** | `a6737bbe-26c8-4203-b9c2-d0ea6117241b` | 1 | Primera mitad de la auditoría de rollos (`64a6c118-fc30-45aa-a5ef-7b3dc3ba260e`, 617.528 chars). |
+| **21** | **`libro bautismos navarre 1594-1637`** | `d28c82d0-e15f-4d4d-8333-61f529d52815` | 91 | Cuaderno experimental inicial (nombres antiguos `S3HT-...jpg`). Auditados sus 20 turnos de chat y 3 artefactos Studio (`L-01` a `L-09`). |
+| **22** | **`matrimonio navarre 1698-1761`** | `b973ffbb-0097-4b1b-a518-25aefd9a46c9` | 79 | Libro de Matrimonios de Navarredondilla (1698–1761). Histórico. |
+| **23** | **`Libro personas ensenada Navarredondilla`** | `d634b10e-386d-4397-96d1-d271eb71a70d` | 91 | Cuaderno experimental previo de Ensenada Navarredondilla. |
+| **24** | **`Descripcion de la Provincia y Obispado de Avila`** | `528907f8-b1f2-42eb-8a9a-622e279a8bbb` | 49 | Contexto histórico y geográfico diocesano de Ávila. |
+| **25** | **`inventario libros y scripts`** | `7ff7fe9a-5237-42e8-81bb-b68d4491cb77` | 2 | Contiene `Script JavaScript para FamilySearch.pdf` con auditoría visual. |
 
 ---
 

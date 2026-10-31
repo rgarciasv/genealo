@@ -201,6 +201,56 @@
   1. Codificada la Regla 12 `[L-29]` en [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md), Regla 20 en [`contexto_maestro.md`](file:///c:/TRABAJOS/personal/genealo/contexto_maestro.md) y Regla 6 en [`00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`](file:///c:/TRABAJOS/personal/genealo/00_INSTRUCCIONES_PALEOGRAFICAS_V2.md).
   2. Recompilado [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json) con los campos `estamento` (`SACRAMENTAL`, `SEGLAR`, `ECLESIASTICO`, `INSTITUCIONAL`) y `escribano_mano_adscrita`.
 
+---
+
+## 🧪 Experimento 14: Ingesta Masiva y Verificación E2E de Cuadernos Catastro de Ensenada (Legos) en NotebookLM
+- **Fecha:** 2026-10-31
+- **Objetivo:** Ingesta desatendida y verificación completa de los 4 cuadernos de Personal Seglar (Legos) del Catastro del Marqués de la Ensenada (1751–1752) para las 4 localidades del Alto Alberche (`NRDL`, `JMOL`, `VLLR`, `NDRN`), cumpliendo `[L-28]` y `[L-29]`.
+- **Cuadernos Creados y Poblados en NotebookLM:**
+  1. `NRDL-ENSENADA-LEGOS-01`: `ec86de71-a11c-4489-bbb9-eea856cccac4` (87 fuentes). Rollo `004469033`, fotogramas `00881` a `00967`.
+  2. `JMOL-ENSENADA-LEGOS-01`: `407d5cb4-4b83-495f-a23a-309ea44ee8c6` (28 fuentes). Rollo `004469028`, fotogramas `00952` a `00979`.
+  3. `VLLR-ENSENADA-LEGOS-01`: `e7fba70b-af7d-4602-b543-060742b22528` (51 fuentes). Rollo `004469028`, fotogramas `00901` a `00951`.
+  4. `NDRN-ENSENADA-LEGOS-01`: `cd72ef58-fcf5-48ac-8de2-556648ebd90e` (34 fuentes). Rollo `004469028`, fotogramas `00980` a `01013`.
+- **Resultados de la Ingesta y Certificación E2E:**
+  - **Total de fuentes subidas:** 200 fuentes fotográficas canónicas.
+  - **Estado en NotebookLM:** 200/200 fuentes en estado `READY` (0 en `PROCESSING`, 0 en `ERROR`).
+  - **Harness de Verificación:** [`scripts/verify_notebooklm_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/verify_notebooklm_sources.py) superó **405/405 aserciones** de integridad estricta (100% de éxito).
+  - **Sincronización:** Actualizado [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json) con `source_id` individual para cada imagen.
+
+---
+
+## 🧪 Experimento 15: Pipeline de Ingesta Desatendida con Doble Checkpoint de Navarredondilla Parroquial (Opción A)
+- **Fecha:** 2026-10-31
+- **Objetivo:** Ingesta integral de las 2.276 imágenes de los registros parroquiales de Navarredondilla distribuidas en 15 cuadernos mono-localidad en NotebookLM Pro, preservando estrictamente el cuaderno canónico existente `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647-8ca2-4863-a576-11843e8e8802`).
+- **Arquitectura del Pipeline:**
+  - Script [`scripts/ingest_navarredondilla_parroquial.py`](file:///c:/TRABAJOS/personal/genealo/scripts/ingest_navarredondilla_parroquial.py) con doble checkpoint: atómico local JSON ([`scripts/ingest_checkpoint_nrdl.json`](file:///c:/TRABAJOS/personal/genealo/scripts/ingest_checkpoint_nrdl.json)) y live sync con la nube.
+  - Blindaje previo (*pre-flight shield check*) que verifica que los 5 cuadernos protegidos no sean tocados ni duplicados.
+  - Reautenticación automática desatendida mediante perfil de Chromium (`[L-21]`).
+- **Hitos Operativos:**
+  1. **Piloto de Calibración:** `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`): 33/33 imágenes subidas, verificadas y consolidadas en estado `READY`.
+  2. **Ejecución en Background:** Lanzado `task-2050` procesando los 14 cuadernos restantes (`NRDL-BAUT-01..07`, `NRDL-DIFU-01..05`, `NRDL-MATR-02`, `NRDL-MIXTO-01`) con pausas de cortesía adaptativas de 2.5s para evitar bloqueos por cuota.
+
+---
+
+## 🧪 Experimento 16: Principio de Reconstrucción Lógico-Sacramental vs. Códice Físico Mixto (`[L-30]`)
+- **Fecha:** 2026-10-31
+- **Decisión Arquitectónica del Usuario:** *«No tiene sentido tener libros mixtos: si en un libro hay partidas de nacimientos por un lado y de bautismo por otro, lo que hay que hacer es llevarlas a un cuaderno de partidas de bautismo o de nacimiento, y a ser posible que sean correlativas en el tiempo. Otra cosa es que haya cosas sueltas que no sean partidas.»*
+- **Fundamentación Paleográfica y Archivística:**
+  1. **La distorsión del encuadernador histórico:** La existencia de "Libros Mixtos" responde únicamente a la escasez de papel o encuadernaciones en el archivo parroquial histórico (s. XVII–XIX), donde el sacerdote agrupaba varios sacramentos en un mismo volumen de pergamino.
+  2. **La necesidad de la IA y del Grafo:** Para la visión multimodal de NotebookLM y el posterior grafo de ArcadeDB, mezclar en un solo cuaderno partidas de bautismo, matrimonio y defunción genera colisiones semánticas graves, desordena la secuencia cronológica de cada sacramento y rompe las búsquedas correlativas.
+  3. **Identificación exacta de tramos sacramentales:** Mediante los Inventarios Maestros folio a folio ([`inventario-navarredondilla-v3.pdf`](file:///c:/TRABAJOS/personal/genealo/imagenes/inventario-navarredondilla-v3.pdf) e [`inventario-san-juan-del-molinillo.pdf`](file:///c:/TRABAJOS/personal/genealo/imagenes/inventario-san-juan-del-molinillo.pdf)), conocemos exactamente el rango de imágenes de cada sección:
+     - En **San Juan del Molinillo (Elemento 17, Rollo `004298570`, imgs `02429` a `02519`):**
+       * Bautismos (1847–1848) $\rightarrow$ Se integran lógicamente como tramo final de la serie de Bautismos.
+       * Matrimonios (1842–1849) $\rightarrow$ Se integran lógicamente en la serie de Matrimonios.
+       * Defunciones (1843–1849) $\rightarrow$ Se integran lógicamente en la serie de Defunciones.
+     - En **Navarredondilla (Elemento 12, Rollo `004306112`):**
+       * Bautismos 1º (1594–1636, imgs `01873`–`01954`) $\rightarrow$ Integrados en la serie pura de Bautismos (`7967d647`).
+       * Casados 1º (1634–1686, imgs `01957d`–`01986`) $\rightarrow$ Integrados en la serie pura de Matrimonios.
+       * Inventario de Alhajas de la Iglesia (1637, imgs `01955`–`01957izq`) $\rightarrow$ Catalogado como Documento Extraordinario No Sacramental.
+- **Formulación de la Regla Oficial:**
+  - **`[L-30]` Principio de Reconstrucción Lógico-Sacramental:** Los cuadernos de NotebookLM y las colecciones del grafo se organizan por **Serie Sacramental Pura y Correlativa en el Tiempo** (Bautismos, Matrimonios, Defunciones) para cada pueblo. Los códices mixtos físicos se desarticulan y sus fotogramas se asignan a su respectiva serie cronológica, reservando cuadernos específicos para documentos censales y extraordinarios (confirmaciones, inventarios, visitas).
+
+
 
 
 

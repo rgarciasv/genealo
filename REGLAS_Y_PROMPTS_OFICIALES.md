@@ -58,6 +58,13 @@
    - **Regla:** Ningún cuaderno de NotebookLM Pro debe mezclar fondos documentales de diferentes localidades o pueblos. Cada cuaderno debe asociarse estrictamente a **un único código cuatriletrado** (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`).
    - **Diferenciación Estamental Obligatoria:** En los fondos del Catastro de Ensenada, debe diferenciarse escrupulosamente entre **Bienes de Legos / Seglares** (`BIENES_LEGOS`) y **Bienes Eclesiásticos** (`BIENES_ECLESIASTICOS`), jamás agrupándolos en una categoría genérica.
    - **Unicidad de Escribiente:** Para cada pueblo y operación catastral (o serie parroquial contemporánea), el escribiente material suele ser el mismo. El aislamiento por localidad garantiza que el análisis de ductus, los modismos notariales y la toponimia menor (pagos, parajes, arroyos) no sufran contaminación cruzada entre núcleos vecinos.
+13. **`[L-30]` Principio de Reconstrucción Lógico-Sacramental (Desarticulación de Códices Mixtos y Series Puras Correlativas):**
+   - **Regla:** Los cuadernos de NotebookLM Pro y las entidades de datos en ArcadeDB se organizan obligatoriamente por **Series Sacramentales Puras y Cronológicamente Correlativas** (Bautismos, Matrimonios, Defunciones) para cada localidad, erradicando los "cuadernos mixtos".
+   - **Desarticulación de Códices Mixtos Físicos:** Cuando en el archivo diocesano histórico un volumen contenga múltiples sacramentos encuadernados juntos (ej. Elemento 17 de Molinillo o Elementos 12/13 de Navarredondilla), sus folios no se suben a un cuaderno mixto indiscriminado. Se desagregan con precisión según el inventario folio a folio y se canalizan a sus respectivas series sacramentales puras correlativas en el tiempo:
+     * Fotogramas de Bautismo $\rightarrow$ Serie cronológica de Bautismos.
+     * Fotogramas de Matrimonio / Casados $\rightarrow$ Serie cronológica de Matrimonios.
+     * Fotogramas de Defunción / Finados $\rightarrow$ Serie cronológica de Defunciones.
+   - **Tratamiento de Documentos Extraordinarios No Sacramentales:** Documentos de alto valor censal que no son partidas individuales ordinarias (padrones de confirmación de visitas episcopales, inventarios de alhajas de la iglesia, autos de visitas) se agrupan en cuadernos censales o anexos institucionales específicos, preservando la pureza y continuidad cronológica de las series sacramentales.
 
 ---
 

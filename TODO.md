@@ -75,19 +75,26 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
 
 ---
 
-## 📌 AGENDA Y TAREAS PENDIENTES PARA LA PRÓXIMA SESIÓN (MAÑANA)
+## 📌 AGENDA Y ESTADO ACTUAL DE TAREAS
 
-1. **[COMPLETADO] Estructurar y generar `catalogo_corpus.json` (`D7`):**
-   - Compilado el mapa físico-lógico canónico de las **8.515 imágenes** de los 9 rollos DGS (5.223 parroquiales + 3.292 Catastro de Ensenada) en [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json).
-   - Generada la [`GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md`](file:///c:/TRABAJOS/personal/genealo/GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md) con desglose exacto de Elementos, signaturas, años, series y partidas clave.
-   - Particionamiento completo en cuadernos NotebookLM Pro respetando el límite $\le 300$ fuentes (máximo real: 277 imágenes).
-   - Normalización universal de identificadores bajo Regla `[L-28]` (`{DGS}_{FOTOGRAMA}.jpg`) y tomas hermanas `[L-27]`.
-2. **Prioridad Funcional del Proyecto (Decisión estratégica del usuario):**
-   - Resolver si se continúa en **profundidad libro a libro** (culminar Bautismos de Navarredondilla 1594–1695, empezando por Pareja 5: 1596–1597).
-   - O si se realiza una **batida transversal de censos/listas nominales** (Padrones de Confirmaciones 1649/1681, Índice de Bautismos de Molinillo 1750–1914, Catastro de Ensenada 1752) para poblar el grafo con un censo previo amplio de vecinos y familias.
-3. **Codificación Geográfica (Consenso de estándar):**
-   - Decidir si se mantienen exclusivamente los códigos cuatriletrados de dominio (`NRDL`, `JMOL`, `NDRN`, `VLLR`, `NMRL`, `NVTG`, `NCRZ`, `BHND`).
-   - O si se añade a la ficha del lugar el código municipal oficial del INE (ej: 05164 para Navarredondilla) para cruces externos automáticos con censos y nomenclátores.
+1. **[COMPLETADO] Fase 1 — Ingesta y Verificación de Cuadernos Catastro de Ensenada (Legos):**
+   - Creados y poblados los 4 cuadernos de Personal Seglar (`NRDL-ENSENADA-LEGOS-01`, `JMOL-ENSENADA-LEGOS-01`, `VLLR-ENSENADA-LEGOS-01`, `NDRN-ENSENADA-LEGOS-01`).
+   - 200/200 fuentes en estado `READY` en NotebookLM.
+   - Superadas las 405/405 aserciones de [`scripts/verify_notebooklm_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/verify_notebooklm_sources.py).
+   - Sincronizado `catalogo_corpus.json` con los `source_id` consolidados.
+
+2. **[EN EJECUCIÓN] Fase 2 — Ingesta Parroquial de Navarredondilla (Opción A):**
+   - **Piloto Verificado:** `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`) con 33/33 imágenes `READY`.
+   - **Pipeline en Background:** Corriendo `task-2050` ([`scripts/ingest_navarredondilla_parroquial.py`](file:///c:/TRABAJOS/personal/genealo/scripts/ingest_navarredondilla_parroquial.py)) para los 14 cuadernos restantes (2.243 imágenes) con doble checkpoint local/cloud.
+
+3. **[PLANIFICACIÓN Y DISEÑO] Fase 3 — San Juan del Molinillo y Principio Lógico-Sacramental (`[L-30]`):**
+   - **Desarticulación de Libros Mixtos:** En base a la Regla `[L-30]`, no se creará un cuaderno mixto indiscriminado para el Elemento 17 (`004298570_02429.jpg` a `02519.jpg`). En su lugar, sus folios se desagregan y canalizan a sus respectivas series sacramentales:
+     * Partidas de Bautismo (1847–1848) $\rightarrow$ integradas en la serie cronológica de Bautismos.
+     * Partidas de Matrimonio (1842–1849) $\rightarrow$ integradas en la serie cronológica de Matrimonios.
+     * Partidas de Defunción (1843–1849) $\rightarrow$ integradas en la serie cronológica de Defunciones.
+   - **Documentos Extraordinarios:** Censos de confirmación (1827, 1850) e inventarios se agrupan en cuadernos censales específicos.
+   - **Script de Ingesta:** Preparar `scripts/ingest_sanjuan_parroquial.py` y `scripts/verify_sanjuan_parroquial_sources.py`.
+
 4. **Debate Metodológico sobre Criterios de Transcripción (`[ECDOTICA-01]`):**
    - Consensuar qué nivel exacto debe entregar NotebookLM en cada sección del bloque de salida:
      * **Transcripción Literal:** Fidelidad pura al trazo, sin tocar nada.
