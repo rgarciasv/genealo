@@ -1,0 +1,244 @@
+{
+  "version": "1.0",
+  "created_at": "2026-10-31T12:25:38.411717+00:00",
+  "updated_at": "2026-10-31T12:29:24.659777+00:00",
+  "notebook_ids": {
+    "NRDL-MATR-01": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127"
+  },
+  "completed_notebooks": [
+    "NRDL-MATR-01"
+  ],
+  "uploaded_sources": {
+    "004306112_01955.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "0a7171e4-0390-41cf-8913-d7dedc14b217",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:25:51.108478+00:00"
+    },
+    "004306112_01956.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "138ddb70-730b-438d-8082-57c6c8e23df6",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:25:55.303573+00:00"
+    },
+    "004306112_01957.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "d0354047-09ca-4c66-afa4-02393aeeee14",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:25:59.590049+00:00"
+    },
+    "004306112_01958.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "24698bb6-4650-45e1-a673-819b1f3e6389",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:03.721683+00:00"
+    },
+    "004306112_01959.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "4023fdd1-8120-4d53-93d9-fe87e7594491",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:08.086108+00:00"
+    },
+    "004306112_01960.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "76475d5a-e5a0-46c9-b6dd-70c85f9f9634",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:12.532968+00:00"
+    },
+    "004306112_01961.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "625db450-e5ce-4616-ad45-7e7e6d28c622",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:16.671560+00:00"
+    },
+    "004306112_01962.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "484c30db-72b0-4ef2-b282-c59d4229f027",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:20.947202+00:00"
+    },
+    "004306112_01963.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "b051697b-f25f-44b6-bf17-4e8031574fbf",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:25.144102+00:00"
+    },
+    "004306112_01964.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "c7f23e36-8857-4cf3-ad2d-227f1deb5fb2",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:29.176581+00:00"
+    },
+    "004306112_01965.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "e22f2688-a979-434a-b397-da5bbef9c6db",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:32.756142+00:00"
+    },
+    "004306112_01966.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "1b76e822-05b1-4ff2-8891-624997b4951e",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:36.727336+00:00"
+    },
+    "004306112_01967.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "af02f4be-75f9-4c96-8594-86da2abf4bb9",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:41.011718+00:00"
+    },
+    "004306112_01968.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "c183dbdf-32f9-4fdc-b777-294d1135d4df",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:45.539719+00:00"
+    },
+    "004306112_01969.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "9316fc91-6da1-4606-aa38-033e57ca32d6",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:49.995371+00:00"
+    },
+    "004306112_01970.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "c4744a34-9e17-4cc9-918a-a6560100e310",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:53.692959+00:00"
+    },
+    "004306112_01971.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "db72aef3-7f4a-4602-8d8f-8c3afa085d5f",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:26:57.909289+00:00"
+    },
+    "004306112_01972.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "f7b96264-a366-452c-a2f2-c926f6fff40a",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:02.804006+00:00"
+    },
+    "004306112_01973.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "f09c6132-f2af-491b-a174-ba82a971a952",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:07.216109+00:00"
+    },
+    "004306112_01974.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "b0ef9afa-e885-4fb5-9c18-b594d5af4f8b",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:11.282350+00:00"
+    },
+    "004306112_01975.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "5b7c1c69-49e3-4212-a12e-84bc753dda01",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:15.475710+00:00"
+    },
+    "004306112_01976.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "5fa27379-9574-434f-b57b-798c24ab819f",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:19.491049+00:00"
+    },
+    "004306112_01977.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "5ff9ed53-b996-469f-9637-3a4304b0d9e9",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:23.665657+00:00"
+    },
+    "004306112_01978.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "6394eb32-8996-40fc-989b-96f0ecc9a87f",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:27.834820+00:00"
+    },
+    "004306112_01979.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "24ae5e38-2cbd-4431-84c7-c173914a5396",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:31.667631+00:00"
+    },
+    "004306112_01980.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "292af848-cfed-417a-b28b-18577265c3b2",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:36.045985+00:00"
+    },
+    "004306112_01981.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "62eb8e71-faf1-47af-8005-534d665a73a1",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:40.278874+00:00"
+    },
+    "004306112_01982.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "b5f29946-51e6-4dad-90b3-628aba4b2b9e",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:44.308874+00:00"
+    },
+    "004306112_01983.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "d6ad2a6d-cba6-49a2-85c1-4726053b647a",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:48.374760+00:00"
+    },
+    "004306112_01984.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "bd2d658c-342b-45bb-8d4f-a1a07affef70",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:52.483756+00:00"
+    },
+    "004306112_01985.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "339bc9ca-cf73-4647-84c5-9f7bf1ebabac",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:27:56.096683+00:00"
+    },
+    "004306112_01986.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "252c7198-c9ce-4160-a47f-3a9a5a5856e4",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:28:03.020087+00:00"
+    },
+    "004306112_01987.jpg": {
+      "notebook_title": "NRDL-MATR-01",
+      "notebook_id": "1e6fec74-1e2f-4dd7-8ad1-6d25411de127",
+      "source_id": "c7c985e4-df66-4ef6-854b-eb654cb6dcf6",
+      "status": "PROCESSING",
+      "timestamp": "2026-10-31T12:28:06.886420+00:00"
+    }
+  }
+}

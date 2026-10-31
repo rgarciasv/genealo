@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-31T12:17:13.458884+00:00",
+  "overall_status": "FAIL",
+  "exit_code": 1,
+  "error": "Unexpected error during NotebookLM API verification: Authentication expired or invalid. https://notebook.google.com/ served a signed-out page, and its sign-in check redirected to https://accounts.google.com/<redacted>\nRun 'notebooklm login' to re-authenticate.",
+  "discrepancies": [
+    "[API ERROR] Unexpected error during NotebookLM API verification: Authentication expired or invalid. https://notebook.google.com/ served a signed-out page, and its sign-in check redirected to https://accounts.google.com/<redacted>\nRun 'notebooklm login' to re-authenticate."
+  ]
+}

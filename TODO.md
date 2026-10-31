@@ -134,16 +134,22 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
 *Objetivo: Organizar los 8.515 archivos respetando el límite de 300 fuentes por cuaderno (máximo real actual: 277) y separando por fondo, pueblo y serie.*
 
 - [ ] **Definición de la Estructura de Cuadernos y Codificación Canónica:**
-  - [x] `[NRDL-BAUT-01] Navarredondilla - Bautismos Libro 1º y 2º (1594–1695)` (ID: `7967d647-8ca2-4863-a576-11843e8e8802`, 186 fuentes: 183 imágenes + fuentes maestras `00`, `01`, `02`). **En explotación activa.**
-  - [ ] `[INDICES-01] Padrones de Confirmación (1649–1889) e Índices Alfabéticos` (Procesamiento prioritario para alimentar y enriquecer el censo nominal onomástico comarcal).
-  - [ ] `[NRDL-BAUT-02] Navarredondilla - Bautismos Libros 3º y 4º (1697–1803)` (Rollo 004306112: Elems. 14 y 15).
-  - [ ] `[NRDL-MATR-01] Navarredondilla - Matrimonios Libros 1º y 2º (1634–1803)` (Rollo 004306112 Elem. 12/13 + Rollo 004306113 Elem. 6 reverso).
-  - [ ] `[NRDL-DEF-01] Navarredondilla - Defunciones Libros 1º al 4º (1631–1802)` (Rollo 004306112 Elem. 13 + Rollo 004306113 Elems. 4, 5 y 6 anverso).
-  - [ ] `[JMOL-BAUT-01] San Juan del Molinillo - Bautismos Libros 1º y 2º (1715–1800)` (Rollo 004298570: Elems. 14 y 15, anejos Navandrinal y El Villarejo).
-  - [ ] `[JMOL-MATR-01] San Juan del Molinillo - Matrimonios Libros 1º y 2º (1716–1789)` (Rollo 004298571: Elems. 1 y 2).
-  - [ ] `[JMOL-DEF-01] San Juan del Molinillo - Párvulos Difuntos (1632–1680) y Adultos 1º a 3º (1715–1800)` (Rollo 004298571: Elems. 4, 5, 6 y 7).
-  - [ ] `[NMRL-FONDO-01] Navalmoral de la Sierra - Fondos Parroquia Matriz (Búsqueda Pre-1715 de Molinillo, Navandrinal y Villarejo; libros identificados en FamilySearch pendientes de catalogar)`.
-  - [ ] `[CATASTRO-1752] Ensenada - Libro del Personal Seglar H-669/H-670 y Bienes H-666/H-667`.
+  - [x] `[NRDL-BAUT-04] Navarredondilla - Bautismos Libro 1º y 2º (1594–1695)` (ID: `7967d647-8ca2-4863-a576-11843e8e8802`, 188 fuentes: 183 imágenes + fuentes maestras `00`, `01`, `02`, `03`, `04`). **En explotación activa y preservación inmutable.**
+  - [x] **[CATASTRO-1752-LEGOS] Cuadernos de Personal de Legos del Catastro de Ensenada (200/200 fuentes READY, Dictamen VICTORY CONFIRMED):**
+    - [x] `NRDL-ENSENADA-LEGOS-01` (ID: `ec86de71-a11c-4489-bbb9-eea856cccac4`, 87 fuentes).
+    - [x] `JMOL-ENSENADA-LEGOS-01` (ID: `407d5cb4-4b83-495f-a23a-309ea44ee8c6`, 28 fuentes).
+    - [x] `VLLR-ENSENADA-LEGOS-01` (ID: `e7fba70b-af7d-4602-b543-060742b22528`, 51 fuentes).
+    - [x] `NDRN-ENSENADA-LEGOS-01` (ID: `cd72ef58-fcf5-48ac-8de2-556648ebd90e`, 34 fuentes).
+  - [ ] `[SERIE-PARROQUIAL] Cuadernos Parroquiales de los 4 Pueblos (Bautismos, Matrimonios y Defunciones restantes):`
+    - [x] `NRDL-MATR-01` (ID: `1e6fec74-1e2f-4dd7-8ad1-6d25411de127`, 33 fuentes en estado `READY`, Dictamen VICTORY CONFIRMED).
+    - [ ] `NRDL-BAUT-01..03, 05..07` (Navarredondilla Bautismos restantes: 6 cuadernos, 1.063 imgs).
+    - [ ] `NRDL-MATR-02` y `NRDL-MIXTO-01` (Navarredondilla Matrimonios restantes: 2 cuadernos, 140 imgs).
+    - [ ] `NRDL-DIFU-01..05, 01B` (Navarredondilla Defunciones: 6 cuadernos, 1.041 imgs).
+    - [ ] `JMOL-BAUT-01..05` y `JMOL-INDICE-BAUT` (San Juan del Molinillo Bautismos).
+    - [ ] `JMOL-MATR-01..03` y `JMOL-MIXTO-04` (San Juan del Molinillo Matrimonios).
+    - [ ] `JMOL-DIFU-01..06`, `JMOL-DIFU-PARVULOS` y `JMOL-INDICE-DIFU` (San Juan del Molinillo Defunciones).
+    - [ ] `ALTO-ALBERCHE-ANEXOS-01` (Muestras de anejos).
+  - [ ] `[CATASTRO-1752-BIENES-Y-ECLESIASTICO] Ensenada - Bienes de Legos y Rentas Eclesiásticas (Pospuesto a fase posterior)`.
 
 ---
 

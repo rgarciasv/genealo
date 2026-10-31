@@ -1,0 +1,1510 @@
+{
+  "timestamp": "2026-10-31T11:03:47.925124+00:00",
+  "overall_status": "PASS",
+  "exit_code": 0,
+  "summary": {
+    "target_notebooks_expected": 4,
+    "target_notebooks_found": 4,
+    "target_notebooks_missing": [],
+    "total_sources_expected": 200,
+    "total_sources_actual": 200,
+    "total_sources_ready": 200,
+    "total_sources_error": 0,
+    "total_sources_pending": 0,
+    "total_sources_missing": 0,
+    "total_sources_extra": 0,
+    "total_naming_violations": 0,
+    "total_duplicates": 0,
+    "protected_notebook_valid": true,
+    "overall_status": "PASS"
+  },
+  "protected_notebook": {
+    "notebook_id": "7967d647-8ca2-4863-a576-11843e8e8802",
+    "expected_title": "Lib. Baut. Navarre Vol. 1 (1594-1695)",
+    "actual_title": "Lib. Baut. Navarre Vol. 1 (1594-1695)",
+    "is_alive": true,
+    "actual_sources": 188,
+    "expected_sources": 188,
+    "valid": true,
+    "error": null
+  },
+  "target_notebooks": {
+    "NRDL-ENSENADA-LEGOS-01": {
+      "notebook_id": "ec86de71-a11c-4489-bbb9-eea856cccac4",
+      "exists": true,
+      "localidad": "Navarredondilla",
+      "rollo_dgs": "004469033",
+      "expected_count": 87,
+      "actual_count": 87,
+      "ready_count": 87,
+      "error_count": 0,
+      "pending_count": 0,
+      "missing_sources": [],
+      "extra_sources": [],
+      "naming_errors": [],
+      "status_errors": [],
+      "duplicates": [],
+      "valid": true,
+      "sources": [
+        {
+          "id": "5037833a-9a1a-4494-822b-e1926a3030f7",
+          "title": "004469033_00881.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "92d80d11-ad40-4f1f-8668-c12096f441ed",
+          "title": "004469033_00882.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "59f890aa-63cd-4840-b6ba-b81ff3904c8c",
+          "title": "004469033_00883.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5fb80729-eafc-4df6-9ae0-c32e969c2e8f",
+          "title": "004469033_00884.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "f482fcb7-525c-4987-97d0-12b1225329ef",
+          "title": "004469033_00885.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "daee3a33-494b-4cca-9151-b5662c6295da",
+          "title": "004469033_00886.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "1c2d1de4-9b2a-4474-b89c-8e62dff21071",
+          "title": "004469033_00887.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "9143fba3-45b1-4a09-8688-19734875e04a",
+          "title": "004469033_00888.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2475c443-9a9e-41bd-a319-86b6b0ba10d9",
+          "title": "004469033_00889.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "268daf0c-273c-49de-8c6d-72ae76da43b4",
+          "title": "004469033_00890.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2b7bd465-d355-4f12-a4ac-b8a43ba42ddc",
+          "title": "004469033_00891.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "846aea38-046b-4287-a2e1-9e54c3fd510c",
+          "title": "004469033_00892.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "7801fc9c-4822-4643-a766-0f104443203d",
+          "title": "004469033_00893.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "008234c5-cd32-4ec9-8c37-bd4dce53e7d5",
+          "title": "004469033_00894.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "dd9f3cd7-b75f-42a1-b701-09720859f29f",
+          "title": "004469033_00895.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "ba91fe42-5bc5-47ff-a590-5e0731093ed4",
+          "title": "004469033_00896.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "9c2642be-e4c8-4aaa-905f-fd197c8082f7",
+          "title": "004469033_00897.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8e6d90d9-443f-4474-ae4d-ff1a35e8cf58",
+          "title": "004469033_00898.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5a7672b2-5ffa-44e9-8967-cf0217973702",
+          "title": "004469033_00899.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "cc20ed0d-5a33-4e48-b8f1-a99a1085d876",
+          "title": "004469033_00900.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "efb37f0d-70e1-4fbd-bff9-4800da5f8a85",
+          "title": "004469033_00901.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "636a104a-2dba-4b86-bfe2-413a458b2297",
+          "title": "004469033_00902.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c3796d18-4592-4e87-bf39-020381c6a494",
+          "title": "004469033_00903.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "344245e0-3555-4d36-b8cb-8f399f6278b4",
+          "title": "004469033_00904.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b4e3d8b6-1625-454f-afae-101646847ade",
+          "title": "004469033_00905.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "719a6f2f-ef4c-4e0a-9fa1-6bbef729ac42",
+          "title": "004469033_00906.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8c0a7644-fc9e-4a69-a5b3-8f5269c13539",
+          "title": "004469033_00907.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2531edfe-b4e3-496d-bd52-cd04c3bdadf5",
+          "title": "004469033_00908.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "400b682e-59c5-44fc-a515-31791d74b492",
+          "title": "004469033_00909.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "eb16ddd7-9fea-4f88-b53c-4772a0074edd",
+          "title": "004469033_00910.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5bf88bf2-e425-46c4-8c0a-2439b3eb29ce",
+          "title": "004469033_00911.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "7f6da6ac-436c-4740-9e08-5647fe8ce2be",
+          "title": "004469033_00912.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "0aa532c6-e1ec-4e4b-8c1f-0a984f95f1e9",
+          "title": "004469033_00913.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "3ce8b270-9fdb-4813-ad32-487104efb4a7",
+          "title": "004469033_00914.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "83d16d98-a96f-4375-9b4e-06bc3b454545",
+          "title": "004469033_00915.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "da0cb9e3-a2dc-4201-8994-46ba04a41754",
+          "title": "004469033_00916.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "25d1f1e6-427d-4d7c-af80-81b9cce456eb",
+          "title": "004469033_00917.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "ce715ab7-0929-4296-84bb-6080fcf49cda",
+          "title": "004469033_00918.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "f9c12331-c933-464c-bf81-70d07bddad5d",
+          "title": "004469033_00919.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6a86fb19-b391-41bc-95ae-77bdc50ae9db",
+          "title": "004469033_00920.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "65f28c05-502f-488c-85cd-7d2ccec15b8d",
+          "title": "004469033_00921.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "75e8fa96-dd2f-4a9c-8598-2d527eeb0a65",
+          "title": "004469033_00922.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2366c2e9-5a48-425f-bca6-86e4f150650e",
+          "title": "004469033_00923.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6c7af25e-c859-43bc-a4e2-cc21385e1aa8",
+          "title": "004469033_00924.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "1927e100-f427-401c-afda-21d656dd56f5",
+          "title": "004469033_00925.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "11f6f231-1007-4d6d-95b6-5c2022adf974",
+          "title": "004469033_00926.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "0e4fbdce-af9c-43b8-9ea1-97a8786cbca5",
+          "title": "004469033_00927.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "13f6280c-80e6-4a3b-9287-af20945d44cc",
+          "title": "004469033_00928.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6ef51b73-f1e0-4433-b3bc-8999c4b731a7",
+          "title": "004469033_00929.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "821d72a5-3964-489d-a89c-5086bb1553ce",
+          "title": "004469033_00930.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "76ef9551-c643-4acc-801e-97bc8a21234a",
+          "title": "004469033_00931.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a42bb900-494b-4552-ba4a-710191db9760",
+          "title": "004469033_00932.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6cf7d49e-7f17-4ee4-8350-b35b0c4b1997",
+          "title": "004469033_00933.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "cad8bc15-66da-4f41-ad6a-8f09b51c04aa",
+          "title": "004469033_00934.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "16d60242-5340-42b7-8cf3-337f298f3a92",
+          "title": "004469033_00935.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "923c987f-d629-44cb-92d5-9a59f9a1b8f0",
+          "title": "004469033_00936.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "08bf742f-c557-44cf-ab22-2a663038ef06",
+          "title": "004469033_00937.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b5aa8536-4f00-47cb-b1a6-53e44d313c22",
+          "title": "004469033_00938.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "445982fa-8402-4319-b8e4-3d5270a52841",
+          "title": "004469033_00939.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5acc8cb9-3a41-43cc-8e23-a52f5cd956d7",
+          "title": "004469033_00940.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "12a4b753-e722-4480-b1c4-8f9e177a6b93",
+          "title": "004469033_00941.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "53a24b0e-7cca-450a-9676-fb3ada3521f4",
+          "title": "004469033_00942.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "e877220c-2bc9-4a28-9be4-7950d85bf53c",
+          "title": "004469033_00943.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c954772c-f678-4e8b-b938-46d6dc746a95",
+          "title": "004469033_00944.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "09fa47fc-023b-435e-a78e-cda8bbdeb90f",
+          "title": "004469033_00945.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "34530f7b-7f53-4caf-8c3a-a8e179a5412b",
+          "title": "004469033_00946.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "bfc37201-ff6d-4c42-8efd-63d64afbaf07",
+          "title": "004469033_00947.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5a02bfa2-8625-466d-a681-2d0d8951547b",
+          "title": "004469033_00948.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "96283a74-b568-43c1-8f83-6f9b35cffc60",
+          "title": "004469033_00949.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "cf445004-56f5-4637-a876-0b0332253541",
+          "title": "004469033_00950.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "fc0ffc16-184f-46e2-9ac1-2942577dbb7b",
+          "title": "004469033_00951.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "0b152b52-ab42-47a4-a543-c47f6f88c6b6",
+          "title": "004469033_00952.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6596da66-ec57-494d-b0e3-3582595292e9",
+          "title": "004469033_00953.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "015255b1-e383-4e0e-9460-b8b9a8cbef4d",
+          "title": "004469033_00954.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b09babf7-e7e9-4d84-8d5f-008274f724e7",
+          "title": "004469033_00955.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "4c50b9bf-decc-40f5-b3e2-51cc19d68de1",
+          "title": "004469033_00956.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "44af7884-34b5-42f8-92ec-40a3229a61e4",
+          "title": "004469033_00957.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "aa041bdf-6b78-42c5-a636-1c5eabf9d24d",
+          "title": "004469033_00958.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "acb6ee87-2e86-4cb9-a0d3-2355f4ea8e17",
+          "title": "004469033_00959.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "bf10994a-c39a-4170-ad61-6496160dea3b",
+          "title": "004469033_00960.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "095bf042-53f3-4e6f-b5ad-fae5318d8a83",
+          "title": "004469033_00961.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "eb524590-a1a2-4ab4-83df-1bb80a524419",
+          "title": "004469033_00962.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a649707f-9c71-4e28-a560-c2ea119d5b78",
+          "title": "004469033_00963.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "954a6363-b737-4a65-8a5d-2d06584bb5e5",
+          "title": "004469033_00964.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "422b558f-02a5-4835-b1f4-4ffc46e22e87",
+          "title": "004469033_00965.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "522dcef7-aaba-4af0-a6c3-7850877ae23a",
+          "title": "004469033_00966.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "dfd15d12-5767-47ea-b5e8-ec3348a31c47",
+          "title": "004469033_00967.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        }
+      ]
+    },
+    "JMOL-ENSENADA-LEGOS-01": {
+      "notebook_id": "407d5cb4-4b83-495f-a23a-309ea44ee8c6",
+      "exists": true,
+      "localidad": "San Juan del Molinillo",
+      "rollo_dgs": "004469028",
+      "expected_count": 28,
+      "actual_count": 28,
+      "ready_count": 28,
+      "error_count": 0,
+      "pending_count": 0,
+      "missing_sources": [],
+      "extra_sources": [],
+      "naming_errors": [],
+      "status_errors": [],
+      "duplicates": [],
+      "valid": true,
+      "sources": [
+        {
+          "id": "4953a7ad-48b4-4988-8d23-051fd70dd1b3",
+          "title": "004469028_00952.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "22a0e8e8-c20a-480e-937a-95eacadb89fb",
+          "title": "004469028_00953.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "81c2551f-fce1-4c6f-9707-2f6b8b5ee400",
+          "title": "004469028_00954.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "49821d0c-1523-4c58-87be-f647e1c94329",
+          "title": "004469028_00955.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "bd138f59-a4b7-4d51-8d2e-8bea216d3caf",
+          "title": "004469028_00956.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "78e58bcf-44e4-41e7-9f36-a45e899c1170",
+          "title": "004469028_00957.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "4f0736df-1f37-4f67-a6ae-1e6ff06c42cb",
+          "title": "004469028_00958.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "e1613eb0-a15a-45c2-adee-e1ae0b852d98",
+          "title": "004469028_00959.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5a5337c2-d17c-429e-ae87-7e83a5f5a6a0",
+          "title": "004469028_00960.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "de0e01ba-faca-4370-9eb1-ae3332ac8f8b",
+          "title": "004469028_00961.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a62d7b38-0973-4ccf-bbce-dba673832ea0",
+          "title": "004469028_00962.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "589224ea-6dbe-49a1-aa9c-5c85d6059ef5",
+          "title": "004469028_00963.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "01f5b1c4-c2dc-4460-b37d-97006d83ae62",
+          "title": "004469028_00964.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "89a7b9d3-25e7-4627-8fc8-451437ba8245",
+          "title": "004469028_00965.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8eb39c05-ea04-4059-9dad-b366305bfb60",
+          "title": "004469028_00966.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "159d02b7-2ba2-4ef2-9a93-9b75063c05c6",
+          "title": "004469028_00967.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "7ecaa32c-d39b-4f99-aa70-cd32792e31d8",
+          "title": "004469028_00968.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "fe9c2095-4b53-4e8b-92b2-1bdf73f1fa8d",
+          "title": "004469028_00969.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "3f5d461a-af45-409b-a0b8-6166d8220f56",
+          "title": "004469028_00970.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2664f1e2-7c9b-4cb1-8841-ea13feeb7538",
+          "title": "004469028_00971.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c400d133-22ef-4f7e-83f1-37bdcc8646d2",
+          "title": "004469028_00972.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "678bc092-405d-4527-88b5-cf673b142355",
+          "title": "004469028_00973.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2a2cbfb2-7c1c-4645-aab6-0cdca1e0f443",
+          "title": "004469028_00974.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "29b2957e-f48c-4711-87d0-9ade26036ff0",
+          "title": "004469028_00975.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8f356b33-d24e-4b0a-b82f-645b80eb7940",
+          "title": "004469028_00976.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "4085a15b-3849-4e16-af7b-805006bec6a2",
+          "title": "004469028_00977.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "22771a64-622b-4601-ad9e-de9b6fe62e18",
+          "title": "004469028_00978.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "977902c6-8f85-4d6b-97fc-d51910669328",
+          "title": "004469028_00979.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        }
+      ]
+    },
+    "VLLR-ENSENADA-LEGOS-01": {
+      "notebook_id": "e7fba70b-af7d-4602-b543-060742b22528",
+      "exists": true,
+      "localidad": "El Villarejo",
+      "rollo_dgs": "004469028",
+      "expected_count": 51,
+      "actual_count": 51,
+      "ready_count": 51,
+      "error_count": 0,
+      "pending_count": 0,
+      "missing_sources": [],
+      "extra_sources": [],
+      "naming_errors": [],
+      "status_errors": [],
+      "duplicates": [],
+      "valid": true,
+      "sources": [
+        {
+          "id": "b2c9e7f5-34e5-4f49-a1a3-01e04c39b573",
+          "title": "004469028_00901.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "991c80dd-69ae-48a3-9d89-4b7a316f0092",
+          "title": "004469028_00902.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8c9e9fb3-ab55-41fe-9e63-ae83cfbe4c6a",
+          "title": "004469028_00903.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "df5d4192-e83f-437c-aa7f-146d93eef54e",
+          "title": "004469028_00904.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "9ecb16d0-6953-4552-b653-7191b8e2f9bd",
+          "title": "004469028_00905.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "88322a75-e7b0-4df2-8781-fe1cd325e4e1",
+          "title": "004469028_00906.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "01d92075-6ff6-4ee4-b14f-ea8342d82c66",
+          "title": "004469028_00907.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "0916be3b-f704-4abd-95b8-f85f4b3fd2b9",
+          "title": "004469028_00908.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a3d371dc-7b02-4991-8f58-d76af1b118ea",
+          "title": "004469028_00909.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5c187cc3-23ec-46f0-9efe-4b39dd0d21dc",
+          "title": "004469028_00910.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a45b9013-6bc7-4f03-8a45-bd521f725ea3",
+          "title": "004469028_00911.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "fc90116e-3c15-4a00-bad7-662bb525e802",
+          "title": "004469028_00912.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "f5148997-26f6-4893-b5fe-c73af2fd7285",
+          "title": "004469028_00913.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "0206f319-a0eb-4f77-b0f4-26dca652d968",
+          "title": "004469028_00914.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "d40a1ba8-af56-460e-a668-3ff592182abd",
+          "title": "004469028_00915.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6851d4e3-074d-4b0e-a5fa-b696f10bcc85",
+          "title": "004469028_00916.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "edc06409-e34c-436a-aac2-3ab3fded2491",
+          "title": "004469028_00917.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5cf146fd-ca12-496e-b6c2-05a05a071f4e",
+          "title": "004469028_00918.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "53ebfe8e-6c08-4dd3-8e86-214e36f2d87a",
+          "title": "004469028_00919.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "44012f7b-a3db-4ae1-a23e-725902e3be10",
+          "title": "004469028_00920.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "2f2afa0d-90f1-4990-abb9-fbfb12df56bd",
+          "title": "004469028_00921.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "d982745d-9b30-4635-a554-c069823f432c",
+          "title": "004469028_00922.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a509369b-ce1b-4689-97a9-717141cc68c7",
+          "title": "004469028_00923.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "e28e22cf-bf6e-4393-adcd-d921dc9f7bd5",
+          "title": "004469028_00924.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b2874ba7-f52c-4cd1-8dd1-af909f85fd07",
+          "title": "004469028_00925.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "826589a4-6404-4c1b-a6f6-eb925e9a9b17",
+          "title": "004469028_00926.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "eecd15bf-7d42-4a07-9270-3606a70dcbe9",
+          "title": "004469028_00927.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "857564d3-db85-4d57-ad08-600ff093405b",
+          "title": "004469028_00928.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "4810d9a6-6a50-487a-b2d0-c2f75f8ab930",
+          "title": "004469028_00929.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6b706f4d-58fa-4d20-a70b-81f4dca65b8f",
+          "title": "004469028_00930.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "d5152db9-e9a6-4bcf-b522-4421dc6c3e3b",
+          "title": "004469028_00931.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "efefa296-cddc-4926-a30b-1d5ce7cb56d1",
+          "title": "004469028_00932.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "89a616bd-6c98-4d33-8ad8-e5cf747aff06",
+          "title": "004469028_00933.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "69542f9e-a7e8-49ce-aed1-5b5a8e68bd66",
+          "title": "004469028_00934.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "86385299-cb68-49d5-8b8d-5dffab8b4eaf",
+          "title": "004469028_00935.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6913d8ce-9462-41db-9e84-cdf411004917",
+          "title": "004469028_00936.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "36cc820b-db2e-48f7-8477-27f5d0154ed1",
+          "title": "004469028_00937.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a8e73231-7f45-4eee-b8af-39a29975f60e",
+          "title": "004469028_00938.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "04269cc2-5106-4c5c-9ee0-7b19a649ea1e",
+          "title": "004469028_00939.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "03d44547-afab-419d-a58b-8a9396fb64cd",
+          "title": "004469028_00940.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "43765317-0d0e-475a-8e40-34cdd6162703",
+          "title": "004469028_00941.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "01904e0a-4705-4add-ad8d-c6709dc274b5",
+          "title": "004469028_00942.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "1971f8c3-317e-4c04-9bac-34525b6b782f",
+          "title": "004469028_00943.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5adb4821-339a-4e13-8c42-e03c9370a54f",
+          "title": "004469028_00944.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "ef723898-86c1-49c1-8c79-b344c3bceb8b",
+          "title": "004469028_00945.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "38a77f65-e935-46c1-a30d-5df4d971679d",
+          "title": "004469028_00946.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "ea4a0f23-509c-4540-a92e-302f32bf9d51",
+          "title": "004469028_00947.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "e6f41db2-4b76-4eee-94e5-a03af7ec1bc2",
+          "title": "004469028_00948.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8637cd73-f439-4aa5-ac16-cffa70ecf300",
+          "title": "004469028_00949.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "bf325613-1ba1-49b1-95c8-d6e30b0552c8",
+          "title": "004469028_00950.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5a146979-bc72-4626-86bd-ee3242dae3c3",
+          "title": "004469028_00951.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        }
+      ]
+    },
+    "NDRN-ENSENADA-LEGOS-01": {
+      "notebook_id": "cd72ef58-fcf5-48ac-8de2-556648ebd90e",
+      "exists": true,
+      "localidad": "Navandrinal",
+      "rollo_dgs": "004469028",
+      "expected_count": 34,
+      "actual_count": 34,
+      "ready_count": 34,
+      "error_count": 0,
+      "pending_count": 0,
+      "missing_sources": [],
+      "extra_sources": [],
+      "naming_errors": [],
+      "status_errors": [],
+      "duplicates": [],
+      "valid": true,
+      "sources": [
+        {
+          "id": "ba596711-a547-4237-a06e-604d211e279f",
+          "title": "004469028_00980.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a2005de3-a28d-428c-82e8-6b26447edf83",
+          "title": "004469028_00981.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "ba4b5d47-6930-44de-8578-5e543342a9c4",
+          "title": "004469028_00982.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "9bd4e125-f081-4813-b50e-e52b214d5529",
+          "title": "004469028_00983.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "bcb81ee4-e14d-4018-8f30-71e163bc4cfd",
+          "title": "004469028_00984.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c8a92718-04c1-4065-a0dc-ef3e4f1603fb",
+          "title": "004469028_00985.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "1432953a-0e32-4403-b892-3e554f9fddd6",
+          "title": "004469028_00986.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "1529b7bc-f175-465d-9d3e-2b30c4ae4675",
+          "title": "004469028_00987.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "87e044ef-d9a5-466f-9f20-890bef8130da",
+          "title": "004469028_00988.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "a91cf560-6943-47fa-8bd2-a08e4173392f",
+          "title": "004469028_00989.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b8bc7eb2-0e78-483c-b824-df1e35647cdc",
+          "title": "004469028_00990.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5f957a05-ef7a-43ae-879c-e656006d366a",
+          "title": "004469028_00991.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "263cb8c0-c9b7-46d9-b4a2-80a94222bbbd",
+          "title": "004469028_00992.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c98c4904-beab-4eb3-8e13-188eb7a86eb8",
+          "title": "004469028_00993.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "5dc54227-2db2-4689-9050-6fa4decb58cb",
+          "title": "004469028_00994.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "3ffbb495-eaa8-4d53-b71f-26421c14e6a6",
+          "title": "004469028_00995.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "148b89d8-813a-4518-8fce-b228fd45ec7e",
+          "title": "004469028_00996.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "e91ac31c-663d-4704-8026-f96f7d43c3e2",
+          "title": "004469028_00997.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "990de5c4-ad16-4c4e-b03a-870be1335015",
+          "title": "004469028_00998.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "9dcb4054-3eb3-453c-b931-7d26b788c94b",
+          "title": "004469028_00999.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "f351493b-694d-4e59-9df1-ee84260b49a1",
+          "title": "004469028_01000.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "7c2a33cc-102a-4f64-8fb5-b11e728ae469",
+          "title": "004469028_01001.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "8cfaee1a-cc73-4417-a40e-5e20758a3b6b",
+          "title": "004469028_01002.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "d087d1f9-3085-4aed-9260-05cbd61c6516",
+          "title": "004469028_01003.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c02fff82-b80a-4a61-b7e1-075add621e4c",
+          "title": "004469028_01004.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b27995fd-aa6e-403e-8599-12fddec4b2c2",
+          "title": "004469028_01005.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "668d78e6-b384-4025-a858-2fa743326da7",
+          "title": "004469028_01006.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "c157ed22-bfff-4c2b-ac66-4e30ba483f27",
+          "title": "004469028_01007.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "33d4d0c8-0985-4c0a-9c9d-ad5447773890",
+          "title": "004469028_01008.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "302ef854-e810-4ce5-bd1c-547cfbae889f",
+          "title": "004469028_01009.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "fcd110af-1c97-40dd-a8e8-8f30ee76a8ca",
+          "title": "004469028_01010.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "6f0169cf-66b0-49bf-aeb0-ef032b53e942",
+          "title": "004469028_01011.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "20a1184a-3a1c-4cba-b2bd-d06e31b4eeb0",
+          "title": "004469028_01012.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        },
+        {
+          "id": "b1b9d397-bb91-4ded-ab3d-d5f1d6d39f63",
+          "title": "004469028_01013.jpg",
+          "status": "READY",
+          "is_ready": true,
+          "is_error": false
+        }
+      ]
+    }
+  },
+  "discrepancies": []
+}
