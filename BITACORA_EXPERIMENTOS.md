@@ -272,6 +272,26 @@
   - **Fuentes faltantes:** 0.
   - **Veredicto:** **PASS (100% de éxito)**. Cuaderno certificado para transcripción.
 
+---
+
+## 🧪 Experimento 19: Culminación y Certificación E2E de Navarredondilla Parroquial (2.276/2.276 fuentes READY, 100% PASS)
+- **Fecha:** 2026-10-31
+- **Objetivo:** Completar la ingesta desatendida y verificación exhaustiva de los 15 cuadernos de Navarredondilla Parroquial en Google NotebookLM Pro bajo las reglas `[L-28]`, `[L-29]` y `[L-30]`.
+- **Acciones Realizadas y Resiliencia `[L-21]`:**
+  1. **Subida por Tramos:** El primer tramo completó 8 cuadernos y 1.360 fuentes antes de la expiración estándar del token de sesión tras 1 hora.
+  2. **Reautenticación Automática:** Renovación automática de token ejecutada vía perfil persistente de Chromium (`notebooklm login`) en 8 segundos sin intervención humana.
+  3. **Reanudación Atómica (`task-2510`):** Reanudación transparente apoyada en el checkpoint local [`scripts/ingest_checkpoint_nrdl.json`](file:///c:/TRABAJOS/personal/genealo/scripts/ingest_checkpoint_nrdl.json), alcanzando las 2.276 subidas.
+  4. **Deduplicación Quirúrgica:** El arnés de verificación detectó 3 reintentos duplicados en `NRDL-BAUT-03`, `NRDL-DIFU-02` y `NRDL-DIFU-05` generados por cortes momentáneos de socket; se ejecutó [`scripts/dedup_nrdl_parroquial.py`](file:///c:/TRABAJOS/personal/genealo/scripts/dedup_nrdl_parroquial.py) eliminando las 3 copias redundantes y preservando las fuentes `READY`.
+  5. **Adecuación de Alias `[L-30]`:** Actualizada la especificación del verificador para auditar el cuaderno purificado `NRDL-DIFU-S17-B (1648-1695)` (ID `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c`, 70 fuentes).
+- **Resultados y Dictamen E2E:**
+  - Ejecutado [`scripts/verify_nrdl_parroquial_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/verify_nrdl_parroquial_sources.py) contra la API en vivo.
+  - **Cuadernos parroquiales certificados:** 15 / 15.
+  - **Fuentes verificadas en estado READY:** **2.276 / 2.276 (100%)**.
+  - **Duplicados:** 0. **Errores:** 0. **Faltantes:** 0.
+  - **Barrera de cuadernos protegidos:** 5 cuadernos (388 fuentes) auditados y confirmados **100% intactos**.
+  - **Veredicto final:** **PASS**. Informe exportado a [`scripts/verification_report_nrdl.json`](file:///c:/TRABAJOS/personal/genealo/scripts/verification_report_nrdl.json).
+
+
 
 
 

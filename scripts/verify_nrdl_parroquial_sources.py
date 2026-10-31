@@ -233,7 +233,8 @@ TARGET_NOTEBOOKS = {
     },
     "NRDL-MIXTO-01": {
         "parroquia": "NRDL",
-        "tipo": "CODICE_MIXTO",
+        "tipo": "DEFUNCIONES",  # Rule [L-30]
+        "cloud_titles": ["NRDL-DIFU-S17-B (1648-1695)", "NRDL-MIXTO-01"],
         "rollo_dgs": "004306112",
         "expected_count": 70,
         "signatura": "Sit. Arch. 166/4",
@@ -528,10 +529,13 @@ class NavarredondillaParroquialVerifier:
                 "sources": [],
             }
 
-            matched_nbs = notebooks_by_title.get(target_title, [])
+            candidate_titles = meta.get("cloud_titles", [target_title])
+            matched_nbs = []
+            for c_title in candidate_titles:
+                matched_nbs.extend(notebooks_by_title.get(c_title, []))
             if not matched_nbs:
                 self.discrepancies.append(
-                    f"[TARGET NOTEBOOK MISSING] Notebook '{target_title}' does not exist in NotebookLM."
+                    f"[TARGET NOTEBOOK MISSING] Notebook '{target_title}' (aliases {candidate_titles}) does not exist in NotebookLM."
                 )
                 summary_stats["target_notebooks_missing"].append(target_title)
                 summary_stats["total_sources_missing"] += meta["expected_count"]

@@ -81,20 +81,20 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 | **5** | **`NDRN-ENSENADA-LEGOS-01`** | `cd72ef58-fcf5-48ac-8de2-556648ebd90e` | `NDRN` | 34 | **Verificado E2E (READY).** Catastro Ensenada 1751, Personal Seglar Navandrinal (DGS 004469028, 00980–01013). |
 | **6** | **`NRDL-MATR-01`** | `1e6fec74-1e2f-4dd7-8ad1-6d25411de127` | `NRDL` | 33 | **Verificado E2E (READY).** Matrimonios Navarredondilla (1634–1686, DGS 004306112). 33/33 imágenes READY. |
 | **7** | **`JMOL-DIFU-03`** | `a5d19fcc-d266-4497-bdb3-df182328bdcb` | `JMOL` | 17 | **Verificado E2E (READY).** Libro 3º Defunciones San Juan del Molinillo (1849–1851, DGS 004298571). 17/17 imágenes READY. |
-| **8** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 245 | **Subida completa (245/245).** Bautismos Navarredondilla (DGS 004306112). |
-| **9** | **`NRDL-BAUT-02`** | `0a6561ec-ee7c-47bc-8164-bcba8be5acef` | `NRDL` | 157 | **Subida completa (157/157).** Bautismos Navarredondilla. |
-| **10** | **`NRDL-BAUT-03`** | `6853e55d-3e72-42d3-bf01-6d2a510978b7` | `NRDL` | 231 | **En curso en segundo plano.** Bautismos Navarredondilla. |
-| **11** | **`NRDL-BAUT-05`** | `9fa0454b-5898-4efc-be90-a02524298906` | `NRDL` | 144 | **Inicializado.** Bautismos Navarredondilla. |
-| **12** | **`NRDL-BAUT-06`** | `9cdd4e0c-a922-4edc-acfb-4a5dee7a896d` | `NRDL` | 183 | **Inicializado.** Bautismos Navarredondilla. |
-| **13** | **`NRDL-BAUT-07`** | `0a31b8ce-184b-49af-ae17-0df8446ecc5f` | `NRDL` | 102 | **Inicializado.** Bautismos Navarredondilla. |
-| **14** | **`NRDL-DIFU-01`** | `77aff174-b9ae-4273-be03-41d94b20a7d4` | `NRDL` | 236 | **Inicializado.** Defunciones Navarredondilla. |
-| **15** | **`NRDL-DIFU-01B`** | `5820003c-3577-496a-b3db-6903365a201f` | `NRDL` | 65 | **Inicializado.** Defunciones Navarredondilla. |
-| **16** | **`NRDL-DIFU-02`** | `1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb` | `NRDL` | 171 | **Inicializado.** Defunciones Navarredondilla. |
-| **17** | **`NRDL-DIFU-03`** | `ab115a24-e08b-4ee6-b990-9027d7ac1abf` | `NRDL` | 170 | **Inicializado.** Defunciones Navarredondilla. |
-| **18** | **`NRDL-DIFU-04`** | `9e03f5d3-3425-456b-9df1-b69bf6a3a1a2` | `NRDL` | 188 | **Inicializado.** Defunciones Navarredondilla. |
-| **19** | **`NRDL-DIFU-05`** | `d73e0a6c-7fa9-4c78-aec9-6c0bfcfd2ccf` | `NRDL` | 211 | **Inicializado.** Defunciones Navarredondilla. |
-| **20** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Inicializado.** Matrimonios Navarredondilla. |
-| **21** | **`NRDL-DIFU-S17-B (1648-1695)`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 70 | **Inicializado (renombrado bajo `[L-30]`).** Defunciones 1648–1695. |
+| **8** | **`NRDL-BAUT-01`** | `a187936c-55f4-4319-87db-6bf4e21e8613` | `NRDL` | 245 | **Verificado E2E (READY).** Bautismos Navarredondilla (DGS 004306112). |
+| **9** | **`NRDL-BAUT-02`** | `0a6561ec-ee7c-47bc-8164-bcba8be5acef` | `NRDL` | 157 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
+| **10** | **`NRDL-BAUT-03`** | `6853e55d-3e72-42d3-bf01-6d2a510978b7` | `NRDL` | 231 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
+| **11** | **`NRDL-BAUT-05`** | `9fa0454b-5898-4efc-be90-a02524298906` | `NRDL` | 144 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
+| **12** | **`NRDL-BAUT-06`** | `9cdd4e0c-a922-4edc-acfb-4a5dee7a896d` | `NRDL` | 183 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
+| **13** | **`NRDL-BAUT-07`** | `0a31b8ce-184b-49af-ae17-0df8446ecc5f` | `NRDL` | 102 | **Verificado E2E (READY).** Bautismos Navarredondilla. |
+| **14** | **`NRDL-DIFU-01`** | `77aff174-b9ae-4273-be03-41d94b20a7d4` | `NRDL` | 236 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
+| **15** | **`NRDL-DIFU-01B`** | `5820003c-3577-496a-b3db-6903365a201f` | `NRDL` | 65 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
+| **16** | **`NRDL-DIFU-02`** | `1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb` | `NRDL` | 171 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
+| **17** | **`NRDL-DIFU-03`** | `ab115a24-e08b-4ee6-b990-9027d7ac1abf` | `NRDL` | 170 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
+| **18** | **`NRDL-DIFU-04`** | `9e03f5d3-3425-456b-9df1-b69bf6a3a1a2` | `NRDL` | 188 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
+| **19** | **`NRDL-DIFU-05`** | `d73e0a6c-7fa9-4c78-aec9-6c0bfcfd2ccf` | `NRDL` | 211 | **Verificado E2E (READY).** Defunciones Navarredondilla. |
+| **20** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Verificado E2E (READY).** Matrimonios Navarredondilla. |
+| **21** | **`NRDL-DIFU-S17-B (1648-1695)`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 70 | **Verificado E2E (READY).** Defunciones 1648–1695 bajo `[L-30]`. |
 
 ### B. Cuadernos Históricos de Pruebas y Referencia
 
