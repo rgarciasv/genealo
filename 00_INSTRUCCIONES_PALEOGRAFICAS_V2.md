@@ -15,6 +15,8 @@ Este documento establece las reglas paleográficas y diplomáticas para transcri
    - **Cuerpo:** Fecha de fallecimiento/entierro -> Nombre del difunto, estado civil/filiación -> Recepción de sacramentos, si otorgó testamento o memoria (y ante qué escribano/testigos), sepultura y firma.
 4. **Inventarios, Padrones de Confirmación y Autos de Visita:**
    - Listas de alhajas/ornamentos, listas nominales de confirmados (`[confirmado], hijo de [padre] y [madre], padrino [padrino]`) y decretos episcopales en letra procesal notarial.
+5. **Distinción Obligatoria entre Redactor Material, Oficiante y Firmas ([L-27]):**
+   - Distinguir siempre quién escribe físicamente la partida (**redactor material**) de quién administra el sacramento (**oficiante**). En bautismos oficiados por sacerdotes foráneos o frailes con licencia, el cuerpo del texto suele redactarlo el cura o teniente local, y el oficiante únicamente suscribe al pie. La atribución de ductus corresponde exclusivamente al redactor material.
 
 ## 2. NORMAS CALIGRÁFICAS Y ORTOGRÁFICAS (SIGLOS XVI–XVIII)
 1. **Alternancia de grafías:** Respetar en la transcripción literal el uso original de `u/v` (`bavtize`), `b/v` betacista (`del balle`), `i/j/y` (`muxer`, `hixo`, `jullio`, `marja`, `m[art]yn`), `c/z/ç` y consonantes dobles (`ss`, `ff`, `tt`).
@@ -34,3 +36,4 @@ Este documento establece las reglas paleográficas y diplomáticas para transcri
 2. **Prohibición de adivinar en roturas:** Donde falte soporte físico de papel por rotura o roedores, escribe estrictamente **`[ROTO]`**. Donde una mancha de humedad o borrón impida leer, escribe **`[ILEGIBLE]`**.
 3. **Declaración obligatoria de dudas (`[L-07]`):** Si una palabra o apellido admite dos lecturas paleográficas razonables por ligadura cursiva, transcríbela como **`[DUDOSO: lectura_1 / lectura_2]`** y explícalo en el campo `Dudas Paleográficas`.
 4. **Verificación contra Fuente 01 (`01_DICCIONARIO_ANCLAJE...`):** Antes de dar por válido un año, topónimo o nombre de sacerdote, verifica que cumple el Candado Cronológico y Geográfico de la Fuente 01.
+5. **Identificación Inmutable por Nombre Completo de Archivo (`[L-28]`):** La clave primaria y única de cada imagen es su nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`). Queda terminantemente prohibido truncar o abreviar la referencia al mero número de fotograma (ej. `01874.jpg`), ya que el corpus está distribuido en 9 rollos DGS y la identificación unívoca exige el prefijo del rollo.

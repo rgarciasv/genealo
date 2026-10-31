@@ -20,6 +20,7 @@ imagenes/rollo*/
 # Logs y volcados temporales
 *.log
 scraper.log
+scratch/
 
 # Credenciales y perfiles de sesión
 storage_state.json

@@ -98,6 +98,13 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
    - El usuario ejecutará [`extraer_arks_familysearch.js`](file:///c:/TRABAJOS/personal/genealo/extraer_arks_familysearch.js) en la consola DevTools de FamilySearch para volcar el mapa de enlaces permanentes ARK.
 7. **Catalogación de Fondos Parroquiales de Navalmoral de la Sierra (`[NMRL-01]`):**
    - Identificar y registrar en el catálogo los números de microfilm/DGS de Navalmoral de la Sierra en FamilySearch para cubrir la ascendencia pre-1715 de San Juan del Molinillo, Navandrinal y El Villarejo.
+8. **Evaluación y Aprovechamiento de Chats Externos (`desde gemini/`) [DEBATE METODOLÓGICO PENDIENTE]:**
+   - *Fuentes:* [`desde gemini/Extracción de Corpus Paleográficos Parroquiales.md`](file:///c:/TRABAJOS/personal/genealo/desde%20gemini/Extracci%C3%B3n%20de%20Corpus%20Paleogr%C3%A1ficos%20Parroquiales.md) y [`desde gemini/Gemini Pro para Paleografía Parroquial.md`](file:///c:/TRABAJOS/personal/genealo/desde%20gemini/Gemini%20Pro%20para%20Paleograf%C3%ADa%20Parroquial.md).
+   - Analizar en su momento con el usuario qué ideas se integran al pipeline oficial y cuáles se descartan:
+     * **Viabilidad de Alfabetogramas Reales:** Estudio de viabilidad y coste/beneficio de recortar caracteres reales con cajas delimitadoras (*bounding boxes*) de cada escribiente para soporte visual HTR frente al modelo actual de fichas técnicas en [`03_AUTORIDADES`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md).
+     * **Mitigación del Sesgo de Expectativa:** Pautas para evitar que el modelo complete patronímicos comunes por probabilidad lingüística en lugar de atender a los trazos reales en procesales encadenadas complejas (lección de Fray Jacinto de Alcocer en 1611).
+     * **Cruce Sistemático Marginalia vs. Cuerpo Central:** Protocolo para contrastar automáticamente los nombres del margen con el texto de la partida para asignar niveles de fiabilidad o generar alertas de conflicto.
+     * **Índices de Certeza / Cola de Auditoría Humana:** Evaluar la conveniencia de pedir a NotebookLM el etiquetado explícito de certeza (`[ALTA_CERTEZA]` / `[BAJA_CERTEZA]`) para dirigir la revisión visual del usuario sólo a los asientos dudosos.
 
 ---
 
@@ -116,6 +123,7 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 - [x] **0.2. Extracción del Diccionario Onomástico y Toponímico (Bootstrapping):**
   - [x] Extraer de los archivos `.ged` (`Navarredondilla_1594_1620.ged`, `gramps.ged`) la lista de apellidos, nombres, oficios, matrimonios y notas paleográficas reales de la comarca.
   - [x] Generar el archivo [`01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md`](file:///c:/TRABAJOS/personal/genealo/01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md) con el candado cronológico, topónimos de mundo cerrado y tabla de curas por año para subirlo como **Fuente de Anclaje 01** en NotebookLM.
+  - [x] **Censo Prosopográfico Exhaustivo y Mapa de Escribanos (1594–1695, 101 años):** Culminada la extracción de los 4 lotes de Bautismos (Libros 1º y 2º) y unificados los 35 clérigos con su red de licencias, movilidad comarcal (`JMOL`, `NMRL`, `NVLG`, `BHND`), ductus, tics y asignación fotograma a fotograma en [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md).
 
 ---
 
@@ -180,6 +188,7 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
 - [x] **2.1. Modelo de Identificación en Dos Capas (Soporte Físico Inmutable + Entidad Acta Desacoplada + ARK) (`L-26`):**
   - [x] Soporte Físico Inmutable: Archivo JPG / Fotograma `{DGS}_{FOTOGRAMA}` (ej. `004306112_01874`). Coincidencia 1:1 con el fichero en disco, con FamilySearch y con la URL ARK persistente. No se fuerza división física en L/R.
   - [x] Entidad Acta Desacoplada del Orden: Cada acta posee identificador único propio (UUID / ID interno) y propiedades descriptivas de ubicación (`lado: izquierda/derecha`, `orden_en_imagen: 1, 2...`). Elimina el efecto dominó en base de datos si la IA omite un asiento, fusiona dos partidas indebidamente o divide una nota marginal.
+  - [x] Desglose de Roles Eclesiásticos (`L-27`): Diferenciación formal en los contratos de extracción entre `redactor_material` (mano caligráfica que empuña la pluma y fija el ductus), `oficiante_sacramental` (quien administra el sacramento canónico) y `firmas` (suscripción y rúbrica al pie).
   - [x] Atributos descriptivos revisables: `folio_manuscrito`, `folio_moderno`, `id_archivistico` (`ES-AV-{LOCALIDAD}-{SERIE}-{VOL}-{FOL_CARA}-{ASIENTO}`).
   - [x] Metadato digital persistente: `url_ark` (FamilySearch ARK URL) a nivel de soporte e imagen.
   - [x] Trazabilidad y protocolos de partidas bipartitas (Intra-imagen verso $\rightarrow$ recto unificada; e Inter-imagen recto $N \rightarrow$ verso $N+1$ con enlace direccional).
@@ -213,7 +222,11 @@ Las imágenes (**7.868 archivos en `imagenes/`** más directorios de series) pro
   - [ ] **Capa 1 — Evidencia Documental (Inmutable):**
     - `CREATE VERTEX TYPE Acta` (`id_acta`, `rollo_dgs`, `imagen_archivo`, `folio_fisico`, `localidad`, `tipo_sacramento`, `fecha_iso`, `transcripcion_diplomatica`, `texto_ecdotico`).
     - `CREATE VERTEX TYPE MencionPersona` (`id_mencion`, `nombre_literal`, `nombre_normalizado`, `apellido1_normalizado`, `apellido2_normalizado`, `sexo`, `vecindad`, `oficio`, `estado_civil`).
-    - `CREATE EDGE TYPE PARTICIPA_EN` (de `MencionPersona` a `Acta` con propiedades: `rol` [`BAUTIZADO`, `PADRE`, `MADRE`, `ABUELO_P`, `PADRINO`, `TESTIGO`, `OFICIANTE`], `confianza_lectura`).
+    - `CREATE VERTEX TYPE SoporteFisico` (`id_soporte`, `rollo_dgs`, `fotograma`, `archivo_jpg`, `url_ark`, `toma_hermana_de`).
+    - `CREATE EDGE TYPE PARTICIPA_EN` (de `MencionPersona` a `Acta` con propiedades: `rol` [`BAUTIZADO`, `PADRE`, `MADRE`, `ABUELO_P`, `ABUELO_M`, `PADRINO`, `MADRINA`, `TESTIGO`], `confianza_lectura`).
+    - `CREATE EDGE TYPE OFICIA_SACRAMENTO` (de `MencionPersona` a `Acta` con propiedades: `cargo`, `parroquia_origen`, `licencia_abacial`).
+    - `CREATE EDGE TYPE ESCRIBE` (de `MencionPersona` a `SoporteFisico` / `Acta` con propiedades: `ductus_caligrafico`, `confianza_mano`, `es_autografo`).
+    - `CREATE EDGE TYPE FIRMA` (de `MencionPersona` a `Acta` con propiedades: `tipo_suscripcion` [`AUTOGRAFA`, `RUBRICA_SOLA`, `SIGNO_NOTARIAL`, `NO_FIRMA`]).
     - `CREATE EDGE TYPE RELACION_DECLARADA` (entre dos `MencionPersona` dentro de la misma acta: `PADRE_DE`, `CONYUGE_DE`, `VIUDO_DE`).
   - [ ] **Capa 2 — Identidad Consolidada (Reconstrucción Genealógica):**
     - `CREATE VERTEX TYPE PersonaCanonica` (`id_persona`, `nombre_canonico`, `apellidos_canonicos`, `anio_nacimiento_est`, `anio_defuncion_est`).

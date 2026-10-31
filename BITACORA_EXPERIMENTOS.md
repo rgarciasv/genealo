@@ -158,6 +158,36 @@
   3. **Total:** 11 asientos extraídos íntegramente (5 verso, 6 recto) con CERO DUPLICADOS.
   4. Guardado en [`transcripciones/004306112_01878_01879.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01878_01879.md).
 
+---
+
+## 🧪 Experimento 11: Censo Prosopográfico Completo del Libro 2º (1638–1695) y Unificación de Autoridades Paleográficas
+- **Fecha:** 2026-10-31
+- **Cuaderno:** `Lib. Baut. Navarre Vol. 1 (1594-1695)` (`7967d647-8ca2-4863-a576-11843e8e8802`)
+- **Objetivo:** Ejecutar las consultas de censo prosopográfico para los lotes C (`02023`–`02086`, 1638–1660) y D (`02087`–`02147`, 1661–1695) vía MCP de NotebookLM, e integrar la totalidad del clero del corpus (1594–1695) en un banco transversal unificado.
+- **Resultados:**
+  1. **Lote C (1638–1660, 12 clérigos/autoridades):** Francisco Sánchez del Unar (bisagra de cierre de Libro 1º y apertura de Libro 2º en `004306112_02051.jpg`), Fray Francisco de Prado, Gaspar González (pliegos descolocados `004306112_02023.jpg` y `004306112_02043.jpg`-`004306112_02050.jpg`), Diego Arias (1643–1645), Juan Fernández (1646–1647), Don Juan Sánchez de Argáiz (Obispo de Ávila, 1º Padrón de Confirmaciones 1649), Alonso López (titular 1649–1661), Don Marcos Conde (teniente de caligrafía refinada y cruces marginales 1650–1653), Andrés Bautista (teniente hegemónico 1653–1658), Gaspar Martínez (1659), Fray Mateo del Mazo (inicios de su ministerio) y Don Francisco de la Parra y Soria (Provisor abacial en `004306112_02052.jpg`). Guardado en [`informe_prosopografico_004306112_02023_02086.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_02023_02086.md).
+  2. **Lote D (1661–1695, 15 clérigos/autoridades):** Fray Juan de Segovia Bonifaz (1661–1662), Fray Mateo del Mazo (rector titular 1661–1689 con beneficio en Navalmoral y residencia en Molinillo), Francisco de Ribas (1664–1666), Diego Cortés (1665–1666), Clemente Blázquez (teniente de minutas 1667–1676), Juan de Ribas (otoño 1676), Domingo Hernández (teniente y reorganizador del archivo 1666–1680), Lic. Don Francisco de la Maza (Visitador General en Auto de Visita de 1680), Fray Juan Asensio (Obispo de Ávila, 2º Padrón de Confirmaciones 1681), Francisco Ramos de Borja (1681), Lic. Joseph Romero de Navas (1682–1684), Simón Palomo Bayala (beneficiado limítrofe con arcaísmos en 1683), Fray Pedro de Frutos (Prior del Carmen de Salamanca en 1684), Lic. Melchor Núñez (1684–1689) y Lic. Jerónimo Ruiz Núñez (1689–1695, *«desta barredonda»*, cierra formalmente el Libro 2º en el Folio 114 / `004306112_02147.jpg`). Guardado en [`informe_prosopografico_004306112_02087_02147.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_02087_02147.md).
+  3. **Unificación Maestra:** Integración de los 4 lotes (1594–1695, 35 clérigos y autoridades) en [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md), conteniendo:
+     * Matriz prosopográfica cronológica completa con origen institucional y movilidad interparroquial.
+     * Fichas técnicas de ductus, abreviaturas, tics de redacción y fórmulas diplomáticas por clérigo.
+     * Mapa secuencial ininterrumpido fotograma a fotograma desde `004306112_01872.jpg` hasta `004306112_02147.jpg`.
+
+---
+
+## 🧪 Experimento 12: Normalización Universal del Identificador Primario de Imagen (`[L-28]`)
+- **Fecha:** 2026-10-31
+- **Objetivo:** Erradicar cualquier truncamiento a 5 dígitos (`01874.jpg`) y fijar el nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`) como clave primaria universal obligatoria en toda la arquitectura documental, scripts y bases de datos.
+- **Motivación:** El proyecto Alto Alberche abarca 9 rollos DGS distintos (más de 7.800 imágenes). Si se trunca el nombre de imagen a su número correlativo interno, se producen colisiones y ambigüedades entre rollos. El nombre completo es la única clave unívoca 1:1 con el soporte físico en disco, con FamilySearch, con NotebookLM y con ArcadeDB.
+- **Acciones y Resultados:**
+  1. **Auditoría e Inyección de Prefijo DGS:** Se actualizaron 273 referencias en [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) sustituyendo cada fotograma por su nombre completo `004306112_XXXXX.jpg` (Sección 1 de Matriz, Sección 2 de Fichas y Sección 3 de Mapa Secuencial).
+  2. **Renombrado y Normalización de Informes:** Los 4 informes intermedios fueron renombrados y saneados internamente para incorporar el prefijo del rollo:
+     * [`informe_prosopografico_004306112_01872_01924.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_01872_01924.md)
+     * [`informe_prosopografico_004306112_01925_01975.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_01925_01975.md)
+     * [`informe_prosopografico_004306112_02023_02086.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_02023_02086.md)
+     * [`informe_prosopografico_004306112_02087_02147.md`](file:///c:/TRABAJOS/personal/genealo/informe_prosopografico_004306112_02087_02147.md)
+  3. **Codificación Normativa:** Se añadió la regla obligatoria 11 `[L-28]` en [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md) y el apartado 5 en [`00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`](file:///c:/TRABAJOS/personal/genealo/00_INSTRUCCIONES_PALEOGRAFICAS_V2.md).
+
+
 
 
 

@@ -41,11 +41,19 @@
      * En el fotograma N+1: La cabecera se transcribe con `Continúa en otra página: Viene de fotograma anterior (archivo_N.jpg)`.
      * El middleware de Python fusiona ambas mitades bajo el ID canónico anclado en el folio donde comenzó la partida.
 7. **`[L-20]` Protocolo de Fusión de Tomas Hermanas (Base vs. Corrección):**
-   - En folios fotografiados por duplicado para resolver lomos apretados (*gutter shadow*), roturas de borde o fondos oscuros, ambas imágenes (`01874/01875`, `01876/01877`, etc.) se envían conjuntamente a NotebookLM para rescatar texto faltante produciendo un único registro depurado con CERO DUPLICADOS.
+   - En folios fotografiados por duplicado para resolver lomos apretados (*gutter shadow*), roturas de borde o fondos oscuros, ambas imágenes (`004306112_01874.jpg`/`004306112_01875.jpg`, `004306112_01876.jpg`/`004306112_01877.jpg`, etc.) se envían conjuntamente a NotebookLM para rescatar texto faltante produciendo un único registro depurado con CERO DUPLICADOS.
 8. **`[L-22]` Transversalidad del Ductus Eclesiástico (Desacoplamiento Libro-Escribano):**
    - Un sacerdote escribe con el idéntico ductus y tics caligráficos en el libro de bautismos, en el de matrimonios y en el de defunciones. Queda prohibido compartimentar los perfiles caligráficos por libro individual. La autoridad de ductus y abreviaturas reside en [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) y se inyecta por rango cronológico activo.
 9. **`[L-23]` Extracción Polimórfica Obligatoria:**
    - Los libros parroquiales contienen documentos no sacramentales de valor genealógico crítico: padrones de confirmación (censos instantáneos de familias completas), autos de visita pastoral (auditorías y mandatos), índices y minutas sueltas de sacristía. Queda estrictamente prohibido ignorarlos o resumirlos: deben transcribirse usando los formatos polimórficos de la Sección 6.
+10. **`[L-27]` Desglose Obligatorio entre Redactor Material, Oficiante Sacramental y Firmas:**
+   - **Redactor Material (Mano Caligráfica):** Es la persona física que sostiene la pluma y redacta el cuerpo de la partida. Determina el ductus, el tipo de letra, las abreviaturas y la dificultad de lectura del folio. En ArcadeDB alimenta la relación `ESCRIBE` hacia el soporte físico para entrenamiento y verificación paleográfica.
+   - **Oficiante Sacramental:** Es el clérigo que administra físicamente el sacramento o preside el acto (párroco titular, teniente delegado, beneficiado vecino con licencia o fraile comisionado). En ArcadeDB alimenta la relación `OFICIA_SACRAMENTO` hacia el acta para la reconstrucción institucional y la red de licencias eclesiásticas de la Abadía de Burgohondo.
+   - **Firmas / Suscripciones:** Lista exacta de quién rubrica al pie (autógrafo del redactor, firma del oficiante, ambas, o notario). En ArcadeDB alimenta la relación `FIRMA`.
+   - *Prohibición:* Queda estrictamente prohibido asignar como 'redactor' de un folio o bloque de imágenes a un clérigo que solo ofició un bautismo esporádico con licencia o que solo firmó al pie (evitando el error de atribuir planas enteras a sacerdotes invitados como D. Rodrigo Antonio de Meneses en 1594 o Baltasar de Luján en 1624).
+11. **`[L-28]` Identificación Primaria Absoluta mediante Nombre Completo de Archivo:**
+   - Toda referencia a un fotograma de imagen debe utilizar OBLIGATORIAMENTE su nombre completo de archivo (`{DGS}_{FOTOGRAMA}.jpg`, ej. `004306112_01874.jpg`).
+   - **Prohibición de truncamiento:** Queda terminantemente prohibido truncar la referencia únicamente al número de fotograma (ej. `01874.jpg` o `01874`). El proyecto abarca 9 rollos DGS distintos (más de 7.800 imágenes); por tanto, el nombre de archivo completo es la única clave primaria universal e inequívoca tanto para el archivo físico en disco, como para NotebookLM, ArcadeDB, el árbol genealógico y las URLs ARK de FamilySearch.
 
 ---
 
@@ -86,6 +94,8 @@ Este documento establece las reglas paleográficas y diplomáticas para transcri
    - **Cuerpo:** Fecha de fallecimiento/entierro -> Nombre del difunto, estado civil/filiación -> Recepción de sacramentos, si otorgó testamento o memoria (y ante qué escribano/testigos), sepultura y firma.
 4. **Inventarios, Padrones de Confirmación y Autos de Visita:**
    - Listas de alhajas/ornamentos, listas nominales de confirmados (`[confirmado], hijo de [padre] y [madre], padrino [padrino]`) y decretos episcopales en letra procesal notarial.
+5. **Distinción Obligatoria entre Redactor Material, Oficiante y Firmas ([L-27]):**
+   - Distinguir siempre quién escribe físicamente la partida (**redactor material**) de quién administra el sacramento (**oficiante**). En bautismos oficiados por sacerdotes foráneos o frailes con licencia, el cuerpo del texto suele redactarlo el cura o teniente local, y el oficiante únicamente suscribe al pie. La atribución de ductus corresponde exclusivamente al redactor material.
 
 ## 2. NORMAS CALIGRÁFICAS Y ORTOGRÁFICAS (SIGLOS XVI– XVIII)
 1. **Alternancia de grafías:** Respetar en la transcripción literal el uso original de `u/v` (`bavtize`), `b/v` betacista (`del balle`), `i/j/y` (`muxer`, `hixo`, `jullio`, `marja`, `m[art]yn`), `c/z/ç` y consonantes dobles (`ss`, `ff`, `tt`).
@@ -134,7 +144,9 @@ FORMATO DE BLOQUE ESTRICTO (Genera un bloque idéntico a este por cada partida o
 - **Fecha Literal:** [Texto exacto de la fecha tal como aparece escrito, o "Heredada del asiento anterior: ..." si dice "en dicho día"]
 - **Fecha ISO:** [AAAA-MM-DD, o CIRCA/RANGO si está rota; verifica el candado cronológico del libro]
 - **Marginalia:** [Transcripción exacta de todas las notas del margen izquierdo]
-- **Oficiante:** [Nombre normalizado del cura/oficiante cotejado con Autoridades Paleográficas + cargo literal]
+- **Redactor Material (Mano):** [Nombre normalizado del clérigo/escribano que empuña la pluma y escribe el cuerpo del texto (ej: Francisco Ximénez), cotejado con 03_AUTORIDADES_PALEOGRAFICAS; indicar si es autógrafo del oficiante o mano delegada de sacristía]
+- **Oficiante Sacramental:** [Nombre normalizado del clérigo que administró físicamente el sacramento según el texto (ej: D. Rodrigo Antonio de Meneses), con su cargo y parroquia de origen si consta]
+- **Firmas / Suscripciones:** [Lista exacta de suscripciones y rúbricas al pie del asiento (ej: "D. rrodrigo Antonio de meneses", "Sin firma autógrafa", "Firmado por cura propio y oficiante")]
 - **Sujeto(s) Principal(es):** [Nombre normalizado del bautizado, difunto o contrayentes]
 - **Filiación y Estado Civil:** [Padre, Madre (indicando si dice 1ª/2ª/legítima mujer), y Abuelos si constan]
 - **Red FAN (Padrinos / Testigos / Otros):** [Lista completa de padrinos, madrinas, testigos y vecindad/parentesco si consta]
