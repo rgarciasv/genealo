@@ -1,10 +1,10 @@
 # Progress — worker_jmol_m1
-Last visited: 2026-10-31T22:50:40+00:00
+Last visited: 2026-10-31T23:15:00+00:00
 
-## Milestone 1: Ingestion Monitoring & Pipeline Health
-- **Active Pipeline PID**: 181048 (RUNNING) [Task ID: `task-566`]
-- **Overall Progress**: 2,460 / 2,731 sources (90.1%)
-- **Completed Notebooks**: 14 / 18 (JMOL-BAUT-01..05, JMOL-INDICE-BAUT, JMOL-MATR-01..03, JMOL-DIFU-01..05)
+## Milestone 1: Ingestion Monitoring & Pipeline Health — [COMPLETED 100%]
+- **Active Pipeline PID**: None (Pipeline finished cleanly with exit code 0)
+- **Overall Progress**: 2,731 / 2,731 sources (100.0%)
+- **Completed Notebooks**: 18 / 18 (100.0%)
 
 ### Notebook Status Checklist
 - [x] `JMOL-BAUT-01`: 175/175 [DONE]
@@ -20,14 +20,16 @@ Last visited: 2026-10-31T22:50:40+00:00
 - [x] `JMOL-DIFU-02`: 277/277 [DONE]
 - [x] `JMOL-DIFU-03`: 17/17 [DONE] (pilot)
 - [x] `JMOL-DIFU-04`: 214/214 [DONE]
-- [x] `JMOL-DIFU-05`: 99/99 [DONE] (completed at 23:35:10 UTC)
-- [-] `JMOL-DIFU-06`: 45/177 [IN_PROGRESS] (actively uploading: 132 remaining)
-- [ ] `JMOL-DIFU-PARVULOS`: 0/27 [QUEUED]
-- [ ] `JMOL-INDICE-DIFU`: 0/21 [QUEUED]
-- [ ] `JMOL-MIXTO-04`: 0/91 [QUEUED]
+- [x] `JMOL-DIFU-05`: 99/99 [DONE]
+- [x] `JMOL-DIFU-06`: 177/177 [DONE]
+- [x] `JMOL-DIFU-PARVULOS`: 27/27 [DONE]
+- [x] `JMOL-INDICE-DIFU`: 21/21 [DONE]
+- [x] `JMOL-MIXTO-04`: 91/91 [DONE]
 
-### Health & Monitoring Status
-- [x] `JMOL-DIFU-05` finalizado al 100% (99/99).
-- [x] Renovación de sesión [L-21]: rotación de tokens ejecutada de forma desatendida.
-- [x] Relanzamiento exitoso bajo nuevo PID 181048 (Task ID: `task-566`).
-- [x] `JMOL-DIFU-06` subiendo de forma ininterrumpida (>90% del corpus parroquial alcanzado).
+### Milestone 1 Achievements & Verification
+- [x] Toda la serie Bautismos completada: 1.080 fuentes (6 cuadernos).
+- [x] Toda la serie Matrimonios completada: 526 fuentes (3 cuadernos).
+- [x] Toda la serie Defunciones completada: 1.034 fuentes (7 cuadernos + párvulos + índice).
+- [x] Cuaderno mixto completado: 91 fuentes (1 cuaderno).
+- [x] Atomic checkpoint `scripts/ingest_checkpoint_jmol.json` verificado al 100% (18/18 cuadernos, 2.731/2.731 fuentes).
+- [x] Handoff formal `handoff.md` generado para Milestone 2.

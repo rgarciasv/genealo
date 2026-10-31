@@ -32,8 +32,8 @@
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
 | M0 | Survey & Corpus Mapping | Disk filesystem, catalog, scripts & specification audit | none | DONE |
-| M1 | Ingestion Supervision & Completion | Monitor background task-2618, track atomic checkpoint, handle session refresh, verify 17 remaining notebooks completed | M0 | IN_PROGRESS |
-| M2 | Independent E2E Verification | Execute `verify_sanjuan_parroquial_sources.py` across all 18 notebooks and 2,731 sources, verify 6 protected notebooks intact, forensic audit | M1 | PLANNED |
+| M1 | Ingestion Supervision & Completion | Monitor background task-2618, track atomic checkpoint, handle session refresh, verify 17 remaining notebooks completed | M0 | DONE |
+| M2 | Independent E2E Verification | Execute `verify_sanjuan_parroquial_sources.py` across all 18 notebooks and 2,731 sources, verify 6 protected notebooks intact, forensic audit | M1 | IN_PROGRESS |
 
 ## Interface Contracts
 ### Ingestion Pipeline ↔ Checkpoint

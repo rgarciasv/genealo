@@ -20,10 +20,10 @@ Coordinate and oversee the ingestion, validation, and E2E verification of San Ju
 ## User Context
 - **Last user request**: Operational directive: task-2618 running background ingestion; team must supervise, refresh token if needed, and run independent E2E verification.
 - **Pending clarifications**: none
-- **Delivered results**: Orchestrator launched and alerted to background task constraint
+- **Delivered results**: 2,710/2,731 sources ingested (99.2%); 17/18 books complete; JMOL-MIXTO-04 final book in progress (70/91).
 
 ## Project Status
-- **Phase**: in progress
+- **Phase**: in progress (99.2% ingested, 17/18 books complete)
 - **Route**: General (teamwork_orchestrator)
 - **Routing Rationale**: Multi-notebook ingestion and E2E verification pipeline orchestration across 17 parish books.
 
@@ -35,3 +35,5 @@ Coordinate and oversee the ingestion, validation, and E2E verification of San Ju
 ## Artifact Index
 - c:\TRABAJOS\personal\genealo\.agents\teamwork\ORIGINAL_REQUEST.md — Authoritative original request
 - c:\TRABAJOS\personal\genealo\.agents\teamwork\orchestrator_1\ — Orchestrator workspace
+- c:\TRABAJOS\personal\genealo\scripts\ingest_checkpoint_jmol.json — Ingestion checkpoint
+- c:\TRABAJOS\personal\genealo\scripts\ingest_sanjuan_parroquial.log — Ingestion execution log

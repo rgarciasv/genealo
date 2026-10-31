@@ -277,6 +277,42 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
 
 ---
 
+## 🔬 HIPÓTESIS Y METODOLOGÍA DE VALIDACIÓN EMPÍRICA
+
+### A. Calibración Humana de Fiabilidad en `NRDL-BAUT-01`
+- [ ] Realizar pruebas manuales de extracción folio a folio en la interfaz de NotebookLM Pro para medir:
+  - Tasa de fidelidad diplomática (conservación de abreviaturas, grafías arcaicas ç/x/b/v).
+  - Tasa de alucinación antroponímica y toponímica (comparación con y sin diccionario de anclaje `01`).
+  - Completitud en folios densos (>12 asientos) con desglose por plana.
+  - Estabilidad de la salida en JSON Schema vs. Markdown.
+
+### B. Test Empírico de Valor del "Ductus" (Prueba A/B)
+- [ ] **Hipótesis a contrastar:** ¿El perfilado caligráfico detallado de cada sacerdote en `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md` aporta una mejora estadísticamente medible en la fidelidad de la IA o es sobreingeniería frente a la visión multimodal de Gemini 3.8 / NotebookLM?
+- [ ] Ejecutar prueba comparativa en 10 folios de escribientes difíciles (Alonso del Valle, Diego Arias, Simón Palomo Bayala):
+  - **Prueba A:** Extracción indicando la autoría caligráfica, ductus y tics abreviativos.
+  - **Prueba B:** Extracción ciega sin suministrar la ficha caligráfica.
+  - **Criterio de decisión:** Si la ganancia de precisión es marginal (<5%), simplificar las directivas operativas de `03_AUTORIDADES`.
+
+### C. Bucle de Retroalimentación (*Feedback Loop*) Onomástico y Toponímico
+- [ ] Diseñar el protocolo de actualización incremental de los vocabularios de control:
+  - Los diccionarios `01` y `03` no son estáticos: cada topónimo menor (pagos, cerros, arroyos, molinos) y cada variante de linaje local descubierta en un cuaderno debe registrarse de inmediato para anclar las lecturas de los cuadernos sucesivos.
+  - Consolidar un **Glosario Comarcal Unificado del Alto Alberche** que crezca orgánicamente conforme se transcriban `NRDL`, `JMOL` y `NMRL`.
+
+### D. Protocolo de Redacción Asistida de Guías `02_INSTRUCCIONES_CRONOLOGICAS_...`
+- [ ] Metodología de barrido topográfico previo en NotebookLM Pro:
+  - Antes de redactar la guía `02` de un cuaderno con imágenes ya cargadas, realizar una batería de consultas de reconocimiento al propio cuaderno:
+    1. Identificación de párrocos y fechas de inicio/cierre.
+    2. Localización de autos y decretos de Santa Visita Pastoral (`[L-32]`).
+    3. Detección de lagunas temporales y saltos abruptos de folios traspuestos.
+    4. Identificación de imágenes híbridas a doble plana (`[L-31]`).
+  - Utilizar las respuestas del modelo para redactar la guía `02` en minutos e inyectarla en el cuaderno antes de comenzar la transcripción sacramental.
+
+### E. Expansión Prosopográfica Comarcal del Clero (`03_AUTORIDADES`)
+- [ ] Conectar la red de clérigos entre localidades conforme se abran fondos de `JMOL`, `NDRN`, `VLLR` y `NMRL`:
+  - Mapear la itinerancia de tenientes de cura, beneficiados, confesores temporales y frailes del convento de Burgohondo (`BHND`) que firman en varias parroquias del valle.
+
+---
+
 ## 📌 PRÓXIMOS PASOS OPERATIVOS INMEDIATOS
 1. **Inyección de Fuentes Base y Configuración de Chat en `NRDL-DIFU-S17` y `NRDL-MATR-01`**:
    - Subir las fuentes maestras de anclaje (`00_INSTRUCCIONES_PALEOGRAFICAS_V2`, `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA`, `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE`, `04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES`) a ambos cuadernos.

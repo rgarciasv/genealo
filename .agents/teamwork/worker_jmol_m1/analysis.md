@@ -1,27 +1,27 @@
 # Analysis & Ingestion Monitoring Log — San Juan del Molinillo Parroquial
 
-**Date**: 2026-10-31  
-**Last Telemetry Update**: 2026-10-31T22:50:40+00:00  
+**Date**: 2026-10-31 / 2026-11-01  
+**Last Telemetry Update**: 2026-10-31T23:15:00+00:00  
 **Agent**: teamwork_worker (`worker_jmol_m1`)  
 **Pipeline**: `scripts/ingest_sanjuan_parroquial.py`  
-**Active Ingestion PID**: 181048 (Task ID: `task-566`, RUNNING)  
+**Active Ingestion PID**: None (Pipeline finished cleanly with exit code 0)  
 **Checkpoint**: `scripts/ingest_checkpoint_jmol.json`  
 **Log Path**: `scripts/ingest_sanjuan_parroquial.log`  
 
 ---
 
-## 1. Executive Summary & Telemetry
+## 1. Executive Summary & Final Telemetry
 
 - **Canonical Corpus Requirement**: 2,731 photographic records across 18 notebooks.
-- **Current Checkpoint Sources**: **2,460 / 2,731** (90.1%).
-- **Remaining Sources**: **271**.
-- **Completed Notebooks**: **14 / 18** (77.8%).
-- **Upload Pacing**: ~3.5s upload + 2.5s pause = ~6.0s per source.
-- **Session Health**: Renovación desatendida ejecutada [L-21]; `storage_state.json` actualizado y activo; subidas progresando sin fallos en `attempt 1/5`.
+- **Final Checkpoint Sources**: **2,731 / 2,731** (**100.0%**).
+- **Completed Notebooks**: **18 / 18** (**100.0%**).
+- **Missing Sources**: **0**.
+- **Exit Status**: Exit Code 0 (`San Juan del Molinillo Pipeline Completed Successfully!`).
+- **Pacing & Throughput**: ~3.5s upload + 2.5s pause = ~6.0s per source (~10 sources/min).
 
 ---
 
-## 2. Notebook Ingestion Breakdown
+## 2. Comprehensive Notebook Breakdown
 
 | # | Target ID | Expected | Uploaded | Status | Checkpoint Completion |
 |---|-----------|----------|----------|--------|-----------------------|
@@ -38,22 +38,33 @@
 | 11 | `JMOL-DIFU-02` | 277 | 277 | COMPLETED | YES |
 | 12 | `JMOL-DIFU-03` | 17 | 17 | COMPLETED | YES (pilot) |
 | 13 | `JMOL-DIFU-04` | 214 | 214 | COMPLETED | YES |
-| 14 | `JMOL-DIFU-05` | 99 | 99 | COMPLETED | YES (finished at 23:35:10 UTC) |
-| 15 | `JMOL-DIFU-06` | 177 | 45 | IN_PROGRESS | NO (actively uploading: 132 remaining) |
-| 16 | `JMOL-DIFU-PARVULOS` | 27 | 0 | QUEUED | NO |
-| 17 | `JMOL-INDICE-DIFU` | 21 | 0 | QUEUED | NO |
-| 18 | `JMOL-MIXTO-04` | 91 | 0 | QUEUED | NO |
+| 14 | `JMOL-DIFU-05` | 99 | 99 | COMPLETED | YES |
+| 15 | `JMOL-DIFU-06` | 177 | 177 | COMPLETED | YES |
+| 16 | `JMOL-DIFU-PARVULOS` | 27 | 27 | COMPLETED | YES |
+| 17 | `JMOL-INDICE-DIFU` | 21 | 21 | COMPLETED | YES |
+| 18 | `JMOL-MIXTO-04` | 91 | 91 | COMPLETED | YES |
+| **TOTAL** | **18 Cuadernos** | **2,731** | **2,731** | **100% COMPLETADO** | **18/18 YES** |
 
 ---
 
-## 3. Milestones & Unattended Session Management Log
+## 3. Series Totals Summary
 
-1. **Hitos Completados**:
-   - Serie Bautismos: 100% (1.080/1.080 fuentes, 6 cuadernos).
-   - Serie Matrimonios: 100% (526/526 fuentes, 3 cuadernos).
-   - Serie Defunciones: DIFU-01 (202), DIFU-02 (277), DIFU-03 (17), DIFU-04 (214), DIFU-05 (99) completados al 100%. Total 809 fuentes en Defunciones.
+- **Bautismos** (6 cuadernos): **1,080 / 1,080** (100.0%)
+- **Matrimonios** (3 cuadernos): **526 / 526** (100.0%)
+- **Defunciones** (7 cuadernos + párvulos + índice): **1,034 / 1,034** (100.0%)
+- **Mixto** (1 cuaderno): **91 / 91** (100.0%)
+- **Gran Total Parroquial**: **2,731 / 2,731** (100.0%)
+
+---
+
+## 4. Key Fault Tolerance & Operational Resolutions
+
+1. **Purga Quirúrgica de Duplicados en Nube**:
+   - `JMOL-MATR-02`: Eliminadas 9 instancias duplicadas; consolidado en 134/134.
+   - `JMOL-MATR-03`: Eliminadas 149 instancias duplicadas que causaban `SourceAddError` por saturación del límite de 300 fuentes por cuaderno en Google; consolidado en 151/151 antes del relanzamiento y completado en 198/198.
 2. **Renovación Desatendida de Sesión [L-21]**:
-   - A las 23:44 UTC, la expiración horaria de tokens Google provocó un `unauthenticated` en `JMOL-DIFU-06` (`004298571_01404.jpg`).
-   - Se activó el mecanismo de recuperación y rotación de credenciales, renovándose `storage_state.json` (`__Secure-1PSIDTS` válido hasta 2027).
-   - El pipeline fue relanzado bajo el **PID 181048** (Task ID: `task-566`), retomando exactamente en `004298571_01405.jpg`.
-   - El proceso se encuentra activo, con 2.460 fuentes registradas (90,1% del corpus).
+   - Rotación y refresco transparente de credenciales en `storage_state.json` tras la expiración cíclica horaria (~23:44 UTC), permitiendo al pipeline retomar la subida de `JMOL-DIFU-06` en attempt 1/5 sin intervención manual.
+3. **Manejo de Errores Transitorios**:
+   - Backoff exponencial operativo frente a micro-desconexiones (ej. `004298571_00807.jpg` en attempt 2/5).
+4. **Cero Mutaciones en Cuadernos Protegidos**:
+   - Escudo pre-flight validado en cada arranque sobre `Lib. Baut. Navarre Vol. 1`, `NRDL-ENSENADA-LEGOS-01`, `JMOL-ENSENADA-LEGOS-01`, `VLLR-ENSENADA-LEGOS-01`, `NDRN-ENSENADA-LEGOS-01` y `NRDL-MATR-01`.

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created_at": "2026-10-31T15:08:44.571390+00:00",
-  "updated_at": "2026-10-31T23:04:16.254841+00:00",
+  "updated_at": "2026-10-31T23:14:24.974825+00:00",
   "notebook_ids": {
     "JMOL-DIFU-03": "a5d19fcc-d266-4497-bdb3-df182328bdcb",
     "JMOL-BAUT-01": "fa62871d-cb66-4af4-8e13-4dcc1c12b7ce",
@@ -34,10 +34,13 @@
     "JMOL-DIFU-04",
     "JMOL-DIFU-05",
     "JMOL-DIFU-06",
+    "JMOL-DIFU-PARVULOS",
     "JMOL-INDICE-BAUT",
+    "JMOL-INDICE-DIFU",
     "JMOL-MATR-01",
     "JMOL-MATR-02",
-    "JMOL-MATR-03"
+    "JMOL-MATR-03",
+    "JMOL-MIXTO-04"
   ],
   "uploaded_sources": {
     "004298571_01033.jpg": {
@@ -13119,6 +13122,581 @@
       "source_id": "97000b95-3d1f-4857-ae8d-b74f4d8d095a",
       "notebook_id": "d974c19c-6a6d-46f2-8f29-e996af323d67",
       "timestamp": "2026-10-31T23:04:16.254821+00:00"
+    },
+    "004298571_00551.jpg": {
+      "source_id": "9f50927a-c26c-4b50-a9cb-7471f264a1f7",
+      "notebook_id": "d974c19c-6a6d-46f2-8f29-e996af323d67",
+      "timestamp": "2026-10-31T23:04:21.406313+00:00"
+    },
+    "004298571_00552.jpg": {
+      "source_id": "ec66fa5b-ecff-4e3b-8b6d-41f2a7b2ede9",
+      "notebook_id": "d974c19c-6a6d-46f2-8f29-e996af323d67",
+      "timestamp": "2026-10-31T23:04:26.122547+00:00"
+    },
+    "004298571_00553.jpg": {
+      "source_id": "4c72d0f7-ca93-4f18-9fd3-72ffd178b41c",
+      "notebook_id": "d974c19c-6a6d-46f2-8f29-e996af323d67",
+      "timestamp": "2026-10-31T23:04:31.570784+00:00"
+    },
+    "004298571_01540.jpg": {
+      "source_id": "e9df4ef4-e5c2-4787-bf2e-f7a2b637d3bc",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:04:37.082068+00:00"
+    },
+    "004298571_01541.jpg": {
+      "source_id": "f7f6c8f8-5f0d-4dfb-a4a5-b0b498ee99ee",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:04:41.753925+00:00"
+    },
+    "004298571_01542.jpg": {
+      "source_id": "75f0ed9e-0dd0-40ea-a524-bb2b6905c140",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:04:47.126393+00:00"
+    },
+    "004298571_01543.jpg": {
+      "source_id": "aa985204-de39-42e0-aaca-99608662bcdf",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:04:52.476346+00:00"
+    },
+    "004298571_01544.jpg": {
+      "source_id": "7ac5c93b-a985-4ac0-9011-a6dd50e90bf5",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:04:57.543994+00:00"
+    },
+    "004298571_01545.jpg": {
+      "source_id": "280e8466-1191-42ae-9a1e-2088b603384c",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:02.544157+00:00"
+    },
+    "004298571_01546.jpg": {
+      "source_id": "ac6d00a2-4816-4a1e-89c1-e0e40d09cda9",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:07.857866+00:00"
+    },
+    "004298571_01547.jpg": {
+      "source_id": "6e4ed8b7-15f0-4d66-8876-357d81105356",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:13.386232+00:00"
+    },
+    "004298571_01548.jpg": {
+      "source_id": "c3264974-f5e5-40a7-94d8-7f548f15bbe4",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:18.684156+00:00"
+    },
+    "004298571_01549.jpg": {
+      "source_id": "620de2cc-e85d-4430-977e-75611005b6f3",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:23.725999+00:00"
+    },
+    "004298571_01550.jpg": {
+      "source_id": "04c0d9b8-2f8f-42ef-b64a-d0088742dc77",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:28.723525+00:00"
+    },
+    "004298571_01551.jpg": {
+      "source_id": "19feb9cb-23a4-4c40-9240-b6283a4063bf",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:34.083430+00:00"
+    },
+    "004298571_01552.jpg": {
+      "source_id": "b0f87766-7cb5-44f2-977f-4e19a0895ee5",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:39.057092+00:00"
+    },
+    "004298571_01553.jpg": {
+      "source_id": "ba87f4fb-d876-48d5-9c38-b80f69c4cd01",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:44.259889+00:00"
+    },
+    "004298571_01554.jpg": {
+      "source_id": "afa8d532-203c-4619-bef6-a15408886126",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:49.781752+00:00"
+    },
+    "004298571_01555.jpg": {
+      "source_id": "d89a83e5-9b33-4efc-a5f0-887c941e6768",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:05:55.206776+00:00"
+    },
+    "004298571_01556.jpg": {
+      "source_id": "f6ae7433-9d59-4a43-bb8c-c1479a164573",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:06:00.514447+00:00"
+    },
+    "004298571_01557.jpg": {
+      "source_id": "2e06f021-2e11-4e16-9cff-7fe24c476b63",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:06:05.857558+00:00"
+    },
+    "004298571_01558.jpg": {
+      "source_id": "14c1f74c-369e-4894-83eb-5c529bc59cba",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:06:10.766479+00:00"
+    },
+    "004298571_01559.jpg": {
+      "source_id": "d50ddaa0-907d-493d-b610-4d6f8189bd85",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:06:15.723388+00:00"
+    },
+    "004298571_01560.jpg": {
+      "source_id": "dd3b9029-e7c5-4f4e-a2b9-03da9ede46e8",
+      "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+      "timestamp": "2026-10-31T23:06:20.926932+00:00"
+    },
+    "004298570_02429.jpg": {
+      "source_id": "9cf227bf-d98f-4fa7-aba2-169800e6c51c",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:26.053193+00:00"
+    },
+    "004298570_02430.jpg": {
+      "source_id": "7aa66e10-b71c-4c26-886f-5cba82d55e7e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:31.040283+00:00"
+    },
+    "004298570_02431.jpg": {
+      "source_id": "d3802b83-1ece-4538-a8e1-c26f97acae1b",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:36.406974+00:00"
+    },
+    "004298570_02432.jpg": {
+      "source_id": "38112d08-c950-496a-96a2-dc66c2e9ca66",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:41.891724+00:00"
+    },
+    "004298570_02433.jpg": {
+      "source_id": "2eddd205-2418-42dd-874f-edb20d9a6613",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:47.373800+00:00"
+    },
+    "004298570_02434.jpg": {
+      "source_id": "ce20748c-d937-4a2b-a759-4443655e6fea",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:52.769159+00:00"
+    },
+    "004298570_02435.jpg": {
+      "source_id": "5d261393-5410-495e-a660-dc34e0a86c90",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:06:58.017451+00:00"
+    },
+    "004298570_02436.jpg": {
+      "source_id": "4b57a6f9-78da-45f6-9704-f5943939e65c",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:03.486830+00:00"
+    },
+    "004298570_02437.jpg": {
+      "source_id": "c0ab6e7a-7363-4c9e-bc22-bbf5138f769d",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:08.794863+00:00"
+    },
+    "004298570_02438.jpg": {
+      "source_id": "64666808-9c7d-4329-8642-6ee2779f60fb",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:14.220876+00:00"
+    },
+    "004298570_02439.jpg": {
+      "source_id": "36010e2e-e00b-4700-abca-a53bccc47d25",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:19.678021+00:00"
+    },
+    "004298570_02440.jpg": {
+      "source_id": "136269bf-bb5f-45cf-a2cf-b08d65acec8e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:24.939259+00:00"
+    },
+    "004298570_02441.jpg": {
+      "source_id": "d66884fd-260c-43c6-b04b-60f93d77efb1",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:30.466709+00:00"
+    },
+    "004298570_02442.jpg": {
+      "source_id": "230025e8-bccf-462b-bbcb-4781e9c0fcfe",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:35.681326+00:00"
+    },
+    "004298570_02443.jpg": {
+      "source_id": "004dd67d-4d6e-4fb2-adf9-5d2f0570cd37",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:40.810766+00:00"
+    },
+    "004298570_02444.jpg": {
+      "source_id": "ad5a2259-803a-4eaa-b6f5-de2465f74b7f",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:46.223946+00:00"
+    },
+    "004298570_02445.jpg": {
+      "source_id": "298c60b6-a108-4dfa-8e01-c5840132ce41",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:51.925754+00:00"
+    },
+    "004298570_02446.jpg": {
+      "source_id": "f8657c1f-7d57-4b59-aadf-8417b6be21f0",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:07:57.264911+00:00"
+    },
+    "004298570_02447.jpg": {
+      "source_id": "0302743a-8613-471c-8661-7aecd7ee4fa3",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:02.730621+00:00"
+    },
+    "004298570_02448.jpg": {
+      "source_id": "c3444611-5ca1-44eb-afe5-ae5272e02d79",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:08.025550+00:00"
+    },
+    "004298570_02449.jpg": {
+      "source_id": "4c5bd540-6d64-4123-be09-8aca63a84d6d",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:13.559144+00:00"
+    },
+    "004298570_02450.jpg": {
+      "source_id": "8fb90825-4006-4a7e-bac8-c235eae5bbe9",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:18.780940+00:00"
+    },
+    "004298570_02451.jpg": {
+      "source_id": "2ef2c4f7-145f-4e1a-a260-b0f2b88a06f8",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:24.045621+00:00"
+    },
+    "004298570_02452.jpg": {
+      "source_id": "ed74468f-6803-464b-b272-adbaab95b428",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:29.955175+00:00"
+    },
+    "004298570_02453.jpg": {
+      "source_id": "a9ed3e57-8554-46c8-a1bf-fc72cc07e027",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:35.500306+00:00"
+    },
+    "004298570_02454.jpg": {
+      "source_id": "c73a8931-bb03-4a83-b066-f56b579fd2ff",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:40.740854+00:00"
+    },
+    "004298570_02455.jpg": {
+      "source_id": "02139f3d-a67c-495b-a788-f39257c83cf4",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:45.957300+00:00"
+    },
+    "004298570_02456.jpg": {
+      "source_id": "adc93d0d-ca9b-43c7-a7da-4edb07efe2de",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:51.152244+00:00"
+    },
+    "004298570_02457.jpg": {
+      "source_id": "f9e07c31-4542-4e66-889f-b0ec5be6196b",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:08:56.542713+00:00"
+    },
+    "004298570_02458.jpg": {
+      "source_id": "4871b190-ff40-4e96-9213-5061f4d2d06c",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:01.667738+00:00"
+    },
+    "004298570_02459.jpg": {
+      "source_id": "8e447bfd-f306-4108-9e1c-e9d115b09b20",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:07.268901+00:00"
+    },
+    "004298570_02460.jpg": {
+      "source_id": "1a9ae37b-75a7-4492-8d33-5a1e501695aa",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:12.306394+00:00"
+    },
+    "004298570_02461.jpg": {
+      "source_id": "90993520-4d68-47ac-b4cf-7f337f98b88a",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:17.816939+00:00"
+    },
+    "004298570_02462.jpg": {
+      "source_id": "59313ba1-1560-47e9-86ae-74b421bfae07",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:22.611364+00:00"
+    },
+    "004298570_02463.jpg": {
+      "source_id": "a00fb6cf-47c8-414c-95a8-bf85044aabc2",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:28.149107+00:00"
+    },
+    "004298570_02464.jpg": {
+      "source_id": "87e7c1e5-9e0d-41f6-8b08-68f79363cf3a",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:33.481179+00:00"
+    },
+    "004298570_02465.jpg": {
+      "source_id": "a0f6a15a-88e0-4af0-b698-9850588a8232",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:38.514530+00:00"
+    },
+    "004298570_02466.jpg": {
+      "source_id": "40e31427-a85d-43da-8ab6-a051518d3bb6",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:43.526628+00:00"
+    },
+    "004298570_02467.jpg": {
+      "source_id": "7aeda9d7-28e1-41d9-b328-89c502ebda8d",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:48.347595+00:00"
+    },
+    "004298570_02468.jpg": {
+      "source_id": "789f7759-ce35-4d67-977e-39064a79ef43",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:53.100662+00:00"
+    },
+    "004298570_02469.jpg": {
+      "source_id": "0d829587-6ef8-4ff7-96b5-157d8b7c127a",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:09:58.264454+00:00"
+    },
+    "004298570_02470.jpg": {
+      "source_id": "eb46262b-4077-46dc-a075-8e7cb6c085ab",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:03.426131+00:00"
+    },
+    "004298570_02471.jpg": {
+      "source_id": "8f253713-2169-404a-a225-f36215050694",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:08.657556+00:00"
+    },
+    "004298570_02472.jpg": {
+      "source_id": "95d22492-4b45-4bf4-b9cb-e1fec67fe98e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:14.053052+00:00"
+    },
+    "004298570_02473.jpg": {
+      "source_id": "b9d14b65-043c-4c47-a4d0-216af2761f77",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:19.410305+00:00"
+    },
+    "004298570_02474.jpg": {
+      "source_id": "8fabc172-1472-4067-ac59-5bf43840f1e5",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:24.441900+00:00"
+    },
+    "004298570_02475.jpg": {
+      "source_id": "f1d107fc-a89e-4b07-9b4b-f8dbbd947893",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:29.626449+00:00"
+    },
+    "004298570_02476.jpg": {
+      "source_id": "e6cdaa8a-cd4f-41ee-a9f2-ba2208a8371f",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:34.874303+00:00"
+    },
+    "004298570_02477.jpg": {
+      "source_id": "aa05f7d8-c229-498d-a2bb-fa0c6a76b946",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:40.759098+00:00"
+    },
+    "004298570_02478.jpg": {
+      "source_id": "3de42106-ac82-4837-ac7a-07835a556ace",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:45.865808+00:00"
+    },
+    "004298570_02479.jpg": {
+      "source_id": "e1c4d4e6-86da-451c-bc1c-d1ad55a71974",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:51.241794+00:00"
+    },
+    "004298570_02480.jpg": {
+      "source_id": "8cf3087b-afba-4a2f-b8d3-88a65c3f2467",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:10:57.013612+00:00"
+    },
+    "004298570_02481.jpg": {
+      "source_id": "746077fa-31f1-4587-9b02-8f23e39cb94f",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:02.031956+00:00"
+    },
+    "004298570_02482.jpg": {
+      "source_id": "3a5b074c-0aed-4054-9d9d-4da9e279df1c",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:07.413153+00:00"
+    },
+    "004298570_02483.jpg": {
+      "source_id": "c7754eb5-474c-43ea-bef4-595a4202bd0e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:12.450856+00:00"
+    },
+    "004298570_02484.jpg": {
+      "source_id": "c7ba6781-2803-4ec8-8ed7-c9c72d915b57",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:17.744228+00:00"
+    },
+    "004298570_02485.jpg": {
+      "source_id": "9704e6b3-7575-454c-994c-9693ca11637e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:23.207921+00:00"
+    },
+    "004298570_02486.jpg": {
+      "source_id": "34870240-a5d6-4247-97b2-d10480bf3bea",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:28.317295+00:00"
+    },
+    "004298570_02487.jpg": {
+      "source_id": "a5beddea-2fe4-404b-8c03-4feef99ae843",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:33.657382+00:00"
+    },
+    "004298570_02488.jpg": {
+      "source_id": "7051279b-23d5-4184-ba89-050f44c73768",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:38.860082+00:00"
+    },
+    "004298570_02489.jpg": {
+      "source_id": "e98a564c-5c94-4d53-8e55-1dcf4158ef72",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:44.223698+00:00"
+    },
+    "004298570_02490.jpg": {
+      "source_id": "4a2c7ca0-988f-44a0-a855-b58a29c59c27",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:49.620521+00:00"
+    },
+    "004298570_02491.jpg": {
+      "source_id": "765ca260-fdc9-4148-b10d-1c7453484513",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:11:55.319012+00:00"
+    },
+    "004298570_02492.jpg": {
+      "source_id": "4fa3b774-c44f-4abe-81a6-a33fd791ccaf",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:00.868039+00:00"
+    },
+    "004298570_02493.jpg": {
+      "source_id": "c9c3f55c-ce87-4471-830b-2e45251d2d61",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:06.018763+00:00"
+    },
+    "004298570_02494.jpg": {
+      "source_id": "25192b07-b738-47b5-aff1-793cc7eec794",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:11.723128+00:00"
+    },
+    "004298570_02495.jpg": {
+      "source_id": "6d334e33-7298-456a-ab0a-6e07a739756f",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:16.757906+00:00"
+    },
+    "004298570_02496.jpg": {
+      "source_id": "d004135f-ceff-4b7b-84b2-9bb391294ec6",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:21.755976+00:00"
+    },
+    "004298570_02497.jpg": {
+      "source_id": "3b5fca1c-f72b-4149-8b12-6175d753650e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:27.887216+00:00"
+    },
+    "004298570_02498.jpg": {
+      "source_id": "86718f56-4ba8-4454-8406-277d1782acc8",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:32.988135+00:00"
+    },
+    "004298570_02499.jpg": {
+      "source_id": "dafd524d-5e29-499f-95f8-667f7af06dde",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:38.355882+00:00"
+    },
+    "004298570_02500.jpg": {
+      "source_id": "91be8523-26b7-49ce-abff-912b8aa8670f",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:43.304099+00:00"
+    },
+    "004298570_02501.jpg": {
+      "source_id": "255b42a5-c1c7-482f-9933-b8dd72d041f7",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:48.654314+00:00"
+    },
+    "004298570_02502.jpg": {
+      "source_id": "b966bef7-834e-4a78-b912-a8e105611f5a",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:53.801806+00:00"
+    },
+    "004298570_02503.jpg": {
+      "source_id": "6af34a3d-1e0e-4e96-9e0b-0a6e8c062a60",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:12:59.648653+00:00"
+    },
+    "004298570_02504.jpg": {
+      "source_id": "54de9451-90f7-476c-bfd4-9d6aebc9710d",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:04.600828+00:00"
+    },
+    "004298570_02505.jpg": {
+      "source_id": "e384b50a-78b7-4ade-86c1-fdeaabf84ab7",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:10.301500+00:00"
+    },
+    "004298570_02506.jpg": {
+      "source_id": "1525a6c8-d04d-4f3e-b9b8-8a76107619c1",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:16.259421+00:00"
+    },
+    "004298570_02507.jpg": {
+      "source_id": "370994f0-99dd-492b-9d01-89b005065aa6",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:22.083364+00:00"
+    },
+    "004298570_02508.jpg": {
+      "source_id": "7d45aae9-317e-4f0b-8eb2-7eb9ad442bc6",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:27.153487+00:00"
+    },
+    "004298570_02509.jpg": {
+      "source_id": "2ddec2f6-f6e3-4a53-91be-58132a381302",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:32.485051+00:00"
+    },
+    "004298570_02510.jpg": {
+      "source_id": "4b7fd87a-5a40-44b2-b06c-9ceb3f36de23",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:37.659084+00:00"
+    },
+    "004298570_02511.jpg": {
+      "source_id": "6545e67a-fccd-454a-92ab-a31f109d492b",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:42.878102+00:00"
+    },
+    "004298570_02512.jpg": {
+      "source_id": "d36a6500-9ea7-4a62-a997-1066dbf78eb9",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:48.218191+00:00"
+    },
+    "004298570_02513.jpg": {
+      "source_id": "03ea0963-b709-4f5e-aa73-849e9d219178",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:53.473049+00:00"
+    },
+    "004298570_02514.jpg": {
+      "source_id": "4baca294-58b1-498b-be75-85f70e096b68",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:13:59.082300+00:00"
+    },
+    "004298570_02515.jpg": {
+      "source_id": "fea24fee-4104-42e4-92ab-f6c209d8ad9d",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:14:04.052999+00:00"
+    },
+    "004298570_02516.jpg": {
+      "source_id": "ecf661aa-670e-4ce5-94fc-a456795a0a3e",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:14:09.338465+00:00"
+    },
+    "004298570_02517.jpg": {
+      "source_id": "e4c8bb9b-e7b3-48a9-aef9-421ba4a993ef",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:14:14.587328+00:00"
+    },
+    "004298570_02518.jpg": {
+      "source_id": "d21c8be0-da37-4744-91a4-0eafaa2536fb",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:14:19.890799+00:00"
+    },
+    "004298570_02519.jpg": {
+      "source_id": "05dbf2de-58e1-4bbf-b8c1-ae52d3f0f6af",
+      "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+      "timestamp": "2026-10-31T23:14:24.936846+00:00"
     }
   }
 }

@@ -26,8 +26,8 @@ Organizar, coordinar y ejecutar mediante agentes especializados la ingesta masiv
   1. Survey & Corpus Mapping [done]
   2. Milestone 1: Ingestion Monitoring & Completion [in-progress]
   3. Milestone 2: Verification E2E & Integrity Forensics [pending]
-- **Current phase**: Milestone 1 (Ingestion Supervision)
-- **Current focus**: Supervising background upload execution and checkpoint progression
+- **Current phase**: Milestone 2 (Independent E2E Verification & Forensic Integrity)
+- **Current focus**: Executing independent verification harness (`verify_sanjuan_parroquial_sources.py`), multi-agent review, challenger stress-testing, and forensic audit
 
 ## 🔒 Key Constraints
 - NEVER write, modify, or create source code files directly.
@@ -46,10 +46,9 @@ Organizar, coordinar y ejecutar mediante agentes especializados la ingesta masiv
 - Updated: 2026-10-31T18:45:24Z
 
 ## Key Decisions Made
-- Architecture: Project Pattern with Phase 0 (Survey) completed and M1 (Ingestion Supervision) underway.
-- Phase 0 findings: All 2,731 files valid on disk, all 18 notebooks created in Google Cloud, pilot verified, max sources 277 <= 300.
-- PROJECT.md authored and cross-check passed.
-- Dispatched `worker_jmol_m1` to supervise background task-2618, monitor checkpoint updates, and handle session refresh if needed.
+- Architecture: Project Pattern with Phase 0 (Survey) completed and M1 (Ingestion Supervision) successfully closed.
+- Milestone 1: 100% of 2,731 sources uploaded across all 18 notebooks. Exit code 0 on pipeline script. Checkpoint validated. Gate M1 PASSED.
+- Milestone 2: Independent verification harness, multi-agent review, challenger stress-testing, and forensic integrity audit.
 
 ## Team Roster
 | Agent | Type | Work Item | Status | Conv ID |
@@ -57,12 +56,13 @@ Organizar, coordinar y ejecutar mediante agentes especializados la ingesta masiv
 | explorer_jmol_1 | teamwork_explorer | Filesystem & Catalog Survey | completed | e92a0648-c279-4d50-bc48-90b31d3a16fc |
 | explorer_jmol_2 | teamwork_explorer | Pipeline & Checkpoint Survey | completed | 4513b79a-3143-4676-b3da-feda02de9bbe |
 | spec_miner_jmol_1 | teamwork_spec_miner | Specifications & Boundaries Survey | completed | 59fed8c5-ef77-4f16-b02e-a20ee5745c57 |
-| worker_jmol_m1 | teamwork_worker | Ingestion Pipeline Supervision | in-progress | 1252f1ad-742a-44a4-bbcf-3111d58b2b04 |
+| worker_jmol_m1 | teamwork_worker | Ingestion Pipeline Supervision | completed | 1252f1ad-742a-44a4-bbcf-3111d58b2b04 |
+| worker_jmol_m2 | teamwork_worker | E2E Verification Runner | in-progress | c8ec4e43-a477-4f5f-ac81-df48f6cd8f7e |
 
 ## Succession Status
 - Succession required: no
-- Spawn count: 4 / 16
-- Pending subagents: 1252f1ad-742a-44a4-bbcf-3111d58b2b04
+- Spawn count: 5 / 16
+- Pending subagents: c8ec4e43-a477-4f5f-ac81-df48f6cd8f7e
 - Predecessor: none
 - Successor: not yet spawned
 

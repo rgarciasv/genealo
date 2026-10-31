@@ -39,12 +39,12 @@ Supervise and monitor the background ingestion pipeline for San Juan del Molinil
 - c:\TRABAJOS\personal\genealo\.agents\teamwork\worker_jmol_m1\handoff.md — 5-component handoff report
 
 ## Change Tracker
-- **Files modified**: progress.md, analysis.md, DISPATCH.md, BRIEFING.md
-- **Build status**: Pipeline active (PID 181048 / task-566)
-- **Pending issues**: Supervise active upload across JMOL-DIFU-06 and 3 remaining notebooks to reach 2,731 sources.
+- **Files modified**: progress.md, analysis.md, DISPATCH.md, BRIEFING.md, handoff.md
+- **Build status**: Milestone 1 Complete (Pipeline finished exit code 0)
+- **Pending issues**: None. Ready for Milestone 2.
 
 ## Quality Status
-- **Build/test result**: 2,460/2,731 sources verified in checkpoint (90.1%); JMOL-DIFU-05 completed (99/99); JMOL-DIFU-06 actively uploading (45/177).
+- **Build/test result**: 2,731/2,731 sources verified in checkpoint (100.0%); 18/18 notebooks completed; 0 discrepancies against catalogo_corpus.json.
 - **Lint status**: N/A
 - **Tests added/modified**: Independent verification harness to be run in M2.
 
