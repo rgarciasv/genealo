@@ -347,6 +347,25 @@
   - Total trazabilidad para la capa de evidencia documental de ArcadeDB.
 - **Veredicto:** **ÉXITO TOTAL (100% de coherencia codicológica alcanzada)**. Cuadernos reestructurados y balance documental consolidado.
 
+---
+
+## 🔬 Experimento 22: Descubrimiento Codicológico en `JMOL-INDICE-BAUT` — Identificación del Índice de Casados (1716–1920)
+- **Fecha:** 2026-11-01
+- **Objetivo:** Inspección y vaciado temático del cuaderno `JMOL-INDICE-BAUT` (`e26e1dd5-a9aa-469a-80af-3d52603bbdc0`, rollo `004298570`, Elemento 19, 111 fotogramas) mediante consultas asistidas por NotebookLM Pro.
+- **Hallazgo y Desarticulación Codicológica:**
+  - El volumen físico fue catalogado por FamilySearch de manera genérica y reduccionista como *«Índice Bautismos Vol. 6 Item 19 (1750 a 1914)»*.
+  - La inspección pericial del contenido demostró que el volumen es en realidad un **Códice Bífido de Índices Parroquiales**:
+    1. **Sección 1 (Bautismos 1750–1914):** Fotogramas `004298570_02661.jpg` a `02748.jpg` (88 imágenes). Organizado alfabéticamente por nombre de pila de los bautizados de la *A* a la *Z*.
+    2. **Sección 2 (Casados 1716–1920):** Fotogramas `004298570_02749.jpg` a `02766.jpg` (18 imágenes). Encabezado formal e inequívoco: *«Índice de casados en la Parroquia de San Juan Bautista de San Juan del Molinillo desde el año 1716»*. Disposición cronológica detallada con nombres de ambos contrayentes, estado civil previo (soltero/viudo), año, número de libro y folio manuscrito.
+- **Trascendencia Genealógica:**
+  - El índice de casados arranca en **1716**, fecha exacta de la erección de San Juan del Molinillo como parroquia independiente de Navalmoral de la Sierra, y cubre de forma ininterrumpida más de dos siglos de enlaces matrimoniales (hasta c. 1918–1920).
+  - Constituye la llave de acceso y el mapa director para auditar, cotejar y ordenar las actas matrimoniales de Molinillo y de sus dos anejos históricos (Navandrinal y El Villarejo), permitiendo localizar cualquier boda en segundos antes de consultar los libros sacramentales completos (`JMOL-MATR-01` a `03`).
+- **Actualización Metodológica:**
+  - Se actualiza `catalogo_corpus.json` reasignando los fotogramas `02749` a `02766` como `INDICE_MATRIMONIOS`.
+  - Se documenta en el inventario de anomalías y en el contexto maestro como ejemplo paradigmático de la necesidad de inspección de cascarones asistida por NotebookLM antes de la transcripción masiva (`[L-34]`).
+- **Veredicto:** **DESCUBRIMIENTO VALIDADO Y CERTIFICADO**.
+
+
 
 
 

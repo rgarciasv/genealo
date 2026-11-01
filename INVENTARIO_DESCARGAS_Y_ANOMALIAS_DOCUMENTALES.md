@@ -179,7 +179,11 @@ Hasta el primer tercio del siglo XVIII, San Juan del Molinillo, Navandrinal y El
 * **Elemento 16 (`004298570_02050.jpg` a `004298570_02428.jpg` — 379 imgs):** Libro 3º de Bautismos (1801–1852).
 * **Elemento 17 (`004298570_02429.jpg` a `004298570_02519.jpg` — 91 imgs):** Libro Mixto Nº 4 (1842–1850). Secciones de Matrimonios (1842–49), Defunciones (1843–49) y Bautismos (1847–48).
 * **Elemento 18 (`004298570_02520.jpg` a `004298570_02658.jpg` — 139 imgs):** Libro 5º de Bautismos (1851–1862).
-* **Elemento 19 (`004298570_02659.jpg` a `004298570_02769.jpg` — 111 imgs):** **Índice General Alfabético de Bautismos (1750–1914)**. Vaciado por apellido con año, tomo, folio y partida. Cierre de la película.
+* **Elemento 19 (`004298570_02659.jpg` a `004298570_02769.jpg` — 111 imgs) — Códice Bífido de Índices (Bautismos + Casados):**
+  - **Carátula técnica de filmación (`004298570_02659.jpg` y `02660.jpg`):** Catalogación genérica errónea de FamilySearch como *«Índice Bautismos Vol. 6 Item 19 (1750 a 1914)»*.
+  - **Sección 1: Índice General Alfabético de Bautismos (`004298570_02661.jpg` a `004298570_02748.jpg` — 88 imgs):** Bautismos de 1750 a 1914 organizados alfabéticamente por nombre de pila de la *A* a la *Z*.
+  - **Sección 2: Índice Cronológico de Casados (`004298570_02749.jpg` a `004298570_02766.jpg` — 18 imgs):** Bajo el encabezado formal *«Índice de casados en la Parroquia de San Juan Bautista de San Juan del Molinillo desde el año 1716»*. Abarca desde 1716 hasta c. 1918–1920 en riguroso orden cronológico, indicando contrayentes, estado civil previo (soltero/viudo), año, libro y folio. (Cubre prácticamente toda la historia parroquial independiente de casados).
+  - **Cierre del rollo:** `004298570_02767.jpg` a `02769.jpg`.
 
 ---
 
@@ -371,6 +375,14 @@ Para sortear este vacío decimonónico y restituir las uniones conyugales en el 
    - Dada la intensa endogamia y cercanía geográfica en el Alto Alberche, una proporción significativa de vecinos de Navarredondilla contrajo matrimonio con cónyuges de San Juan del Molinillo, Navandrinal, El Villarejo o Navalmoral de la Sierra. Dado que las series de matrimonios de San Juan del Molinillo (`004298571_00001.jpg` a `00526.jpg`, 1716–1899) y Navalmoral de la Sierra sí están filmadas y preservadas, el cruce canónico de contrayentes forasteros permite reconstruir gran parte de los enlaces.
 3. **Registro Civil de Navarredondilla (desde 1871):**
    - Para el último tercio del siglo XIX (1871–1902), las actas civiles de matrimonio del Juzgado de Paz / Registro Civil suplen plenamente la omisión de los libros eclesiásticos, aportando además datos completos de los cuatro abuelos de ambos contrayentes.
+
+---
+
+### 5.10. Estructura Bífida de Índices en San Juan del Molinillo (DGS 004298570, Elemento 19): Inclusión del Índice de Casados (1716–1920)
+Aunque el rótulo de FamilySearch etiqueta el Elemento 19 de forma reduccionista como *"Índice Bautismos Vol. 6 (1750 a 1914)"*, el análisis empírico del volumen reveló que el libro es en realidad un **índice bífido**:
+* **Bautismos (1750–1914):** Fotogramas `004298570_02661.jpg` a `004298570_02748.jpg` (alfabético por nombre de pila de la A a la Z).
+* **Casados (1716–1920):** Fotogramas `004298570_02749.jpg` a `004298570_02766.jpg` bajo la rúbrica formal *"Índice de casados en la Parroquia de San Juan Bautista de San Juan del Molinillo desde el año 1716"*. Registro cronológico fundamental que incluye nombres de ambos contrayentes, estado civil previo (solteros/viudos), año, libro y folio manuscrito.
+* **Impacto Genealógico:** Constituye la llave maestra de localización para los matrimonios de Molinillo y de sus anejos Navandrinal y El Villarejo durante más de dos siglos (1716–1920), sirviendo de guía de acceso rápido antes de acudir a los libros sacramentales completos `JMOL-MATR-01`, `02` y `03`.
 
 ---
 

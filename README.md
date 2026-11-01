@@ -105,7 +105,7 @@ El repositorio gestiona **23 cuadernos de trabajo especializados** en Google Not
 * **`NRDL-DIFU-S17` y `NRDL-DIFU-01` a `05`:** Serie de difuntos (1631–1902). `NRDL-DIFU-S17 (1631-1701)` unifica 132 fotogramas del siglo XVII desarticulados del códice mixto.
 
 ### B. Serie San Juan del Molinillo (`JMOL`) — 2.731 Imágenes
-* **`JMOL-BAUT-01` a `05` + `JMOL-INDICE-BAUT`:** Serie completa de Bautismos (1.080 fuentes, 100% completada y verificada).
+* **`JMOL-BAUT-01` a `05` + `JMOL-INDICE-BAUT`:** Serie completa de Bautismos (1.080 fuentes, 100% completada y verificada). *(Nota codicológica: `JMOL-INDICE-BAUT` es un códice bífido que contiene tanto el Índice Alfabético de Bautismos 1750–1914 en fotogramas `02661`–`02748`, como el crucial **Índice Cronológico de Casados 1716–1920** en fotogramas `02749`–`02766`)*.
 * **`JMOL-MATR-01` a `03`:** Matrimonios completos (1697–1875).
 * **`JMOL-DIFU-01` a `06` + `JMOL-DIFU-PARVULOS` + `JMOL-INDICE-DIFU`:** Serie de Defunciones (1678–1876).
 * **`JMOL-MIXTO-04`:** Documentación extraordinaria y padrones parroquiales.

@@ -102,16 +102,29 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
 | **20** | **`NRDL-MATR-02`** | `c1ffffaf-c722-4ee9-9093-21194a822e69` | `NRDL` | 70 | **Verificado E2E (READY).** Matrimonios Navarredondilla. |
 | **21** | **`NRDL-DIFU-S17 (1631-1701)`** | `14cf46ae-7d73-4f2c-b001-5e5de0f29c6c` | `NRDL` | 132 | **Verificado E2E (READY).** Defunciones Navarredondilla (1631–1701, DGS 004306112). 132 imágenes (70 originales + 62 añadidas [57 puras + 5 híbridas]). Renombrado desde `NRDL-MIXTO-01` / `NRDL-DIFU-S17-B` bajo `[L-30]`. |
 
-### B. Estado de Ingesta Masiva de San Juan del Molinillo (`JMOL`) (En Curso)
-- **Total corpus fotográfico JMOL:** 2.731 imágenes en 18 cuadernos parroquiales puros bajo regla `[L-30]`.
-- **Progreso en tiempo real:** Más de 950 imágenes subidas (>35% completado) sin errores.
-- **Cuadernos 100% finalizados:**
-  1. `JMOL-BAUT-01` (`004298570_01599.jpg` a `01773.jpg`): 175/175 fuentes READY.
-  2. `JMOL-BAUT-02` (`004298570_01774.jpg` a `02049.jpg`): 276/276 fuentes READY.
-  3. `JMOL-BAUT-03` (`004298570_02050.jpg` a `02239.jpg`): 190/190 fuentes READY.
-  4. `JMOL-BAUT-04` (`004298570_02240.jpg` a `02428.jpg`): 189/189 fuentes READY.
-  5. `JMOL-DIFU-03` (`004298571_01033.jpg` a `01049.jpg`): 17/17 fuentes READY.
-  6. `JMOL-BAUT-05`: En fase final de culminación.
+### B. Corpus Certificado de San Juan del Molinillo (`JMOL`) (100% Ingestado y Verificado E2E)
+- **Total corpus fotográfico JMOL:** **2.731 imágenes en 18 cuadernos parroquiales puros** bajo regla `[L-30]` (100% de fuentes en estado `READY`, 0 faltantes, 0 duplicados, certificado por auditor independiente).
+- **Desglose de los 18 cuadernos certificados:**
+  1. `JMOL-BAUT-01` (`fa62871d-cb66-4af4-8e13-4dcc1c12b7ce`): 175/175 fuentes READY (1715–1752, Libro 1º).
+  2. `JMOL-BAUT-02` (`ad39ba03-d91f-4357-a4cd-bc845ff5f5d4`): 276/276 fuentes READY (1752–1800, Libro 2º).
+  3. `JMOL-BAUT-03` (`8816402f-ccce-4ebe-95a1-eb337e8a367a`): 190/190 fuentes READY (1801–1826, Libro 3º-A).
+  4. `JMOL-BAUT-04` (`303c70ed-bdd5-4570-a19a-08ebb945bdf5`): 189/189 fuentes READY (1827–1852, Libro 3º-B).
+  5. `JMOL-BAUT-05` (`7f64917d-d8d1-45a0-b8c2-dfe0314a48d1`): 139/139 fuentes READY (1851–1862, Libro 5º).
+  6. `JMOL-INDICE-BAUT` (`e26e1dd5-a9aa-469a-80af-3d52603bbdc0`): 111/111 fuentes READY. **Códice Bífido de Índices:**
+     - *Sección Bautismos (1750–1914):* `02661.jpg` a `02748.jpg` (88 imágenes, orden alfabético por nombre de pila de la A a la Z).
+     - *Sección Matrimonios (1716–1920):* `02749.jpg` a `02766.jpg` (18 imágenes) bajo el título *«Índice de casados en la Parroquia de San Juan Bautista de San Juan del Molinillo desde el año 1716»*. Disposición cronológica de contrayentes, estado civil, año, libro y folio. Llave maestra de toda la serie matrimonial.
+  7. `JMOL-MATR-01` (`50e8d7d8-7afe-4d70-9a8e-e22cc2cc1101`): 194/194 fuentes READY (1716–1789, Libro 1º).
+  8. `JMOL-MATR-02` (`772135ac-4305-4a22-ad89-bf996f0ff37a`): 134/134 fuentes READY (1790–1852, Libro 2º).
+  9. `JMOL-MATR-03` (`07a61f80-24e6-484e-af57-ebe19d09960a`): 198/198 fuentes READY (1851–1899, Libro 3º).
+  10. `JMOL-DIFU-01` (`44aaf6f4-ef87-4740-8d34-bc661923df87`): 202/202 fuentes READY (1715–1764, Libro 1º de Adultos).
+  11. `JMOL-DIFU-02` (`9d0e8882-7d5f-4677-98f3-1913bbbefcc9`): 277/277 fuentes READY (1764–1848, Libro 2º de Adultos).
+  12. `JMOL-DIFU-03` (`a5d19fcc-d266-4497-bdb3-df182328bdcb`): 17/17 fuentes READY (1849–1851, Libro 3º).
+  13. `JMOL-DIFU-04` (`457361c1-70f8-4368-8e86-10b0beeb169f`): 214/214 fuentes READY (1851–1883, Libro 4º).
+  14. `JMOL-DIFU-05` (`bbb4a49c-90a4-4af1-8818-484fa158e929`): 99/99 fuentes READY (1872–1881, Libro 5º).
+  15. `JMOL-DIFU-06` (`de24a81e-df39-49ec-8ca0-63f23827f745`): 177/177 fuentes READY (1881–1892, Libro 6º).
+  16. `JMOL-DIFU-PARVULOS` (`d974c19c-6a6d-46f2-8f29-e996af323d67`): 27/27 fuentes READY (1632/1644–1680, Libro de Párvulos Difuntos, joya del siglo XVII).
+  17. `JMOL-INDICE-DIFU` (`34b553cd-c82d-4311-b5c6-bdaeb2451372`): 21/21 fuentes READY (1893–1907, Índice de Difuntos).
+  18. `JMOL-MIXTO-04` (`81eb6310-b70c-40db-9fb0-b0c1f364ce05`): 91/91 fuentes READY (1842–1850, Libro 4º Mixto sacramental).
 
 ### C. Balance Integral del Fondo de Matrimonios de Navarredondilla y Detección de Lagunas
 Tras la auditoría exhaustiva de los rollos DGS `004306112` y `004306113`, se constata que en FamilySearch solo existen **106 imágenes de matrimonios en todo el fondo microfilmado** de Navarredondilla:
