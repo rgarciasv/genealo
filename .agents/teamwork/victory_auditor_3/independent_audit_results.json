@@ -1,0 +1,36 @@
+﻿{
+    "timestamp":  "2026-11-01T01:40:50.0645414+01:00",
+    "catalog":  {
+                    "total_records":  2731,
+                    "unique_images":  2731,
+                    "l28_compliant":  2731,
+                    "l28_violations":  0,
+                    "discrepancies":  [
+
+                                      ]
+                },
+    "disk":  {
+                 "resolved":  2731,
+                 "missing":  0,
+                 "corrupt":  0,
+                 "total_gb":  2.846
+             },
+    "checkpoint":  {
+                       "notebooks_count":  18,
+                       "completed_count":  18,
+                       "sources_count":  2731,
+                       "missing_count":  0,
+                       "extra_count":  0,
+                       "invalid_source_uuids":  0,
+                       "invalid_notebook_uuids":  0
+                   },
+    "report":  {
+                   "overall_status":  "PASS",
+                   "total_expected":  2731,
+                   "total_actual":  2731,
+                   "total_ready":  2731,
+                   "failures":  [
+
+                                ]
+               }
+}

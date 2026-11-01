@@ -1,0 +1,65 @@
+﻿{
+    "auditor":  "auditor_jmol_1",
+    "catalog":  {
+                    "l28_regex_compliant":  2731,
+                    "per_notebook_counts":  {
+                                                "JMOL-INDICE-DIFU":  21,
+                                                "JMOL-DIFU-01":  202,
+                                                "JMOL-DIFU-03":  17,
+                                                "JMOL-MATR-01":  194,
+                                                "JMOL-MATR-03":  198,
+                                                "JMOL-MATR-02":  134,
+                                                "JMOL-DIFU-05":  99,
+                                                "JMOL-DIFU-06":  177,
+                                                "JMOL-DIFU-04":  214,
+                                                "JMOL-BAUT-02":  276,
+                                                "JMOL-BAUT-04":  189,
+                                                "JMOL-BAUT-03":  190,
+                                                "JMOL-INDICE-BAUT":  111,
+                                                "JMOL-DIFU-02":  277,
+                                                "JMOL-MIXTO-04":  91,
+                                                "JMOL-BAUT-01":  175,
+                                                "JMOL-DIFU-PARVULOS":  27,
+                                                "JMOL-BAUT-05":  139
+                                            },
+                    "total_records":  2731,
+                    "unique_images":  2731,
+                    "l28_regex_violations":  0
+                },
+    "physical_disk":  {
+                          "total_bytes":  3055563316,
+                          "jpeg_magic_bytes_valid":  2731,
+                          "total_gigabytes":  2.846,
+                          "corrupt_jpeg_count":  0,
+                          "zero_byte_count":  0,
+                          "orphan_files_count":  0,
+                          "missing_count":  0,
+                          "resolved_count":  2731
+                      },
+    "bijective_integrity":  {
+                                "disk_orphans":  0,
+                                "uuid_collisions":  0,
+                                "catalog_vs_checkpoint_diff":  0,
+                                "catalog_vs_disk_diff":  0
+                            },
+    "verification_report":  {
+                                "overall_status":  "PASS",
+                                "total_actual":  2731,
+                                "total_ready":  2731,
+                                "total_missing":  0,
+                                "total_expected":  2731
+                            },
+    "audit_timestamp":  "2026-11-01T00:30:20Z",
+    "checkpoint":  {
+                       "unique_source_uuids":  2731,
+                       "uploaded_sources_count":  2731,
+                       "unique_timestamps":  2731,
+                       "notebooks_count":  18,
+                       "invalid_uuids_count":  0,
+                       "completed_notebooks_count":  18,
+                       "missing_in_checkpoint_count":  0,
+                       "min_timestamp":  "2026-10-31T15:08:55.040300+00:00",
+                       "extra_in_checkpoint_count":  0,
+                       "max_timestamp":  "2026-11-01T00:03:04.098707+00:00"
+                   }
+}

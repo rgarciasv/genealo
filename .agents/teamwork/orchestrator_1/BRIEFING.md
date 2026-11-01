@@ -24,10 +24,10 @@ Organizar, coordinar y ejecutar mediante agentes especializados la ingesta masiv
 4. **Succession**: Threshold 16 spawns; dump soft handoff, cancel timers, spawn successor.
 - **Work items**:
   1. Survey & Corpus Mapping [done]
-  2. Milestone 1: Ingestion Monitoring & Completion [in-progress]
-  3. Milestone 2: Verification E2E & Integrity Forensics [pending]
-- **Current phase**: Milestone 2 (Independent E2E Verification & Forensic Integrity)
-- **Current focus**: Executing independent verification harness (`verify_sanjuan_parroquial_sources.py`), multi-agent review, challenger stress-testing, and forensic audit
+  2. Milestone 1: Ingestion Monitoring & Completion [done]
+  3. Milestone 2: Verification E2E & Integrity Forensics [done]
+- **Current phase**: Completed
+- **Current focus**: Synthesis, final reporting to parent sentinel, and team closure
 
 ## 🔒 Key Constraints
 - NEVER write, modify, or create source code files directly.
@@ -57,18 +57,24 @@ Organizar, coordinar y ejecutar mediante agentes especializados la ingesta masiv
 | explorer_jmol_2 | teamwork_explorer | Pipeline & Checkpoint Survey | completed | 4513b79a-3143-4676-b3da-feda02de9bbe |
 | spec_miner_jmol_1 | teamwork_spec_miner | Specifications & Boundaries Survey | completed | 59fed8c5-ef77-4f16-b02e-a20ee5745c57 |
 | worker_jmol_m1 | teamwork_worker | Ingestion Pipeline Supervision | completed | 1252f1ad-742a-44a4-bbcf-3111d58b2b04 |
-| worker_jmol_m2 | teamwork_worker | E2E Verification Runner | in-progress | c8ec4e43-a477-4f5f-ac81-df48f6cd8f7e |
+| worker_jmol_m2 | teamwork_worker | E2E Verification Runner | completed | c8ec4e43-a477-4f5f-ac81-df48f6cd8f7e |
+| worker_jmol_m2_remediation | teamwork_worker | Remediation & Final E2E Runner | completed | f7bc04c0-121c-4130-8b4b-3e8773950a41 |
+| reviewer_jmol_1 | teamwork_reviewer | Verification Report Reviewer | completed | 0f15bc2b-3c05-4867-a134-e1b40817248a |
+| reviewer_jmol_2 | teamwork_reviewer | Live Cloud State Reviewer | completed | 0366fb31-7f74-49bd-bd06-1ae433b1bc05 |
+| challenger_jmol_1 | teamwork_challenger | Live Cloud Adversarial Challenger | completed | 9e525101-387e-4db2-b003-d1ff769329b8 |
+| challenger_jmol_2 | teamwork_challenger | Filesystem & Catalog Adversarial Challenger | completed | c2bcc51b-9246-479c-b833-bb9d84e3ea70 |
+| auditor_jmol_1 | teamwork_auditor | Corpus Forensic Auditor | completed | 42757ebd-e858-4d04-b52c-9cce42a4ab91 |
 
 ## Succession Status
 - Succession required: no
-- Spawn count: 5 / 16
-- Pending subagents: c8ec4e43-a477-4f5f-ac81-df48f6cd8f7e
+- Spawn count: 11 / 16
+- Pending subagents: none
 - Predecessor: none
 - Successor: not yet spawned
 
 ## Active Timers
 - Heartbeat cron: efdbc414-905b-4b33-84ab-8e3f24e32ae8/task-24
-- Safety timer: efdbc414-905b-4b33-84ab-8e3f24e32ae8/task-94
+- Safety timer: efdbc414-905b-4b33-84ab-8e3f24e32ae8/task-965
 - On succession: kill all timers before spawning successor
 - On context truncation: handle timers as step 4 of the State Recovery section of your prompt says
 

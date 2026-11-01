@@ -13,10 +13,12 @@ Milestone 1 marked as DONE. Proceeding to Milestone 2 (Independent E2E Verificat
 ## Gate — Milestone 2 (Independent E2E Verification & Forensic Integrity Audit)
 | Agent | Role | Verdict | Source |
 |-------|------|---------|--------|
-| worker_jmol_m2 | teamwork_worker | PENDING | - |
-| reviewer_jmol_1 | teamwork_reviewer | PENDING | - |
-| reviewer_jmol_2 | teamwork_reviewer | PENDING | - |
-| challenger_jmol_1 | teamwork_challenger | PENDING | - |
-| auditor_jmol_1 | teamwork_auditor | PENDING | - |
+| worker_jmol_m2_remediation | teamwork_worker | DONE (2,731/2,731 READY, overall_status: PASS) | handoff.md |
+| reviewer_jmol_1 | teamwork_reviewer | APPROVE | handoff.md |
+| reviewer_jmol_2 | teamwork_reviewer | APPROVE | handoff.md |
+| challenger_jmol_1 | teamwork_challenger | APPROVE | handoff.md |
+| challenger_jmol_2 | teamwork_challenger | APPROVE | handoff.md |
+| auditor_jmol_1 | teamwork_auditor | CLEAN | handoff.md |
 
-Gate Result: **PENDING**
+Gate Result: **PASS** (Worker exit 0, reviewers APPROVE, challengers APPROVE, forensic auditor CLEAN).
+Milestone 2 marked as DONE. Entire San Juan del Molinillo corpus ingestion and E2E verification successfully certified.

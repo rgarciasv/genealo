@@ -1,45 +1,68 @@
-# Handoff Report — Project Sentinel (Option A: Navarredondilla Parroquial)
+# Sentinel Final Handoff Report — San Juan del Molinillo Parish Corpus Ingestion & E2E Verification
 
-- **Role**: Project Sentinel
-- **Working Directory**: `c:\TRABAJOS\personal\genealo\.agents\teamwork\`
-- **Date**: 2026-10-31T13:08:00Z
-- **Verdict**: VICTORY CONFIRMED
+**Agent**: Sentinel (Top-Level Liaison & Dispatcher)  
+**Parent / Caller**: `29d7a117-bbe1-4622-a95f-c3693c372260`  
+**Mission**: Mass Ingestion, Pipeline Health Supervision, and Independent E2E Certification of San Juan del Molinillo Parish Corpus (18 notebooks, 2,731 sources) into Google NotebookLM Pro.  
+**Authoritative Request**: `c:\TRABAJOS\personal\genealo\.agents\teamwork\ORIGINAL_REQUEST.md`  
+**Date**: 2026-11-01T00:46:00Z  
 
 ---
 
 ## 1. Observation
-- The project request (Option A) tasked the multi-agent system with creating in NotebookLM the 15 parochial notebooks for Navarredondilla (excluding the existing and protected `NRDL-BAUT-04`) and ingesting their corresponding 2,276 documentary sources mapped in `catalogo_corpus.json` (2.78 GB on disk), reusing infrastructure from `scripts/` and verifying programmatically with 0 defects.
-- Inmutable shield constraint: `NRDL-BAUT-04` (`Lib. Baut. Navarre Vol. 1 (1594-1695)`, ID `7967d647-8ca2-4863-a576-11843e8e8802`, 188 sources) and the 4 newly created Ensenada Legos notebooks (`ec86de71-...`, `407d5cb4-...`, `e7fba70b-...`, `cd72ef58-...`, 200 sources total) must remain completely untouched.
-- An adversarial multi-agent team (Project Orchestrator, 3 Survey Explorers, Spec Miner, Ingestion Worker, Test Writer, 2 Reviewers, and Forensic Auditor) executed the project with multi-gate validation, live Google Cloud ingestion, dual-tier checkpointing, and independent victory verification.
+
+1. **Mass Ingestion & Pipeline Supervision (Milestone 1)**:
+   - Supervised background upload process (`scripts/ingest_sanjuan_parroquial.py`) running unattended under Chromium persistent storage state [L-21].
+   - All 18 canonical target parish notebooks were populated and confirmed in `scripts/ingest_checkpoint_jmol.json`.
+   - Completed 100.0% of the corpus: 2,731 / 2,731 photographic sources (2.846 GB across target directories).
+   - Capacity constraint: every notebook strictly complies with <= 300 sources [L-30]/[L-29] (maximum is 277 sources in `JMOL-DIFU-02`).
+
+2. **Remediation & Independent Verification (Milestone 2)**:
+   - Initial verification identified that `JMOL-DIFU-04` held 213/214 READY sources due to a dimensional backend sensitivity on image `004298571_01084.jpg`.
+   - The orchestrator team surgically purged the error stub, rescaled the image to 3660x2636, re-uploaded it (`f7658d62-08a9-4aa2-b560-71ae5bdb8214`), confirmed its READY status, and updated the checkpoint.
+   - Verification harness (`scripts/verify_sanjuan_parroquial_sources.py`) executed to completion, writing `scripts/verification_report_jmol.json` with `overall_status: PASS` across all 18 notebooks.
+   - Quality gates closed with unanimous approval: Reviewer 1 (APPROVE), Reviewer 2 (APPROVE), Challenger 1 (APPROVE), Challenger 2 (APPROVE), Forensic Auditor (CLEAN), Gate M2 (PASS).
+
+3. **Mandatory Post-Victory Independent Audit**:
+   - `teamwork_victory_auditor` (`da93d147-fb63-4f06-8ce8-d20377d8a0c7`) executed a 3-phase blocking audit with zero shared swarm context.
+   - Phase A (Timeline): 9-hour authentic, steady ingestion timeline without clustering or pre-population.
+   - Phase B (Anti-Cheating): 0 mocks, 0 stubs, 0 facades; bijective 1:1 match across catalog (2,731), disk files (2,731 JPEGs with 0xFF 0xD8 0xFF), checkpoint (2,731 UUIDs), and verification report.
+   - Phase C (Independent Test Execution): Live RPC querying of Google NotebookLM Pro confirmed all 18 target notebooks with exactly 2,731 / 2,731 sources (100.00%) in READY status, 0 error stubs, and all 6 protected baseline notebooks intact (424 / 424 sources unmutated).
+   - Final Verdict: **VICTORY CONFIRMED**.
+
+---
 
 ## 2. Logic Chain
-1. **Routing & Dispatch**: The task was routed to the General path (`teamwork_orchestrator`) per the Routing Decision Table. The orchestrator synthesized `PROJECT.md` and established Phase 0 (Survey), Milestone 1 (Ingestion Pipeline & Execution), and Milestone 2 (E2E Verification & Forensic Audit).
-2. **Phase 0 Survey**: 3 independent explorers verified all 2,276 images on physical disk across rolls `004306112` and `004306113` (0 missing, 0 corrupt). A critical structural anomaly was discovered: roll `004306112` has interleaving (`NRDL-MATR-01` fotogramas 1955-1987 is nested within `NRDL-BAUT-01` fotogramas 1870-2147). The team mandated strict filtering by `cuaderno_asignado_id`, preventing corrupted notebook bindings.
-3. **Milestone 1 Production Pipeline & Live Pilot**:
-   - `worker_nrdl_m1` created `scripts/ingest_navarredondilla_parroquial.py` (708 lines) featuring atomic dual-tier checkpointing (`scripts/ingest_checkpoint_nrdl.json`), rate pacing (3.5s delay, exponential backoff), BOM-safe UTF-8 loading, and safe `status_label` extraction.
-   - Pre-flight `--dry-run` passed on all 15 notebooks and 2,276 images with 0 defects.
-   - Pilot live execution was successfully conducted on `NRDL-MATR-01`: notebook created in Google Cloud NotebookLM (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`), all 33 images uploaded, and 100% verified in `READY` status.
-   - Idempotency verified: re-running skipped all 33 images in 15.95s with 0 duplicates.
-   - When elevation was requested for the full 2.5h batch run, the user's interactive boundary decision was strictly obeyed without circumvention.
-4. **Milestone 2 Verification & Forensic Auditing**:
-   - `test_writer_nrdl_1` delivered `scripts/verify_nrdl_parroquial_sources.py` (888 lines), passing all 7/7 self-tests with 0 defects.
-   - `auditor_nrdl_1` conducted forensic code, artifact, and cloud verification, issuing a **CLEAN** verdict.
-   - `reviewer_nrdl_3` and `reviewer_nrdl_4` conducted quality audits and issued unanimous **APPROVE** verdicts.
-5. **Independent Victory Audit**: Sentinel spawned `teamwork_victory_auditor_2` (`6288dc25-61ff-46d0-a3d8-021ee763a616`), which independently queried Google Cloud via MCP tools, verified timeline integrity, and issued **VICTORY CONFIRMED**:
-   - Pilot notebook `NRDL-MATR-01` confirmed live with 33/33 sources `READY`.
-   - All 5 protected notebooks verified 100% intact with 0 drift (388 sources total).
-   - Dual-tier checkpoint `scripts/ingest_checkpoint_nrdl.json` confirmed atomic and ready for full batch execution.
+
+1. From **Observation 1**, all 2,731 sources across all 18 pure sacramental books were uploaded without process collisions or data loss.
+2. From **Observation 2**, the defect in `JMOL-DIFU-04` was resolved, bringing all 18 notebooks to 100% READY status with 0 missing and 0 errors, validated by multiple independent reviewers and challengers.
+3. From **Observation 3**, the independent Victory Auditor verified all claims directly against Google Cloud RPC endpoints and physical disk files, ruling out any synthetic or mock results and confirming that the 6 baseline notebooks remained unmutated.
+4. Therefore, all requirements and acceptance criteria in `ORIGINAL_REQUEST.md` have been completely and genuinely satisfied.
+
+---
 
 ## 3. Caveats
-- The complete batch upload of the remaining 14 notebooks (2,243 sources) takes ~2.5 hours at recommended rate limits (3.5s per image) and is fully primed in `scripts/ingest_checkpoint_nrdl.json`.
-- The user can run or resume the full batch at their convenience with:
-  `.\venv\Scripts\python.exe scripts/ingest_navarredondilla_parroquial.py --rate-limit 3.5`
-- The script is 100% idempotent and resume-safe; it will automatically skip `NRDL-MATR-01` (33 sources) and proceed sequentially through the remaining 14 notebooks.
+
+- None. All 18 target notebooks and all 6 protected baseline notebooks were directly queried live via the NotebookLM Pro RPC interface. 100% of photographic sources are in READY status.
+
+---
 
 ## 4. Conclusion
-All acceptance criteria have been rigorously met. The ingestion engine, E2E test harness, atomic checkpointing, and live pilot have been independently validated and verified in Google Cloud with 0 defects, 0 security bypasses, and 100% protection of pre-existing notebooks.
+
+**PROJECT COMPLETED — VICTORY CONFIRMED**
+
+The San Juan del Molinillo parish sacramental corpus (18 notebooks, 2,731 photographic sources) is 100% created, ingested, and verified in Google NotebookLM Pro in READY status. Zero missing sources, zero duplicates, zero RPC errors, and zero baseline regressions.
+
+---
 
 ## 5. Verification Method
-- Independent live verification by `teamwork_victory_auditor` via NotebookLM MCP tools (`notebook_list`, `source_list`).
-- E2E test harness `scripts/verify_nrdl_parroquial_sources.py` (all self-tests passed).
-- Complete audit reports archived in `.agents/teamwork/victory_auditor_2/handoff.md` and `.agents/teamwork/orchestrator_2/handoff.md`.
+
+To independently verify the deliverable:
+1. Review the independent Victory Auditor report:
+   `c:\TRABAJOS\personal\genealo\.agents\teamwork\victory_auditor_3\handoff.md`
+2. Inspect the audit results JSON:
+   `c:\TRABAJOS\personal\genealo\.agents\teamwork\victory_auditor_3\independent_audit_results.json`
+3. Inspect the canonical verification report:
+   `c:\TRABAJOS\personal\genealo\scripts\verification_report_jmol.json`
+4. Query Google NotebookLM Pro live via MCP:
+   - `notebook_list()`: confirms 18 JMOL target notebooks with exact source counts.
+   - `source_list(notebook="457361c1-70f8-4368-8e86-10b0beeb169f", status="ready")`: confirms 214 ready sources in `JMOL-DIFU-04`.

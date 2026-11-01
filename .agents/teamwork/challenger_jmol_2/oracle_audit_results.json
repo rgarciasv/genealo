@@ -1,0 +1,295 @@
+{
+  "timestamp": "2026-11-01T00:23:32.998435+00:00",
+  "verdict": "APPROVE",
+  "tests": {
+    "test1_catalog_integrity": {
+      "passed": true,
+      "total_catalog_records": 8515,
+      "jmol_sacramental_records": 2731,
+      "unique_images": 2731,
+      "per_notebook_counts": {
+        "JMOL-BAUT-01": 175,
+        "JMOL-MIXTO-04": 91,
+        "JMOL-BAUT-05": 139,
+        "JMOL-INDICE-BAUT": 111,
+        "JMOL-MATR-01": 194,
+        "JMOL-MATR-02": 134,
+        "JMOL-MATR-03": 198,
+        "JMOL-DIFU-PARVULOS": 27,
+        "JMOL-DIFU-01": 202,
+        "JMOL-DIFU-02": 277,
+        "JMOL-DIFU-03": 17,
+        "JMOL-DIFU-04": 214,
+        "JMOL-DIFU-05": 99,
+        "JMOL-DIFU-06": 177,
+        "JMOL-INDICE-DIFU": 21,
+        "JMOL-BAUT-02": 276,
+        "JMOL-BAUT-03": 190,
+        "JMOL-BAUT-04": 189
+      },
+      "reasons": []
+    },
+    "test2_physical_integrity": {
+      "passed": true,
+      "resolved_physical_count": 2731,
+      "total_bytes": 3055563316,
+      "total_gigabytes": 2.846,
+      "min_size_bytes": 64724,
+      "max_size_bytes": 2672932,
+      "avg_size_bytes": 1118844.1,
+      "missing_count": 0,
+      "zero_byte_count": 0,
+      "corrupt_count": 0,
+      "reasons": []
+    },
+    "test3_checkpoint_bijection": {
+      "passed": true,
+      "checkpoint_notebook_count": 18,
+      "completed_notebook_count": 18,
+      "uploaded_sources_count": 2731,
+      "unique_source_uuids": 2731,
+      "missing_in_checkpoint": 0,
+      "extra_in_checkpoint": 0,
+      "invalid_uuids_count": 0,
+      "notebook_mismatches_count": 0,
+      "l28_violations_count": 0,
+      "reasons": []
+    },
+    "test4_verification_report": {
+      "passed": true,
+      "overall_status": "PASS",
+      "total_expected": 2731,
+      "total_actual": 2731,
+      "total_ready": 2731,
+      "total_missing": 0,
+      "reasons": []
+    },
+    "test5_shield_and_live_cloud": {
+      "passed": true,
+      "protected_notebooks_results": {
+        "7967d647-8ca2-4863-a576-11843e8e8802": {
+          "title": "Lib. Baut. Navarre Vol. 1 (1594-1695)",
+          "expected_sources": 188,
+          "actual_sources": 188,
+          "status": "PASS"
+        },
+        "ec86de71-a11c-4489-bbb9-eea856cccac4": {
+          "title": "NRDL-ENSENADA-LEGOS-01",
+          "expected_sources": 87,
+          "actual_sources": 87,
+          "status": "PASS"
+        },
+        "407d5cb4-4b83-495f-a23a-309ea44ee8c6": {
+          "title": "JMOL-ENSENADA-LEGOS-01",
+          "expected_sources": 28,
+          "actual_sources": 28,
+          "status": "PASS"
+        },
+        "e7fba70b-af7d-4602-b543-060742b22528": {
+          "title": "VLLR-ENSENADA-LEGOS-01",
+          "expected_sources": 51,
+          "actual_sources": 51,
+          "status": "PASS"
+        },
+        "cd72ef58-fcf5-48ac-8de2-556648ebd90e": {
+          "title": "NDRN-ENSENADA-LEGOS-01",
+          "expected_sources": 34,
+          "actual_sources": 34,
+          "status": "PASS"
+        },
+        "1e6fec74-1e2f-4dd7-8ad1-6d25411de127": {
+          "title": "NRDL-MATR-01",
+          "expected_sources": 36,
+          "actual_sources": 36,
+          "status": "PASS"
+        }
+      },
+      "jmol_live_results": {
+        "JMOL-BAUT-01": {
+          "notebook_id": "fa62871d-cb66-4af4-8e13-4dcc1c12b7ce",
+          "title": "JMOL-BAUT-01",
+          "expected_count": 175,
+          "actual_count": 175,
+          "ready_count": 175,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-BAUT-02": {
+          "notebook_id": "ad39ba03-d91f-4357-a4cd-bc845ff5f5d4",
+          "title": "JMOL-BAUT-02",
+          "expected_count": 276,
+          "actual_count": 276,
+          "ready_count": 276,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-BAUT-03": {
+          "notebook_id": "8816402f-ccce-4ebe-95a1-eb337e8a367a",
+          "title": "JMOL-BAUT-03",
+          "expected_count": 190,
+          "actual_count": 190,
+          "ready_count": 190,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-BAUT-04": {
+          "notebook_id": "303c70ed-bdd5-4570-a19a-08ebb945bdf5",
+          "title": "JMOL-BAUT-04",
+          "expected_count": 189,
+          "actual_count": 189,
+          "ready_count": 189,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-BAUT-05": {
+          "notebook_id": "7f64917d-d8d1-45a0-b8c2-dfe0314a48d1",
+          "title": "JMOL-BAUT-05",
+          "expected_count": 139,
+          "actual_count": 139,
+          "ready_count": 139,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-INDICE-BAUT": {
+          "notebook_id": "e26e1dd5-a9aa-469a-80af-3d52603bbdc0",
+          "title": "JMOL-INDICE-BAUT",
+          "expected_count": 111,
+          "actual_count": 111,
+          "ready_count": 111,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-MATR-01": {
+          "notebook_id": "50e8d7d8-7afe-4d70-9a8e-e22cc2cc1101",
+          "title": "JMOL-MATR-01",
+          "expected_count": 194,
+          "actual_count": 194,
+          "ready_count": 194,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-MATR-02": {
+          "notebook_id": "772135ac-4305-4a22-ad89-bf996f0ff37a",
+          "title": "JMOL-MATR-02",
+          "expected_count": 134,
+          "actual_count": 134,
+          "ready_count": 134,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-MATR-03": {
+          "notebook_id": "07a61f80-24e6-484e-af57-ebe19d09960a",
+          "title": "JMOL-MATR-03",
+          "expected_count": 198,
+          "actual_count": 198,
+          "ready_count": 198,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-01": {
+          "notebook_id": "44aaf6f4-ef87-4740-8d34-bc661923df87",
+          "title": "JMOL-DIFU-01",
+          "expected_count": 202,
+          "actual_count": 202,
+          "ready_count": 202,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-02": {
+          "notebook_id": "9d0e8882-7d5f-4677-98f3-1913bbbefcc9",
+          "title": "JMOL-DIFU-02",
+          "expected_count": 277,
+          "actual_count": 277,
+          "ready_count": 277,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-03": {
+          "notebook_id": "a5d19fcc-d266-4497-bdb3-df182328bdcb",
+          "title": "JMOL-DIFU-03",
+          "expected_count": 17,
+          "actual_count": 17,
+          "ready_count": 17,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-04": {
+          "notebook_id": "457361c1-70f8-4368-8e86-10b0beeb169f",
+          "title": "JMOL-DIFU-04",
+          "expected_count": 214,
+          "actual_count": 214,
+          "ready_count": 214,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-05": {
+          "notebook_id": "bbb4a49c-90a4-4af1-8818-484fa158e929",
+          "title": "JMOL-DIFU-05",
+          "expected_count": 99,
+          "actual_count": 99,
+          "ready_count": 99,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-06": {
+          "notebook_id": "de24a81e-df39-49ec-8ca0-63f23827f745",
+          "title": "JMOL-DIFU-06",
+          "expected_count": 177,
+          "actual_count": 177,
+          "ready_count": 177,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-DIFU-PARVULOS": {
+          "notebook_id": "d974c19c-6a6d-46f2-8f29-e996af323d67",
+          "title": "JMOL-DIFU-PARVULOS",
+          "expected_count": 27,
+          "actual_count": 27,
+          "ready_count": 27,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-INDICE-DIFU": {
+          "notebook_id": "34b553cd-c82d-4311-b5c6-bdaeb2451372",
+          "title": "JMOL-INDICE-DIFU",
+          "expected_count": 21,
+          "actual_count": 21,
+          "ready_count": 21,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        },
+        "JMOL-MIXTO-04": {
+          "notebook_id": "81eb6310-b70c-40db-9fb0-b0c1f364ce05",
+          "title": "JMOL-SACRAMENTAL-1842-1850",
+          "expected_count": 91,
+          "actual_count": 91,
+          "ready_count": 91,
+          "missing_count": 0,
+          "extra_count": 0,
+          "status": "PASS"
+        }
+      },
+      "reasons": []
+    }
+  },
+  "failures": [],
+  "metrics": {},
+  "all_passed": true
+}
