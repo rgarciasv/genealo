@@ -313,6 +313,32 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
 
 ---
 
+## 🏆 LOGROS RECIENTES Y HITOS COMPLETADOS (NOVIEMBRE 2026)
+
+### 1. Auditoría Codicológica del 100% de los 33 Cuadernos (JMOL y NRDL)
+* **Completitud total:** Se ejecutó con éxito la auditoría codicológica sistemática de los 33 cuadernos parroquiales de NotebookLM Pro mediante `scripts/audit_codicological_all.py`.
+* **Informes archivísticos:** Se generaron y almacenaron 33 informes individuales en `transcripciones/auditoria_codicologica/*.md`, documentando para cada cuaderno:
+  1. Elementos anómalos o ajenos a partidas ordinarias (portadas, autos de visita pastoral, minutas, despachos, cuentas de fábrica).
+  2. Fechas extremas de cada sección sacramental con fotograma exacto.
+  3. Primera y última imagen del cuaderno.
+
+### 2. Grandes Correcciones Codicológicas en Navarredondilla
+* **Rescate del Libro 2º de Casados (1698–1803):** Localizado en `NRDL-DIFU-02` (`004306113_00806.jpg` a `00959.jpg`, 154 imágenes), resolviendo la falsa creencia de que los matrimonios del siglo XVIII estaban perdidos.
+* **Rectificación de `NRDL-MATR-02`:** Identificado como la continuación directa del Libro 4º de Defunciones (1781–1801, folios 61 a 130), con cero matrimonios.
+* **Resolución de la Laguna de Bautismos (1843–1849):** Descubrimiento de la certificación oficial de 1871 en `NRDL-BAUT-05` (`004306113_00141.jpg`), donde el cura D. Manuel Fonceta certifica que 4 cuadernos de 10 folios (130 bautismos) de 1843, 1845, 1847 y 1849 quedaron sin coser en el libro y se remitieron al Archivo Diocesano de Ávila (explicando la ausencia del acta de Crisanto García).
+* **Fijación del Primer Libro de Defunciones:** Localizado en `NRDL-MIXTO-01` (`004306112_02023.jpg`/`02024.jpg`), comenzando el **24 de noviembre de 1631**.
+
+### 3. Reconstrucción Genealógica: Linaje de Vicente García López (1565 – S. XX)
+* **Documentación canónica:** Consolidado en [`ARBOL_GENEALOGICO_VICENTE_GARCIA_LOPEZ.md`](file:///c:/TRABAJOS/personal/genealo/ARBOL_GENEALOGICO_VICENTE_GARCIA_LOPEZ.md).
+* **Cotejo con fuentes primarias:** Verificadas en microfilm las actas de bautismo de Eugenio García (1758), Rufina Meneses (1763), matrimonio canónico de ambos (5 de noviembre de 1785), confirmación de Crisanto García (1850) y bautismo de Martina López García (1869).
+* **Doble entronque consanguíneo documentado:**
+  1. En el siglo XVIII a través de **Julián García Cedillo (1727–1790)**.
+  2. En el siglo XVII a través de **Lucas Sánchez Blázquez y Catalina Rodríguez de la Fuente (1665)**.
+* **Origen geográfico de la rama Cedillo:** Identificada la emigración desde **Magán (Toledo)** a Navarredondilla de Juan Cedillo y María Calvo a finales del siglo XVII.
+* **Profundidad temporal:** Línea directa documentada hasta **Bartolomé Blázquez y María Hernández (c. 1565)** y **Vicente el Mozo Andrino (c. 1570)**.
+
+---
+
 ## 📌 PRÓXIMOS PASOS OPERATIVOS INMEDIATOS
 1. **Inyección de Fuentes Base y Configuración de Chat en `NRDL-DIFU-S17` y `NRDL-MATR-01`**:
    - Subir las fuentes maestras de anclaje (`00_INSTRUCCIONES_PALEOGRAFICAS_V2`, `01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA`, `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE`, `04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES`) a ambos cuadernos.

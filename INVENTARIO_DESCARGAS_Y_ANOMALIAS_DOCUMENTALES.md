@@ -118,6 +118,7 @@ Códice desmembrado en el siglo XVII y cosido fuera de orden:
   - `004306113_00004.jpg`: Tejuelo manuscrito (*Sit. Arch. 166/4, Nº 6*). FS rotuló erróneamente "1829–1889".
   - `004306113_00005.jpg` a `004306113_0144.jpg`: 4 de febrero de 1829 a 11 de junio de 1854.
   - **Hueco de 1828:** Vacío de 11 meses entre marzo de 1828 (fin del Rollo 112) y febrero de 1829.
+  - **Certificación de los 4 Cuadernos Extraviados (Años 1843, 1845, 1847 y 1849):** En `004306113_00141.jpg` figura la certificación oficial de 28 de junio de 1871 firmada por el párroco D. Manuel Fonceta, donde hace constar que al encuadernar el libro se dejaron fuera 4 cuadernos de 10 folios (130 bautismos en total) de esos cuatro años alternos impares, los cuales remitió sueltos al Archivo Diocesano de Ávila. Explica la ausencia física de los bautismos de esa década en el tomo ordinario (incluyendo el de Crisanto García).
 
 #### Elemento 2 (`004306113_0145.jpg` a `004306113_0327.jpg` — 183 imágenes)
 * **Libro 7º de Bautizados (1852–1878):** Folios 1 a 134.
@@ -142,20 +143,23 @@ Códice desmembrado en el siglo XVII y cosido fuera de orden:
   - `004306113_0553.jpg`: Apertura formal *"AÑO D 1739. J. M. Y J."* (entierro de Segunda Muñoz).
   - `004306113_0665.jpg`: Cierre formal en junio de 1767 por Diego Álvarez Cedrón.
 
-#### Elemento 6 (`004306113_0666.jpg` a `004306113_0800.jpg` — 135 imágenes) — "El Libro Bífido"
-* **Estructura de Doble Entrada:**
-  - **Cara A (Defunciones 4º, 1767–1802, `004306113_0666.jpg` a `~004306113_0730.jpg`):** Folios 1 a 135.
-  - **Cara B Inversa (Casados 2º, 1698–1803, `004306113_0731.jpg` a `~004306113_0795.jpg`):** Folios 1 a 61. Se abrió por la contraportada y avanza hacia el centro.
-  - **Pliego Invertido de 1698 (`004306113_0734.jpg`/`0735.jpg` aprox., folios 3v/4r):** Cosido boca abajo en el siglo XVII; el párroco escribió girando el libro 180°.
-  - **Desorden de Microfilmación en la década de 1780:** En los fotogramas `004306113_00915.jpg` a `004306113_00918.jpg` (o posición relativa en el rollo), FamilySearch fotografió los folios en orden inverso al físico. Debe seguirse la foliación original (32, 33, 34, 35) y no el número web.
-  - **Boda de 13 de noviembre de 1803 (`~004306113_0795.jpg`):** Pliego suelto final de Francisco Andrés y Estefanía Rodríguez con dispensa del Papa Pío VII (*"Divina Providencia"*).
-  - **Anexo de Expedientes Nupciales (Folios 150+, `~004306113_0796.jpg` a `004306113_0800.jpg`):** Despachos de soltería y dispensas de 1760–1790 cosidos con numeración artificial alta.
+#### Elemento 6 (`004306113_0666.jpg` a `004306113_0800.jpg` — 135 imágenes) — Libro 4º de Difuntos (1767–1801)
+* **Rectificación Forense de Contenido:** Catalogado por FamilySearch equívocamente como sección de Matrimonios (`NRDL-MATR-02`), la auditoría codicológica demostró que las imágenes `004306113_00731.jpg` a `00800.jpg` contienen **cero matrimonios**: corresponden a la segunda mitad del **Libro 4º de Defunciones (1781–1801)**, folios 61 a 130 continuos.
+  - `004306113_0666.jpg` a `004306113_0730.jpg`: Folios 1 a 60 de Difuntos (1767–1781).
+  - `004306113_0731.jpg` a `004306113_0800.jpg`: Folios 61 a 130 de Difuntos (1781–1801).
 
-#### Elementos 7 al 10 (`004306113_0801.jpg` a `004306113_1535.jpg` — 735 imágenes) — Defunciones Decimonónicas
-* **Elemento 7 (`004306113_0801.jpg` a `004306113_1141.jpg`):** Libro 5º de Difuntos (1802–1836, folios 1 a 165). Registra la Guerra de la Independencia y la **epidemia de cólera de 1834**.
+#### Elemento 7: El Libro Bífido Real y el Hallazgo de Casados 2º (`004306113_0801.jpg` a `004306113_0971.jpg`)
+* **El Gran Hallazgo del Libro 2º de Casados (1698–1803):** 
+  - Catalogado erróneamente en bloque por FamilySearch bajo el epígrafe de *«Defunciones Vol. 9»* (`NRDL-DIFU-02`), la mayor parte del cuaderno (aproximadamente 154 imágenes, de `004306113_00806.jpg` a `004306113_00959.jpg`) contiene el **Libro 2º de Matrimonios y Velaciones íntegro** de Navarredondilla (30 de septiembre de 1698 a 12 de noviembre de 1803).
+  - `004306113_00806.jpg`: Portada manuscrita original: *«Casados / Casados 2º libro que da principio en 30 de Sept.bre de 1698, conclui en 12 de Nov.bre de 1803...»*.
+  - `004306113_00922.jpg` (Fol. 31r) y `004306113_00923.jpg` (Fol. 31v): Matrimonio canónico de Eugenio García y Rufina Meneses (5 de noviembre de 1785).
+  - `004306113_00959.jpg`: Nota formal de cierre: *«Se conclujo este libro de Casados»*.
+  - `004306113_00962.jpg` a `004306113_1141.jpg`: Libro 5º de Difuntos (1802–1836, folios 1 a 165). Registra la Guerra de la Independencia y la **epidemia de cólera de 1834**.
+
+#### Elementos 8 al 10 (`004306113_1142.jpg` a `004306113_1535.jpg`) — Defunciones Decimonónicas
 * **Elemento 8 (`004306113_1142.jpg` a `004306113_1206.jpg`):** Difuntos 1836–1854. En `004306113_1204.jpg` a `004306113_1206.jpg` figuran folios sin numerar donde el ecónomo Pedro Fonceda pasó a limpio actas de emergencia.
 * **Elemento 9 (`004306113_1209.jpg` a `004306113_1329.jpg`):** Libro 7º de Difuntos (1852–1872). Solapamiento con el Elem. 8. Creado en papel timbrado de 1852 por Hermenegildo Martín.
-* **Elemento 10 (`004306113_1332.jpg` a `004306113_1535.jpg`):** Libro de Difuntos (1872–1902, folios 1 a 203). Cierra el siglo XIX e inaugura el siglo XX con D. Manuel Alonso.
+* **Elemento 10 (`004306113_1332.jpg` a `004306113_1535.jpg`):** Libro de Difuntos (1872–1902, folios 1 a 203). Cierra el siglo XIX e inaugura el siglo XX con D. Manuel Alonso. Asientos de los párvulos de Crisanto y Martina (Julia en `01496.jpg`, Agapito en `01518.jpg`).
 
 ---
 
