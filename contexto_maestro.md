@@ -124,7 +124,10 @@ Tras auditar el cuaderno experimental `d28c82d0-e15f-4d4d-8333-61f529d52815` (20
   15. `JMOL-DIFU-06` (`de24a81e-df39-49ec-8ca0-63f23827f745`): 177/177 fuentes READY (1881–1892, Libro 6º).
   16. `JMOL-DIFU-PARVULOS` (`d974c19c-6a6d-46f2-8f29-e996af323d67`): 27/27 fuentes READY (1632/1644–1680, Libro de Párvulos Difuntos, joya del siglo XVII).
   17. `JMOL-INDICE-DIFU` (`34b553cd-c82d-4311-b5c6-bdaeb2451372`): 21/21 fuentes READY (1893–1907, Índice de Difuntos).
-  18. `JMOL-MIXTO-04` (`81eb6310-b70c-40db-9fb0-b0c1f364ce05`): 91/91 fuentes READY (1842–1850, Libro 4º Mixto sacramental).
+  18. `JMOL-SACRAMENTAL-1842-1850` (`81eb6310-b70c-40db-9fb0-b0c1f364ce05`): 91/91 fuentes READY. **Expediente Episcopal de Convalidación Sacramental (1842–1850):**
+      - Códice extraordinario abierto tras el fallecimiento del cura párroco D. Marcelino Tore Díaz para recoger formalmente mediante declaraciones juradas de testigos, informes vecinales y testimonio del médico titular las partidas que habían quedado sin asentar por su enfermedad o desatención final.
+      - Incluye: Bautismos 1847–1848 (con filiación completa a 4 abuelos y vecindad en Navandrinal y El Villarejo), Matrimonios 1842–1849 (con dispensas de parentesco) y Defunciones 1843–1849.
+      - Aprobado y convalidado con valor registral pleno por decreto judicial del Obispo de Ávila, D. Manuel López Santisteban, en septiembre de 1850.
 
 ### C. Balance Integral del Fondo de Matrimonios de Navarredondilla y Detección de Lagunas
 Tras la auditoría exhaustiva de los rollos DGS `004306112` y `004306113`, se constata que en FamilySearch solo existen **106 imágenes de matrimonios en todo el fondo microfilmado** de Navarredondilla:

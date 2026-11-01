@@ -365,6 +365,26 @@
   - Se documenta en el inventario de anomalías y en el contexto maestro como ejemplo paradigmático de la necesidad de inspección de cascarones asistida por NotebookLM antes de la transcripción masiva (`[L-34]`).
 - **Veredicto:** **DESCUBRIMIENTO VALIDADO Y CERTIFICADO**.
 
+---
+
+## 🔬 Experimento 23: Descubrimiento Histórico-Canónico en `JMOL-SACRAMENTAL-1842-1850` — El Expediente de Convalidación Parroquial de 1850
+- **Fecha:** 2026-11-01
+- **Objetivo:** Inspección del cuaderno `JMOL-SACRAMENTAL-1842-1850` (ID `81eb6310-b70c-40db-9fb0-b0c1f364ce05`, rollo `004298570`, Elemento 17, 91 fotogramas) para determinar su estructura interna y justificación archivística.
+- **Hallazgo y Desarticulación Histórico-Jurídica:**
+  - El volumen no obedece a una mera encuadernación desordenada de papeles sueltos, sino a un **Expediente Judicial Canónico de Convalidación Sacramental** incoado tras el fallecimiento del cura párroco D. Marcelino Tore Díaz.
+  - El fallecimiento del sacerdote dejó sin asentar en los libros corrientes de la parroquia numerosos sacramentos entre 1842 y 1849.
+  - Para evitar la pérdida de los derechos civiles y canónicos de los feligreses, el Obispado de Ávila instruyó un sumario formal tomando declaraciones juradas a testigos, padrinos, parientes y al médico titular de la localidad.
+  - **Composición del Códice (91 imágenes):**
+    1. **Bautismos (1847–1848):** Constaron fechas de nacimiento y bautismo, nombres de bautizados, padres, filiación completa a 4 abuelos (abuelos paternos y maternos), padrinos y mención de vecindad en Navandrinal y El Villarejo.
+    2. **Matrimonios (1842–1849):** Amonestaciones canónicas, dispensas matrimoniales de parentesco, consentimiento paterno, contrayentes, padres, padrinos y testigos.
+    3. **Defunciones y Entierros (1843–1849):** Sepulturas en camposanto, estado civil (adultos y párvulos), cónyuges, padres, últimos sacramentos, disposiciones testamentarias y misas.
+    4. **Decreto Episcopal de Convalidación (septiembre de 1850):** Auto solemne firmado por el Obispo de Ávila, D. Manuel López Santisteban, aprobando judicialmente las partidas y ordenando su plena incorporación a los libros parroquiales corrientes.
+- **Trascendencia Genealógica:**
+  - Resuelve lo que aparentaba ser una laguna sacramental en la década de 1840 para San Juan del Molinillo, Navandrinal y El Villarejo.
+  - La filiación a 4 abuelos en los bautismos de 1847–1848 proporciona un puente cronológico directo con las familias empadronadas en el Catastro de Ensenada de 1751 y los libros regulares de 1851 en adelante.
+- **Veredicto:** **DESCUBRIMIENTO VALIDADO Y REGISTRADO**.
+
+
 
 
 

@@ -177,7 +177,12 @@ Hasta el primer tercio del siglo XVIII, San Juan del Molinillo, Navandrinal y El
 * **Elemento 14 (`004298570_01599.jpg` a `004298570_01773.jpg` — 175 imgs):** Libro 1º de Bautismos Fundacional (1715–1752, Sit. Arch. 175/1, Nº 1). Apertura en mayo/septiembre de 1715 por Fray Francisco Martínez (letra procesal encadenada y cursiva del s. XVIII).
 * **Elemento 15 (`004298570_01774.jpg` a `004298570_02049.jpg` — 276 imgs):** Libro 2º de Bautismos (1752–1800). Serie regular que cubre la segunda mitad del siglo XVIII de Molinillo, Navandrinal y Villarejo.
 * **Elemento 16 (`004298570_02050.jpg` a `004298570_02428.jpg` — 379 imgs):** Libro 3º de Bautismos (1801–1852).
-* **Elemento 17 (`004298570_02429.jpg` a `004298570_02519.jpg` — 91 imgs):** Libro Mixto Nº 4 (1842–1850). Secciones de Matrimonios (1842–49), Defunciones (1843–49) y Bautismos (1847–48).
+* **Elemento 17 (`004298570_02429.jpg` a `004298570_02519.jpg` — 91 imgs) — Códice Sacramental Mixto y Expediente de Convalidación (1842–1850):**
+  - **Origen canónico e histórico:** Volumen extraordinario abierto tras el fallecimiento del cura párroco D. Marcelino Tore Díaz para recoger formalmente mediante declaraciones juradas de testigos, informes vecinales y el testimonio del médico titular las partidas que habían quedado sin asentar por su enfermedad o desatención final.
+  - **Sección Bautismos (1847–1848):** Fechas de nacimiento y bautismo, nombres de bautizados, padres, los 4 abuelos (abuelos paternos y maternos), padrinos y testigos de Molinillo, Navandrinal y El Villarejo.
+  - **Sección Matrimonios (1842–1849):** Amonestaciones canónicas, dispensas matrimoniales de consanguinidad/afinidad, consentimiento paterno, datos de contrayentes, padres, testigos y padrinos.
+  - **Sección Defunciones y Entierros (1843–1849):** Fechas de fallecimiento y sepultura en el camposanto, estado civil (adultos y párvulos), cónyuges, padres, santos sacramentos, testamentos y mandas pías.
+  - **Aprobación Episcopal (septiembre de 1850):** Decretos solemnes firmados por el Obispo de Ávila, D. Manuel López Santisteban, dando plena validez canónica y judicial a estas partidas e incorporándolas a los libros corrientes.
 * **Elemento 18 (`004298570_02520.jpg` a `004298570_02658.jpg` — 139 imgs):** Libro 5º de Bautismos (1851–1862).
 * **Elemento 19 (`004298570_02659.jpg` a `004298570_02769.jpg` — 111 imgs) — Códice Bífido de Índices (Bautismos + Casados):**
   - **Carátula técnica de filmación (`004298570_02659.jpg` y `02660.jpg`):** Catalogación genérica errónea de FamilySearch como *«Índice Bautismos Vol. 6 Item 19 (1750 a 1914)»*.
@@ -383,6 +388,15 @@ Aunque el rótulo de FamilySearch etiqueta el Elemento 19 de forma reduccionista
 * **Bautismos (1750–1914):** Fotogramas `004298570_02661.jpg` a `004298570_02748.jpg` (alfabético por nombre de pila de la A a la Z).
 * **Casados (1716–1920):** Fotogramas `004298570_02749.jpg` a `004298570_02766.jpg` bajo la rúbrica formal *"Índice de casados en la Parroquia de San Juan Bautista de San Juan del Molinillo desde el año 1716"*. Registro cronológico fundamental que incluye nombres de ambos contrayentes, estado civil previo (solteros/viudos), año, libro y folio manuscrito.
 * **Impacto Genealógico:** Constituye la llave maestra de localización para los matrimonios de Molinillo y de sus anejos Navandrinal y El Villarejo durante más de dos siglos (1716–1920), sirviendo de guía de acceso rápido antes de acudir a los libros sacramentales completos `JMOL-MATR-01`, `02` y `03`.
+
+---
+
+### 5.11. El Expediente Episcopal de Convalidación Sacramental de 1850 tras la muerte de D. Marcelino Tore Díaz (Libro Mixto Nº 4, DGS 004298570, Elemento 17)
+El análisis exhaustivo del cuaderno `JMOL-SACRAMENTAL-1842-1850` (`81eb6310-b70c-40db-9fb0-b0c1f364ce05`, 91 imágenes) reveló la verdadera causa material de su naturaleza mixta:
+* **El Hecho Histórico:** La muerte de D. Marcelino Tore Díaz, cura párroco titular de San Juan del Molinillo, dejó sin registrar en los libros ordinarios numerosos bautismos (1847–1848), matrimonios (1842–1849) y defunciones (1843–1849).
+* **El Proceso Sumario:** Se incoaron diligencias canónicas con intervención del nuevo ecónomo, vecinos y el testimonio del médico titular, tomando juramentos a padrinos, parientes y testigos para restituir con certeza las fechas y circunstancias de cada sacramento.
+* **El Decreto de Manuel López Santisteban (septiembre de 1850):** El Obispo de Ávila aprobó el expediente mediante auto judicial canónico incorporado al final del volumen, ordenando su conservación vinculante con valor registral pleno.
+* **Valor Genealógico Excepcional:** Las actas de bautismo de este expediente consignan sistemáticamente la **filiación completa a cuatro abuelos** (paternos y maternos) y explicitan la vecindad de origen en los anejos de **Navandrinal** y **El Villarejo**, sirviendo de puente directo con el Catastro de Ensenada de 1751 y el inicio de los libros de 1851.
 
 ---
 
