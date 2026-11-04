@@ -77,37 +77,70 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
 
 ## 📌 AGENDA Y ESTADO ACTUAL DE TAREAS
 
-1. **[COMPLETADO] Fase 1 — Ingesta y Verificación de Cuadernos Catastro de Ensenada (Legos):**
-   - Creados y poblados los 4 cuadernos de Personal Seglar (`NRDL-ENSENADA-LEGOS-01`, `JMOL-ENSENADA-LEGOS-01`, `VLLR-ENSENADA-LEGOS-01`, `NDRN-ENSENADA-LEGOS-01`).
-   - 200/200 fuentes en estado `READY` en NotebookLM.
-   - Superadas las 405/405 aserciones de [`scripts/verify_notebooklm_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/verify_notebooklm_sources.py).
-   - Sincronizado `catalogo_corpus.json` con los `source_id` consolidados.
+1. **[COMPLETADO] Fase 1 — Ingesta de Personal de Legos del Catastro de Ensenada (1752):**
+   - Creados y poblados los 4 cuadernos del **Libro del Personal de Legos (Vecindario)**: `NRDL-ENSENADA-LEGOS-01` (87 imgs), `JMOL-ENSENADA-LEGOS-01` (28 imgs), `VLLR-ENSENADA-LEGOS-01` (51 imgs), `NDRN-ENSENADA-LEGOS-01` (34 imgs). Total: 200/200 fuentes `READY`.
 
-2. **[COMPLETADO] Fase 2 — Ingesta Parroquial y Reestructuración Lógico-Sacramental de Navarredondilla ([L-30], [L-31], [L-32]):**
-   - **Ingesta Completa Certificada:** 2.276/2.276 fuentes en estado `READY` en los 15 cuadernos de Navarredondilla.
-   - **Purificación de `NRDL-BAUT-01` (`a187936c-55f4-4319-87db-6bf4e21e8613`):** Eliminadas las 57 imágenes puras de defunción (1634–1658 y 1695–1701); preservadas las 5 imágenes híbridas (`02023`, `02044`, `02048`, `02049`, `02050`) bajo `[L-31]`. Inyectadas las 5 fuentes maestras (`00..04`) y configurado `ChatSettings`. Total: 193 fuentes READY.
-   - **Unificación y Renombrado de `NRDL-DIFU-S17 (1631-1701)` (`14cf46ae-7d73-4f2c-b001-5e5de0f29c6c`):** Ampliado con las 62 imágenes de defunciones del rollo `004306112` (57 puras + 5 híbridas). Total: 132 fuentes READY (70 originales + 62 añadidas), cubriendo de 1631 a 1701 completo.
-   - **Ampliación de `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`):** Incorporadas 3 imágenes con matrimonios dispersos/híbridos (`02050`, `02148`, `02149`). Total: 36 fuentes READY.
-   - **Auditoría del Fondo de Matrimonios:** Confirmada la existencia de solo 106 imágenes en todo el fondo de FamilySearch (`NRDL-MATR-01`: 36, `NRDL-MATR-02`: 70) y detectada la Gran Omisión del Siglo XIX (1803–1902) donde FS no filmó el Libro 3º de Casados.
+2. **[PENDIENTE] Fase 1.B — Creación de Cascarones e Ingesta de los Libros de Bienes de Legos (Catastro de Ensenada 1752):**
+   - Ya están catalogados en [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json) (2.600 imágenes divididas en **11 cuadernos** de $\le 270$ imágenes cada uno), pendientes de crear e ingestar en NotebookLM Pro:
+     * **Navarredondilla (`NRDL` — 653 imgs en `rollo 004469033` / carpeta dedicada):**
+       - `NRDL-ENSENADA-BIENES-01` (218 imgs)
+       - `NRDL-ENSENADA-BIENES-02` (218 imgs)
+       - `NRDL-ENSENADA-BIENES-03` (217 imgs)
+     * **San Juan del Molinillo (`JMOL` — 540 imgs en `rollo 004469027`, Tomo H-666):**
+       - `JMOL-ENSENADA-BIENES-01` (270 imgs)
+       - `JMOL-ENSENADA-BIENES-02` (270 imgs)
+     * **El Villarejo (`VLLR` — 782 imgs en `rollo 004469027`, Tomo H-666):**
+       - `VLLR-ENSENADA-BIENES-01` (261 imgs)
+       - `VLLR-ENSENADA-BIENES-02` (261 imgs)
+       - `VLLR-ENSENADA-BIENES-03` (260 imgs)
+     * **Navandrinal (`NDRN` — 625 imgs en `rollo 004469028`, Tomo H-667 rotulado como H-674):**
+       - `NDRN-ENSENADA-BIENES-01` (209 imgs)
+       - `NDRN-ENSENADA-BIENES-02` (208 imgs)
+       - `NDRN-ENSENADA-BIENES-03` (208 imgs)
+     * *(Opcional complementario en `catalogo_corpus.json`):* `ENSENADA-ECLESIASTICO-01` (196 imgs), `ENSENADA-ECLESIASTICO-02` (195 imgs) y `ENSENADA-INTERROGATORIO` (101 imgs).
 
-3. **[EN EJECUCIÓN] Fase 3 — Ingesta Masiva de San Juan del Molinillo (`JMOL`):**
-   - Más de 950 imágenes subidas (>35% completado) de 2.731 fuentes sin errores, bajo supervisión automatizada de `supervise_m1.py`.
-   - **5 cuadernos 100% finalizados:** `JMOL-BAUT-01` (175/175), `JMOL-BAUT-02` (276/276), `JMOL-BAUT-03` (190/190), `JMOL-BAUT-04` (189/189), `JMOL-DIFU-03` (17/17). `JMOL-BAUT-05` en fase final.
-   - Desarticulación de libros mixtos del Elemento 17 (`004298570_02429.jpg` a `02519.jpg`) canalizada a series sacramentales puras según `[L-30]`.
+3. **[PENDIENTE] Gestión de Escribientes, Ductus y Escalado del Modelo del Cuaderno Piloto (`[DUCTUS-01]`):**
+   - **Recordatorio de cómo se hizo en el Cuaderno Piloto (`NRDL-BAUT-01` / `Lib. Baut. Navarre Vol. 1`):**
+     * Se inyectaron **5 fuentes maestras de texto (`.md`)** junto a las imágenes mediante [`scripts/prepare_nrdl_baut01.py`](file:///c:/TRABAJOS/personal/genealo/scripts/prepare_nrdl_baut01.py) (documentado en la skill [`grounding-cuadernos-parroquiales`](file:///c:/TRABAJOS/personal/genealo/.agents/skills/grounding-cuadernos-parroquiales/SKILL.md)):
+       1. [`00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`](file:///c:/TRABAJOS/personal/genealo/00_INSTRUCCIONES_PALEOGRAFICAS_V2.md): Reglas de transcripción literal, marcas `[ROTO]`/`[ILEGIBLE]` y formato de salida.
+       2. [`01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md`](file:///c:/TRABAJOS/personal/genealo/01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md): Vocabulario de mundo cerrado (apellidos, topónimos menores, tabla rápida de curas por año).
+       3. [`02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695.md`](file:///c:/TRABAJOS/personal/genealo/02_INSTRUCCIONES_CRONOLOGICAS_NAVARREDONDILLA_1594_1695.md): Mapa forense de saltos de folio, pliegos desordenados y cambios de mano de ese cuaderno concreto.
+       4. [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) (sincronizado con [`perfiles_escribanos.json`](file:///c:/TRABAJOS/personal/genealo/perfiles_escribanos.json)): Fichas de los 35 clérigos (1594–1695), separando **Redactor Material** (quien escribe y fija el *ductus*) de **Oficiante Sacramental** (`[L-22]`), su *cursus honorum*, sus tics de abreviatura (`xpoval`, `fr.co`, `m.nz`) y en qué fotogramas exactos aparece su letra.
+       5. [`04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md`](file:///c:/TRABAJOS/personal/genealo/04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md): Contexto histórico de la Abadía de Burgohondo, Navalmoral y sus anejos.
+     * Además, se configuró `ChatSettings` (`goal=CUSTOM`, `response_length=LONGER` y `SYSTEM_PROMPT` paleográfico) y, al consultar cada micro-lote por `source_ids`, el modelo cruzaba automáticamente el número de fotograma con la tabla de `02` y `03` para saber qué escribano empuñaba la pluma antes de leer.
+   - **Decisiones y tareas pendientes sobre Escribientes y Ductus:**
+     * Definir cómo ampliar [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) y [`perfiles_escribanos.json`](file:///c:/TRABAJOS/personal/genealo/perfiles_escribanos.json) a los siglos XVIII y XIX (tanto de Navarredondilla como de San Juan del Molinillo) aprovechando los nombres de curas que ya han salido en las 33 auditorías codicológicas (`transcripciones/auditoria_codicologica/*.md`).
+     * Ejecutar la **Prueba A/B del Ductus** (con y sin ficha caligráfica en 10 folios difíciles) para medir cuánto mejora realmente la lectura frente a coste de mantenimiento.
+     * Generar e inyectar las guías `01`, `02` y `03` en el resto de los 33 cuadernos parroquiales usando los informes de `transcripciones/auditoria_codicologica/`.
 
-4. **Debate Metodológico sobre Criterios de Transcripción (`[ECDOTICA-01]`):**
+4. **[PENDIENTE] Revisión de los Primeros Scripts y Pruebas de Extracción Página por Página (`[EXTRACCION-01]`):**
+   - Rescatar y revisar los primeros scripts y pruebas de extracción que se hicieron en el otro chat (así como las salidas en [`transcripciones/004306112_01873.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01873.md) a [`01895.md`](file:///c:/TRABAJOS/personal/genealo/transcripciones/004306112_01895.md), [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md) y la skill [`transcripcion-diplomatica-parroquial`](file:///c:/TRABAJOS/personal/genealo/.agents/skills/transcripcion-diplomatica-parroquial/SKILL.md)).
+   - En aquellas pruebas se comprobó empíricamente que para obtener la **máxima calidad y cero omisiones** había que ir **página por página (fotograma a fotograma, o plana izquierda / plana derecha en folios densos de >12 partidas)** filtrando estrictamente por `source_ids` (1 fotograma o pareja de tomas hermanas `[L-20]` + las 5 fuentes maestras `.md`).
+   - Revisar cómo se estructuró aquella llamada exacta para empaquetarla en el script definitivo `transcriptor_batch.py`.
+
+5. **[COMPLETADO] Fase 2 y 3 — Ingesta Parroquial Completa (33 Cuadernos de `NRDL` y `JMOL`), Auditoría Codicológica y Reestructuración ([L-30], [L-31], [L-32]):**
+   - **33/33 cuadernos parroquiales** (15 de Navarredondilla y 18 de San Juan del Molinillo) 100% subidos y auditados en [`transcripciones/auditoria_codicologica/`](file:///c:/TRABAJOS/personal/genealo/transcripciones/auditoria_codicologica/).
+   - **Skill reusable creada:** [`.agents/skills/traslado-fuentes-notebooklm/SKILL.md`](file:///c:/TRABAJOS/personal/genealo/.agents/skills/traslado-fuentes-notebooklm/SKILL.md) y script [`scripts/move_notebooklm_sources.py`](file:///c:/TRABAJOS/personal/genealo/scripts/move_notebooklm_sources.py) para mover/copiar imágenes entre cuadernos en la nube sin tocar jamás el disco duro local (`[L-26]`).
+   - **Reorganización ejecutada:**
+     * `NRDL-MATR-01` (`1e6fec74-1e2f-4dd7-8ad1-6d25411de127`): Ampliado a **55 fuentes** con las 19 imágenes de casados de `NRDL-MIXTO-01` (cubre 1634–1698 sin lagunas).
+     * `NRDL-MATR-02` (`1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb`): Purificado y renombrado con las **155 fuentes** del Libro 2º de Casados (1698–1803).
+     * `NRDL-DIFU-02` (`c1ffffaf-c722-4ee9-9093-21194a822e69`): Purificado y renombrado con las **75 fuentes** del Libro 4º de Difuntos (1781–1803, tras recibir `00801`–`00805`).
+     * `NRDL-DIFU-03` (`ab115a24-e08b-4ee6-b990-9027d7ac1abf`): Ampliado a **181 fuentes** con el inicio del Libro 5º de Difuntos (`00961`–`00971`, 1802–1804), quedando íntegro (1802–1836).
+     * `JMOL-INDICE-BAUT-MAT` (`e26e1dd5-a9aa-469a-80af-3d52603bbdc0`): Renombrado para reflejar que conserva unidos el Índice de Bautismos (1750–1914) y el Índice de Casados (1716–1918).
+
+6. **[PENDIENTE] Debate Metodológico sobre Criterios de Transcripción (`[ECDOTICA-01]`):**
    - Consensuar qué nivel exacto debe entregar NotebookLM en cada sección del bloque de salida:
      * **Transcripción Literal:** Fidelidad pura al trazo, sin tocar nada.
      * **Transcripción Diplomática / Semidiplomática:** Desarrollo de abreviaturas con corchetes `[ ]`, separación de palabras soldadas (*destayglesia* $\rightarrow$ *de esta yglesia*), respeto a grafías antiguas (`u/v`, `b/v`, `i/j/y`, consonantes dobles).
      * **Transcripción Crítica / Ecdótica Normalizada:** Forma moderna para indexación onomástica y motores de búsqueda.
-5. **Protocolo de Verificación Humana y Calibración de NotebookLM (`[VAL-01]`):**
+7. **[PENDIENTE] Protocolo de Verificación Humana y Calibración de NotebookLM (`[VAL-01]`):**
    - Diseñar el método de inspección y muestreo manual del usuario para evaluar el grado de aproximación a la realidad documental (asumiendo con realismo que nunca se alcanzará el 100 %).
    - Establecer ciclos de iteración empírica sobre los prompts y micro-lotes de NotebookLM para minimizar errores y exprimir su potencial.
-6. **Extracción de URLs ARK de FamilySearch (`[ARK-01]`):**
+8. **[PENDIENTE] Extracción de URLs ARK de FamilySearch (`[ARK-01]`):**
    - El usuario ejecutará [`extraer_arks_familysearch.js`](file:///c:/TRABAJOS/personal/genealo/extraer_arks_familysearch.js) en la consola DevTools de FamilySearch para volcar el mapa de enlaces permanentes ARK.
-7. **Catalogación de Fondos Parroquiales de Navalmoral de la Sierra (`[NMRL-01]`):**
+9. **[PENDIENTE] Catalogación de Fondos Parroquiales de Navalmoral de la Sierra (`[NMRL-01]`):**
    - Identificar y registrar en el catálogo los números de microfilm/DGS de Navalmoral de la Sierra en FamilySearch para cubrir la ascendencia pre-1715 de San Juan del Molinillo, Navandrinal y El Villarejo.
-8. **Evaluación y Aprovechamiento de Chats Externos (`desde gemini/`) [DEBATE METODOLÓGICO PENDIENTE]:**
+10. **[PENDIENTE] Evaluación y Aprovechamiento de Chats Externos (`desde gemini/`):**
    - *Fuentes:* [`desde gemini/Extracción de Corpus Paleográficos Parroquiales.md`](file:///c:/TRABAJOS/personal/genealo/desde%20gemini/Extracci%C3%B3n%20de%20Corpus%20Paleogr%C3%A1ficos%20Parroquiales.md) y [`desde gemini/Gemini Pro para Paleografía Parroquial.md`](file:///c:/TRABAJOS/personal/genealo/desde%20gemini/Gemini%20Pro%20para%20Paleograf%C3%ADa%20Parroquial.md).
    - Analizar en su momento con el usuario qué ideas se integran al pipeline oficial y cuáles se descartan:
      * **Viabilidad de Alfabetogramas Reales:** Estudio de viabilidad y coste/beneficio de recortar caracteres reales con cajas delimitadoras (*bounding boxes*) de cada escribiente para soporte visual HTR frente al modelo actual de fichas técnicas en [`03_AUTORIDADES`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md).
