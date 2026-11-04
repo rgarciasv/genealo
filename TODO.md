@@ -134,14 +134,20 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
      * **Transcripción Literal:** Fidelidad pura al trazo, sin tocar nada.
      * **Transcripción Diplomática / Semidiplomática:** Desarrollo de abreviaturas con corchetes `[ ]` o etiquetas TEI/ASCII, separación de palabras soldadas (*destayglesia* $\rightarrow$ *de esta yglesia*), respeto a grafías antiguas (`u/v`, `b/v`, `i/j/y`, consonantes dobles).
      * **Transcripción Crítica / Ecdótica Normalizada:** Forma moderna para indexación onomástica y motores de búsqueda.
-7. **[PENDIENTE] Protocolo de Verificación Humana y Calibración de NotebookLM (`[VAL-01]`):**
+7. **[PENDIENTE] Estrategia de Apoyo Mutuo entre Índices Parroquiales y Partidas Originales (`[INDICES-01]`):**
+   - El usuario está extrayendo los **Índices de Bautismos/Casados (`JMOL-INDICE-BAUT-MAT`) y de Defunciones (`JMOL-INDICE-DIFU`)** para usarlos como referencia.
+   - Dado que una extracción literal 100 % exacta del índice es difícil por la calidad de las imágenes, hay que diseñar un **mecanismo de apoyo y validación cruzada bidireccional**:
+     1. **Del Índice a la Partida:** Usar la entrada del índice (`Nombre + Año + Libro + Folio`) como *ancla/pista* al transcribir el folio correspondiente del libro de partidas (para saber cuántos asientos esperar en ese folio y qué nombres buscar).
+     2. **De la Partida al Índice:** Usar la partida completa (que tiene padres, abuelos, padrinos, fecha exacta y más contexto caligráfico) para **corregir y completar** las lecturas dudosas o borrosas del propio índice.
+     3. Pensar cómo inyectar ese extracto del índice (como fuente `.md` o tabla de apoyo por libro/folio) dentro de cada cuaderno de Bautismos, Matrimonios y Defunciones correspondientes.
+8. **[PENDIENTE] Protocolo de Verificación Humana y Calibración de NotebookLM (`[VAL-01]`):**
    - Diseñar el método de inspección y muestreo manual del usuario para evaluar el grado de aproximación a la realidad documental (asumiendo con realismo que nunca se alcanzará el 100 %).
    - Establecer ciclos de iteración empírica sobre los prompts y micro-lotes de NotebookLM para minimizar errores y exprimir su potencial.
-8. **[PENDIENTE] Extracción de URLs ARK de FamilySearch (`[ARK-01]`):**
+9. **[PENDIENTE] Extracción de URLs ARK de FamilySearch (`[ARK-01]`):**
    - El usuario ejecutará [`extraer_arks_familysearch.js`](file:///c:/TRABAJOS/personal/genealo/extraer_arks_familysearch.js) en la consola DevTools de FamilySearch para volcar el mapa de enlaces permanentes ARK.
-9. **[PENDIENTE] Catalogación de Fondos Parroquiales de Navalmoral de la Sierra (`[NMRL-01]`):**
+10. **[PENDIENTE] Catalogación de Fondos Parroquiales de Navalmoral de la Sierra (`[NMRL-01]`):**
    - Identificar y registrar en el catálogo los números de microfilm/DGS de Navalmoral de la Sierra en FamilySearch para cubrir la ascendencia pre-1715 de San Juan del Molinillo, Navandrinal y El Villarejo.
-10. **[PENDIENTE] Evaluación y Aprovechamiento de Chats Externos (`desde gemini/`):**
+11. **[PENDIENTE] Evaluación y Aprovechamiento de Chats Externos (`desde gemini/`):**
    - *Fuentes:* [`desde gemini/Extracción de Corpus Paleográficos Parroquiales.md`](file:///c:/TRABAJOS/personal/genealo/desde%20gemini/Extracci%C3%B3n%20de%20Corpus%20Paleogr%C3%A1ficos%20Parroquiales.md) y [`desde gemini/Gemini Pro para Paleografía Parroquial.md`](file:///c:/TRABAJOS/personal/genealo/desde%20gemini/Gemini%20Pro%20para%20Paleograf%C3%ADa%20Parroquial.md).
    - Analizar en su momento con el usuario qué ideas se integran al pipeline oficial y cuáles se descartan:
      * **Viabilidad de Alfabetogramas Reales:** Estudio de viabilidad y coste/beneficio de recortar caracteres reales con cajas delimitadoras (*bounding boxes*) de cada escribiente para soporte visual HTR frente al modelo actual de fichas técnicas en [`03_AUTORIDADES`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md).
