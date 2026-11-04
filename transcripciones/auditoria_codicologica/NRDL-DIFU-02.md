@@ -1,140 +1,96 @@
 # Auditoría Codicológica: NRDL-DIFU-02
 **Parroquia:** NRDL
-**Notebook ID:** `1e77ba17-cf48-4fca-8a0a-e91aa41eb4bb`
+**Notebook ID:** `c1ffffaf-c722-4ee9-9093-21194a822e69`
 **Fecha Auditoría:** 2026-11-01
 
 ---
 
-### 1. Elementos del cuaderno que no son partidas de defunción o entierro
-
-El cuaderno **NRDL-DIFU-02** contiene abundante material parroquial de 
-**Navarredondilla** (Diócesis de Ávila) ajeno a los registros ordinarios de 
-defunción:
-
-#### A. Otro sacramento completo: Libro 2º de Casados (Matrimonios y 
-Velaciones)
-* **Descripción:** La mayor parte del cuaderno (aproximadamente 154 imágenes) 
-corresponde al **Libro 2º de Matrimonios y Velaciones** de la Parroquia de 
-Santiago de Navarredondilla, abarcando desde finales de 1698 hasta finales de 
-1803.
-* **Fuentes:** Desde `004306113_00806.jpg` hasta `004306113_00959.jpg`.
+A continuación se presentan los resultados del análisis detallado de las 70 
+fuentes que componen este cuaderno:
 
 ---
 
-#### B. Portadas y cubiertas originales de libros
-* **Portada original del Libro 2º de Casados:** Inscripción manuscrita: 
-*«Casados / Casados 2º libro que da principio en 30 de Sept.bre de 1698, 
-conclui en 12 de Nov.bre...»*.
-  * **Fuente:** `004306113_00806.jpg`
-* **Cubierta / Portada del Libro 5º de Difuntos:** Encuadernación con etiquetas
-que indican: *«Navarredondilla, Libro 5º de Difuntos / 15-11-1802 - 
-31-3-1836»*.
-  * **Fuente:** `004306113_00962.jpg`
+### 1. Contenido del cuaderno (distinto de partidas matrimoniales)
+
+**En todo el cuaderno no existe ninguna partida matrimonial (casados o 
+velaciones)** [1-4]. Aunque el cuaderno lleva por título *"NRDL-MATR-02"*, la 
+totalidad de las imágenes corresponden a una sección consecutiva del **Libro de
+Difuntos / Finados (y cumplimiento de testamentos/misas)** de la parroquia de 
+Santiago Apóstol del lugar de Navarredondilla (Diócesis de Ávila), abarcando 
+los folios 61 al 130 entre los años 1781 y 1801 [1-4].
+
+El contenido presente en las fuentes consiste en:
+
+* **Partidas de defunción y entierro de adultos y párvulos**: Con sus 
+correspondientes disposiciones testamentarias, mandas pías y cuentas de misas 
+de entierro, honras y sufragios [1, 2, 4, 5].
+* **Autos de visita pastoral formalmente extendidos**:
+  * **Auto de Santa Visita de 16 de mayo de 1786** en Burgohondo, practicada 
+por el obispo D. Fr. Julián Gascueña, donde se inspecciona y aprueba 
+expresamente este *"Libro de Difuntos de la Iglesia Parroquial del Lugar de 
+Navarredondilla"* (fuente: **`004306113_00746.jpg`**) [2].
+  * **Auto de Santa Visita de 16 de mayo de 1794** en Burgohondo, por el fiscal
+general eclesiástico y visitador Lic. D. Miguel Benito Cantero y Francés, 
+revisando este *"Libro de Difuntos"* (fuentes: **`004306113_00779.jpg`** y 
+**`004306113_00780.jpg`**) [3, 6].
+  * **Auto de Visita de 11 de septiembre de 1801** en la ciudad de Ávila, por 
+D. Miguel Benito Cantero y Francés, donde se revisan los registros de finados y
+se ordena comprar un nuevo libro al estarse concluyendo el presente (fuente: 
+**`004306113_00800.jpg`**) [4].
+* **Notas marginales de cobro de derechos de visita y aranceles 
+eclesiásticos**:
+  * 24 de octubre de 1782: D. Ramón Álvarez (**`004306113_00738.jpg`**) [5].
+  * 15 de julio de 1785: D. Ramón Álvarez (**`004306113_00745.jpg`**) [7].
+  * 30 de mayo de 1789 (**`004306113_00762.jpg`**) [8].
+  * 1 de julio de 1790 (**`004306113_00765.jpg`**) [9].
+  * 1 de julio de 1791 (**`004306113_00770.jpg`**) [10].
+  * 8 de julio de 1793 (**`004306113_00773.jpg`**) [11].
+  * 24 de julio de 1794 (**`004306113_00778.jpg`**) [12].
+  * 21 de julio de 1796 (**`004306113_00786.jpg`**) [13].
+  * 14 de julio de 1798 (**`004306113_00790.jpg`**) [14].
+  * 25 de julio de 1799: Lic. D. Ramón Pérez (**`004306113_00793.jpg`**) [15].
+  * 14 de julio de 1800 (**`004306113_00795.jpg`**) [16].
+  * 21 de julio de 1801: Lic. D. Ramón Pérez (**`004306113_00799.jpg`**) [17].
+* **Notas marginales y firmas de cumplimiento de misas**: Anotadas al margen de
+casi cada folio por los curas y ecónomos sucesivos (D. Pablo Pardo del Escobar,
+D. Diego Díaz, D. Pedro García Melgar, D. Juan Antonio Justo Encinas, Fr. Pedro
+de la Concepción, Fr. Juan Gómez, D. Estevan Ximenez Bonilla, D. Manuel Martín 
+Travadelo y D. Domingo Herranz) [1, 2, 4-6, 10, 13, 17].
+* **Certificaciones especiales y traslados militares**:
+  * Certificación de fallecimiento en campaña militar del soldado Sebastián 
+Toribio en el Hospital Real de Pamplona (14 de febrero de 1795) trasladada al 
+registro parroquial (fuentes: **`004306113_00782.jpg`** y 
+**`004306113_00783.jpg`**) [18, 19].
+  * Certificación general de cumplimiento de misas por D. Domingo Herranz a 1 
+de septiembre de 1801 (fuente: **`004306113_00800.jpg`**) [4].
 
 ---
 
-#### C. Fichas técnicas y carátulas de microfilmación
-* **Carátula de final de microfilmación (Vol. 9, Item 6):** Indica: *«FIN / 
-Ávila, España / Parroquia de Navarredondilla / Defunciones Matrimonios / Vol. 9
-Item 6 / 1698 - 1803 / SPN 0060A / Rollo 194»*.
-  * **Fuente:** `004306113_00960.jpg`
-* **Carátula de inicio de microfilmación (Vol. 10, Item 7):** Indica: *«Archivo
-Diocesano de Ávila / Filmado por la Sociedad Genealógica de Utah / Parroquia de
-Navarredondilla / Defunciones / Vol. 10 Item 7 / 1802 - 1836»*.
-  * **Fuente:** `004306113_00961.jpg`
+### 2. Fechas de la primera y última partida de matrimonio
 
----
+* **Primera partida de matrimonio**: **No existe ninguna** en las fuentes de 
+este cuaderno [1, 4].
+* **Última partida de matrimonio**: **No existe ninguna** en las fuentes de 
+este cuaderno [1, 4].
 
-#### D. Notas de apertura, compra y conclusión de libros
-* **Nota de conclusión del Libro de Casados:** Al pie del último asiento 
-matrimonial figura: *«Se conclujo este libro de Casados»*.
-  * **Fuente:** `004306113_00959.jpg`
-* **Nota de compra y apertura del Libro 5º de Difuntos:** Certificación de 
-compra del libro en blanco: *«Compróse este Libro de Difuntos para la Yglesia 
-Parroquial de Navarredondilla en primero de Febrero de mil ochocientos y dos: 
-Siendo Cura Rector de ella, D.n Miguel Hernandez Agero y Cerrudo, Natural dela 
-Villa de Bejar»*.
-  * **Fuente:** `004306113_00963.jpg`
-
----
-
-#### E. Autos de Santa Visita Pastoral y Decretos Eclesiásticos
-Intercalados periódicamente en los libros parroquiales:
-* **Audiencia eclesiástica en Olmedo (21 de junio de 1802):** 
-`004306113_00802.jpg`
-* **Diligencia de visita (18 de junio de 1803):** `004306113_00805.jpg`
-* **Auto de Visita de 1701 (16 de junio de 1701):** Por el Lic. D. Mateo de la 
-Cámara Mansilla (`004306113_00809.jpg`).
-* **Auto de Visita de 1709 (7 de junio de 1709):** `004306113_00815.jpg` y 
-`004306113_00816.jpg`.
-* **Mandamiento de visita del Lic. D. Juan Antonio Pérez de Rozas:** 
-`004306113_00821.jpg`.
-* **Auto de Visita de 1718 (29 de julio de 1718):** `004306113_00824.jpg`.
-* **Santa Visita de 1732 (9 de mayo de 1732):** Por D. Miguel Pérez de Uriaque 
-(`004306113_00841.jpg` y `004306113_00842.jpg`).
-* **Santa Visita en Burgohondo (12 de mayo de 1742):** Por el Obispo D. Narciso
-de Queralt (`004306113_00853.jpg`).
-* **Auto de Visita en Navalmoral (25 de mayo de 1753):** `004306113_00858.jpg`.
-* **Santa Visita en Burgohondo (2 de mayo de 1756):** Dictada por el visitador 
-Manuel Samaniego Gómez (`004306113_00873.jpg` y `004306113_00874.jpg`).
-* **Auto de Visita de 1765:** `004306113_00887.jpg`.
-* **Auto de Visita de 1771 (1 de junio de 1771):** Por el Dr. D. Joseph 
-Silvestre Molinas (`004306113_00896.jpg` y `004306113_00897.jpg`).
-* **Santa Visita en Burgohondo (8 de marzo de 1780):** Por el Obispo D. Miguel 
-Celestino de la Crazuz (`004306113_00915.jpg`).
-* **Santa Visita en Burgohondo (16 de mayo de 1786):** Por el Obispo Fr. Julián
-de Gascueña (`004306113_00924.jpg`).
-* **Santa Visita en Burgohondo (16 de mayo de 1795):** Dictada por el visitador
-Dr. D. Miguel Romero Cantero y Grande (`004306113_00940.jpg` y 
-`004306113_00941.jpg`).
-* **Auto de Visita en Ávila (11 de diciembre de 1801):** Mandato del vicario 
-general sobre el orden y separación de partidas (`004306113_00955.jpg` y 
-`004306113_00956.jpg`).
-
----
-
-#### F. Licencias matrimoniales, dispensas apostólicas y notas al margen
-* **Licencia matrimonial y transcripción de auto canónico:** Despacho íntegro 
-de dispensa de parentesco de 1767 en `004306113_00890.jpg`.
-* **Citas de bulas apostólicas de dispensas de consanguinidad y afinidad:** En 
-los márgenes y cuerpos de los asientos matrimoniales (e.g. 
-`004306113_00894.jpg`, `004306113_00903.jpg`, `004306113_00946.jpg`).
-* **Disposiciones testamentarias y mandas:** En las partidas de finados adultos
-se detallan testadores, albaceas, mandas pías y ventas de bienes en almoneda 
-para sufragios (como la memoria marginal de Josefa García en 
-`004306113_00967.jpg`).
-* **Partida anómala invertida:** En el folio izquierdo de 
-`004306113_00892.jpg`, redactada boca abajo dentro del libro de casados, figura
-la partida de entierro de Antonia de Encabo (22 de junio de 1764).
-
----
-
-### 2. Fecha de la primera y última partida de defunción/entierro
-
-* **Primera partida de defunción/entierro:**
-  * **Fecha:** **08/12/1801** (8 de diciembre de 1801).
-  * **Nombre de la imagen:** `004306113_00801.jpg`
-  * *Detalle:* Entierro de un párvulo, hijo legítimo de Manuel Sánchez y María 
-Hernández.
-
-* **Última partida de defunción/entierro:**
-  * **Fecha:** **18/07/1804** (18 de julio de 1804).
-  * **Nombre de la imagen:** `004306113_00971.jpg`
-  * *Detalle:* Entierro de una niña párvula llamada Feliciana, al pie del folio
-8 vuelto.
+*(Como referencia del contenido real de defunciones: la primera partida 
+asentada en el cuaderno corresponde al entierro de un párvulo el **26 de 
+septiembre de 1781** [1], y la primera de adulto al **3 de octubre de 1781** 
+[1], ambas en **`004306113_00731.jpg`**; la última partida de entierro 
+registrada corresponde al **2 de agosto de 1801** en la fuente 
+**`004306113_00799.jpg`** [17]).*
 
 ---
 
 ### 3. Primera y última imagen del cuaderno (orden alfabético)
 
-Teniendo en cuenta los 171 archivos que componen el cuaderno:
-
-* **Primera imagen:** `004306113_00801.jpg`
-* **Última imagen:** `004306113_00971.jpg`
+* **Primera imagen**: **`004306113_00731.jpg`**
+* **Última imagen**: **`004306113_00800.jpg`**
 
 ---
 
-🗂️ *¿Deseas que prepare una transcripción completa o un índice estructurado de 
-las partidas de defunción comprendidas entre 1801 y 1804?*
+💡 Si necesitas un índice completo de las personas enterradas, o un desglose 
+por párvulos y adultos en este periodo (1781-1801), puedo elaborarlo 
+directamente.
 
-Resumed conversation: 8176eaaf-4407-414b-83b0-d944c5af86e9
+Resumed conversation: 7f6ecfa0-e908-4f6f-8c12-912ec7c7c13e
