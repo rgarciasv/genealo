@@ -128,10 +128,11 @@ Las imágenes (**8.515 archivos canónicos en disco**, ver [`GUIA_MAESTRA_ARCHIV
      * `NRDL-DIFU-03` (`ab115a24-e08b-4ee6-b990-9027d7ac1abf`): Ampliado a **181 fuentes** con el inicio del Libro 5º de Difuntos (`00961`–`00971`, 1802–1804), quedando íntegro (1802–1836).
      * `JMOL-INDICE-BAUT-MAT` (`e26e1dd5-a9aa-469a-80af-3d52603bbdc0`): Renombrado para reflejar que conserva unidos el Índice de Bautismos (1750–1914) y el Índice de Casados (1716–1918).
 
-6. **[PENDIENTE] Debate Metodológico sobre Criterios de Transcripción (`[ECDOTICA-01]`):**
+6. **[PENDIENTE] Debate Metodológico sobre Criterios de Transcripción y Formato de Salida — TEI / ASCII vs. JSON / Markdown (`[ECDOTICA-01]`):**
+   - Evaluar cuál es el **mejor formato de representación y extracción de los datos**, incluyendo la opción de **TEI / ASCII** (marcado diplomático ligero estilo *Text Encoding Initiative* en ASCII plano para abreviaturas, tachaduras, interlineados, marginalia y entidades) frente a **JSON Schema** o **bloques Markdown estructurados** (teniendo en cuenta tanto la facilidad de generación por NotebookLM sin romper sintaxis como su posterior parseo hacia ArcadeDB).
    - Consensuar qué nivel exacto debe entregar NotebookLM en cada sección del bloque de salida:
      * **Transcripción Literal:** Fidelidad pura al trazo, sin tocar nada.
-     * **Transcripción Diplomática / Semidiplomática:** Desarrollo de abreviaturas con corchetes `[ ]`, separación de palabras soldadas (*destayglesia* $\rightarrow$ *de esta yglesia*), respeto a grafías antiguas (`u/v`, `b/v`, `i/j/y`, consonantes dobles).
+     * **Transcripción Diplomática / Semidiplomática:** Desarrollo de abreviaturas con corchetes `[ ]` o etiquetas TEI/ASCII, separación de palabras soldadas (*destayglesia* $\rightarrow$ *de esta yglesia*), respeto a grafías antiguas (`u/v`, `b/v`, `i/j/y`, consonantes dobles).
      * **Transcripción Crítica / Ecdótica Normalizada:** Forma moderna para indexación onomástica y motores de búsqueda.
 7. **[PENDIENTE] Protocolo de Verificación Humana y Calibración de NotebookLM (`[VAL-01]`):**
    - Diseñar el método de inspección y muestreo manual del usuario para evaluar el grado de aproximación a la realidad documental (asumiendo con realismo que nunca se alcanzará el 100 %).
