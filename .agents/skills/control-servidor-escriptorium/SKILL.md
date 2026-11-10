@@ -21,7 +21,7 @@ Esta skill permite al agente gestionar de forma 100% autónoma y desatendida la 
 * **Nombre de la instancia:** `escriptorium-spot-vm`.
 * **Modelo de aprovisionamiento:** `SPOT` (descuento del 60–90%, con parada automática sin pérdida de disco).
 * **Hardware:** `n1-standard-4` (4 vCPUs, 15 GB RAM + 16 GB Swap) + 1x **NVIDIA Tesla T4** (16 GB VRAM).
-* **Disco:** 100 GB SSD persistente (`pd-balanced`), conserva el estado al apagar la VM.
+* **Disco:** 120 GB Disco persistente estándar HDD (`pd-standard`, ~4,80 \$/mes), conserva todas las imágenes, XMLs, modelos y base de datos al apagar la VM.
 * **Stack Software:** Ubuntu 22.04 LTS, Docker, NVIDIA Container Toolkit, eScriptorium (Django, PostgreSQL, Redis, Celery GPU Worker).
 
 ---
@@ -66,4 +66,4 @@ El agente ejecutará las operaciones a través del script maestro `scripts/manag
 
 1. **Responsabilidad Económica:** Siempre que el usuario indique que ha terminado de trabajar, o al final de una sesión de entrenamiento, el agente debe verificar si el servidor debe apagarse para no incurrir en costes innecesarios.
 2. **Chequeo previo:** Antes de lanzar una petición a eScriptorium, verificar con `status` si la máquina está encendida. Si está apagada, avisar y arrancarla con `start`.
-3. **Persistencia:** Todo el trabajo (modelos entrenados en Kraken, proyectos, imágenes subidas y transcripciones) reside en los volúmenes de Docker en el disco SSD persistente de 100 GB; **nunca se pierde al apagar la máquina**.
+3. **Persistencia:** Todo el trabajo (modelos entrenados en Kraken, proyectos, imágenes subidas y transcripciones) reside en los volúmenes de Docker en el disco persistente estándar HDD (`pd-standard`) de 120 GB; **nunca se pierde al apagar la máquina**.

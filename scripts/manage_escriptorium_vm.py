@@ -21,8 +21,8 @@ DEFAULT_ZONE = "europe-west1-b"
 INSTANCE_NAME = "escriptorium-spot-vm"
 MACHINE_TYPE = "n1-standard-4"  # 4 vCPU, 15 GB RAM
 ACCELERATOR = "type=nvidia-tesla-t4,count=1"
-DISK_SIZE_GB = 100
-DISK_TYPE = "pd-balanced"
+DISK_SIZE_GB = 120
+DISK_TYPE = "pd-standard"  # Disco persistente estándar (HDD): ~0.04 $/GB/mes (~4,80 $/mes por 120 GB)
 IMAGE_PROJECT = "ubuntu-os-cloud"
 IMAGE_FAMILY = "ubuntu-2204-lts"
 
