@@ -20,13 +20,27 @@ Esta skill permite al agente gestionar de forma 100% autónoma y desatendida la 
 * **Zona:** `europe-west1-b` (Bélgica).
 * **Nombre de la instancia:** `escriptorium-spot-vm`.
 * **Modelo de aprovisionamiento:** `SPOT` (descuento del 60–90%, con parada automática sin pérdida de disco).
-* **Hardware:** `n1-standard-4` (4 vCPUs, 15 GB RAM + 16 GB Swap) + 1x **NVIDIA Tesla T4** (16 GB VRAM).
+* **Hardware:** `n1-standard-4` (4 vCPUs, 15 GB RAM + 16 GB Swap) + soporte opcional para **NVIDIA Tesla T4** (16 GB VRAM).
 * **Disco:** 120 GB Disco persistente estándar HDD (`pd-standard`, ~4,80 \$/mes), conserva todas las imágenes, XMLs, modelos y base de datos al apagar la VM.
-* **Stack Software:** Ubuntu 22.04 LTS, Docker, NVIDIA Container Toolkit, eScriptorium (Django, PostgreSQL, Redis, Celery GPU Worker).
+* **Stack Software:** Ubuntu 22.04 LTS, Docker CE, Docker Compose (11 contenedores activos: `web`, `db` PostgreSQL, `redis`, `nginx`, `channelserver`, `flower`, workers de Celery).
 
 ---
 
-## 2. Comandos Operativos Disponibles
+## 2. Modelos HTR Pre-entrenados Registrados en la Instancia
+
+La instancia cuenta con 5 modelos registrados en la base de datos de eScriptorium (`core_ocrmodel`), listos para inferencia y fine-tuning:
+
+| ID Modelo | Nombre Canónico | Ámbito de Especialidad | Rendimiento Zero-Shot Observado |
+| :---: | :--- | :--- | :--- |
+| **`2`** | **TRIDIS (Documental y Notarial s.XII-XVI)** | Notaría, pleitos y registros parroquiales ibéricos (s. XII–XVI). **Modelo Rector**. | **Excelente en s. XVIII (~85–90%)**; captura fórmulas, nombres y citas al folio. En s. XVII extrae anclas aisladas (~40%). |
+| **`3`** | **CATMuS Medieval (Castellano y Latín s.XIII-XVI)** | Códices góticos, humanísticos y romances medievales (+113.000 líneas). | Tiende a producir pseudo-latín o formas medievales arcaizantes en manuscritos modernos. |
+| **`4`** | **McCATMuS (Español y Romance s.XVI-XIX)** | Corpus romance diacrónico en Unicode NFD estricto con `ſ` larga. | Moderado en s. XVIII (~60%). Colisiona con abreviaturas y genera ruido ortográfico por la `ſ`. |
+| **`5`** | **CREMMA ManuMcFondue (Manuscritos Modernos s.XVI-XIX)** | Manuscritos modernos franceses/europeos (proyectos FoNDUE / Gallicorpora). | Moderado (~55%). Tiende a galicismos fonéticos en español al carecer de léxico notarial ibérico. |
+| **`6`** | **Lectaurep Base (Administrativo y Notarial s.XVIII-XX)** | Tablas notariales y registros administrativos franceses. | Especializado en registros tabulares; no recomendado para prosa parroquial continua. |
+
+---
+
+## 3. Comandos Operativos Disponibles
 
 El agente ejecutará las operaciones a través del script maestro `scripts/manage_escriptorium_vm.py`:
 
@@ -58,12 +72,15 @@ El agente ejecutará las operaciones a través del script maestro `scripts/manag
 ```powershell
 .\venv\Scripts\python.exe scripts/manage_escriptorium_vm.py ip
 ```
-* Devuelve la IP pública y la URL directa: `http://<IP>:8080`.
+* Devuelve la IP pública y la URL directa: `http://<IP>:8080` (Credenciales: `admin` / `admin`).
 
 ---
 
-## 3. Reglas de Comportamiento del Agente
+## 4. Reglas y Lecciones Operativas (`[L-36]` a `[L-40]`)
 
-1. **Responsabilidad Económica:** Siempre que el usuario indique que ha terminado de trabajar, o al final de una sesión de entrenamiento, el agente debe verificar si el servidor debe apagarse para no incurrir en costes innecesarios.
-2. **Chequeo previo:** Antes de lanzar una petición a eScriptorium, verificar con `status` si la máquina está encendida. Si está apagada, avisar y arrancarla con `start`.
-3. **Persistencia:** Todo el trabajo (modelos entrenados en Kraken, proyectos, imágenes subidas y transcripciones) reside en los volúmenes de Docker en el disco persistente estándar HDD (`pd-standard`) de 120 GB; **nunca se pierde al apagar la máquina**.
+1. **Responsabilidad Económica y Ciclo de Vida (`[L-36]`):** Siempre que se termine una sesión de trabajo o inferencia, la VM Spot debe apagarse con `stop`. En estado `TERMINATED` el coste horario de cómputo es exactamente **0,00 \$/h**.
+2. **Modelo Rector TRIDIS (`[L-37]`):** Para cualquier tarea de inferencia en frío o como base para reentrenamientos (*fine-tuning*) en el archivo parroquial o catastral, usar **TRIDIS (ID 2)**.
+3. **Codec y Unificación de la `s` (`[L-38]`):** El codec de TRIDIS no contiene `ſ` larga (`U+017F`); unifica la grafía a `s` (`U+0073`), pero soporta superíndices (`º`, `ª`) y macrones/tildes (`ā`, `ō`). Al preparar *Ground Truth* con LLMs, mapear siempre `ſ` $\rightarrow$ `s`.
+4. **Anti-Normalización en Ground Truth (`[L-39]`):** Nunca expandir abreviaturas ni modernizar ortografía en textos de entrenamiento para Kraken. Mantener ligaduras (`deste`, `dela`) y formas literales (`fevrero`, `Ju.º`).
+5. **Depuración de PAGE-XML (`[L-40]`):** Al exportar PAGE-XML de eScriptorium para poblar transcripciones con Gemini, eliminar los nodos `<Word>` y `<Glyph>` (reducción del 98% de líneas) manteniendo solo `<TextRegion>`, `<TextLine>`, `<Coords>` y `<Baseline>`.
+6. **Persistencia:** Todo el trabajo (modelos, proyectos, imágenes y transcripciones) reside en los volúmenes Docker del disco persistente de 120 GB (`pd-standard`); **nunca se pierde al apagar la VM**.

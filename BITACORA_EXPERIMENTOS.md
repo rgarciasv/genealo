@@ -367,22 +367,22 @@
 
 ---
 
-## 🔬 Experimento 23: Descubrimiento Histórico-Canónico en `JMOL-SACRAMENTAL-1842-1850` — El Expediente de Convalidación Parroquial de 1850
-- **Fecha:** 2026-11-01
-- **Objetivo:** Inspección del cuaderno `JMOL-SACRAMENTAL-1842-1850` (ID `81eb6310-b70c-40db-9fb0-b0c1f364ce05`, rollo `004298570`, Elemento 17, 91 fotogramas) para determinar su estructura interna y justificación archivística.
-- **Hallazgo y Desarticulación Histórico-Jurídica:**
-  - El volumen no obedece a una mera encuadernación desordenada de papeles sueltos, sino a un **Expediente Judicial Canónico de Convalidación Sacramental** incoado tras el fallecimiento del cura párroco D. Marcelino Tore Díaz.
-  - El fallecimiento del sacerdote dejó sin asentar en los libros corrientes de la parroquia numerosos sacramentos entre 1842 y 1849.
-  - Para evitar la pérdida de los derechos civiles y canónicos de los feligreses, el Obispado de Ávila instruyó un sumario formal tomando declaraciones juradas a testigos, padrinos, parientes y al médico titular de la localidad.
-  - **Composición del Códice (91 imágenes):**
-    1. **Bautismos (1847–1848):** Constaron fechas de nacimiento y bautismo, nombres de bautizados, padres, filiación completa a 4 abuelos (abuelos paternos y maternos), padrinos y mención de vecindad en Navandrinal y El Villarejo.
-    2. **Matrimonios (1842–1849):** Amonestaciones canónicas, dispensas matrimoniales de parentesco, consentimiento paterno, contrayentes, padres, padrinos y testigos.
-    3. **Defunciones y Entierros (1843–1849):** Sepulturas en camposanto, estado civil (adultos y párvulos), cónyuges, padres, últimos sacramentos, disposiciones testamentarias y misas.
-    4. **Decreto Episcopal de Convalidación (septiembre de 1850):** Auto solemne firmado por el Obispo de Ávila, D. Manuel López Santisteban, aprobando judicialmente las partidas y ordenando su plena incorporación a los libros parroquiales corrientes.
-- **Trascendencia Genealógica:**
-  - Resuelve lo que aparentaba ser una laguna sacramental en la década de 1840 para San Juan del Molinillo, Navandrinal y El Villarejo.
-  - La filiación a 4 abuelos en los bautismos de 1847–1848 proporciona un puente cronológico directo con las familias empadronadas en el Catastro de Ensenada de 1751 y los libros regulares de 1851 en adelante.
-- **Veredicto:** **DESCUBRIMIENTO VALIDADO Y REGISTRADO**.
+---
+
+## 🔬 Experimento 24: Despliegue de eScriptorium/Kraken en GCE Spot y Benchmark Empírico HTR Multi-Modelo (Siglos XVI–XVIII)
+- **Fecha:** 2026-11-10
+- **Rama Git:** `feature/escriptorium-spot-vm`
+- **Infraestructura:** Instancia Spot en GCE (`escriptorium-spot-vm`, zona `europe-west1-b`, `n1-standard-4`, 120 GB `pd-standard`, Docker CE con 11 contenedores).
+- **Objetivo:** Auditar la viabilidad técnica y económica del HTR local frente a LLMs multimodales, evaluar 5 modelos oficiales (TRIDIS, McCATMuS, CATMuS Medieval, CREMMA ManuMcFondue y Lectaurep Base) sobre 4 periodos paleográficos y diseñar el pipeline híbrido asistido por Gemini.
+- **Hallazgos y Lecciones Empíricas Registradas:**
+  - **`[L-36]` Arquitectura de Infraestructura HTR Efímera en GCE Spot VM y Control de Costes:** El despliegue de eScriptorium sobre instancias Spot de GCE con disco persistente estándar de 120 GB (~4,80 $/mes) y arranque/parada automatizado desde Antigravity ([`scripts/manage_escriptorium_vm.py`](file:///c:/TRABAJOS/personal/genealo/scripts/manage_escriptorium_vm.py)) reduce el coste de computación a 0,05 $/h en CPU durante las pruebas activas y a 0,00 $/h en estado `TERMINATED`, conservando íntegros los modelos, bases de datos y segmentaciones.
+  - **`[L-37]` Inviabilidad de Modelos HTR Generales Zero-Shot para Producción Directa en el Siglo XVII:** Ningún modelo base público (ni TRIDIS, ni McCATMuS, ni CATMuS) es apto para transcribir en frío la letra cortesana o procesal del siglo XVII (Gaspar Rubiano, 1616), arrojando tasas de error de carácter (CER) superiores al 60% que hacen inviable su uso directo sin fine-tuning local previo.
+  - **`[L-38]` Disección del Codec HTR: Superioridad Notarial de TRIDIS y Descarte de la 's' Larga (`ſ`):** La inspección de la red neuronal de TRIDIS demostró que su alfabeto de 183 clases unificó la `ſ` larga a la `s` común (`U+0073`) e incorporó superíndices (`º`, `ª`) y macrones notariales. Esto le otorgó una superioridad abrumadora en el siglo XVIII frente a modelos francófonos (CREMMA), alcanzando un 85-90% de precisión en frío sobre folios de 1725 y 1758 (`004306112_02250.jpg` y `02400.jpg`), reconociendo fórmulas canónicas (*bautizado de socorro*, *Ritual Romano*), nombres de abuelos, aldeas (*Aldea de Navalmoral*) y citas de foliado (*a fojas 31*).
+  - **`[L-39]` Estrategia Híbrida Gemini $\rightarrow$ eScriptorium: Aligeramiento PAGE-XML (98% Reducción) y Ground Truth Asistido:** Los archivos PAGE-XML exportados por eScriptorium contienen un 98% de código innecesario en etiquetas `<Word>` y `<Glyph>` (16.089 líneas). Al depurarlos a nivel de `<TextRegion>` y `<TextLine>` (~300 líneas), es posible alimentar a Gemini Multimodal para inyectar transcripciones diplomáticas literales (anti-normalización, sin expandir abreviaturas) que rellenan automáticamente las líneas azules de eScriptorium, habilitando el reentrenamiento (`Train`) de modelos Kraken locales con solo 5-10 páginas de *Ground Truth*.
+  - **`[L-40]` Segmentación de Renglones en Doble Plana (Gutter Split vs. Baselines Paralelas):** El segmentador por defecto (`blla.mlmodel`) traza baselines horizontales de alta precisión en manuscritos del siglo XVIII, pero puede generar regiones confusas en el canal del lomo central de los microfilms a doble página. La mitigación óptima consiste en particionado lógico por plana antes de inferencia o corrección rápida mediante la herramienta de tijeras (`✂`).
+- **Documentación de Referencia Técnica:** [`docs/BENCHMARK_HTR_ESCRIPTORIUM_KRAKEN.md`](file:///c:/TRABAJOS/personal/genealo/docs/BENCHMARK_HTR_ESCRIPTORIUM_KRAKEN.md).
+- **Veredicto:** **BENCHMARK CERTIFICADO Y ARQUITECTURA VALIDADA**.
+
 
 
 

@@ -22,7 +22,12 @@ imagenes/rollo*/
 scraper.log
 scratch/
 
-# Credenciales y perfiles de sesión
+# Modelos de Machine Learning / HTR (descargables via scripts)
+models/
+*.mlmodel
+*.pt
+*.bin
+
 storage_state.json
 *.session
 *browser_profile*
