@@ -1,10 +1,82 @@
 # PLAN MAESTRO Y ROADMAP DE TAREAS: I+D GENEALÓGICO ALTO ALBERCHE
 
-> **Estado del Proyecto:** Fase de Investigación y Laboratorio de Pruebas (Fases 0.5, 1 y 2).  
+> **🧭 PUNTO DE ENTRADA ÚNICO («MEMORIA TOTAL DEL PROYECTO»):**
+> - [**`docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md`**](file:///c:/TRABAJOS/personal/genealo/docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md) — **Documento Rector Unificado** (Las 4 Capas del proyecto, abandono de eScriptorium Web UI por flujo 100% local `PAGE-XML` + Kraken 7.2 + Aletheia 4.1, los 12 Clusters `C01–C12`, las 6 plantillas NER y la especificación de la **App de Escritorio Nativa en Rust con `egui` + `wgpu` + `lyon` + `cosmic-text`**).
+> - [**`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`**](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md) — Mapa operativo que cruza las 33 auditorías de NotebookLM y `03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md` con las imágenes `.jpg` locales para muestrear los 12 clusters paleográficos.
+> - [**`docs/PIPELINE_HTR_Y_TAXONOMIA_CLUSTERS_PALEOGRAFICOS.md`**](file:///c:/TRABAJOS/personal/genealo/docs/PIPELINE_HTR_Y_TAXONOMIA_CLUSTERS_PALEOGRAFICOS.md) y [**`docs/ENTRENAMIENTO_EXTREMO_KRAKEN.md`**](file:///c:/TRABAJOS/personal/genealo/docs/ENTRENAMIENTO_EXTREMO_KRAKEN.md).
+
+---
+
+## 🚦 TABLERO DE CONTROL EJECUTIVO (CLASIFICACIÓN EN 3 CESTAS — CERO PÉRDIDA DE HISTORIAL)
+
+*(Todo el historial de las secciones 1 a 10 de este `TODO.md` se conserva íntegro más abajo; este tablero organiza qué está activo hoy, qué va a la App en Rust y qué queda aparcado en reserva).*
+
+### 🟢 CESTA A — ACTIVO AHORA (Flujo Local `PAGE-XML`, Ground Truth y Motores Kraken por Cluster)
+- [x] **A.1. Entorno Local Windows 11 + Kraken 7.2 + Pipeline Modular `htr_pipeline/`**:
+  - Segmentación por lotes en local (`segmentar_lote.py`, ~18 s/folio), transcripción diplomática asistida para GT (`transcribir_pagexml.py`), inventario cerrado de 16 caracteres especiales Unicode (incluyendo `ˡ` `U+02E1`), detección automática de pliegue central (`detect_gutter_x`) y agrupación de partidas (`group_lines_by_partida`).
+- [x] **A.2. Integración y Tuneo Portable de Aletheia 4.1 (`programs/Aletheia 4.1/`)**:
+  - Configuración portable (`aletheia.ini`), teclado virtual con los 16 caracteres paleográficos (`special_characters.xml`), reemplazos implícitos (`implicit_character_replacements.xml`) y script de recálculo automático de máscaras poligonales tras cortar baselines con tijera (`recalcular_mascaras_aletheia.py`).
+- [x] **A.3. Mapa de Muestreo de los 12 Clusters (`C01–C12`) desde las 33 Auditorías de NotebookLM**:
+  - Generado por `scripts/mapear_clusters_desde_auditorias.py` en [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md).
+- [ ] **A.4. Curación del Primer Lote de Ground Truth en Aletheia 4.1 (`01608` + `lote_prueba_5: 02637–02641`)**:
+  - Cortar baselines que cruzan la llave marginal `}`, asignar las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`), agrupar con `<ReadingOrder>`, recalcular máscaras con `recalcular_mascaras_aletheia.py` y completar transcripción diplomática.
+- [ ] **A.5. Entrenamiento del Segmentador Local (`blla_alto_alberche.mlmodel`) y de los 4 Motores Kraken (`C01–C12`)**:
+  - Entrenar segmentador con las 4 regiones y las llaves `}` separadas, y fine-tuning de reconocimiento (`ketos train` sobre `catmus-medieval-1.6.0.mlmodel`).
+
+### 🔵 CESTA B — ARQUITECTURA DE PRODUCTO (Inferencia Kraken Offline + NER 6 Tipologías + App Nativa en Rust + ArcadeDB)
+- [ ] **B.1. Motor de Inferencia Kraken 100% Local + Enlazador Automático de Partidas**:
+  - Inferencia sin coste de API sobre folios nuevos y emparejamiento automático `margen_indice` $\leftrightarrow$ `cuerpo_partida` $\leftrightarrow$ `firma` (solapamiento vertical + *Fuzzy Name Anchor*).
+- [ ] **B.2. Extractor NER Local para las 6 Tipologías Documentales**:
+  - Plantillas estructuradas para: **1. Bautismos/Nacimientos**, **2. Matrimonios/Velaciones**, **3. Defunciones**, **4. Listas de Confirmación**, **5. Índices Parroquiales** y **6. Catastro de Ensenada (Personal de Legos y Bienes de Legos)**.
+  - Diccionarios locales alimentados por `01_LEXICO`, `03_AUTORIDADES` y `04_HISTORIA`, con fallback puntual opcional a API gratuita (`Google AI Studio` / `OpenRouter`).
+- [ ] **B.3. Aplicación de Escritorio Nativa en Rust (`genealo-htr-desktop`) para Indexadores**:
+  - Stack 100% Rust nativo: **`egui` + `eframe` (`wgpu`) + `lyon_tessellation` (polígonos cóncavos `<Coords>`) + `cosmic-text` (`rustybuzz` + fuente `Junicode Two` para `U+0304` y superíndices) + `geo`/`kurbo` (tijera/pegamento de baselines) + `quick-xml` (`PAGE-XML`) + `rusqlite` + `rust_xlsxwriter`**.
+  - Tres paneles sincronizados: Lienzo `PAGE-XML` simplificado tipo Aletheia + Visor de línea con teclado de 16 glifos + Ficha/Tabla NER editable con exportación directa a Excel, CSV, GEDCOM y ArcadeDB.
+- [ ] **B.4. Ingesta en Grafo Híbrido Event-Centric (`ArcadeDB`, Secciones 5 y 6 del `TODO.md` histórico)**:
+  - Volcado de las partidas validadas en la App en Rust hacia el modelo Event-Centric en ArcadeDB y reconciliación con los `.ged` de referencia.
+
+### 🟡 CESTA C — EN RESERVA / APARCADO (No bloquea HTR ni la App en Rust; retomar solo bajo demanda)
+- [ ] **C.1. Subida a NotebookLM de los 11 cuadernos del Catastro de Ensenada (Bienes de Legos, ~2.600 imgs)** *(Sección 10, Fase 8.4)*:
+  - Las imágenes ya están descargadas y catalogadas en `catalogo_corpus.json`. Su subida a NotebookLM queda aparcada porque su extracción masiva se hará directamente con el **Motor Kraken `C06` (Bastarda Cancilleresca de Ensenada) + Plantilla NER `ENSENADA_BIENES`**.
+- [ ] **C.2. Extracción forense de metadatos ARK de FamilySearch (`[ARK-01]`, Sección 7)** y **Catalogación DGS de Navalmoral de la Sierra (`[NMRL-01]`, Sección 10, Fase 8.5)**.
+- [ ] **C.3. Tests A/B de Ductus en NotebookLM (`Sección 3, Fase 0.5`)**:
+  - Superados en la práctica por el entrenamiento directo por clusters (`C01–C12`) en Kraken y los 33 cuadernos ya auditados en la Fase 9.
+- [ ] **C.4. `[Prioridad Baja]` Banco de pruebas de VLLMs para transcripción paleográfica vía CLIs locales (`copilot`, `codex`, `gemini`)**:
+  - Evaluar y comparar cómo distintos modelos multimodales extraen texto diplomático literal sobre recortes de libros de cuentas y partidas parroquiales frente a nuestro Ground Truth (`PAGE-XML`), sin coste de API adicional. Especificación técnica íntegra registrada a continuación:
+
+#### 📋 Especificación Técnica de Reserva (`C.4`): `[TODO - Prioridad Baja]` Banco de pruebas de VLLMs para transcripción paleográfica vía CLIs locales
+
+**1. Objetivo**
+Crear un probador ligero (script lanzador en Python/PowerShell o configuración de Promptfoo) envuelto en una *skill* o *workflow* de Antigravity para evaluar y comparar cómo distintos modelos multimodales (VLLMs) extraen texto diplomático literal a partir de imágenes recortadas de libros de cuentas y partidas parroquiales, contrastando las salidas frente a nuestro *ground truth* (`PAGE-XML`).
+
+**2. CLIs locales ya instalados y autenticados en este equipo (Windows 11)**
+Para evitar costes de API adicionales, el probador debe invocar en modo desatendido (*headless*) los CLIs locales ya operativos:
+* **GitHub Copilot CLI (`v1.0.114`)** — Cuenta GitHub Student:
+  * Binario: `C:\Users\rgarc\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim\copilot.exe`
+  * Configuración: `C:\Users\rgarc\.copilot\config.json` (actualmente con `claude-sonnet-4.6`; alternable a `gpt-5-mini` u otros modelos con visión disponibles).
+  * Uso multimodal: adjuntar imágenes mediante `@ruta/imagen` en modo no interactivo (`copilot -p ...`).
+* **OpenAI Codex CLI (`v0.171.0`)** — Cuenta ChatGPT Plus:
+  * Configuración: `C:\Users\rgarc\.codex\config.toml`. **Restricción crítica:** nunca sobrescribir el archivo completo, ya que contiene plugins, proyectos de confianza y servidores MCP de Codex Desktop; cualquier cambio de modelo o `model_reasoning_effort` debe hacerse por bandera de CLI o edición quirúrgica.
+  * Uso multimodal: `codex exec --image <ruta> --json ...`.
+* **Gemini CLI** — Cuenta Google:
+  * Disponible como tercer motor CLI local para incluir modelos de Google en la misma comparativa.
+
+**3. Arquitectura de ejecución y política de ahorro de tokens**
+* **Modelo orquestador ligero:** Esta tarea y sus futuras ejecuciones deben gestionarse desde Antigravity usando un agente de bajo consumo (por ejemplo, **Gemini 4 Hydrogen** con nivel de pensamiento en **Bajo / `low`**), actuando únicamente como lanzador y gestor del experimento.
+* **Delegación del bucle al script (sin bucle agéntico en chat):** El agente nunca debe procesar las imágenes una a una dentro de la conversación para no inflar el historial ni quemar cuota de Google como intermediario. En su lugar, lanzará un único comando de terminal para que el script local ejecute todas las llamadas contra `copilot`, `codex` y `gemini` CLI y vuelque cada transcripción a disco (`.txt` / `.json`).
+* **Uso selectivo de modelos pesados:** Reservar modelos de mayor razonamiento solo para análisis puntuales al final del lote (por ejemplo, diagnóstico de errores en abreviaturas o cálculo de métricas CER/WER y tabla comparativa).
+
+**4. Requisitos técnicos de paleografía a tener en cuenta al implementar**
+* **Control de resolución:** Trabajar preferiblemente sobre recortes por partida individual o bloques de líneas para evitar que los CLIs de código reescalen silenciosamente folios completos de alta resolución.
+* **Anulación del sesgo de programación:** El *prompt* paleográfico debe incluir una instrucción estricta para que los CLIs ignoren su *system prompt* de desarrollo de software y devuelvan únicamente la transcripción diplomática literal (sin normalización ortográfica ni comentarios), delimitada por etiquetas claras (ej. `<texto>...</texto>`).
+
+---
+
+> **Estado Histórico del Documento Base (conservado íntegro a continuación):** Fase de Investigación y Laboratorio de Pruebas (Fases 0.5, 1 y 2).  
 > **Objetivo:** Pipeline de transcripción HTR y extracción de registros sacramentales y catastrales (1594–1902, letra procesal, cortesana y humanística) hacia un grafo híbrido event-centric en **ArcadeDB**.
 >
 > **📚 Documentación Maestra Sincronizada (Fuente Única de Verdad):**
-> - [`contexto_maestro.md`](file:///c:/TRABAJOS/personal/genealo/contexto_maestro.md) — Índice general y las 9 Reglas de Oro (`L-01` a `L-09`).
+> - [`contexto_maestro.md`](file:///c:/TRABAJOS/personal/genealo/contexto_maestro.md) — Índice general y las Reglas de Oro (`L-01` a `L-43`).
 > - [`BITACORA_EXPERIMENTOS.md`](file:///c:/TRABAJOS/personal/genealo/BITACORA_EXPERIMENTOS.md) — Auditoría del cuaderno `d28c82d0` (20 turnos de chat + 2 Informes + 1 Tabla CSV) y trazabilidad de fallos cazados.
 > - [`REGLAS_Y_PROMPTS_OFICIALES.md`](file:///c:/TRABAJOS/personal/genealo/REGLAS_Y_PROMPTS_OFICIALES.md) — System Prompt (`chat_configure`), Instrucciones v2.0 y Prompt de Extracción por Folio (`chat.ask`).
 > - [`00_INSTRUCCIONES_PALEOGRAFICAS_V2.md`](file:///c:/TRABAJOS/personal/genealo/00_INSTRUCCIONES_PALEOGRAFICAS_V2.md) — Fuente 00 lista para subir a NotebookLM.

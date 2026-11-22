@@ -41,3 +41,13 @@ Thumbs.db
 # Arboles genealogicos y volcados locales
 *.ged
 prueba_tabla_partidas.csv
+
+# Salidas del pipeline HTR (crops PNG, XML generados, zips de reimportacion)
+debug_crops/
+htr_pipeline/outputs/
+reimport_escriptorium_*.zip
+cola_revision_*.json
+
+# Herramientas de escritorio locales (Aletheia, nw-page-editor) y fuentes decompiladas (Clean-Room)
+programs/
+prima_java_src/
