@@ -25,6 +25,10 @@ from kraken.lib import vgsl
 from lxml import etree
 from PIL import Image
 
+_ROOT = Path(__file__).resolve().parents[2]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
 from htr_pipeline.config import DEFAULT_MIN_LINE_WIDTH_PX, PAGE_NS, PROJECT_ROOT
 from htr_pipeline.pagexml_utils import load_image_unicode, parse_points, save_image_unicode
 

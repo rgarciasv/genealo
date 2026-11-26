@@ -7,9 +7,11 @@ description: >-
   reconocimiento/entrenamiento de modelos HTR paleográficos.
 ---
 
-# Skill: Control del Servidor eScriptorium (GCE Spot VM)
+# Skill: Control del Servidor eScriptorium (GCE Spot VM) — `[ARCHIVADO]`
 
-Esta skill permite al agente gestionar de forma 100% autónoma y desatendida la infraestructura en la nube de **eScriptorium + Kraken**:
+> **Estado (`[L-42]`):** Infraestructura archivada en `archivo_escriptorium/` y apagada (`TERMINATED`, `$0.00/h`). El proyecto opera ahora en local con `scripts/htr_kraken/` (`PAGE-XML` + Kraken 7.2). Usar esta skill solo si el usuario solicita explícitamente encender la VM remota para una prueba puntual.
+
+Esta skill permite al agente gestionar la infraestructura en la nube de **eScriptorium + Kraken**:
 
 ---
 
@@ -42,35 +44,35 @@ La instancia cuenta con 5 modelos registrados en la base de datos de eScriptoriu
 
 ## 3. Comandos Operativos Disponibles
 
-El agente ejecutará las operaciones a través del script maestro `scripts/manage_escriptorium_vm.py`:
+El agente ejecutará las operaciones a través del script maestro `archivo_escriptorium/manage_escriptorium_vm.py`:
 
 ### A. Consultar Estado
 ```powershell
-.\venv\Scripts\python.exe scripts/manage_escriptorium_vm.py status
+.\venv\Scripts\python.exe archivo_escriptorium/manage_escriptorium_vm.py status
 ```
 * Devuelve el JSON con el estado de la máquina: `RUNNING`, `TERMINATED`, `STOPPED` o `NOT_FOUND`, junto a la IP externa.
 
 ### B. Crear la Instancia Inicial
 ```powershell
-.\venv\Scripts\python.exe scripts/manage_escriptorium_vm.py create
+.\venv\Scripts\python.exe archivo_escriptorium/manage_escriptorium_vm.py create
 ```
 * Despliega la instancia Spot, configura el cortafuegos para el puerto 8080 e inicia la instalación automática mediante el startup script.
 
 ### C. Arrancar el Servidor
 ```powershell
-.\venv\Scripts\python.exe scripts/manage_escriptorium_vm.py start
+.\venv\Scripts\python.exe archivo_escriptorium/manage_escriptorium_vm.py start
 ```
 * Enciende la máquina Spot. En ~15-20 segundos la IP externa está activa y los contenedores de Docker se reanudan automáticamente.
 
 ### D. Apagar el Servidor (Ahorro de Costes)
 ```powershell
-.\venv\Scripts\python.exe scripts/manage_escriptorium_vm.py stop
+.\venv\Scripts\python.exe archivo_escriptorium/manage_escriptorium_vm.py stop
 ```
 * Detiene la máquina inmediatamente. El coste de CPU, RAM y GPU pasa a ser **0 €/hora**. Solo se mantiene el coste mínimo del disco persistente.
 
 ### E. Obtener Enlace de Conexión
 ```powershell
-.\venv\Scripts\python.exe scripts/manage_escriptorium_vm.py ip
+.\venv\Scripts\python.exe archivo_escriptorium/manage_escriptorium_vm.py ip
 ```
 * Devuelve la IP pública y la URL directa: `http://<IP>:8080` (Credenciales: `admin` / `admin`).
 

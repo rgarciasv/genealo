@@ -19,12 +19,12 @@ from notebooklm import NotebookLMClient
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("remediate_difu_04")
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 TARGET_NOTEBOOK_ID = "457361c1-70f8-4368-8e86-10b0beeb169f"
 TARGET_NOTEBOOK_TITLE = "JMOL-DIFU-04"
 IMAGE_FILENAME = "004298571_01084.jpg"
 IMAGE_PATH = BASE_DIR / "imagenes" / "rollo 004298571" / IMAGE_FILENAME
-CHECKPOINT_PATH = BASE_DIR / "scripts" / "ingest_checkpoint_jmol.json"
+CHECKPOINT_PATH = BASE_DIR / "scripts" / "vllm_notebooklm" / "ingest_checkpoint_jmol.json"
 
 
 def get_status_str(src) -> str:

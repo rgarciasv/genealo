@@ -10,7 +10,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler("scripts/audit_codicological.log", encoding="utf-8"),
+        logging.FileHandler("scripts/vllm_notebooklm/audit_codicological.log", encoding="utf-8"),
     ],
 )
 logger = logging.getLogger("CodicologicalAudit")
@@ -83,7 +83,7 @@ def load_notebooks():
     notebooks = []
 
     # JMOL
-    jmol_path = Path("scripts/ingest_checkpoint_jmol.json")
+    jmol_path = Path("scripts/vllm_notebooklm/ingest_checkpoint_jmol.json")
     if jmol_path.exists():
         with open(jmol_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -91,7 +91,7 @@ def load_notebooks():
                 notebooks.append(("JMOL", name, n_id))
 
     # NRDL
-    nrdl_path = Path("scripts/ingest_checkpoint_nrdl.json")
+    nrdl_path = Path("scripts/vllm_notebooklm/ingest_checkpoint_nrdl.json")
     if nrdl_path.exists():
         with open(nrdl_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -106,7 +106,7 @@ def main():
     logger.info(f"Loaded {len(notebooks)} total notebooks across JMOL and NRDL.")
 
     cli_path = Path("venv/Scripts/notebooklm.exe").resolve()
-    temp_prompt_file = Path("scripts/temp_audit_prompt.txt").resolve()
+    temp_prompt_file = Path("scripts/vllm_notebooklm/temp_audit_prompt.txt").resolve()
 
     pending = []
     for parish, name, n_id in notebooks:

@@ -18,8 +18,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-SCRIPTS_DIR = BASE_DIR / "scripts"
+BASE_DIR = Path(__file__).resolve().parents[2]
+SCRIPTS_DIR = BASE_DIR / "scripts" / "vllm_notebooklm"
 CHECKPOINT_PATH = SCRIPTS_DIR / "ingest_checkpoint_jmol.json"
 INGEST_LOG_PATH = SCRIPTS_DIR / "ingest_sanjuan_parroquial.log"
 SUPERVISOR_LOG_PATH = SCRIPTS_DIR / "supervisor_m1.log"

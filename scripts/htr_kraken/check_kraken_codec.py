@@ -67,7 +67,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         target = sys.argv[1]
     else:
-        default_model = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models", "Tridis_Medieval_EarlyModern.mlmodel")
+        default_model = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "models", "Tridis_Medieval_EarlyModern.mlmodel")
         target = default_model
 
     inspect_model(target)

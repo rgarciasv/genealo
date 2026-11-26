@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 
 cli_path = Path("venv/Scripts/notebooklm.exe").resolve()
-temp_file = Path("scripts/temp_genealo_query.txt").resolve()
+temp_file = Path("scripts/vllm_notebooklm/temp_genealo_query.txt").resolve()
 
 # ONLY NAVARREDONDILLA NOTEBOOKS
 targets = [

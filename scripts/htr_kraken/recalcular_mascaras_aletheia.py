@@ -9,19 +9,24 @@ preservando intactos:
 - Las transcripciones <TextEquiv><Unicode> existentes
 
 Uso:
-  .\.venv\Scripts\python.exe recalcular_mascaras_aletheia.py --xml htr_pipeline/outputs/lote_prueba_5/004298570_02637.xml
-  .\.venv\Scripts\python.exe recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/lote_prueba_5
+  .\.venv\Scripts\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml htr_pipeline/outputs/lote_prueba_5/004298570_02637.xml
+  .\.venv\Scripts\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/lote_prueba_5
 """
 
 from __future__ import annotations
 
 import argparse
+import sys
 import time
 from pathlib import Path
 
 from kraken.lib.segmentation import calculate_polygonal_environment
 from lxml import etree
 from PIL import Image
+
+_ROOT = Path(__file__).resolve().parents[2]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 from htr_pipeline.pagexml_utils import parse_points
 

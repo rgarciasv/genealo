@@ -35,10 +35,10 @@ from notebooklm.exceptions import (
 # -----------------------------------------------------------------------------
 # Configuration and Constants
 # -----------------------------------------------------------------------------
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 DEFAULT_CATALOG_PATH = BASE_DIR / "catalogo_corpus.json"
-DEFAULT_CHECKPOINT_PATH = BASE_DIR / "scripts" / "ingest_checkpoint_jmol.json"
-DEFAULT_LOG_PATH = BASE_DIR / "scripts" / "ingest_sanjuan_parroquial.log"
+DEFAULT_CHECKPOINT_PATH = BASE_DIR / "scripts" / "vllm_notebooklm" / "ingest_checkpoint_jmol.json"
+DEFAULT_LOG_PATH = BASE_DIR / "scripts" / "vllm_notebooklm" / "ingest_sanjuan_parroquial.log"
 
 PROTECTED_NOTEBOOKS: Dict[str, Dict[str, Any]] = {
     "7967d647-8ca2-4863-a576-11843e8e8802": {

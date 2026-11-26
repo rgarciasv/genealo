@@ -60,9 +60,9 @@ except ImportError:
 # -----------------------------------------------------------------------------
 # Configuration Constants
 # -----------------------------------------------------------------------------
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 DEFAULT_CATALOG_PATH = BASE_DIR / "catalogo_corpus.json"
-DEFAULT_REPORT_PATH = BASE_DIR / "scripts" / "verification_report.json"
+DEFAULT_REPORT_PATH = BASE_DIR / "scripts" / "vllm_notebooklm" / "verification_report.json"
 
 PROTECTED_NOTEBOOK_ID = "7967d647-8ca2-4863-a576-11843e8e8802"
 PROTECTED_NOTEBOOK_TITLE = "Lib. Baut. Navarre Vol. 1 (1594-1695)"
@@ -789,7 +789,7 @@ async def run_self_tests() -> bool:
     """
     print("\n[SELF-TEST] Running verifier test suite against canonical corpus and mock clients...")
     corpus = load_and_verify_canonical_corpus(DEFAULT_CATALOG_PATH)
-    test_report_path = BASE_DIR / "scripts" / "test_self_check_report.json"
+    test_report_path = BASE_DIR / "scripts" / "vllm_notebooklm" / "test_self_check_report.json"
 
     # Test 1: Perfect Passing Scenario
     print(" - Test Case 1: All 200 sources and protected notebook valid...")

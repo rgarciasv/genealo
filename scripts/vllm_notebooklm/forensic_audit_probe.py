@@ -21,7 +21,7 @@ import httpx
 from notebooklm import NotebookLMClient
 from notebooklm.exceptions import NotebookLMError
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 CATALOGO_PATH = BASE_DIR / "catalogo_corpus.json"
 STORAGE_STATE_PATH = Path(r"C:\Users\rgarc\.notebooklm\profiles\default\storage_state.json")
 

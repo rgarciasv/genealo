@@ -13,11 +13,11 @@
 
 ### 🟢 CESTA A — ACTIVO AHORA (Flujo Local `PAGE-XML`, Ground Truth y Motores Kraken por Cluster)
 - [x] **A.1. Entorno Local Windows 11 + Kraken 7.2 + Pipeline Modular `htr_pipeline/`**:
-  - Segmentación por lotes en local (`segmentar_lote.py`, ~18 s/folio), transcripción diplomática asistida para GT (`transcribir_pagexml.py`), inventario cerrado de 16 caracteres especiales Unicode (incluyendo `ˡ` `U+02E1`), detección automática de pliegue central (`detect_gutter_x`) y agrupación de partidas (`group_lines_by_partida`).
+  - Segmentación por lotes en local (`scripts/htr_kraken/segmentar_lote.py`, ~18 s/folio), transcripción diplomática asistida para GT (`scripts/htr_kraken/transcribir_pagexml.py`), inventario cerrado de 16 caracteres especiales Unicode (incluyendo `ˡ` `U+02E1`), detección automática de pliegue central (`detect_gutter_x`) y agrupación de partidas (`group_lines_by_partida`).
 - [x] **A.2. Integración y Tuneo Portable de Aletheia 4.1 (`programs/Aletheia 4.1/`)**:
-  - Configuración portable (`aletheia.ini`), teclado virtual con los 16 caracteres paleográficos (`special_characters.xml`), reemplazos implícitos (`implicit_character_replacements.xml`) y script de recálculo automático de máscaras poligonales tras cortar baselines con tijera (`recalcular_mascaras_aletheia.py`).
+  - Configuración portable (`aletheia.ini`), teclado virtual con los 16 caracteres paleográficos (`special_characters.xml`), reemplazos implícitos (`implicit_character_replacements.xml`) y script de recálculo automático de máscaras poligonales tras cortar baselines con tijera (`scripts/htr_kraken/recalcular_mascaras_aletheia.py`).
 - [x] **A.3. Mapa de Muestreo de los 12 Clusters (`C01–C12`) desde las 33 Auditorías de NotebookLM**:
-  - Generado por `scripts/mapear_clusters_desde_auditorias.py` en [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md).
+  - Generado por `scripts/htr_kraken/mapear_clusters_desde_auditorias.py` en [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md).
 - [ ] **A.4. Curación del Primer Lote de Ground Truth en Aletheia 4.1 (`01608` + `lote_prueba_5: 02637–02641`)**:
   - Cortar baselines que cruzan la llave marginal `}`, asignar las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`), agrupar con `<ReadingOrder>`, recalcular máscaras con `recalcular_mascaras_aletheia.py` y completar transcripción diplomática.
 - [ ] **A.5. Entrenamiento del Segmentador Local (`blla_alto_alberche.mlmodel`) y de los 4 Motores Kraken (`C01–C12`)**:

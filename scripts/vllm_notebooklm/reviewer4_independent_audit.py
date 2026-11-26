@@ -13,7 +13,7 @@ from pathlib import Path
 
 from notebooklm import NotebookLMClient
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 
 TARGETS = {
     "NRDL-ENSENADA-LEGOS-01": {

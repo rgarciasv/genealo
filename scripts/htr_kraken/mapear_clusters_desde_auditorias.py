@@ -12,7 +12,7 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CATALOG_PATH = PROJECT_ROOT / "catalogo_corpus.json"
 AUDITS_DIR = PROJECT_ROOT / "transcripciones" / "auditoria_codicologica"
 IMAGES_DIR = PROJECT_ROOT / "imagenes"
@@ -438,11 +438,11 @@ def build_markdown() -> str:
     lines.append("")
     lines.append("1. **Copiar 3–5 imágenes candidatas del cluster** (de la Sección 2 de este documento) a `htr_pipeline/inputs/cluster_CXX/` y **segmentarlas en local con Kraken**:")
     lines.append("   ```powershell")
-    lines.append("   .\\.venv\\Scripts\\python.exe segmentar_lote.py --input-dir htr_pipeline/inputs/cluster_CXX --output-dir htr_pipeline/outputs/cluster_CXX")
+    lines.append("   .\\.venv\\Scripts\\python.exe scripts/htr_kraken/segmentar_lote.py --input-dir htr_pipeline/inputs/cluster_CXX --output-dir htr_pipeline/outputs/cluster_CXX")
     lines.append("   ```")
     lines.append("2. **Corregir baselines (cortar llaves `}`) y regiones en Aletheia 4.1**, guardar el `.xml` y **recalcular las máscaras poligonales `<Coords>`**:")
     lines.append("   ```powershell")
-    lines.append("   .\\.venv\\Scripts\\python.exe recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/cluster_CXX")
+    lines.append("   .\\.venv\\Scripts\\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/cluster_CXX")
     lines.append("   ```")
     lines.append("3. **Pre-transcribir con Gemini Pro (`transcribir_pagexml.py`) y dar el visto bueno final en Aletheia 4.1** para incorporarlo al conjunto de entrenamiento `ketos train`.")
     lines.append("")

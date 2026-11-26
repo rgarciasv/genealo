@@ -1,12 +1,27 @@
 # 📜 Proyecto de I+D Genealógico Alto Alberche
-### *Motor de Paleografía Computacional, Reconstrucción Codicológica y Grafo Sacramental (1594–1902)*
+### *Paleografía Computacional (Vía VLLM + Vía HTR Local Kraken), Reconstrucción Codicológica y Grafo Sacramental (1594–1902)*
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
-[![Model: Gemini 3.8 Flash](https://img.shields.io/badge/LLM-Gemini%203.8%20Flash-orange.svg)](https://ai.google.dev/)
-[![Engine: Google NotebookLM Pro](https://img.shields.io/badge/Grounding-NotebookLM%20Pro-green.svg)](https://notebooklm.google.com/)
+[![Via 1: VLLM Gemini & NotebookLM](https://img.shields.io/badge/V%C3%ADa%201-VLLM%20%2F%20NotebookLM%20Pro-green.svg)](https://notebooklm.google.com/)
+[![Via 2: HTR Local Kraken + PAGE-XML](https://img.shields.io/badge/V%C3%ADa%202-Kraken%207.2%20%2B%20PAGE--XML-orange.svg)](docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md)
 [![Database: ArcadeDB Graph](https://img.shields.io/badge/Graph%20DB-ArcadeDB-purple.svg)](https://arcadedb.com/)
 [![Corpus: FamilySearch & PARES](https://img.shields.io/badge/Corpus-8.500%2B%20Im%C3%A1genes-red.svg)](https://www.familysearch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+---
+
+## 🧭 Mapa Rápido del Repositorio (Separación por Herramienta de Extracción)
+
+Para mantener el proyecto ordenado, `genealo` se divide conceptual y físicamente en **4 bloques claros**:
+
+| Bloque | Propósito | Dónde está en este repo |
+| :--- | :--- | :--- |
+| **🏛️ 0. Corpus Común** | Materia prima compartida por ambas vías: microfilms descargados, catálogo maestro y diccionarios/autoridades paleográficas. | `imagenes/`, [`catalogo_corpus.json`](catalogo_corpus.json), `00..04_*.md`, [`GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md`](GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md) |
+| **🧠 1. Vía VLLM (Gemini / NotebookLM)** | Organización de los 33 cuadernos en NotebookLM Pro, auditorías codicológicas, extracción directa con modelos multimodales y futuro banco de pruebas de VLLMs por CLI (`C.4`). | [`scripts/vllm_notebooklm/`](scripts/vllm_notebooklm/), [`transcripciones/`](transcripciones/), [`BITACORA_EXPERIMENTOS.md`](BITACORA_EXPERIMENTOS.md), [`REGLAS_Y_PROMPTS_OFICIALES.md`](REGLAS_Y_PROMPTS_OFICIALES.md) |
+| **⚙️ 2. Vía HTR Local (Kraken + `PAGE-XML` + Aletheia/Athalia)** | Segmentación local con Kraken 7.2, fabricación de Ground Truth `PAGE-XML`, entrenamiento de modelos `.mlmodel` por clusters (`C01–C12`), NER local y especificación de la app nativa en Rust (**Athalia**, prevista en repositorio hermano aparte). | [`htr_pipeline/`](htr_pipeline/), [`scripts/htr_kraken/`](scripts/htr_kraken/), [`docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md`](docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md), [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md), [`docs/ANALISIS_ALETHEIA_PARA_APP_RUST.md`](docs/ANALISIS_ALETHEIA_PARA_APP_RUST.md) |
+| **📦 3. Archivo Descartado (eScriptorium GCP)** | Infraestructura de servidor Spot VM en Google Cloud descartada para el flujo diario (`[L-42]`), conservada aparte solo como referencia histórica. | [`archivo_escriptorium/`](archivo_escriptorium/) |
+
+> **Punto de entrada único para retomar cualquier sesión:** [`docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md`](docs/PLAN_MAESTRO_UNIFICADO_HTR_RUST.md) y el tablero en 3 cestas de [`TODO.md`](TODO.md).
 
 ---
 
@@ -127,69 +142,63 @@ genealo/
 │   ├── reconstruccion-codicologica/SKILL.md         # Desarticulación [L-30], híbridas [L-31] y visitas [L-32]
 │   ├── grounding-cuadernos-parroquiales/SKILL.md    # Inyección ecdótica y ChatSettings de cascarones
 │   ├── transcripcion-diplomatica-parroquial/SKILL.md# Fusión tomas hermanas [L-20] y JSON Schema
-│   └── auditoria-integridad-corpus/SKILL.md         # Verificación forense E2E de fuentes READY
-├── 00_INSTRUCCIONES_PALEOGRAFICAS_V2.md            # Criterios ecdóticos y diplomáticos
-├── 01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md        # Léxico cerrado y toponimia menor
-├── 02_INSTRUCCIONES_CRONOLOGICAS_...md              # Guías de secuencia y saltos codicológicos
-├── 03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md    # Corpus de manos caligráficas y párrocos
-├── 04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md # Historia institucional y canónica
-├── BITACORA_EXPERIMENTOS.md                         # Registro formal de pruebas empíricas (Exp. 01 a 21)
-├── INVENTARIO_DESCARGAS_Y_ANOMALIAS_DOCUMENTALES.md # Catálogo forense de lagunas y patologías de rollo
-├── TODO.md                                          # Roadmap operativo y estado de tareas
-├── contexto_maestro.md                              # Estado global y directivas del proyecto
-├── catalogo_corpus.json                             # Metadatos canónicos de las 8.515 fuentes
+│   ├── auditoria-integridad-corpus/SKILL.md         # Verificación forense E2E de fuentes READY
+│   └── control-servidor-escriptorium/SKILL.md       # [ARCHIVADO] Control opcional de VM Spot GCP
 │
-├── scripts/                                         # Herramientas de automatización en Python
-│   ├── ingest_navarredondilla_parroquial.py         # Pipeline de subida para Navarredondilla
-│   ├── ingest_sanjuan_parroquial.py                 # Pipeline de subida para San Juan del Molinillo
-│   ├── reorganize_nrdl_defunciones_s17.py           # Desarticulación de códices mixtos ([L-30])
-│   ├── add_marriages_to_matr01.py                   # Enriquecimiento de matrimonios dispersos
-│   ├── verify_nrdl_parroquial_sources.py            # Auditoría E2E de fuentes en NotebookLM (NRDL)
-│   ├── verify_sanjuan_parroquial_sources.py         # Auditoría E2E de fuentes en NotebookLM (JMOL)
-│   └── supervise_m1.py                              # Watchdog de sesión y salud de ingesta
+├── 00_INSTRUCCIONES_PALEOGRAFICAS_V2.md            # Corpus Común: Criterios ecdóticos y diplomáticos
+├── 01_DICCIONARIO_ANCLAJE_NAVARREDONDILLA.md        # Corpus Común: Léxico cerrado y toponimia menor
+├── 02_INSTRUCCIONES_CRONOLOGICAS_...md              # Corpus Común: Guías de secuencia y saltos codicológicos
+├── 03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md    # Corpus Común: Corpus de manos caligráficas y párrocos
+├── 04_JURISDICCIONES_Y_DEPENDENCIAS_PARROQUIALES.md # Corpus Común: Historia institucional y canónica
+├── catalogo_corpus.json                             # Corpus Común: Metadatos canónicos de las 8.515+ fuentes
+├── TODO.md / contexto_maestro.md                    # Tablero ejecutivo en 3 cestas y Reglas [L-01..L-43]
 │
-└── transcripciones/                                 # Salidas de transcripción paleográfica verificada
+├── scripts/
+│   ├── vllm_notebooklm/                             # VÍA 1 (VLLM / NotebookLM): ingesta, auditoría y verificación
+│   │   ├── ingest_navarredondilla_parroquial.py
+│   │   ├── ingest_sanjuan_parroquial.py
+│   │   ├── audit_codicological_all.py
+│   │   ├── verify_*_sources.py
+│   │   └── ...
+│   └── htr_kraken/                                  # VÍA 2 (HTR Local Kraken + PAGE-XML)
+│       ├── segmentar_lote.py                        # Segmentación local por lotes con Kraken 7.2
+│       ├── recalcular_mascaras_aletheia.py          # Recálculo de <Coords> tras editar <Baseline>
+│       ├── transcribir_pagexml.py                   # Pre-transcripción de líneas para Ground Truth
+│       ├── mapear_clusters_desde_auditorias.py      # Generador de mapa de muestreo C01–C12
+│       ├── check_kraken_codec.py / download_htr_models.py
+│       └── ...
+│
+├── htr_pipeline/                                    # VÍA 2: Paquete Python modular (PAGE-XML, Unicode, Kraken)
+├── docs/                                            # VÍA 2: Plan Maestro, Clusters C01–C12 y Diseño Athalia (Rust)
+├── transcripciones/                                 # VÍA 1: 33 auditorías codicológicas y salidas piloto NLM
+└── archivo_escriptorium/                            # ARCHIVADO: Scripts GCP Spot VM de eScriptorium
 ```
 
 ---
 
-## 🚀 7. Puesta en Marcha y Ejecución
+## 🚀 7. Puesta en Marcha y Comandos Principales
 
-### Requisitos Previos
-* **Python 3.11+** (Windows / Linux / macOS).
-* **Navegador Chromium / Google Chrome** con sesión iniciada en Google para autenticación persistente (`[L-21]`).
-* Servidor **ArcadeDB** (si se ejecuta el módulo de sincronización a grafo).
-
-### Instalación
+### Vía 2 — HTR Local (`Kraken 7.2` + `PAGE-XML` en Windows 11)
 ```powershell
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/genealo-alto-alberche.git
-cd genealo-alto-alberche
+# 1. Segmentar un lote de imágenes en local (~18 s/folio)
+.\.venv\Scripts\python.exe scripts/htr_kraken/segmentar_lote.py --input-dir htr_pipeline/inputs/<lote> --output-dir htr_pipeline/outputs/<lote>
 
-# Crear y activar entorno virtual
-python -m venv venv
-.\venv\Scripts\Activate.ps1   # En Windows
-# source venv/bin/activate    # En Linux/macOS
+# 2. Tras editar/cortar baselines en Aletheia, recalcular máscaras poligonales <Coords>
+.\.venv\Scripts\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/<lote>
 
-# Instalar dependencias
-pip install -r requirements.txt
+# 3. Pre-transcribir líneas para fabricar Ground Truth (con auditoría Unicode cerrada)
+.\.venv\Scripts\python.exe scripts/htr_kraken/transcribir_pagexml.py --image <ruta.jpg> --xml <ruta.xml> --output-dir <salida>
 ```
 
-### Autenticación Desatendida (`[L-21]`)
-Para renovar silenciosamente las credenciales de NotebookLM mediante el perfil persistente de Chromium:
+### Vía 1 — NotebookLM / VLLM (Auditoría y Gestión de Cuadernos)
 ```powershell
+# Renovar autenticación persistente ([L-21])
 .\venv\Scripts\notebooklm.exe login
 .\venv\Scripts\notebooklm.exe auth check
-```
 
-### Verificación de Integridad de Cuadernos
-Para auditar que todos los cuadernos en la nube contienen exactamente el número de fotogramas esperados y sin duplicados:
-```powershell
-# Auditar serie de Navarredondilla
-python scripts/verify_nrdl_parroquial_sources.py
-
-# Auditar serie de San Juan del Molinillo
-python scripts/verify_sanjuan_parroquial_sources.py
+# Auditar integridad de fuentes en NotebookLM
+.\venv\Scripts\python.exe scripts/vllm_notebooklm/verify_nrdl_parroquial_sources.py
+.\venv\Scripts\python.exe scripts/vllm_notebooklm/verify_sanjuan_parroquial_sources.py
 ```
 
 ---

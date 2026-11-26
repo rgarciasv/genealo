@@ -178,10 +178,10 @@ Cuando queramos entrenar o ampliar cualquiera de los 12 clusters (`C01`–`C12`)
 
 1. **Copiar 3–5 imágenes candidatas del cluster** (de la Sección 2 de este documento) a `htr_pipeline/inputs/cluster_CXX/` y **segmentarlas en local con Kraken**:
    ```powershell
-   .\.venv\Scripts\python.exe segmentar_lote.py --input-dir htr_pipeline/inputs/cluster_CXX --output-dir htr_pipeline/outputs/cluster_CXX
+   .\.venv\Scripts\python.exe scripts/htr_kraken/segmentar_lote.py --input-dir htr_pipeline/inputs/cluster_CXX --output-dir htr_pipeline/outputs/cluster_CXX
    ```
 2. **Corregir baselines (cortar llaves `}`) y regiones en Aletheia 4.1**, guardar el `.xml` y **recalcular las máscaras poligonales `<Coords>`**:
    ```powershell
-   .\.venv\Scripts\python.exe recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/cluster_CXX
+   .\.venv\Scripts\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml-dir htr_pipeline/outputs/cluster_CXX
    ```
 3. **Pre-transcribir con Gemini Pro (`transcribir_pagexml.py`) y dar el visto bueno final en Aletheia 4.1** para incorporarlo al conjunto de entrenamiento `ketos train`.

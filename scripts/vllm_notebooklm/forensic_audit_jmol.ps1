@@ -5,8 +5,8 @@ $ErrorActionPreference = "Stop"
 
 $baseDir = "c:\TRABAJOS\personal\genealo"
 $catalogPath = Join-Path $baseDir "catalogo_corpus.json"
-$checkpointPath = Join-Path $baseDir "scripts\ingest_checkpoint_jmol.json"
-$reportPath = Join-Path $baseDir "scripts\verification_report_jmol.json"
+$checkpointPath = Join-Path $baseDir "scripts\vllm_notebooklm\ingest_checkpoint_jmol.json"
+$reportPath = Join-Path $baseDir "scripts\vllm_notebooklm\verification_report_jmol.json"
 $outJsonPath = Join-Path $baseDir ".agents\teamwork\auditor_jmol_1\forensic_audit_evidence.json"
 
 Write-Host "=== STARTING FORENSIC AUDIT (auditor_jmol_1) ==="
@@ -129,7 +129,7 @@ foreach ($k in $diskFilesMap.Keys) {
 Write-Host "   Resolved: $resolvedCount / $catalogCount | Missing on disk: $($missingOnDisk.Count) | Zero-byte: $zeroByteCount | Corrupt JPEGs: $corruptJpegCount | Orphans: $($orphanFiles.Count)"
 
 # 3. Checkpoint Integrity Analysis
-Write-Host "3. Parsing scripts\ingest_checkpoint_jmol.json..."
+Write-Host "3. Parsing scripts\vllm_notebooklm\ingest_checkpoint_jmol.json..."
 $rawCheckpoint = Get-Content $checkpointPath -Raw -Encoding UTF8
 $checkpoint = ConvertFrom-Json $rawCheckpoint
 
@@ -182,7 +182,7 @@ Write-Host "   Missing in checkpoint: $($missingInCheckpoint.Count) | Extra: $($
 Write-Host "   Timestamps span: $minTimestamp to $maxTimestamp ($uniqueTimestampsCount unique timestamps)"
 
 # 4. Verification Report Cross-Check
-Write-Host "4. Parsing scripts\verification_report_jmol.json..."
+Write-Host "4. Parsing scripts\vllm_notebooklm\verification_report_jmol.json..."
 $rawReport = Get-Content $reportPath -Raw -Encoding UTF8
 $report = ConvertFrom-Json $rawReport
 $reportOverallStatus = $report.overall_status

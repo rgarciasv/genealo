@@ -188,7 +188,7 @@ def cmd_create(args):
         print(f"La instancia '{INSTANCE_NAME}' ya existe (Estado: {status_info['status']}).")
         return
 
-    temp_script = Path("scripts") / "startup_escriptorium.sh"
+    temp_script = Path(__file__).resolve().parent / "startup_escriptorium.sh"
     temp_script.write_text(STARTUP_SCRIPT, encoding="utf-8")
 
     cmd = [

@@ -30,9 +30,9 @@ from notebooklm.exceptions import (
 # -----------------------------------------------------------------------------
 # Configuration and Constants
 # -----------------------------------------------------------------------------
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 CATALOGO_PATH = BASE_DIR / "catalogo_corpus.json"
-LOG_PATH = BASE_DIR / "scripts" / "ingest_ensenada_legos.log"
+LOG_PATH = BASE_DIR / "scripts" / "vllm_notebooklm" / "ingest_ensenada_legos.log"
 
 PROTECTED_NOTEBOOK_ID = "7967d647-8ca2-4863-a576-11843e8e8802"
 PROTECTED_NOTEBOOK_TITLE = "Lib. Baut. Navarre Vol. 1 (1594-1695)"

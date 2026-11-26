@@ -151,7 +151,7 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
 
 * **Paso 1.1 (Segmentación Local)**:
   ```powershell
-  .\.venv\Scripts\python.exe segmentar_lote.py --input-dir htr_pipeline/inputs/<lote> --output-dir htr_pipeline/outputs/<lote>
+  .\.venv\Scripts\python.exe scripts/htr_kraken/segmentar_lote.py --input-dir htr_pipeline/inputs/<lote> --output-dir htr_pipeline/outputs/<lote>
   ```
 * **Paso 1.2 (Corrección Geométrica en Aletheia 4.1)**:
   * Abrir el par `.xml` + `.jpg` en `programs\Aletheia 4.1\Aletheia.exe`.
@@ -160,12 +160,12 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
   * Guardar el `.xml` en Aletheia.
 * **Paso 1.3 (Recálculo Automático de Máscaras Poligonales)**:
   ```powershell
-  .\.venv\Scripts\python.exe recalcular_mascaras_aletheia.py --xml htr_pipeline/outputs/<lote>/<archivo>.xml
+  .\.venv\Scripts\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml htr_pipeline/outputs/<lote>/<archivo>.xml
   ```
   *(Reconstruye las máscaras `<Coords>` de cada línea que hayas partido o movido en Aletheia usando la topología de Kraken).*
 * **Paso 1.4 (Transcripción Diplomática Asistida para Ground Truth)**:
   ```powershell
-  .\.venv\Scripts\python.exe transcribir_pagexml.py --image <ruta.jpg> --xml <ruta.xml> --output-dir <salida>
+  .\.venv\Scripts\python.exe scripts/htr_kraken/transcribir_pagexml.py --image <ruta.jpg> --xml <ruta.xml> --output-dir <salida>
   ```
 * **Paso 1.5 (Revisión Humana Final en Aletheia 4.1)**:
   * Abrir el `.xml` enriquecido en Aletheia 4.1 (con el teclado virtual de 16 caracteres especiales ya configurado) y corregir solo las líneas marcadas en `cola_revision_*.json`.
@@ -180,7 +180,7 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
 2. **Entrenamiento del Segmentador Local (`ketos segtrain`)**:
    * Con los primeros 15–20 folios corregidos en Aletheia con las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`) y las baselines cortadas en las llaves `}`, entrenamos el segmentador para que Kraken nunca más vuelva a unir el margen con el cuerpo.
 3. **Entrenamiento de Reconocimiento (`ketos train`)**:
-   * Fine-tuning sobre `catmus-medieval-1.6.0.mlmodel` con `NFD`, `augment: true` y validación de códec (`scripts/check_kraken_codec.py`).
+   * Fine-tuning sobre `catmus-medieval-1.6.0.mlmodel` con `NFD`, `augment: true` y validación de códec (`scripts/htr_kraken/check_kraken_codec.py`).
    * Evaluación objetiva de `CER` y `WER` con `PrimaText.jar` (incluido en `programs\Aletheia 4.1\bin\data\TextEval\PrimaText.jar`) o `ketos test`.
 
 ### FASE 3: Prototipo Local de Inferencia Kraken + Motor NER (Sin API de Pago)

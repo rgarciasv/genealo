@@ -27,14 +27,14 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler("scripts/traslado_fuentes.log", encoding="utf-8"),
+        logging.FileHandler("scripts/vllm_notebooklm/traslado_fuentes.log", encoding="utf-8"),
     ],
 )
 logger = logging.getLogger("TrasladoFuentes")
 
 CHECKPOINTS = [
-    Path("scripts/ingest_checkpoint_nrdl.json"),
-    Path("scripts/ingest_checkpoint_jmol.json"),
+    Path("scripts/vllm_notebooklm/ingest_checkpoint_nrdl.json"),
+    Path("scripts/vllm_notebooklm/ingest_checkpoint_jmol.json"),
 ]
 IMAGES_ROOT = Path("imagenes")
 
