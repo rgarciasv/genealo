@@ -26,7 +26,7 @@
 │ • Segmentación local: segmentar_lote.py (Kraken 7.2 BLLA, ~18 s/folio en local)     │
 │ • Edición geométrica: Aletheia 4.1 portable + recalcular_mascaras_aletheia.py       │
 │ • Transcripción diplomática (solo para fabricar GT): transcribir_pagexml.py (Gemini)│
-│ • Taxonomía de 12 Clusters Morfográficos (C01–C12) agrupados en 4 Motores Kraken    │
+│ • Taxonomía pura C01–C12 en 3 Motores Parroquiales + Carril Auxiliar y Ensenada     │
 └─────────────────────────────────────────┬───────────────────────────────────────────┘
                                           ▼
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
@@ -96,27 +96,38 @@ Prohibida la normalización ortográfica (`s` alta/baja, `u`/`v`, `b`/`v`, `ç`/
 
 > **Nota crítica:** Quedan prohibidos `ᵒ` (`U+1D52`), `ᵃ` (`U+1D43`) y `°` (`U+00B0`), que se sustituyen automáticamente por `º` (`U+00BA`) y `ª` (`U+00AA`).
 
+### 2.5. Los 3 Moldes Documentales (`PARTIDA` / `LISTA` / `DOCUMENTO_SINGULAR`), Folio por Anclas y Muestreo 50/50 (`[L-45]`)
+Toda página útil de los libros parroquiales encaja en **3 moldes estructurales**:
+1. **`PARTIDA` (~92% del corpus):** Bautismos, Matrimonios y Defunciones regulares (`margen_indice` + `cuerpo_partida` + `firma`, pudiendo continuar al folio siguiente `[L-25]`). Procesado con los **3 Motores Kraken Parroquiales** (`C01–C12`) entrenados con Ground Truth **50% folios limpios + 50% folios degradados reales** (manchas de agua, *bleed-through*, tinta pálida).
+2. **`LISTA` (~5% del corpus: ~250–350 fotos):** Índices (`JMOL-INDICE-BAUT-MAT`, `JMOL-INDICE-DIFU`), Padrones de Confirmaciones, `JMOL-DIFU-PARVULOS`, Memorias de Misas e Inventarios. Se procesa sin entrenar Kraken mediante **recorte local en 4 tiras horizontales solapadas por plana/columna** (`scripts/vllm_notebooklm/extraer_lista_gemini.py`, con `_wide_true_bounds`), lectura por subagentes (`Hydrogen` pasada 1 + `Neon` solo en dudas/alertas, **coste `$0` de API**), propagación determinista de `id` y auditoría de monotonía de folios (validado en **Experimento 26**).
+3. **`DOCUMENTO_SINGULAR` (~3%):** Autos de Visita Pastoral (`[L-32]`), Licencias impresas, Decretos del Provisor y certificaciones sueltas; catalogados ya en las 33 auditorías y extraídos bajo demanda.
+* **Reconstrucción del Número de Folio:** la clave física inmutable es siempre `imagen_id + plana`; el folio manuscrito se reconstruye automáticamente entre **anclas legibles** mediante interpolación secuencial (`leido` / `inferido`), lanzando alertas ante saltos o folios arrancados.
+
 ---
 
 ## 3. Cómo Aprovechamos los 33 Cuadernos de NotebookLM ya Organizados
 
 El trabajo previo de organizar y auditar los **33 cuadernos en NotebookLM Pro** y redactar [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) y los 33 informes en [`transcripciones/auditoria_codicologica/`](file:///c:/TRABAJOS/personal/genealo/transcripciones/auditoria_codicologica/) es nuestra **mina de oro para entrenar Kraken sin buscar a ciegas**:
 
-1. **Selección Quirúrgica de Muestras por Cluster (`C01–C12`)**:
-   * Gracias a las auditorías codicológicas y al registro de autoridades paleográficas, ya sabemos **qué párroco o escribano escribió en qué rango exacto de años e imágenes `DGS`** en San Juan de la Nava, Navandrinal, El Barraco y Navalmoral.
-   * El mapa generado en [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md) nos dice exactamente qué archivos `.jpg` locales sacar para entrenar cada uno de los **12 Clusters Morfográficos (`C01–C12`)** y los **4 Motores Kraken consolidados**:
-     * **Motor 1 (`alto_alberche_procesal_1590_1660.mlmodel`)**: Clusters `C01`, `C02`, `C03` (Procesal encadenada, redonda de transición e itálica temprana).
-     * **Motor 2 (`alto_alberche_bastarda_1660_1790.mlmodel`)**: Clusters `C04`, `C05`, `C06`, `C07` (Bastarda clásica, barroca, cancilleresca del Catastro de Ensenada e ilustrada).
-     * **Motor 3 (`alto_alberche_decimononico_1790_1902.mlmodel`)**: Clusters `C08`, `C09`, `C10`, `C11` (Liberal, inglesa aguda, filiforme y escolar/administrativa).
-     * **Motor 4 (`alto_alberche_aparato_auxiliar.mlmodel`)**: Cluster `C12` (Tablas, guarismos, abecedarios e índices parroquiales).
+1. **Selección Quirúrgica de Muestras por Cluster (`C01–C12`) y Separación de Ejes**:
+   * Gracias a las auditorías codicológicas y al registro de autoridades paleográficas, ya sabemos **qué párroco o escribano escribió en qué rango exacto de años e imágenes `DGS`** en Navarredondilla, San Juan del Molinillo, Navandrinal, El Villarejo y Navalmoral.
+   * Siguiendo la fuente única de verdad en [`docs/PIPELINE_HTR_Y_TAXONOMIA_CLUSTERS_PALEOGRAFICOS.md`](file:///c:/TRABAJOS/personal/genealo/docs/PIPELINE_HTR_Y_TAXONOMIA_CLUSTERS_PALEOGRAFICOS.md), separamos estrictamente el **Eje 1 (Morfografía pura del trazo: `C01–C12`)** del **Eje 2 (Tipología documental)**.
+   * El mapa generado en [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md) nos dice exactamente qué archivos `.jpg` locales sacar para entrenar los **3 Motores Kraken Parroquiales** (que cubren `C01–C12` para `BAUTISMO`, `MATRIMONIO` y `DEFUNCION`), dejando aparte los **2 carriles independientes**:
+     * **Motor 1 (`alto_alberche_antiguo_c01_c05.mlmodel`)**: Bloque Antiguo (`C01–C05`, ~1594–1680: Gótico-cortesana tardía, Procesal redonda/abierta, Procesal encadenada pura, Humanística/Itálica libraria e Híbrida procesal-bastarda) + muestras transversales de `C12` (Rústica/senil o temblorosa).
+     * **Motor 2 (`alto_alberche_bastardo_c06_c10.mlmodel`)**: Bloque Bastardo (`C06–C10`, ~1660–1840: Bastarda cancilleresca/magistral, Bastarda angulosa/picuda, Bastarda corriente/desbordada, Micro-cursiva compacta y Bastarda ilustrada/neoclásica) + muestras transversales de `C12`.
+     * **Motor 3 (`alto_alberche_plumilla_c11.mlmodel`)**: Bloque Plumilla Metálica / Decimonónico (`C11`, ~1840–1902: Cursiva inglesa/comercial de plumilla metálica) + muestras transversales de `C12`.
+     * **Carril Auxiliar (`Aparato Auxiliar`)**: `CONFIRMACION`, `INDICE`, `AUTO_VISITA` y `MEMORIA_MISAS` (pocos folios y maquetación tabular/especializada; extracción directa con Gemini 4 o motor auxiliar opcional fuera de los 3 motores parroquiales).
+     * **Carril Independiente (`Catastro de Ensenada`)**: `ENSENADA_LEGOS` y `ENSENADA_BIENES` van por un camino completamente separado de los libros parroquiales, ya que un mismo escribano real de comisión solía redactar todos los volúmenes de un pueblo e incluso de pueblos colindantes; cuando toque entrenar Kraken para Ensenada, se entrenará aparte combinando múltiples fondos/manos de Ensenada distintos para evitar sobreajuste a un solo escribano.
 2. **Diccionario Histórico de Entidades para el NER Local**:
    * Los archivos [`01_LEXICO_Y_TOPONIMIA_MENOR_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/01_LEXICO_Y_TOPONIMIA_MENOR_ALTO_ALBERCHE.md), [`03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/03_AUTORIDADES_PALEOGRAFICAS_ALTO_ALBERCHE.md) y [`04_HISTORIA_Y_CRONOLOGIA_CANONICA_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/04_HISTORIA_Y_CRONOLOGIA_CANONICA_ALTO_ALBERCHE.md) alimentan directamente los diccionarios locales de apellidos, topónimos menores, oficios y sacerdotes del motor NER, permitiendo corregir errores de OCR/HTR sin llamar a ninguna API externa.
 
 ---
 
-## 4. Las 6 Tipologías Documentales y sus Plantillas NER
+## 4. Eje 2 — Tipologías Documentales y sus Plantillas NER
 
-El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 esquemas de extracción estructurada** a partir del texto diplomático de los bloques `<OrderedGroup>` del `PAGE-XML`:
+> **Separación estricta de Ejes:** El **Eje 1 (`C01–C12`)** describe únicamente la geometría del trazo para elegir el motor HTR adecuado, mientras que el **Eje 2** define la tipología documental y su esquema NER. El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 plantillas principales** (más `AUTO_VISITA` y `MEMORIA_MISAS` dentro del Aparato Auxiliar) a partir de los bloques `<OrderedGroup>` del `PAGE-XML`:
+
+### A. Series Sacramentales Narrativas (Carril Parroquial — Motores 1, 2 y 3)
 
 ### 4.1. Bautismos y Nacimientos (`BAUTISMO`)
 * **Campos extraídos**: `id_partida`, `folio`, `fecha_bautismo`, `fecha_nacimiento`, `bautizado_nombre`, `bautizado_sexo`, `legitimidad` (legítimo, natural, expósito), `padre_nombre`, `padre_apellidos`, `padre_naturaleza`, `padre_vecindad`, `madre_nombre`, `madre_apellidos`, `madre_naturaleza`, `abuelos_paternos`, `abuelos_maternos`, `padrinos`, `testigos`, `ministro_celebrante`, `firma_parroco`, `notas_marginales`.
@@ -127,13 +138,20 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
 ### 4.3. Defunciones y Entierros (`DEFUNCION`)
 * **Campos extraídos**: `id_partida`, `folio`, `fecha_defuncion`, `fecha_entierro`, `difunto_nombre`, `difunto_apellidos`, `clase_parvulo_adulto`, `edad_declarada`, `estado_civil`, `conyuge_nombre`, `padres_difunto`, `recibio_sacramentos`, `testamento` (sí/no, fecha, escribano, albaceas, misas), `lugar_sepultura` (tramo, capilla, cementerio), `ministro_firmante`.
 
+### B. Aparato Auxiliar (Carril Aparte — Extracción directa con Gemini 4 o motor auxiliar opcional)
+
+> Incluye también `AUTO_VISITA` y `MEMORIA_MISAS`. Al representar pocos folios y formatos tabulares o de decreto diferenciados, no se mezclan con el entrenamiento de los 3 Motores Parroquiales.
+
 ### 4.4. Listas de Confirmación (`CONFIRMACION`)
 * **Estructura**: Cabecera episcopal única (`fecha_visita`, `obispo_confirmante`, `parroquia`) + tabla multi-registro donde cada línea o par de líneas es un confirmado (`confirmado_nombre`, `padre_nombre`, `madre_nombre`, `padrino_confirmacion`, `edad`).
 
 ### 4.5. Índices Parroquiales y Abecedarios (`INDICE`)
 * **Estructura**: Listados tabulares por letra inicial o año (`letra_abecedario`, `nombre_indexado`, `apellidos_indexados`, `padres_resumen`, `libro_referencia`, `folio_referencia`, `anio_referencia`). Sirven además para autocompletar y verificar huecos en los libros sacramentales.
 
+### C. Carril HTR Independiente — Catastro del Marqués de la Ensenada
+
 ### 4.6. Catastro del Marqués de la Ensenada (`ENSENADA_LEGOS` y `ENSENADA_BIENES`)
+> **Carril Independiente de Entrenamiento:** El Catastro de Ensenada sigue un flujo HTR separado de los libros parroquiales. Un mismo escribano real de comisión solía redactar todos los volúmenes de un pueblo e incluso de pueblos colindantes; por ello, cuando se entrene Kraken para Ensenada, se combinarán múltiples fondos y manos de Ensenada distintos para evitar el sobreajuste a un único escribano.
 1. **Libro Personal de Legos (Vecindario / Familias)**:
    * `cabeza_casa_nombre`, `apellidos`, `estado_civil`, `oficio_categoria`, `edad`, `conyuge`, `hijos_detalle` (nombre, edad, oficio), `criados_detalle` (`soldada`).
 2. **Libro Real de Bienes de Legos (Hacienda / Parcelas / Ganado / Censos)**:
@@ -163,20 +181,20 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
   .\.venv\Scripts\python.exe scripts/htr_kraken/recalcular_mascaras_aletheia.py --xml htr_pipeline/outputs/<lote>/<archivo>.xml
   ```
   *(Reconstruye las máscaras `<Coords>` de cada línea que hayas partido o movido en Aletheia usando la topología de Kraken).*
-* **Paso 1.4 (Transcripción Diplomática Asistida para Ground Truth)**:
+* **Paso 1.4 (Transcripción Diplomática Asistida para Ground Truth, `[L-44]`)**:
   ```powershell
-  .\.venv\Scripts\python.exe scripts/htr_kraken/transcribir_pagexml.py --image <ruta.jpg> --xml <ruta.xml> --output-dir <salida>
+  .\.venv\Scripts\python.exe scripts/htr_kraken/transcribir_pagexml.py --image <ruta.jpg> --xml <ruta.xml> --output-dir <salida> --mode partida --resolution ultra_high --thinking-level medium
   ```
 * **Paso 1.5 (Revisión Humana Final en Aletheia 4.1)**:
   * Abrir el `.xml` enriquecido en Aletheia 4.1 (con el teclado virtual de 16 caracteres especiales ya configurado) y corregir solo las líneas marcadas en `cola_revision_*.json`.
 * **Iniciativa Complementaria en Reserva (`C.4` en [`TODO.md`](file:///c:/TRABAJOS/personal/genealo/TODO.md), Prioridad Baja)**:
   * Banco de pruebas de VLLMs vía CLIs locales autenticados (`copilot.exe`, `codex exec --image`, `gemini`) ejecutado por script desatendido sobre recortes de partida o bloques de líneas frente a nuestro Ground Truth `PAGE-XML` (sin bucle agéntico en chat ni gasto extra de API).
 
-### FASE 2: Muestreo de los 12 Clusters (`C01–C12`) y Entrenamiento de los 4 Motores Kraken
-**Objetivo:** Entrenar nuestros propios modelos de segmentación (`blla_alto_alberche.mlmodel`) y de reconocimiento (`Motor 1` a `Motor 4`).
+### FASE 2: Muestreo de los 12 Clusters (`C01–C12`) y Entrenamiento de los 3 Motores Parroquiales
+**Objetivo:** Entrenar nuestros propios modelos de segmentación (`blla_alto_alberche.mlmodel`) y de reconocimiento parroquial (`Motor 1` a `Motor 3`, dejando Aparato Auxiliar y Catastro de Ensenada en sus carriles independientes).
 
 1. **Muestreo guiado por [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md)**:
-   * Empezar por **3 folios por cluster** en los clusters prioritarios (`C09/C10` decimonónico que ya tenemos en `lote_prueba_5`, `C05` bastarda barroca de `01608`, `C06` Catastro de Ensenada y `C02` procesal redonda del XVII).
+   * Empezar por **3 folios por cluster** en los clusters prioritarios (`C11` cursiva inglesa de plumilla metálica que ya tenemos en `lote_prueba_5`, `C07` bastarda angulosa de `01608`, `C06`/`C08` bastarda cancilleresca y corriente, y `C02`/`C03` procesal del XVII). *(El Catastro de Ensenada se reserva para su carril independiente combinando múltiples fondos/manos).*
 2. **Entrenamiento del Segmentador Local (`ketos segtrain`)**:
    * Con los primeros 15–20 folios corregidos en Aletheia con las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`) y las baselines cortadas en las llaves `}`, entrenamos el segmentador para que Kraken nunca más vuelva a unir el margen con el cuerpo.
 3. **Entrenamiento de Reconocimiento (`ketos train`)**:
@@ -221,7 +239,7 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│ [Abrir Lote] [Cluster: C05 Bastarda XVII ▼] [1. Segmentar] [2. Leer HTR] [3. Extraer NER] │
+│ [Abrir Lote] [Cluster: C07 Bastarda Pic. ▼] [1. Segmentar] [2. Leer HTR] [3. Extraer NER] │
 ├────────────────────────────────────────┬─────────────────────────────────────────────────┤
 │                                        │ PANEL DERECHO SUPERIOR: VISOR DE LÍNEA ACTIVA   │
 │                                        │ ┌─────────────────────────────────────────────┐ │
@@ -239,7 +257,7 @@ El sistema (primero en Python y luego integrado en la App en Rust) soporta **6 e
 │     [M] Pegamento (Unir 2 Baselines)   │ • Padre:     [ Pedro García    ] Vec: [Navand.] │
 │     [G] Agrupar Partida (Margen+Cuerpo)│ • Madre:     [ Catalina López  ]                │
 │     [1-4] Cambiar tipo de región       │ • Padrinos:  [ Juan Sánchez y María Martín    ] │
-│                                        │ • Párroco:   [ Dⁿ Joseph Ximénez (C05)        ] │
+│                                        │ • Párroco:   [ Dⁿ Joseph Ximénez (C07)        ] │
 │                                        │ [✓ Validar Partida (Ctrl+Enter)] [? Duda IA]    │
 ├────────────────────────────────────────┴─────────────────────────────────────────────────┤
 │ Barra Inferior: Folio 01608 (Partida 3 de 6) | CER estimado: 2.1% | [Exportar a Excel]   │

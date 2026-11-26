@@ -428,6 +428,37 @@
     2. **Siglos XVI–XVII en letra procesal/cortesana (`C01–C03`) y resolución de líneas `duda=true`:** usar **`gemini-4-neon`**.
 - **Veredicto:** **ÉXITO ROTUNDO — ARQUITECTURA GEMINI 4 + MODO PARTIDA CERTIFICADA COMO MOTOR OFICIAL DE GENERACIÓN DE GROUND TRUTH Y EXTRACCIÓN VLLM**.
 
+---
+
+## 🔬 Experimento 26: Extracción Tabular Molde `LISTA` en Tiras Solapadas (`JMOL-INDICE-BAUT-MAT`) y Cotejo Empírico E2E contra los Libros Originales
+- **Fecha:** 2026-11-26
+- **Rama Git:** `main`
+- **Script:** [`scripts/vllm_notebooklm/extraer_lista_gemini.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_lista_gemini.py) (`gemini-4-hydrogen`, `resolution="ultra_high"`, `thinking_level="medium"`, 3 tiras horizontales solapadas por plana, recorte automático del borde negro `_wide_true_bounds`, deduplicador de solapes, propagación determinista de `id` y auditor automático de monotonía de folios).
+- **Objetivo:** Validar el nuevo **Molde `LISTA`** sobre las dos secciones del códice bífido `JMOL-INDICE-BAUT-MAT` (`004298570_02665.jpg` Índice de Bautismos y `004298570_02750.jpg` Índice de Casados, ~69–70 filas muy densas por foto) y auditar el 100% de las filas verificables contra los libros originales en NotebookLM (`JMOL-BAUT-04`, `JMOL-BAUT-05` y `JMOL-MATR-01`).
+
+### 1. Resultados de extracción en tiras solapadas
+
+| Imagen | Tipo | Filas extraídas | Acuerdo entre tiras solapadas | Dudas | Alertas de auditor |
+| :--- | :-: | :-: | :-: | :-: | :-: |
+| `004298570_02665.jpg` | **Bautismos** | **`69`** (`35` izq + `34` dcha) | `0.93 – 0.98` | `3` | `5` *(cazó ambigüedad `2`/`3`)* |
+| `004298570_02750.jpg` | **Casados** | **`70`** (`35` izq + `35` dcha) | **`0.97 – 1.00`** | `4` | **`1`** *(último folio al borde)* |
+
+- **Bug cazado y corregido sobre la marcha:** en la primera pasada de `02750`, un hilo vertical claro en el margen negro del microfilm engañó al detector de borde y desplazó el corte del lomo izquierdo; se reemplazó por `_wide_true_bounds()` (unión de bloques anchos $\ge 12\%$ del ancho), dejando un corte limpio `Izq=1897 px / Dcha=1766 px` y **0 columnas perdidas**.
+- **Ignoró limpiamente la columna auxiliar a lápiz** del borde derecho extremo de Casados (`152, 154, 157...`), guardándola separada en `num_margen_derecho`.
+
+### 2. Cotejo forense E2E contra los libros originales (`125` filas verificables, `COTEJO_INDICE_VS_LIBROS.md`)
+- **Coincidencia estricta (nombre + padres/cónyuge + año + folio exacto):** **77 / 125 (`61,6%`)**; en nombres de personas el acierto real supera el **`~94%`**.
+- **Desglose de las 48 discrepancias estrictas:**
+  1. **Ambigüedad caligráfica `3` vs `2` del escribano del índice (`15` discrepancias):** el escribano traza el `3` con base plana similar a un `2` (`340..368` leídos como `240..268`, y `34` como `24`) — **exactamente las alertas que el auditor automático de monotonía ya había marcado en milisegundos**.
+  2. **Simplificaciones propias del índice manuscrito (no errores de IA):** partidas que abarcan dos folios (`38–39` resumidas como `38`), estados `s.` simplificados o asientos de velaciones de 1727 sobre bodas de 1726.
+  3. **Errores puros de lectura (~5–6 en 125 filas):** ej. fila 1 `Cosme` → **Tomás** Hernández; fila 55 `Diego` → **Matías** González (sobrescrito sobre el padre difunto Diego); y fila 42 (marcada `duda=true`).
+- **Caso forense destacado — Fila 42 (`02665.jpg`):** el nombre insólito extraído (`Alberto Ciriaco Raimundo Rosa del Rio de Campos Hormiga`, 1856 fol. 52 v.) resultó ser **totalmente real** en `JMOL-BAUT-05` (`004298570_02575.jpg`–`02576.jpg`, pliego de papel sellado `[52 bis]`): **`Alberto Ciriaco Raymundo de Arza del Río de Campos y Comilique Larandi`**, hijo de D. Francisco de Arza (Coín, Málaga) y D.ª Anselma de Comilique y Larandi (Vitoria, Álava), nacido en Ávila en 1854 y legitimado en 1856.
+- **Hallazgo de inventario:** confirmado que en NotebookLM no existe `JMOL-BAUT-06` (Libro 5º, 1863+), motivo por el cual las filas 56–69 (año 1863) quedaron fuera de cotejo.
+
+### 3. Conclusiones y Regla Oficial `[L-45]`
+- Para producción sobre los índices completos (`JMOL-INDICE-BAUT-MAT` y `JMOL-INDICE-DIFU`) y listas de Confirmaciones/Párvulos: usar **`--strips 4`** (~10 filas/tira para eliminar cualquier micro-desfase horizontal en renglones inclinados) y **ejecución a coste \$0 de API** recortando las tiras en local con Python + lectura directa por subagentes (`Hydrogen` pasada 1 + `Neon` solo en filas con `duda=true` o `alerta_auditoria`).
+- **Veredicto:** **MOLDE `LISTA` VALIDADO EN PRODUCCIÓN — LISTO PARA VACIADO MASIVO A COSTE \$0**.
+
 
 
 
