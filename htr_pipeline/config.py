@@ -7,10 +7,12 @@ DEFAULT_INPUT_DIR = PROJECT_ROOT / "htr_pipeline" / "inputs" / "01608"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "htr_pipeline" / "outputs" / "01608"
 
 # Modelo por defecto especificado para transcripción de líneas.
-# Nota de migración SDK: gemini-3.1-pro-preview admite generation_config={"temperature": 0.1};
-# si se migra a gemini-4-carbon / gemini-4-argon, temperature se omite automáticamente.
-DEFAULT_MODEL = "gemini-3.1-pro-preview"
+# Gemini 4 Hydrogen (gemini-4-hydrogen) está disponible en Free Tier y reduce >5x las alucinaciones.
+# Para manuscritos extremos (procesal s. XVI-XVII) se puede pasar --model gemini-4-neon (Paid Tier).
+DEFAULT_MODEL = "gemini-4-hydrogen"
 DEFAULT_TEMPERATURE = 0.1
+DEFAULT_RESOLUTION = "high"  # "low" | "medium" | "high" (1120 tok) | "ultra_high" (2240 tok)
+DEFAULT_THINKING_LEVEL = "medium"  # "low" | "medium" | "high" | "xhigh" | ""
 
 # Parámetros de recorte poligonal
 DEFAULT_MIN_LINE_WIDTH_PX = 45

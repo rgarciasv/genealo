@@ -35,14 +35,19 @@ from htr_pipeline.config import (
     DEFAULT_MIN_LINE_WIDTH_PX,
     DEFAULT_MODEL,
     DEFAULT_OUTPUT_DIR,
+    DEFAULT_RESOLUTION,
     DEFAULT_TEMPERATURE,
+    DEFAULT_THINKING_LEVEL,
     PROJECT_ROOT,
 )
 from htr_pipeline.gemini_transcriber import GeminiLineTranscriber, LineTranscriptionResult
 from htr_pipeline.pagexml_utils import (
     ExtractedLine,
     extract_lines_from_pagexml,
+    group_lines_by_partida,
+    load_image_unicode,
     package_escriptorium_zip,
+    render_annotated_entry_crop,
     write_updated_pagexml,
 )
 from htr_pipeline.unicode_audit import audit_pagexml_unicode
@@ -82,10 +87,28 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Modelo Gemini (default: {DEFAULT_MODEL})")
     parser.add_argument(
+        "--mode",
+        default="linea",
+        choices=["linea", "partida"],
+        help="Modo de extracción: 'linea' (1 recorte por llamada) o 'partida' (1 llamada por partida con contexto completo).",
+    )
+    parser.add_argument(
+        "--resolution",
+        default=DEFAULT_RESOLUTION,
+        choices=["low", "medium", "high", "ultra_high"],
+        help=f"Resolución visual por recorte de imagen (default: {DEFAULT_RESOLUTION})",
+    )
+    parser.add_argument(
+        "--thinking-level",
+        default=DEFAULT_THINKING_LEVEL,
+        choices=["none", "low", "medium", "high", "xhigh"],
+        help=f"Nivel de pensamiento para Gemini 4 (default: {DEFAULT_THINKING_LEVEL})",
+    )
+    parser.add_argument(
         "--temperature",
         type=float,
         default=DEFAULT_TEMPERATURE,
-        help=f"Temperatura de generación (default: {DEFAULT_TEMPERATURE})",
+        help=f"Temperatura de generación para modelos 3.1 (default: {DEFAULT_TEMPERATURE})",
     )
     parser.add_argument(
         "--dilation",
@@ -156,16 +179,22 @@ def main() -> int:
         ],
         "archivo PAGE-XML",
     )
-    mets_path = _resolve_existing_path(
-        args.mets,
-        [
-            Path("METS_4.xml"),
-            DEFAULT_INPUT_DIR / "METS_4.xml",
-            DEFAULT_INPUT_DIR / "METS.xml",
-            Path("METS.xml"),
-        ],
-        "manifiesto METS",
-    )
+    mets_path: Optional[Path] = None
+    try:
+        mets_path = _resolve_existing_path(
+            args.mets,
+            [
+                Path("METS_4.xml"),
+                DEFAULT_INPUT_DIR / "METS_4.xml",
+                DEFAULT_INPUT_DIR / "METS.xml",
+                Path("METS.xml"),
+            ],
+            "manifiesto METS",
+        )
+    except FileNotFoundError:
+        if args.mets:
+            raise
+        mets_path = None
 
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -212,64 +241,151 @@ def main() -> int:
 
     transcriber: Optional[GeminiLineTranscriber] = None
     if not args.dry_run:
-        transcriber = GeminiLineTranscriber(model=args.model, temperature=args.temperature)
+        transcriber = GeminiLineTranscriber(
+            model=args.model,
+            temperature=args.temperature,
+            resolution=args.resolution,
+            thinking_level=args.thinking_level,
+        )
 
     transcriptions_map: dict[str, str] = {}
     review_queue: list[dict[str, object]] = []
 
-    total = len(target_lines)
-    for idx, line in enumerate(target_lines, start=1):
-        if args.resume and line.line_id in checkpoint_data:
-            cached = checkpoint_data[line.line_id]
-            result = LineTranscriptionResult(
-                texto=str(cached.get("texto", "")),
-                duda=bool(cached.get("duda", False)),
-                motivo=str(cached.get("motivo", "")),
+    if args.mode == "partida":
+        full_image = load_image_unicode(image_path)
+        entries = group_lines_by_partida(
+            image_path=image_path,
+            lines=target_lines,
+            debug_crops_dir=debug_crops_dir,
+        )
+        logger.info("Modo PARTIDA: %d bloques/partidas detectados (%d líneas totales).", len(entries), len(target_lines))
+        for e_idx, entry in enumerate(entries, start=1):
+            annot_path = debug_crops_dir / f"{entry.partida_id}_anotada.png"
+            idx_to_id = render_annotated_entry_crop(
+                image=full_image,
+                entry=entry,
+                output_path=annot_path,
             )
-            logger.info("[%d/%d] (CACHE) %s -> %s", idx, total, line.line_id, result.texto)
-        elif args.dry_run:
-            result = LineTranscriptionResult(texto="", duda=False, motivo="dry-run")
-        else:
-            assert transcriber is not None
-            result = transcriber.transcribe_line(
-                crop_bgr=line.crop_bgr,
-                line_id=line.line_id,
-                side=line.side,
-            )
-            logger.info(
-                "[%d/%d] %s (%s, %dx%dpx) | duda=%s | %s",
-                idx,
-                total,
-                line.line_id,
-                line.side,
-                line.width,
-                line.height,
-                result.duda,
-                result.texto if result.texto else "<VACÍO>",
-            )
-            checkpoint_data[line.line_id] = {
-                "texto": result.texto,
-                "duda": result.duda,
-                "motivo": result.motivo,
-                "side": line.side,
-                "crop": str(line.crop_path),
-            }
-            _save_checkpoint(checkpoint_path, checkpoint_data)
-            if idx < total and args.delay > 0:
-                time.sleep(args.delay)
+            annotated_bgr = load_image_unicode(annot_path)
 
-        transcriptions_map[line.line_id] = result.texto
-        if result.duda:
-            review_queue.append(
-                {
-                    "line_id": line.line_id,
-                    "side": line.side,
-                    "bbox": list(line.bbox),
-                    "crop_path": str(line.crop_path),
-                    "texto_propuesto": result.texto,
-                    "motivo": result.motivo,
+            all_cached = args.resume and all(ln.line_id in checkpoint_data for ln in entry.lines)
+            if all_cached:
+                logger.info("[%d/%d] (CACHE) %s (%d líneas)", e_idx, len(entries), entry.partida_id, len(entry.lines))
+                entry_results = {
+                    ln.line_id: LineTranscriptionResult(
+                        texto=str(checkpoint_data[ln.line_id].get("texto", "")),
+                        duda=bool(checkpoint_data[ln.line_id].get("duda", False)),
+                        motivo=str(checkpoint_data[ln.line_id].get("motivo", "")),
+                    )
+                    for ln in entry.lines
                 }
-            )
+            elif args.dry_run:
+                entry_results = {
+                    ln.line_id: LineTranscriptionResult(texto="", duda=False, motivo="dry-run")
+                    for ln in entry.lines
+                }
+            else:
+                assert transcriber is not None
+                logger.info(
+                    "[%d/%d] Transcribiendo %s (%d líneas, model=%s, res=%s)...",
+                    e_idx,
+                    len(entries),
+                    entry.partida_id,
+                    len(entry.lines),
+                    args.model,
+                    args.resolution,
+                )
+                entry_results = transcriber.transcribe_partida(
+                    clean_crop_bgr=entry.context_bgr,
+                    annotated_crop_bgr=annotated_bgr,
+                    partida_id=entry.partida_id,
+                    side=entry.side,
+                    index_to_line_id=idx_to_id,
+                )
+                for ln in entry.lines:
+                    res = entry_results[ln.line_id]
+                    checkpoint_data[ln.line_id] = {
+                        "texto": res.texto,
+                        "duda": res.duda,
+                        "motivo": res.motivo,
+                        "side": ln.side,
+                        "partida": entry.partida_id,
+                        "crop": str(ln.crop_path),
+                    }
+                _save_checkpoint(checkpoint_path, checkpoint_data)
+                if e_idx < len(entries) and args.delay > 0:
+                    time.sleep(args.delay)
+
+            for num, ln in enumerate(entry.lines, start=1):
+                res = entry_results[ln.line_id]
+                logger.info("   [%02d] %s | duda=%s | %s", num, ln.line_id, res.duda, res.texto or "<VACÍO>")
+                transcriptions_map[ln.line_id] = res.texto
+                if res.duda:
+                    review_queue.append(
+                        {
+                            "line_id": ln.line_id,
+                            "partida": entry.partida_id,
+                            "side": ln.side,
+                            "bbox": list(ln.bbox),
+                            "crop_path": str(ln.crop_path),
+                            "texto_propuesto": res.texto,
+                            "motivo": res.motivo,
+                        }
+                    )
+    else:
+        total = len(target_lines)
+        for idx, line in enumerate(target_lines, start=1):
+            if args.resume and line.line_id in checkpoint_data:
+                cached = checkpoint_data[line.line_id]
+                result = LineTranscriptionResult(
+                    texto=str(cached.get("texto", "")),
+                    duda=bool(cached.get("duda", False)),
+                    motivo=str(cached.get("motivo", "")),
+                )
+                logger.info("[%d/%d] (CACHE) %s -> %s", idx, total, line.line_id, result.texto)
+            elif args.dry_run:
+                result = LineTranscriptionResult(texto="", duda=False, motivo="dry-run")
+            else:
+                assert transcriber is not None
+                result = transcriber.transcribe_line(
+                    crop_bgr=line.crop_bgr,
+                    line_id=line.line_id,
+                    side=line.side,
+                )
+                logger.info(
+                    "[%d/%d] %s (%s, %dx%dpx) | duda=%s | %s",
+                    idx,
+                    total,
+                    line.line_id,
+                    line.side,
+                    line.width,
+                    line.height,
+                    result.duda,
+                    result.texto if result.texto else "<VACÍO>",
+                )
+                checkpoint_data[line.line_id] = {
+                    "texto": result.texto,
+                    "duda": result.duda,
+                    "motivo": result.motivo,
+                    "side": line.side,
+                    "crop": str(line.crop_path),
+                }
+                _save_checkpoint(checkpoint_path, checkpoint_data)
+                if idx < total and args.delay > 0:
+                    time.sleep(args.delay)
+
+            transcriptions_map[line.line_id] = result.texto
+            if result.duda:
+                review_queue.append(
+                    {
+                        "line_id": line.line_id,
+                        "side": line.side,
+                        "bbox": list(line.bbox),
+                        "crop_path": str(line.crop_path),
+                        "texto_propuesto": result.texto,
+                        "motivo": result.motivo,
+                    }
+                )
 
     if args.dry_run:
         updated_count = write_updated_pagexml(xml_path, output_xml_path, {})
@@ -284,7 +400,10 @@ def main() -> int:
     else:
         logger.info("Auditoría Unicode cerrada: 0 incidencias.")
 
-    package_escriptorium_zip(output_xml_path, mets_path, output_zip_path)
+    if mets_path is not None and mets_path.exists():
+        package_escriptorium_zip(output_xml_path, mets_path, output_zip_path)
+    else:
+        output_zip_path = None
     review_queue_path.write_text(json.dumps(review_queue, ensure_ascii=False, indent=2), encoding="utf-8")
 
     logger.info("=" * 68)
@@ -292,7 +411,8 @@ def main() -> int:
     logger.info("  Recortes guardados   : %s (%d PNGs)", debug_crops_dir, len(lines))
     logger.info("  Líneas actualizadas  : %d", updated_count)
     logger.info("  PAGE-XML generado    : %s", output_xml_path)
-    logger.info("  ZIP eScriptorium     : %s", output_zip_path)
+    if output_zip_path is not None:
+        logger.info("  ZIP eScriptorium     : %s", output_zip_path)
     logger.info("  Cola revisión dudas  : %s (%d líneas con duda)", review_queue_path, len(review_queue))
     logger.info("=" * 68)
     return 0

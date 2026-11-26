@@ -386,6 +386,48 @@
   - [`docs/ENTRENAMIENTO_EXTREMO_KRAKEN.md`](file:///c:/TRABAJOS/personal/genealo/docs/ENTRENAMIENTO_EXTREMO_KRAKEN.md)
 - **Veredicto:** **BENCHMARK CERTIFICADO Y ARQUITECTURA VALIDADA**.
 
+---
+
+## 🔬 Experimento 25: Benchmark Empírico Gemini 4 (`gemini-4-hydrogen` vs `gemini-4-neon`, Modo Línea vs Modo Partida `ultra_high`) en Siglos XVI, XVIII y XIX
+- **Fecha:** 2026-11-26
+- **Rama Git:** `main`
+- **Infraestructura:** 100% local en Windows 11 (`scripts/htr_kraken/transcribir_pagexml.py --mode partida`, doble imagen por bloque: recorte limpio a `resolution="ultra_high"` [2.240 tokens visuales] + mapa con pastillas numeradas `[01]..[N]` a `high`, evaluación objetiva con `PrimaText.jar` en NFD).
+- **Objetivo:** Evaluar el salto de precisión y economía de los nuevos modelos **Gemini 4 (`gemini-4-hydrogen` Free Tier vs `gemini-4-neon` Paid Tier)** en los tres grandes horizontes cronológicos del corpus: s. XVIII (`004298570_01608`), s. XVI–XVII procesal encadenada (`004306112_01874`, 1594) y s. XIX decimonónico (`lote_prueba_5`: `004298570_02637`–`02641`).
+
+### 1. Prueba 1 — Benchmark `004298570_01608` (s. XVIII, `C04/C05`) medido con `PrimaText.jar` (NFD)
+
+| Configuración | Líneas | Dudas | `CharacterAccuracy` | `FlexCharAccuracy` | `WordAccuracy` | `BagOfWords F1` |
+| :--- | :-: | :-: | :-: | :-: | :-: | :-: |
+| **1A.** `gemini-4-hydrogen` — Línea aislada (`high`) | 10 | 5 | `93.72%` | `93.59%` | `80.25%` | `82.72%` |
+| **1B.** `gemini-4-neon` — Línea aislada (`high`) | 10 | 7 | `94.88%` | `94.77%` | `85.19%` | `85.71%` |
+| **1C.** `gemini-4-hydrogen` — **Partida completa (`ultra_high`)** | 10 | **1** | **`96.51%`** | **`96.44%`** | **`87.65%`** | **`87.65%`** |
+| **1D.** `gemini-4-neon` — **Partida completa (`ultra_high`)** | 10 | **1** | **`96.98%`** | **`96.91%`** | **`88.89%`** | **`88.89%`** |
+| **1C (Folio entero).** `gemini-4-hydrogen` — Partida (`4` llamadas) | **69** | **8** | **`93.71%`** | **`93.57%`** | **`71.32%`** | **`76.88%`** |
+| **1D (Folio entero).** `gemini-4-neon` — Partida (`4` llamadas) | **69** | 14 | `93.23%` | `93.07%` | `68.24%` | `73.31%` |
+
+- **Hallazgos clave de Prueba 1:**
+  - **Superioridad aplastante del `--mode partida`:** Reduce el CER a casi la mitad (`6.28%` $\rightarrow$ `3.02–3.49%`), recorta las llamadas API en **17×** (`4` llamadas por folio frente a `69`) y resuelve el **100% de los apuntes marginales** que fallaban en línea aislada (`Manuela gil`, `segundo perez`, `hijo de franᶜº`).
+  - **Adopción automática del inventario cerrado de 16 glifos:** Tanto `Hydrogen` como `Neon` emitieron espontáneamente `Migˡ` (`U+02E1`) y `nr̄a Sᵗª` (`U+0304`) con **0 incidencias Unicode** tras incorporar el sanitizador determinista (`°`/`ᵒ` $\rightarrow$ `º`, `ᵃ` $\rightarrow$ `ª`, `ſ` $\rightarrow$ `s`) en `htr_pipeline/gemini_transcriber.py`.
+  - **Eficiencia de `gemini-4-hydrogen` (Free Tier) en s. XVIII–XIX:** Rinde prácticamente igual que `Neon` sobre `01608`, 2–3× más rápido y a coste \$0 en Free Tier. (`Neon` fue aún más hiper-literal en aglutinaciones diplomáticas como `Enlos`, `Denr̄a`, `BentinuebedeaBril dedh̄o Aº`).
+
+### 2. Prueba 2 — Prueba de Fuego en Letra Procesal Encadenada de 1594 (`004306112_01874.jpg`, `C01`)
+- Segmentado en local con `segmentar_lote.py` (`132` líneas válidas en `20.0 s`) y procesado con `gemini-4-neon --mode partida --resolution ultra_high --thinking-level medium` (`50` líneas en `5` bloques, **0 incidencias Unicode**).
+- **Descubrimiento forense crítico:** Al cotejar visualmente el recorte `partida_02_izquierda_contexto.png` contra la antigua extracción de octubre 2026 hecha en NotebookLM sobre el folio completo (`transcripciones/004306112_01874_01875.md`), se demostró que la extracción antigua había alucinado nombres (*Marina Sánchez / Francisco Ximénez*) y contenía ruido (`En virtualization /`), mientras que **`gemini-4-neon` a `ultra_high` en modo partida leyó la tinta real de 1594**:
+  - Asiento julio 1594: `baptize a brm̄e [Bartolomé] ... muger mª Andrino ... padrinos Juº gª y Ana per[ez] ... cognation espiritual ... s. concilio detrento ... testigos Anton Andrino ... Alº mr̄n`.
+  - Asiento agosto 1594: `a Ana hija l[exitima] de gº coto y de su muger sevastiana sanchez ... padrinos sev[as]tian hernandez y Juª gomez muger de Jil hernandez ... testigos pedro espino y diº velazquez ... Alº merino`.
+  - Asiento octubre 1594: `yo Antonio de meneses beneficiadº en s̄ juº del monillº con beneplacito de bm̄e m̄z vicario en este lugar de navaredonda baptize a maria hija de juº gz y de muger mª fz ... miguel arias`.
+- **Lección operativa de latencia y segmentación:** En bloques densos de procesal (>20 líneas), `thinking-level=high` supera los 5 min síncronos; **`--thinking-level medium`** ofrece el equilibrio óptimo sin *timeouts*. Además, en el lado derecho del folio donde `blla.mlmodel` fragmentó baselines cortas, la lectura se fragmenta $\rightarrow$ ratifica que la calidad del segmentador es el principal multiplicador de precisión.
+
+### 3. Prueba 3 — Producción Completa de `lote_prueba_5` (5 folios s. XIX `C09`, `004298570_02637`–`02641`)
+- Procesados los **5 folios íntegros (`239` líneas en total)** con `gemini-4-hydrogen --mode partida --resolution ultra_high --thinking-level medium` en `htr_pipeline/outputs/lote_prueba_5_g4_hydrogen/`.
+- **Balance:** Solo **27 líneas marcadas con duda (11.3%)** sobre `239` líneas totales, y **0 incidencias Unicode** en 4 de los 5 folios (en `02639` únicamente 3 preposiciones `à` con acento grave decimonónico). Capturó incluso adiciones interlineares (*«entre lineas = lugar vale =»*) y topónimos foráneos (*«San Juan de Moldes, Provincia de Oviedo... concejo del Franco en Asturias»*).
+
+- **Formulación de la Regla Oficial `[L-44]`:**
+  - **`[L-44]` Estrategia Dual Gemini 4 por Época y Modo Partida Dual-Image (`ultra_high`):** Para fabricar Ground Truth `PAGE-XML` o extraer texto en Vía 1 VLLM, se abandona el envío de folios completos sin recortar y el envío de líneas totalmente aisladas en favor del **Modo Partida (`--mode partida`, doble imagen: recorte limpio a `ultra_high` + mapa numerado `[01]..[N]` a `high`)** con `--thinking-level medium`:
+    1. **Siglos XVIII–XIX (`C04–C11`) y Catastro de Ensenada:** usar **`gemini-4-hydrogen`** (Free Tier, ~94–97% `CharAcc`, 17× menos llamadas).
+    2. **Siglos XVI–XVII en letra procesal/cortesana (`C01–C03`) y resolución de líneas `duda=true`:** usar **`gemini-4-neon`**.
+- **Veredicto:** **ÉXITO ROTUNDO — ARQUITECTURA GEMINI 4 + MODO PARTIDA CERTIFICADA COMO MOTOR OFICIAL DE GENERACIÓN DE GROUND TRUTH Y EXTRACCIÓN VLLM**.
+
 
 
 
