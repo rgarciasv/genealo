@@ -20,9 +20,10 @@
   - Generado por `scripts/htr_kraken/mapear_clusters_desde_auditorias.py` en [`docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md`](file:///c:/TRABAJOS/personal/genealo/docs/MAPA_MUESTREO_CLUSTERS_C01_C12.md).
 - [ ] **A.4. Curación del Primer Lote de Ground Truth en Aletheia 4.1 (`01608` + `lote_prueba_5: 02637–02641`)**:
   - Cortar baselines que cruzan la llave marginal `}`, asignar las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`), agrupar con `<ReadingOrder>`, recalcular máscaras con `recalcular_mascaras_aletheia.py` y completar transcripción diplomática.
-- [ ] **A.5. Entrenamiento del Segmentador Local (`blla_alto_alberche.mlmodel`) y de los 4 Motores Kraken (`C01–C12`)**:
+- [ ] **A.5. Entrenamiento del Segmentador Local (`blla_alto_alberche.mlmodel`) y de los 3 Motores Kraken (`M1: C01–C05`, `M2: C06–C10`, `M3: C11+C12`)**:
   - **[HECHO CUDA]** PyTorch `2.14.0+cu130` activado en `.venv` sobre la **NVIDIA RTX 3050 Ti (4 GB VRAM)** local para acelerar segmentación e inferencia.
-  - Entrenar segmentador con las 4 regiones y las llaves `}` separadas, y fine-tuning de reconocimiento (`ketos train` sobre `catmus-medieval-1.6.0.mlmodel`).
+  - **Estrategia definida para el Segmentador (`blla_alto_alberche`):** empezar con **`seg_v1` (25–30 dobles páginas)** usando limpieza/corte/etiquetado automatizado (**Opción A**, 0% Aletheia manual) y escalar a **`seg_v2` (50–60 dobles páginas)** entrenando en **Colab Pro GPU** (`ketos segtrain -f page -i blla.mlmodel --resize new -t train.txt -e val.txt --augment -N 50 --schedule cosine --dice-weight 0.5`).
+  - Fine-tuning de reconocimiento (`ketos train` sobre `catmus-medieval-1.6.0.mlmodel`) guiado por el Pareto del [`CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md).
 - [x] **A.6. Conexión de Antigravity a Google Colab Pro para entrenar Kraken en GPU:**
   - Verificado E2E el puente MCP `colab` (`googlecolab/colab-mcp` vía token de pestaña independiente) contra el cuaderno permanente **`genealo`** en Google Drive (`1i9GuVdMSMa6EzTiHEHTSRCailfeTFge1`, 600 unidades Colab Pro), con lectura/ejecución remota de celdas (`get_cells`, `add_code_cell`, `run_code_cell`) lista para lanzar `ketos train` / `ketos segtrain` cuando se necesite GPU en la nube.
 

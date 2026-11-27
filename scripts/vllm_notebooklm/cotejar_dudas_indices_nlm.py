@@ -56,6 +56,17 @@ DEFAULT_NOTEBOOK_IDS = {
     "JMOL-MATR-03": "07a61f80-24e6-484e-af57-ebe19d09960a",
 }
 
+NOTEBOOK_YEAR_RANGES = {
+    "JMOL-BAUT-01": (1715, 1752),
+    "JMOL-BAUT-02": (1752, 1800),
+    "JMOL-BAUT-03": (1801, 1834),
+    "JMOL-BAUT-04": (1834, 1852),
+    "JMOL-BAUT-05": (1851, 1862),
+    "JMOL-MATR-01": (1716, 1789),
+    "JMOL-MATR-02": (1790, 1852),
+    "JMOL-MATR-03": (1851, 1899),
+}
+
 
 def load_notebook_ids() -> dict[str, str]:
     ids = dict(DEFAULT_NOTEBOOK_IDS)
@@ -208,7 +219,47 @@ def is_rate_limit_error(text: str) -> bool:
     return "rate limited" in low or "rejected by the api" in low or "429" in low
 
 
-def ask_nlm(cli_path: Path, n_id: str, prompt_file: Path, timeout_sec: int = 240) -> tuple[str | None, bool, str]:
+def get_notebook_sources(cli_path: Path, n_id: str) -> tuple[list[dict], list[dict]]:
+    res = subprocess.run(
+        [str(cli_path), "source", "list", "-n", n_id, "--json"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        timeout=60,
+    )
+    if res.returncode != 0:
+        return [], []
+    data = json.loads(res.stdout)
+    srcs = data if isinstance(data, list) else data.get("sources", [])
+    imgs = [s for s in srcs if (s.get("title") or "").lower().endswith(".jpg") or s.get("type") == "image"]
+    non_imgs = [s for s in srcs if s not in imgs]
+    imgs.sort(key=lambda s: s.get("title") or "")
+    return imgs, non_imgs
+
+
+def select_window_source_ids(nb: str, batch: list[dict], imgs: list[dict], non_imgs: list[dict], max_imgs: int = 55) -> list[str]:
+    """Selects a chronological window of <=max_imgs images around the batch's year range."""
+    if not imgs or len(imgs) <= max_imgs:
+        return [s["id"] for s in imgs + non_imgs if s.get("id")]
+    y0, y1 = NOTEBOOK_YEAR_RANGES.get(nb, (1715, 1900))
+    span = max(1, y1 - y0)
+    yrs = [int(r["anio_resuelto"]) for r in batch if (r.get("anio_resuelto") or "").isdigit()]
+    if not yrs:
+        return [s["id"] for s in imgs[:max_imgs] + non_imgs if s.get("id")]
+    b_min, b_max = min(yrs), max(yrs)
+    n = len(imgs)
+    idx_lo = max(0, int((b_min - y0) / span * (n - 1)) - 14)
+    idx_hi = min(n, int((b_max - y0) / span * (n - 1)) + 15)
+    if idx_hi - idx_lo > max_imgs:
+        mid = (idx_lo + idx_hi) // 2
+        idx_lo = max(0, mid - max_imgs // 2)
+        idx_hi = min(n, idx_lo + max_imgs)
+    win = imgs[idx_lo:idx_hi]
+    return [s["id"] for s in win + non_imgs if s.get("id")]
+
+
+def ask_nlm(cli_path: Path, n_id: str, prompt_file: Path, source_ids: list[str] | None = None, timeout_sec: int = 240) -> tuple[str | None, bool, str]:
     cmd = [
         str(cli_path),
         "ask",
@@ -222,6 +273,9 @@ def ask_nlm(cli_path: Path, n_id: str, prompt_file: Path, timeout_sec: int = 240
         "--timeout",
         str(timeout_sec),
     ]
+    if source_ids:
+        for sid in source_ids:
+            cmd.extend(["-s", sid])
     try:
         res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout_sec + 40)
         if res.returncode == 0:
@@ -345,7 +399,14 @@ def main():
             if nb and nb in nb_ids:
                 by_nb[nb].append(r)
         for nb in sorted(by_nb):
-            lst = by_nb[nb]
+            # Ordenar cronológicamente por año y folio para que cada lote cubra una ventana estrecha de imágenes
+            lst = sorted(
+                by_nb[nb],
+                key=lambda r: (
+                    int(r["anio_resuelto"]) if (r.get("anio_resuelto") or "").isdigit() else 9999,
+                    int(re.sub(r"\D+", "", r.get("folio_literal") or "0") or 0),
+                ),
+            )
             for i in range(0, len(lst), args.batch_size):
                 lote_idx = (i // args.batch_size) + 1
                 plan.append((serie, nb, nb_ids[nb], lote_idx, lst[i : i + args.batch_size]))
@@ -360,6 +421,7 @@ def main():
     if args.dry_run:
         return
 
+    sources_cache: dict[str, tuple[list[dict], list[dict]]] = {}
     failed = []
     for idx, (serie, nb, n_id, lote_idx, batch) in enumerate(plan, start=1):
         out_md = LOTES_DIR / f"{serie}_{nb}_lote_{lote_idx:02d}.md"
@@ -367,11 +429,20 @@ def main():
             logger.info(f"[{idx}/{len(plan)}] Ya existe {out_md.name}, omitiendo.")
             continue
 
+        if nb not in sources_cache:
+            imgs, non_imgs = get_notebook_sources(cli_path, n_id)
+            if not imgs:
+                refresh_token(cli_path)
+                imgs, non_imgs = get_notebook_sources(cli_path, n_id)
+            sources_cache[nb] = (imgs, non_imgs)
+        imgs, non_imgs = sources_cache[nb]
+        sids = select_window_source_ids(nb, batch, imgs, non_imgs, max_imgs=55)
+
         temp_prompt.write_text(build_prompt(serie, nb, batch), encoding="utf-8")
         ans = None
         for attempt in range(1, 4):
-            logger.info(f"[{idx}/{len(plan)}] {serie} / {nb} lote {lote_idx} ({len(batch)} filas, intento {attempt}/3)...")
-            ans, is_auth, err = ask_nlm(cli_path, n_id, temp_prompt, timeout_sec=240)
+            logger.info(f"[{idx}/{len(plan)}] {serie} / {nb} lote {lote_idx} ({len(batch)} filas, ventana {min(len(sids), 55)} fuentes, intento {attempt}/3)...")
+            ans, is_auth, err = ask_nlm(cli_path, n_id, temp_prompt, source_ids=sids, timeout_sec=360)
             if ans:
                 out_md.write_text(ans + "\n", encoding="utf-8")
                 logger.info(f"  -> OK! Guardado {out_md.name} ({len(parse_md_table(ans, 9))} filas)")

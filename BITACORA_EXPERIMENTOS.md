@@ -492,6 +492,37 @@ Se amplió [`scripts/vllm_notebooklm/extraer_lista_gemini.py`](file:///c:/TRABAJ
 ### 3. Puente Antigravity ↔ Google Colab Pro (`colab-mcp`) Verificado E2E
 - Configurado y conectado el servidor MCP oficial `colab` (`googlecolab/colab-mcp`) sobre el cuaderno permanente **`genealo`** en Google Drive (`1i9GuVdMSMa6EzTiHEHTSRCailfeTFge1`), con lectura y ejecución de celdas verificada (`get_cells` + `run_code_cell`) para futuros entrenamientos pesados de Kraken en GPU remota (600 unidades de cómputo Colab Pro disponibles).
 
+---
+
+## 🔬 Experimento 28: Censo Global 33/33, Saneamiento Onomástico `JMOL`, Cotejo Masivo de Índices contra Libros Originales y Plan Técnico de Entrenamiento del Segmentador Kraken
+- **Fecha:** 2026-11-27 (tarde/noche)
+- **Rama Git:** `main`
+
+### 1. Cierre definitivo 33/33 del Censo Global de Manos
+- Completado el último tramo pendiente (`NRDL-MIXTO-01` Tramo 2/2) con `0` fallos y regenerado [`docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md) y [`.csv`](file:///c:/TRABAJOS/personal/genealo/docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.csv):
+  - **834 tramos redaccionales** (`825` en `PARTIDAS` + `9` en `LISTAS/Auxiliar`), **485 manos canónicas únicas** (`10.940,8` folios-tramo), **98 manos** multi-libro y **40 curas compartidos** entre `JMOL` y `NRDL`.
+  - **Pareto final:** **23 manos (4,7%)** cubren **50,5%**; **49 manos (10,1%)** cubren **70,4%**; **71 manos (14,6%)** cubren **80,1%**; **121 manos (24,9%)** cubren **90,1%**.
+  - **Peso por Motor Kraken:** `M1 (C01–C05)` **1,8%** (`201,7` fols.), `M2 (C06–C10)` **79,2%** (`8.661,7` fols.), `M3 (C11+C12)` **18,9%** (`2.065,4` fols.).
+
+### 2. Saneamiento de `JMOL_INDICE_BAUTISMOS` y Diccionario `01_DICCIONARIO_ANCLAJE_JMOL.md`
+- Generado [`01_DICCIONARIO_ANCLAJE_JMOL.md`](file:///c:/TRABAJOS/personal/genealo/01_DICCIONARIO_ANCLAJE_JMOL.md) (`511` apellidos únicos, `906` nombres únicos, top `40` párrocos de `JMOL`) mediante [`scripts/vllm_notebooklm/generar_diccionario_anclaje_jmol.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/generar_diccionario_anclaje_jmol.py).
+- Al auditar el Top 120 de apellidos afloraron 4 sesgos sistemáticos de lectura cursiva de `Hydrogen` en `JMOL_INDICE_BAUTISMOS_1750_1921_bautismos.csv`, corregidos automáticamente sobre **168 filas** preservando `lectura_original_indice`: `Audrino` $\rightarrow$ **`Andrino`** (`144`), `Lucabo`/`Eucabo` $\rightarrow$ **`Encabo`** (`23`) y `Nodea` $\rightarrow$ **`Rodea`** (`7`).
+
+### 3. Cotejo Masivo de Dudas y Alertas contra Libros Originales en NotebookLM (En curso)
+- Optimizado [`scripts/vllm_notebooklm/cotejar_dudas_indices_nlm.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/cotejar_dudas_indices_nlm.py) con ordenación cronológica, filtrado dinámico de ventana `-s` ($\le 55$ imágenes por lote de 12 filas), `timeout_sec=360` y parada limpia ante la ventana móvil de 5 horas de NotebookLM.
+- **Resultado parcial aplicado (hasta 21:28, 283 filas cotejadas):**
+  - **Bautismos (`*_VERIFICADO_NLM.csv`):** `OK=82 | CORREGIDO=133 | NO_ENCONTRADO=19`.
+  - **Casados (`*_VERIFICADO_NLM.csv`):** `OK=21 | CORREGIDO=19 | NO_ENCONTRADO=9` (`JMOL-MATR-01` al 100%, rescatando todos los folios cortados en lomo de `02752_izquierda`).
+  - Reanudación automática programada tras el reset de las **23:35** para cerrar los lotes restantes.
+
+### 4. Activación GPU Local + Arquitectura de Entrenamiento del Segmentador Kraken (`blla_alto_alberche.mlmodel`)
+- **GPU local operativa:** Instalado `torch==2.14.0+cu130` + `torchvision==0.29.1+cu130` en `.venv` (`cuda: True`, **NVIDIA GeForce RTX 3050 Ti Laptop GPU**, `kraken 7.2`).
+- **Verificación técnica en `kraken.blla` y documentación oficial (`kraken.re`):**
+  - `blla.mlmodel` usa spec `[1,1800,0,3 ...]` (reescala a `1800 px` de alto solo para detectar baselines/regiones y devuelve los polígonos reescalados `1 / scale` sobre la **imagen original íntegra** `4456×2704` para el reconocedor).
+  - **Dimensionamiento definido:** **`seg_v1` de 25–30 dobles páginas** (50–60 planas) para *fine-tuning* inicial, ampliable a **`seg_v2` óptimo de 50–60 dobles páginas** (100–120 planas, ~4.500–5.500 baselines) repartidas entre `M1` (~10–12), `M2` (~28–30), `M3` (~10–12) y ~6–8 degradadas extremas.
+  - **Limpieza automatizada (Opción A, 0% Aletheia manual):** pre-segmentación en local + borrado automático de líneas fantasma (bordes negros / *bleed-through*) + corte automático de lomo y llave marginal `}` + etiquetado de las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`) + recálculo con `recalcular_mascaras_aletheia.py`, entrenando en **Colab Pro GPU** con `-i blla.mlmodel --resize new -f page -t train.txt -e val.txt --augment -N 50 --schedule cosine --dice-weight 0.5` e inspección visual obligatoria sobre folios sin etiquetar.
+
+
 
 
 
