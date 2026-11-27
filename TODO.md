@@ -21,7 +21,7 @@
 - [ ] **A.4. Curación del Primer Lote de Ground Truth en Aletheia 4.1 (`01608` + `lote_prueba_5: 02637–02641`)**:
   - Cortar baselines que cruzan la llave marginal `}`, asignar las 4 regiones (`cuerpo_partida`, `margen_indice`, `firma`, `nota_extra`), agrupar con `<ReadingOrder>`, recalcular máscaras con `recalcular_mascaras_aletheia.py` y completar transcripción diplomática.
 - [ ] **A.5. Entrenamiento del Segmentador Local (`blla_alto_alberche.mlmodel`) y de los 4 Motores Kraken (`C01–C12`)**:
-  - Activar PyTorch con **CUDA** en `.venv` para aprovechar la **NVIDIA RTX 3050 Ti (4 GB VRAM)** local (segmentación ~2–4 s/folio y entrenamientos locales ligeros).
+  - **[HECHO CUDA]** PyTorch `2.14.0+cu130` activado en `.venv` sobre la **NVIDIA RTX 3050 Ti (4 GB VRAM)** local para acelerar segmentación e inferencia.
   - Entrenar segmentador con las 4 regiones y las llaves `}` separadas, y fine-tuning de reconocimiento (`ketos train` sobre `catmus-medieval-1.6.0.mlmodel`).
 - [x] **A.6. Conexión de Antigravity a Google Colab Pro para entrenar Kraken en GPU:**
   - Verificado E2E el puente MCP `colab` (`googlecolab/colab-mcp` vía token de pestaña independiente) contra el cuaderno permanente **`genealo`** en Google Drive (`1i9GuVdMSMa6EzTiHEHTSRCailfeTFge1`, 600 unidades Colab Pro), con lectura/ejecución remota de celdas (`get_cells`, `add_code_cell`, `run_code_cell`) lista para lanzar `ketos train` / `ketos segtrain` cuando se necesite GPU en la nube.
