@@ -459,6 +459,40 @@
 - Para producción sobre los índices completos (`JMOL-INDICE-BAUT-MAT` y `JMOL-INDICE-DIFU`) y listas de Confirmaciones/Párvulos: usar **`--strips 4`** (~10 filas/tira para eliminar cualquier micro-desfase horizontal en renglones inclinados) y **ejecución a coste \$0 de API** recortando las tiras en local con Python + lectura directa por subagentes (`Hydrogen` pasada 1 + `Neon` solo en filas con `duda=true` o `alerta_auditoria`).
 - **Veredicto:** **MOLDE `LISTA` VALIDADO EN PRODUCCIÓN — LISTO PARA VACIADO MASIVO A COSTE \$0**.
 
+---
+
+## 🔬 Experimento 27: Vaciado Completo de los 3 Índices de San Juan del Molinillo (`7.437` Registros a Coste \$0), Censo Global de Manos (`32/33`) y Puente GPU con Google Colab
+- **Fecha:** 2026-11-27
+- **Rama Git:** `main`
+
+### 1. Extracción Masiva Molde `LISTA` (3 Índices completos de `JMOL`, coste \$0 de API)
+Se amplió [`scripts/vllm_notebooklm/extraer_lista_gemini.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_lista_gemini.py) con `--slice-batch` (recorte local OpenCV en **4 tiras solapadas** por plana con `+55 px` de solape en lomo), `--merge-batch` (deduplicación automática de solapes, carry-forward determinista de `id`, auditor de monotonía y `--exclude-imgs` para tomas hermanas) y `--tipo difuntos`, delegando la lectura visual a subagentes en paralelo (`Gemini 4 Hydrogen`):
+
+| Serie (`JMOL`) | Cronología | Imágenes (únicas) | Tiras procesadas | Registros extraídos | Dudas | Alertas auditor | Salida CSV |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Casados** (`JMOL-INDICE-BAUT-MAT`) | 1716–1914 | 18 (18) | 144 / 144 (`0` faltantes) | **1.208** | 108 | 16 | `htr_pipeline/outputs/indice_jmol_casados/JMOL_INDICE_CASADOS_1716_1920_casados.csv` |
+| **Bautismos** (`JMOL-INDICE-BAUT-MAT`) | 1750–1921 | 88 (87, excl. `02667`) | 704 / 704 (`0` faltantes) | **5.123** | 511 | 158 | `htr_pipeline/outputs/indice_jmol_bautismos/JMOL_INDICE_BAUTISMOS_1750_1921_bautismos.csv` |
+| **Defunciones** (`JMOL-INDICE-DIFU`) | 1893–1907 | 21 (20, excl. `01556`) | 168 / 168 (`0` faltantes) | **1.106** | 32 | 37 | `htr_pipeline/outputs/indice_jmol_difuntos/JMOL_INDICE_DIFUNTOS_1893_1907_difuntos.csv` |
+| **TOTAL** | **1716–1921** | **127 (125)** | **1.016 / 1.016** | **7.437** | **651** | **211** | — |
+
+- **Valor archivístico único:** El CSV de Bautismos cubre **1863–1921** (Libros 5.º y 6.º) y el de Defunciones cubre **1893–1907**, tramos que **no existen en los rollos microfilmados descargados**.
+- **Hallazgo en `JMOL-SACRAMENTAL-1842-1850` (`JMOL-MIXTO-04`):** Al cruzar los CSV de Bautismos y Casados para 1842–1850, se comprobó que el índice parroquial general dejó fuera este expediente episcopal de convalidación (`02429–02519`). Para cubrirlo sin coste de API se prepararon:
+  - [`scripts/vllm_notebooklm/extraer_sacramental_1842_1850_nlm.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_sacramental_1842_1850_nlm.py): microlotes de 4 imágenes (solape 1) con `ChatSettings` (`CUSTOM` + `LONGER`) e inyección de grounding (`--prepare`), generando CSVs `*_CON_SUPLEMENTO.csv` con `libro_resuelto="Supl. 1842-1850"`.
+  - [`scripts/vllm_notebooklm/cotejar_dudas_indices_nlm.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/cotejar_dudas_indices_nlm.py): cotejo de las **412 filas marcadas** con libro en NotebookLM (24 lotes de $\le 20$ filas) generando `*_VERIFICADO_NLM.csv`.
+
+### 2. Censo Global de Manos del Alto Alberche (`32/33` cuadernos consolidados)
+- Se optimizó [`scripts/vllm_notebooklm/censo_manos_all.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/censo_manos_all.py) (tramos directos $\le 75$ imgs para cuadernos $>120$, caché por tramo, refresco `[L-21]` y parada limpia ante ventana móvil de 5h de NotebookLM) y se creó [`scripts/vllm_notebooklm/consolidar_censo_manos.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/consolidar_censo_manos.py).
+- **Consolidación (`32/33`, falta solo Tramo 2/2 de `NRDL-MIXTO-01`):**
+  - **816 tramos redaccionales** (`807` en `PARTIDAS` + `9` en `LISTAS/Auxiliar`).
+  - **470 manos canónicas únicas** en `PARTIDAS` (`~10.871,8` folios-tramo; **96** en 2+ libros; **40** compartidas `JMOL+NRDL`).
+  - **Curva de Pareto:** **23 manos (4,9%)** cubren el **50,8%** del corpus; **48 manos (10,2%)** el **70,3%**; **70 manos (14,9%)** el **80,2%**.
+  - **Peso por Motor Kraken:** `M1 (C01–C05)` **1,7%**, `M2 (C06–C10)` **79,2%**, `M3 (C11+C12)` **19,0%**.
+  - Informes generados: [`docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md) y [`docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.csv`](file:///c:/TRABAJOS/personal/genealo/docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.csv).
+
+### 3. Puente Antigravity ↔ Google Colab Pro (`colab-mcp`) Verificado E2E
+- Configurado y conectado el servidor MCP oficial `colab` (`googlecolab/colab-mcp`) sobre el cuaderno permanente **`genealo`** en Google Drive (`1i9GuVdMSMa6EzTiHEHTSRCailfeTFge1`), con lectura y ejecución de celdas verificada (`get_cells` + `run_code_cell`) para futuros entrenamientos pesados de Kraken en GPU remota (600 unidades de cómputo Colab Pro disponibles).
+
+
 
 
 

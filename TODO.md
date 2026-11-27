@@ -23,8 +23,8 @@
 - [ ] **A.5. Entrenamiento del Segmentador Local (`blla_alto_alberche.mlmodel`) y de los 4 Motores Kraken (`C01–C12`)**:
   - Activar PyTorch con **CUDA** en `.venv` para aprovechar la **NVIDIA RTX 3050 Ti (4 GB VRAM)** local (segmentación ~2–4 s/folio y entrenamientos locales ligeros).
   - Entrenar segmentador con las 4 regiones y las llaves `}` separadas, y fine-tuning de reconocimiento (`ketos train` sobre `catmus-medieval-1.6.0.mlmodel`).
-- [ ] **A.6. `[Pendiente de investigar]` Conexión de Antigravity 2 a Google Colab (con suscripción Google Gemini de pago) para entrenar Kraken en GPU**:
-  - Verificar cómo conectar Antigravity 2 directamente a runtimes GPU de **Google Colab** (T4/L4/A100 con 16+ GB VRAM) para lanzar entrenamientos pesados de `ketos train` / `ketos segtrain`, *data augmentation* agresivo (`--augment`) y *ensembles* de Kraken cuando los 4 GB de VRAM de la RTX 3050 Ti local se queden cortos, sin necesidad de levantar máquinas Spot en Google Cloud.
+- [x] **A.6. Conexión de Antigravity a Google Colab Pro para entrenar Kraken en GPU:**
+  - Verificado E2E el puente MCP `colab` (`googlecolab/colab-mcp` vía token de pestaña independiente) contra el cuaderno permanente **`genealo`** en Google Drive (`1i9GuVdMSMa6EzTiHEHTSRCailfeTFge1`, 600 unidades Colab Pro), con lectura/ejecución remota de celdas (`get_cells`, `add_code_cell`, `run_code_cell`) lista para lanzar `ketos train` / `ketos segtrain` cuando se necesite GPU en la nube.
 
 ### 🔵 CESTA B — ARQUITECTURA DE PRODUCTO (Inferencia Kraken Offline + NER 6 Tipologías + App Nativa en Rust + ArcadeDB)
 - [ ] **B.1. Motor de Inferencia Kraken 100% Local + Enlazador Automático de Partidas**:

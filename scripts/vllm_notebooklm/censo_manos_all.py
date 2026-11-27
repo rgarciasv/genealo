@@ -34,29 +34,35 @@ TAXONOMY_BLOCK = """TAXONOMÍA OFICIAL DE 12 CLÚSTERES MORFOGRÁFICOS (C01-C12)
 - C11: Cursiva inglesa / comercial (plumilla metálica) (1840–1899: plumilla metálica, ascendentes finísimos y descendentes gruesos, muy inclinada)
 - C12: Rústica / senil o temblorosa (transversal) (trazo roto o tembloroso, manchas de goteo y formas irregulares sin escuela clara)"""
 
+FORMAT_CONCISE_RULE = (
+    "6. SÉ CONCISO Y TELEGRÁFICO: máximo 12–15 palabras en la columna `Rasgos Visuales y Observaciones` "
+    "y 1 línea breve por punto en las subsecciones (a), (b) y (c). Prioriza exactitud de nombres, fechas, `.jpg` y clúster sobre prosa larga."
+)
+
 PROMPT_SACRAMENTAL = f"""Actúa como paleógrafo experto y archivero ecdótico. Tu misión es realizar el **Censo Exhaustivo de Manos, Ductus Paleográfico y Volumen de Páginas** examinando TODAS las imágenes `.jpg` de este libro sacramental parroquial (ignora los archivos de instrucciones `00_`..`04_` al indicar nombres de imagen).
 
 {TAXONOMY_BLOCK}
 
 INSTRUCCIONES DE ANÁLISIS:
-1. Recorre cronológicamente TODAS las fuentes `.jpg` del cuaderno desde la primera hasta la última.
+1. Recorre cronológicamente TODAS las fuentes `.jpg` seleccionadas desde la primera hasta la última.
 2. Identifica cada mano / redactor material que escribe las partidas o diligencias (cura propio/titular, teniente de cura, ecónomo, cura sustituto o foráneo de otro pueblo, visitador/secretario de visita pastoral, o mano anónima si no firma).
-3. Si una misma mano cambia de tramo tras una sustitución intermedia, o cambia significativamente de ductus/módulo, registra cada tramo continuo con su primera y última imagen `.jpg` exacta para poder calcular el volumen real de páginas. Si solo hay interrupciones puntuales de 1-2 partidas por un sustituto, indica el rango principal del titular y añade una fila propia para el sustituto con su imagen exacta.
+3. Si una misma mano cambia de tramo tras una sustitución intermedia, o cambia significativamente de ductus/módulo, registra cada tramo continuo con su primera y última imagen `.jpg` exacta. Si solo hay interrupciones puntuales de 1–2 partidas por un sustituto, indica el rango principal del titular y añade una fila propia para el sustituto con su imagen exacta.
 4. Indica SIEMPRE los nombres exactos de archivo `.jpg` tal como aparecen en las fuentes (ej. `004298571_01037.jpg`), sin inventar extensiones ni omitir ceros.
-5. En la columna `Cluster (C01-C12)` usa el código oficial (`C01`..`C12`; si una mano muestra transición clara o senilidad, puedes anotar p.ej. `C10 -> C12` o `C08 / C09`).
+5. En la columna `Cluster (C01-C12)` usa el código oficial (`C01`..`C12`; si hay transición o senilidad, anota `C10 -> C12` o `C08 / C09`).
+{FORMAT_CONCISE_RULE}
 
 FORMATO DE RESPUESTA OBLIGATORIO:
 Devuelve **primero una única tabla Markdown estricta** con EXACTAMENTE estas 10 columnas y encabezados literales:
 
 | Orden | Cura / Redactor Material | Variantes de Firma | Rol y Parroquia (Titular / Teniente / Sustituto foráneo) | Años | Primera Imagen (.jpg) | Última Imagen (.jpg) | N_Folios_Aprox | Cluster (C01-C12) | Rasgos Visuales y Observaciones |
 
-Después de la tabla, incluye un apartado breve con exactamente estas tres subsecciones:
+Después de la tabla, incluye brevemente (en viñetas de 1 línea):
 ### (a) Curas sustitutos y foráneos detectados
-(Menciona nombre, pueblo/parroquia de origen si consta en las partidas, fechas e imágenes `.jpg`).
+(Nombre, pueblo/parroquia de origen si consta, años e imágenes `.jpg`).
 ### (b) Cambios de ductus o envejecimiento de manos (`-> C12`)
-(Detalla casos donde un mismo escribano cambia de módulo, pluma o envejece hacia trazo tembloroso `C12`).
-### (c) Imágenes `.jpg` más representativas y limpias (3–5 muestras)
-(Lista 3–5 archivos `.jpg` con buena legibilidad y contraste de las manos principales de este cuaderno, indicando a qué mano y clúster corresponde cada una)."""
+(Casos donde un mismo escribano cambia de módulo, pluma o envejece hacia `C12`).
+### (c) Imágenes `.jpg` más representativas (3–5 muestras)
+(3–5 `.jpg` clave de las manos principales, indicando mano y clúster)."""
 
 PROMPT_INDICE = f"""Actúa como paleógrafo experto y archivero ecdótico. Este cuaderno es un **Libro Índice parroquial** (índices alfabéticos o cronológicos de partidas sacramentales). Tu misión es realizar el **Censo Exhaustivo de Manos, Ductus Paleográfico y Volumen de Páginas** examinando TODAS las imágenes `.jpg` de este cuaderno (ignora los archivos de instrucciones `00_`..`04_` al indicar nombres de imagen).
 
@@ -405,53 +411,80 @@ def run_single_ask(
         return None, False, str(e)
 
 
+def is_rate_limit_error(text: str) -> bool:
+    lower = text.lower()
+    return "rate limited" in lower or "rejected by the api" in lower or "429" in lower
+
+
 def run_chunked_census(
     cli_path: Path,
     name: str,
     n_id: str,
     prompt_file: Path,
-    chunk_size: int = 90,
+    imgs: list[dict],
+    non_imgs: list[dict],
+    chunk_size: int = 75,
+    timeout_sec: int = 360,
 ) -> str | None:
-    """Split a large notebook into chronological <=chunk_size image batches and merge."""
-    imgs, non_imgs = get_notebook_sources(cli_path, n_id)
-    if len(imgs) <= 100:
+    """Split a large notebook into chronological <=chunk_size image batches and merge, with per-chunk caching."""
+    if len(imgs) <= chunk_size:
         return None
+    chunks_dir = OUTPUT_DIR / ".chunks"
+    chunks_dir.mkdir(parents=True, exist_ok=True)
+
     non_img_ids = [s["id"] for s in non_imgs if s.get("id")]
     batches = [imgs[i : i + chunk_size] for i in range(0, len(imgs), chunk_size)]
-    logger.info(f"  -> Activando modo por tramos para {name}: {len(imgs)} imágenes en {len(batches)} lotes de <= {chunk_size}.")
+    logger.info(f"  -> Modo directo por tramos para {name}: {len(imgs)} imágenes en {len(batches)} lotes de <= {chunk_size} (timeout {timeout_sec}s).")
 
     chunk_results: list[tuple[str, str]] = []
     for bi, batch in enumerate(batches, start=1):
         first_img = batch[0].get("title", f"Lote {bi}")
         last_img = batch[-1].get("title", f"Lote {bi}")
         label = f"Tramo {bi}/{len(batches)} ({first_img} .. {last_img})"
+        chunk_cache = chunks_dir / f"{name}_cs{chunk_size}_{bi}of{len(batches)}.md"
+        if chunk_cache.exists() and len(chunk_cache.read_text(encoding="utf-8")) > 300:
+            cached = chunk_cache.read_text(encoding="utf-8")
+            logger.info(f"    -> {label} cargado desde caché local ({len(cached)} chars)")
+            chunk_results.append((label, cached))
+            continue
+
+        batch_titles = {s.get("title", "") for s in batch}
         sids = [s["id"] for s in batch if s.get("id")] + non_img_ids
 
         ans = None
         for attempt in range(1, 4):
             logger.info(f"    [{label}] intento {attempt}/3 ({len(batch)} imgs)...")
-            ans, is_auth, err = run_single_ask(cli_path, n_id, prompt_file, source_ids=sids, timeout_sec=600)
+            ans, is_auth, err = run_single_ask(cli_path, n_id, prompt_file, source_ids=sids, timeout_sec=timeout_sec)
             if ans:
+                chunk_cache.write_text(ans, encoding="utf-8")
                 logger.info(f"    -> {label} OK ({len(ans)} chars)")
                 break
             logger.warning(f"    -> {label} fallo: {err}")
             if is_auth:
                 refresh_token(cli_path)
+            elif is_rate_limit_error(err):
+                wait_rl = 180 * attempt
+                logger.warning(f"    -> Rate limit detectado; esperando {wait_rl}s...")
+                time.sleep(wait_rl)
+                continue
             else:
-                time.sleep(10)
+                time.sleep(15)
                 rec = try_recover_from_history(cli_path, n_id)
-                if rec and first_img[:9] in rec:
+                if rec and any(t in rec for t in list(batch_titles)[:10]):
                     ans = rec
+                    chunk_cache.write_text(ans, encoding="utf-8")
                     logger.info(f"    -> {label} recuperado del servidor!")
                     break
             time.sleep(10 * attempt)
 
         if not ans:
             logger.error(f"    -> FALLO en {label} de {name}.")
+            if is_rate_limit_error(err):
+                return "__RATE_LIMIT__"
             return None
         chunk_results.append((label, ans))
         if bi < len(batches):
-            time.sleep(5)
+            time.sleep(8)
 
     return merge_chunk_answers(chunk_results)
 
@@ -501,13 +534,27 @@ def main():
     logger.info(f"Pendientes de censo paleográfico: {len(pending)} cuaderno(s).")
 
     failed = []
+    last_refresh_ts = time.time()
     for idx, (parish, name, n_id, out_file) in enumerate(pending, start=1):
+        # Renovación preventiva [L-21] cada 45 min para no desperdiciar un timeout por cookie caducada
+        if time.time() - last_refresh_ts > 45 * 60:
+            refresh_token(cli_path)
+            last_refresh_ts = time.time()
+
         prompt = get_prompt_for_notebook(name)
         temp_prompt_file.write_text(prompt, encoding="utf-8")
 
         logger.info(f"[{idx}/{len(pending)}] Consultando {name} ({n_id})...")
 
-        if not args.force:
+        # Inspeccionar tamaño del cuaderno: si supera 120 imágenes, ir DIRECTO a tramos <=75 imgs (evita timeouts de 10 min)
+        imgs, non_imgs = get_notebook_sources(cli_path, n_id)
+        if not imgs:
+            # Si falló source list por auth, refrescar una vez
+            refresh_token(cli_path)
+            last_refresh_ts = time.time()
+            imgs, non_imgs = get_notebook_sources(cli_path, n_id)
+
+        if not args.force and len(imgs) <= 120:
             recovered = try_recover_from_history(cli_path, n_id)
             if recovered:
                 save_census_md(out_file, name, parish, n_id, recovered)
@@ -517,46 +564,62 @@ def main():
                 continue
 
         success = False
-        max_retries = 3
-        for attempt in range(1, max_retries + 1):
-            backoff = 10 * (2 ** (attempt - 1))
-            ans, is_auth, err = run_single_ask(cli_path, n_id, temp_prompt_file, timeout_sec=600)
-            if ans:
-                save_census_md(out_file, name, parish, n_id, ans)
-                logger.info(f"  -> OK! Guardado {out_file} ({len(ans)} chars)")
-                success = True
+        if len(imgs) > 120:
+            merged = run_chunked_census(
+                cli_path, name, n_id, temp_prompt_file, imgs, non_imgs, chunk_size=75, timeout_sec=360
+            )
+            if merged == "__RATE_LIMIT__":
+                logger.error("  -> [VENTANA 5H NOTEBOOKLM] Límite de cuota alcanzado. Deteniendo limpiamente (progreso guardado; reanuda tras el reset).")
+                failed.append(name)
                 break
-
-            logger.warning(f"  -> Fallo en {name} (intento {attempt}/{max_retries}): {err}")
-            if is_auth:
-                refresh_token(cli_path)
-            else:
-                time.sleep(10)
-                recovered = try_recover_from_history(cli_path, n_id)
-                if recovered:
-                    save_census_md(out_file, name, parish, n_id, recovered)
-                    logger.info(f"  -> RECUPERADO del servidor! Guardado {out_file} ({len(recovered)} chars)")
+            if merged:
+                save_census_md(out_file, name, parish, n_id, merged)
+                logger.info(f"  -> OK POR TRAMOS! Guardado {out_file} ({len(merged)} chars)")
+                success = True
+        else:
+            max_retries = 2
+            for attempt in range(1, max_retries + 1):
+                ans, is_auth, err = run_single_ask(cli_path, n_id, temp_prompt_file, timeout_sec=260)
+                if ans:
+                    save_census_md(out_file, name, parish, n_id, ans)
+                    logger.info(f"  -> OK! Guardado {out_file} ({len(ans)} chars)")
                     success = True
                     break
 
-                # Si falla un cuaderno grande tras el intento 1 sin error de auth, dividir en tramos <=90 imgs
-                merged = run_chunked_census(cli_path, name, n_id, temp_prompt_file, chunk_size=90)
-                if merged:
-                    save_census_md(out_file, name, parish, n_id, merged)
-                    logger.info(f"  -> OK POR TRAMOS! Guardado {out_file} ({len(merged)} chars)")
-                    success = True
-                    break
-
-            if attempt < max_retries:
-                logger.info(f"  -> Esperando {backoff}s antes de reintentar...")
-                time.sleep(backoff)
+                logger.warning(f"  -> Fallo en {name} (intento {attempt}/{max_retries}): {err}")
+                if is_auth:
+                    refresh_token(cli_path)
+                    last_refresh_ts = time.time()
+                elif is_rate_limit_error(err):
+                    wait_rl = 180 * attempt
+                    logger.warning(f"  -> Rate limit detectado; esperando {wait_rl}s...")
+                    time.sleep(wait_rl)
+                    continue
+                else:
+                    time.sleep(8)
+                    recovered = try_recover_from_history(cli_path, n_id)
+                    if recovered:
+                        save_census_md(out_file, name, parish, n_id, recovered)
+                        logger.info(f"  -> RECUPERADO del servidor! Guardado {out_file} ({len(recovered)} chars)")
+                        success = True
+                        break
+                    if len(imgs) > 75:
+                        merged = run_chunked_census(
+                            cli_path, name, n_id, temp_prompt_file, imgs, non_imgs, chunk_size=65, timeout_sec=360
+                        )
+                        if merged:
+                            save_census_md(out_file, name, parish, n_id, merged)
+                            logger.info(f"  -> OK POR TRAMOS! Guardado {out_file} ({len(merged)} chars)")
+                            success = True
+                            break
+                time.sleep(8 * attempt)
 
         if not success:
             failed.append(name)
-            logger.error(f"  -> FALLO DEFINITIVO en {name} tras {max_retries} intentos.")
+            logger.error(f"  -> FALLO DEFINITIVO en {name}.")
 
         if idx < len(pending):
-            time.sleep(5)
+            time.sleep(6)
 
     logger.info(f"Censo finalizado. Fallos: {len(failed)} -> {failed}")
     if failed:
