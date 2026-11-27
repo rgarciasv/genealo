@@ -39,6 +39,14 @@ def strip_accents(s: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
 
 
+SURNAME_OCR_NORMALIZE = {
+    "lucabo": "Encabo",
+    "eucabo": "Encabo",
+    "audrino": "Andrino",
+    "nodea": "Rodea",
+}
+
+
 def canon_display(t: str) -> str:
     """Normaliza tildes solo para agrupar variantes (García/Garcia) manteniendo la forma más común."""
     return strip_accents(t).capitalize()
@@ -66,6 +74,9 @@ def main():
         name_forms[k][tok.capitalize()] += w
 
     def add_surname(tok: str, w: int = 1):
+        low = strip_accents(tok).lower()
+        if low in SURNAME_OCR_NORMALIZE:
+            tok = SURNAME_OCR_NORMALIZE[low]
         k = canon_display(tok)
         surnames[k] += w
         surname_forms[k][tok.capitalize()] += w
@@ -161,6 +172,8 @@ def main():
         ", ".join(top_surnames) + ".",
         "",
         "> **Alertas paleográficas de apellidos locales:**",
+        "> - `Encabo` ↔ a veces mal leído en cursiva como `Lucabo` o `Eucabo`.",
+        "> - `Andrino` ↔ a veces mal leído (`u` por `n`) como `Audrino`.",
         "> - `Toribio` / `Torivio` ↔ en grafía antigua puede aparecer como `Foxivio` / `Fojivio`.",
         "> - `Hernández` ↔ `Fernández` (intercambio frecuente en s. XVIII–XIX).",
         "> - `Jiménez` ↔ `Ximénez` ↔ `Giménez`.",

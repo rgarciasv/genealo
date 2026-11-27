@@ -5,7 +5,7 @@
 > 1. **CUÁNDO USARLO:** Úsalo exclusivamente para **desambiguar trazos cursivos difusos** en apellidos, nombres de pila, topónimos comarcales y firmas clericales al inspeccionar visualmente una imagen.
 > 2. **PROHIBICIÓN ESTRICTA (`[L-01 / L-02]`):** **JAMÁS** sustituyas ni inventes un nombre, apellido o fecha ausente del trazo físico del manuscrito.
 
-*Generado automáticamente el 2026-11-27 13:04 sobre `7437` registros de índices locales.*
+*Generado automáticamente el 2026-11-27 13:09 sobre `7437` registros de índices locales.*
 
 ---
 
@@ -21,9 +21,11 @@ Parroquia matriz de **San Juan Bautista de San Juan del Molinillo** (segregada d
 
 ## 2. TOP 120 APELLIDOS DOCUMENTADOS EN SAN JUAN DEL MOLINILLO (CON FRECUENCIA)
 
-Gonzalez (2429), Jimenez (2425), Andrino (1125), Lopez (1086), Garcia (833), Hernandez (562), Herranz (482), Fuente (459), Martin (409), Peso (362), Muñoz (291), Fernandez (250), Perez (218), Toribio (205), Sanchez (196), Gil (174), Encabo (148), Audrino (144), Blazquez (122), Serrano (119), Paz (96), Marquez (86), Segundo (63), Rodriguez (61), Meneses (60), Blanco (53), Gomez (43), Casillas (42), Cruz (31), Pajares (30), Cristobal (29), Jose (28), Maria (24), Roman (24), Rio (24), Herraez (23), Turon (19), Diaz (19), Asuncion (18), Lucabo (16), Juan (14), Rodea (14), Pascual (13), Cedillo (12), Nicolas (12), Pilar (12), Pozo (12), Ramos (11), Alba (11), Arroyo (10), Iglesia (10), Iglesias (10), Martinez (10), Concepcion (10), Antonio (9), Mora (9), Antelo (9), Tomas (9), Francisca (8), Juana (8), Suarez (8), Catalina (7), Herrán (7), Rocha (7), Dorado (7), Santos (7), Nodea (7), Magdalena (6), Vidal (6), Bautista (6), Carmen (6), Saez (6), Dolores (6), Gonzalo (6), Eucabo (6), Loreto (6), Peral (6), Marcos (6), Calvo (5), Crespo (5), Parra (5), Hernando (5), Ubeda (5), Santiago (5), Eusebio (5), Alvarez (5), Bailador (5), Nuevo (5), Rosario (5), Mercedes (5), Hernanz (5), Gutierrez (4), Valles (4), Aparicio (4), Gallego (4), Madrazo (4), Arcos (4), Ramona (4), Caridad (4), Generoso (4), Vicente (4), Manuela (4), Josefa (4), Rodeo (4), Aguilar (4), Antonia (4), Teresa (4), Sanz (4), Pia (3), Lorenzo (3), Ruiz (3), Parada (3), Francisco (3), Morafraile (3), Villanueva (3), Barros (3), Cederas (3), Gamo (3), Juliana (3), Fernando (3).
+Gonzalez (2429), Jimenez (2425), Andrino (1269), Lopez (1086), Garcia (833), Hernandez (562), Herranz (482), Fuente (459), Martin (409), Peso (362), Muñoz (291), Fernandez (250), Perez (218), Toribio (205), Sanchez (196), Gil (174), Encabo (170), Blazquez (122), Serrano (119), Paz (96), Marquez (86), Segundo (63), Rodriguez (61), Meneses (60), Blanco (53), Gomez (43), Casillas (42), Cruz (31), Pajares (30), Cristobal (29), Jose (28), Maria (24), Roman (24), Rio (24), Herraez (23), Rodea (21), Turon (19), Diaz (19), Asuncion (18), Juan (14), Pascual (13), Cedillo (12), Nicolas (12), Pilar (12), Pozo (12), Ramos (11), Alba (11), Arroyo (10), Iglesia (10), Iglesias (10), Martinez (10), Concepcion (10), Antonio (9), Mora (9), Antelo (9), Tomas (9), Francisca (8), Juana (8), Suarez (8), Catalina (7), Herrán (7), Rocha (7), Dorado (7), Santos (7), Magdalena (6), Vidal (6), Bautista (6), Carmen (6), Saez (6), Dolores (6), Gonzalo (6), Loreto (6), Peral (6), Marcos (6), Calvo (5), Crespo (5), Parra (5), Hernando (5), Ubeda (5), Santiago (5), Eusebio (5), Alvarez (5), Bailador (5), Nuevo (5), Rosario (5), Mercedes (5), Hernanz (5), Gutierrez (4), Valles (4), Aparicio (4), Gallego (4), Madrazo (4), Arcos (4), Ramona (4), Caridad (4), Generoso (4), Vicente (4), Manuela (4), Josefa (4), Rodeo (4), Aguilar (4), Antonia (4), Teresa (4), Sanz (4), Pia (3), Lorenzo (3), Ruiz (3), Parada (3), Francisco (3), Morafraile (3), Villanueva (3), Barros (3), Cederas (3), Gamo (3), Juliana (3), Fernando (3), Segunda (3), Paula (3), Castillejo (3), Velasco (3).
 
 > **Alertas paleográficas de apellidos locales:**
+> - `Encabo` ↔ a veces mal leído en cursiva como `Lucabo` o `Eucabo`.
+> - `Andrino` ↔ a veces mal leído (`u` por `n`) como `Audrino`.
 > - `Toribio` / `Torivio` ↔ en grafía antigua puede aparecer como `Foxivio` / `Fojivio`.
 > - `Hernández` ↔ `Fernández` (intercambio frecuente en s. XVIII–XIX).
 > - `Jiménez` ↔ `Ximénez` ↔ `Giménez`.
