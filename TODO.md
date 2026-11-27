@@ -41,7 +41,12 @@
 ### 🟡 CESTA C — EN RESERVA / APARCADO (No bloquea HTR ni la App en Rust; retomar solo bajo demanda)
 - [ ] **C.1. Subida a NotebookLM de los 11 cuadernos del Catastro de Ensenada (Bienes de Legos, ~2.600 imgs)** *(Sección 10, Fase 8.4)*:
   - Las imágenes ya están descargadas y catalogadas en `catalogo_corpus.json`. Su subida a NotebookLM queda aparcada porque su extracción masiva se hará directamente con el **Motor Kraken `C06` (Bastarda Cancilleresca de Ensenada) + Plantilla NER `ENSENADA_BIENES`**.
-- [ ] **C.2. Extracción forense de metadatos ARK de FamilySearch (`[ARK-01]`, Sección 7)** y **Catalogación DGS de Navalmoral de la Sierra (`[NMRL-01]`, Sección 10, Fase 8.5)**.
+- [ ] **C.2. Extracción de nuevos rollos DGS e URLs ARK desde FamilySearch (`[FS-DL-01]`, `[ARK-01]`, `[NMRL-01]`):**
+  - **Metodología de descarga (consola navegador tras login en FamilySearch):** localizar el número de rollo DGS en el catálogo (teniendo en cuenta que un mismo rollo suele contener libros de varios pueblos), abrir el visor del rollo en FamilySearch y ejecutar [`descargar_v2.js`](file:///c:/TRABAJOS/personal/genealo/descargar_v2.js) (sucesor de [`descargar.js`](file:///c:/TRABAJOS/personal/genealo/descargar.js) y [`Script JavaScript para FamilySearch.txt`](file:///c:/TRABAJOS/personal/genealo/imagenes/Script%20JavaScript%20para%20FamilySearch.txt)) para bajar los fotogramas uno a uno por rango, junto con [`extraer_arks_familysearch.js`](file:///c:/TRABAJOS/personal/genealo/extraer_arks_familysearch.js) para capturar los enlaces permanentes ARK.
+  - **Objetivos pendientes de descarga y catalogación:**
+    1. **San Juan del Molinillo (`JMOL`) — Tramos no descargados:** localizar en qué rollos de FamilySearch están (si están microfilmados) el **Libro 5.º/6.º de Bautismos (1863–1921)** y el **Libro de Defunciones (1893–1907)** cuyos índices ya extrajimos.
+    2. **Navalmoral de la Sierra (`NMRL-01`):** catalogar y descargar los rollos DGS de la parroquia matriz para cubrir la ascendencia pre-1715 de San Juan del Molinillo, Navandrinal y El Villarejo.
+    3. **Integración al corpus:** registrar las nuevas imágenes en [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json) y [`GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md`](file:///c:/TRABAJOS/personal/genealo/GUIA_MAESTRA_ARCHIVOS_DESCARGADOS.md).
 - [ ] **C.3. Tests A/B de Ductus en NotebookLM (`Sección 3, Fase 0.5`)**:
   - Superados en la práctica por el entrenamiento directo por clusters (`C01–C12`) en Kraken y los 33 cuadernos ya auditados en la Fase 9.
 - [ ] **C.4. `[Prioridad Baja]` Banco de pruebas de VLLMs para transcripción paleográfica vía CLIs locales (`copilot`, `codex`, `gemini`)**:
