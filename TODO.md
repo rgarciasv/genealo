@@ -26,6 +26,18 @@
   - Fine-tuning de reconocimiento (`ketos train` sobre `catmus-medieval-1.6.0.mlmodel`) guiado por el Pareto del [`CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md`](file:///c:/TRABAJOS/personal/genealo/docs/CENSO_GLOBAL_MANOS_ALTO_ALBERCHE.md).
 - [x] **A.6. Conexión de Antigravity a Google Colab Pro para entrenar Kraken en GPU:**
   - Verificado E2E el puente MCP `colab` (`googlecolab/colab-mcp` vía token de pestaña independiente) contra el cuaderno permanente **`genealo`** en Google Drive (`1i9GuVdMSMa6EzTiHEHTSRCailfeTFge1`, 600 unidades Colab Pro), con lectura/ejecución remota de celdas (`get_cells`, `add_code_cell`, `run_code_cell`) lista para lanzar `ketos train` / `ketos segtrain` cuando se necesite GPU en la nube.
+- [ ] **A.7. «Piedra Rosetta» de Libros Reales vs. Cuadernos (`EQUIVALENCIA_LIBROS_ARCHIVO_FS_CORPUS.md`) y Trazabilidad `url_ark` (`[ARK-01]`):**
+  - Unificar en una tabla maestra única de `JMOL` y `NRDL` las 4 numeraciones distintas: **Pegatina del Archivo Diocesano en tapa** (`Sit. Arch.`) $\leftrightarrow$ **Cartela FamilySearch (`Vol./Item`, con sus errores)** $\leftrightarrow$ **N.º de Libro citado en los Índices** (`Libro 1.º..4.º`) $\leftrightarrow$ **Cuadernos lógicos de NotebookLM y rango `.jpg`** (documentando anomalías, mixtos, reescrituras y descartes).
+  - Completar progresivamente el campo `url_ark` en [`catalogo_corpus.json`](file:///c:/TRABAJOS/personal/genealo/catalogo_corpus.json) desde la vista en cuadrícula de miniaturas ([`extraer_arks_familysearch.js`](file:///c:/TRABAJOS/personal/genealo/extraer_arks_familysearch.js)) para trazabilidad directa con un clic en ArcadeDB.
+- [ ] **A.8. Cierre al 100% de Índices Maestros y Suplementos de San Juan del Molinillo (`JMOL`):**
+  - **Cotejo de dudas (`cotejar_dudas_indices_nlm.py`):** hacer pasada de repesca con **ventana estrecha estimada por folio (`~20–25` imgs)** sobre las **21 filas `NO_ENCONTRADO` de Casados** (cuyas cotas reales ya indicó NotebookLM) y las **~29 filas `NO_ENCONTRADO` / últimas de Bautismos** (optimizando la carga de inspección visual `[L-03]`).
+  - **Extracción de `JMOL-SACRAMENTAL-1842-1850` (`JMOL-MIXTO-04`):** ejecutar [`extraer_sacramental_1842_1850_nlm.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_sacramental_1842_1850_nlm.py) `--prepare` (inyectando [`01_DICCIONARIO_ANCLAJE_JMOL.md`](file:///c:/TRABAJOS/personal/genealo/01_DICCIONARIO_ANCLAJE_JMOL.md) + microlotes de 4 imgs con `ChatSettings LONGER`) para anexar Bautismos 1847–48, Casados 1842–49 y Defunciones 1843–49 omitidos de los libros ordinarios y del índice general (`*_CON_SUPLEMENTO.csv`).
+- [ ] **A.9. Preparación de Operativa Optimizada para Pueblos Nuevos (Piloto `NMRL` — Navalmoral de la Sierra):**
+  - Playbook oficial definido en [`docs/OPERATIVA_OPTIMIZADA_NUEVO_PUEBLO_NAVALMORAL.md`](file:///c:/TRABAJOS/personal/genealo/docs/OPERATIVA_OPTIMIZADA_NUEVO_PUEBLO_NAVALMORAL.md).
+  - Pendiente implementar las utilidades de automatización previas a abordar `NMRL`:
+    1. Generador de **Hojas de Contacto (`4×4` / `5×5`)** con Python + OpenCV + verificador automático de huecos de fotogramas para nuevos rollos.
+    2. Unificación de **Auditoría Codicológica + Censo de Manos en 1 sola pasada** (directo en tramos $\le 75$ imgs).
+    3. Agrupador de **cuadernos equilibrados AI Pro (`200–260` imgs por Serie Pura)** previa separación de mixtos en local antes de subir a NotebookLM.
 
 ### 🔵 CESTA B — ARQUITECTURA DE PRODUCTO (Inferencia Kraken Offline + NER 6 Tipologías + App Nativa en Rust + ArcadeDB)
 - [ ] **B.1. Motor de Inferencia Kraken 100% Local + Enlazador Automático de Partidas**:

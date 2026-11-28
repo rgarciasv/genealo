@@ -298,7 +298,7 @@ def apply_corrections(serie: str):
     src_csv = CSV_PATHS[serie]
     out_csv = src_csv.with_name(src_csv.stem + "_VERIFICADO_NLM.csv")
     fixes: dict[str, list[str]] = {}
-    for lf in sorted(LOTES_DIR.glob(f"{serie}_*_lote_*.md")):
+    for lf in sorted(LOTES_DIR.glob(f"{serie}_*.md")):
         for row in parse_md_table(lf.read_text(encoding="utf-8"), 9):
             fg = re.sub(r"\D+", "", row[0])
             if fg:
@@ -371,6 +371,7 @@ def main():
     parser.add_argument("--serie", choices=["bautismos", "casados", "all"], default="all")
     parser.add_argument("--batch-size", type=int, default=20, help="Filas por consulta a NotebookLM.")
     parser.add_argument("--dry-run", action="store_true", help="Mostrar el plan de lotes sin consultar NotebookLM.")
+    parser.add_argument("--only-remaining", action="store_true", help="Cotejar solo filas_global aún no presentes en lotes guardados.")
     parser.add_argument("--apply-only", action="store_true", help="Solo aplicar lotes ya descargados.")
     parser.add_argument("--force", action="store_true", help="Re-ejecutar lotes ya guardados.")
     parser.add_argument("--pause", type=int, default=8)
@@ -389,11 +390,20 @@ def main():
 
     plan: list[tuple[str, str, str, int, list[dict]]] = []
     for serie in series_list:
+        already_done: set[str] = set()
+        if args.only_remaining:
+            for lf in sorted(LOTES_DIR.glob(f"{serie}_*.md")):
+                for row in parse_md_table(lf.read_text(encoding="utf-8"), 9):
+                    fg = re.sub(r"\D+", "", row[0])
+                    if fg:
+                        already_done.add(fg)
         with open(CSV_PATHS[serie], encoding="utf-8-sig", newline="") as f:
             rows = list(csv.DictReader(f, delimiter=";"))
         by_nb: dict[str, list[dict]] = defaultdict(list)
         for r in rows:
             if not is_flagged(r):
+                continue
+            if args.only_remaining and str(r.get("fila_global", "")).strip() in already_done:
                 continue
             nb = route_row_to_notebook(serie, r)
             if nb and nb in nb_ids:
@@ -423,8 +433,9 @@ def main():
 
     sources_cache: dict[str, tuple[list[dict], list[dict]]] = {}
     failed = []
+    prefix_lote = "remate" if args.only_remaining else "lote"
     for idx, (serie, nb, n_id, lote_idx, batch) in enumerate(plan, start=1):
-        out_md = LOTES_DIR / f"{serie}_{nb}_lote_{lote_idx:02d}.md"
+        out_md = LOTES_DIR / f"{serie}_{nb}_{prefix_lote}_{lote_idx:02d}.md"
         if not args.force and out_md.exists() and parse_md_table(out_md.read_text(encoding="utf-8"), 9):
             logger.info(f"[{idx}/{len(plan)}] Ya existe {out_md.name}, omitiendo.")
             continue
