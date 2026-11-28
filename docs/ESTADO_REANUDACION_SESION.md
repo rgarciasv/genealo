@@ -1,4 +1,4 @@
-# Estado de Reanudación de Sesión (`2026-11-28 11:51`)
+# Estado de Reanudación de Sesión (`2026-11-28 12:34`)
 
 Documento de traspaso rápido para continuar sin pérdida de contexto si se agotan los tokens de la sesión actual.
 
@@ -6,18 +6,18 @@ Documento de traspaso rápido para continuar sin pérdida de contexto si se agot
 
 ## 1. Dónde estábamos exactamente
 
-Se estaba ejecutando la **repesca dirigida** de las filas `NO_ENCONTRADO` y pendientes del cotejo de índices de San Juan del Molinillo (`JMOL`) mediante:
-- Revisión local en disco (`JMOL-BAUT-05`, `filas 284, 3904, 3905`) con Gemini 4 Neon: **COMPLETADA (3/3 `CORREGIDO`)** en `htr_pipeline/outputs/cotejo_dudas_nlm/lotes/bautismos_repesca_baut05_local.md`.
-- Script secuencial idempotente en NotebookLM Pro: [repescar_no_encontrados_nlm.py](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/repescar_no_encontrados_nlm.py).
+La **repesca dirigida** (`task-6919` + revisión local Neon en `JMOL-BAUT-05`) **ha finalizado** (`done=20 | failed=3`) y ya se ha ejecutado `--apply-only` (`12:33:44`):
 
-### Resultado ya aplicado (`--apply-only` ejecutado a las `11:50:53`)
-- **Casados (`1716–1920`):** los 8 lotes de repesca completaron. El CSV `htr_pipeline/outputs/indice_jmol_casados/JMOL_INDICE_CASADOS_1716_1920_casados_VERIFICADO_NLM.csv` pasó de `NO_ENCONTRADO=21` a:
+### Resultado ya aplicado en CSVs verificados
+- **Casados (`1716–1920`):** [JMOL_INDICE_CASADOS_1716_1920_casados_VERIFICADO_NLM.csv](file:///c:/TRABAJOS/personal/genealo/htr_pipeline/outputs/indice_jmol_casados/JMOL_INDICE_CASADOS_1716_1920_casados_VERIFICADO_NLM.csv) pasó de `NO_ENCONTRADO=21` a:
   - **`OK=41 | CORREGIDO=54 | NO_ENCONTRADO=1`**
-- **Bautismos (`1750–1921`):** con `baut02` (`01..03`), `baut03` (`05..07`) y `baut05_local` ya aplicados, el CSV `htr_pipeline/outputs/indice_jmol_bautismos/JMOL_INDICE_BAUTISMOS_1750_1921_bautismos_VERIFICADO_NLM.csv` pasó de `NO_ENCONTRADO=32` a:
-  - **`OK=106 | CORREGIDO=187 | NO_ENCONTRADO=17`**
-- **Pendiente en curso al escribir este resumen:**
-  - `repesca_04_baut03_1801` (`filas 3196, 3197, 2754, 1169, 2250` sobre `02051..02060`) dio `Timeout (280s)`.
-  - Los lotes `repesca_08_baut03_1829` a `repesca_15_baut04_1850b` estaban todavía ejecutándose en segundo plano (`task-6919`).
+- **Bautismos (`1750–1921`):** [JMOL_INDICE_BAUTISMOS_1750_1921_bautismos_VERIFICADO_NLM.csv](file:///c:/TRABAJOS/personal/genealo/htr_pipeline/outputs/indice_jmol_bautismos/JMOL_INDICE_BAUTISMOS_1750_1921_bautismos_VERIFICADO_NLM.csv) pasó de `NO_ENCONTRADO=32` (+ 6 pendientes) a:
+  - **`OK=108 | CORREGIDO=193 | NO_ENCONTRADO=12`**
+
+### Únicos 3 micro-lotes que fallaron en `task-6919` (pendientes de reintento)
+1. `casados_repesca_08_matr03_1898` (`fila 1062`, 1898, fol. 184, `00514..00518`) — `Timeout (280s)`.
+2. `bautismos_repesca_04_baut03_1801` (`filas 3196, 3197, 2754, 1169, 2250`, 1801–1802, `02051..02060`) — `Timeout (280s)`. *(Nota: `3196` y `3197` pertenecen al Libro 3.º bis según la nota de 1981 en `02052.jpg`.)*
+3. `bautismos_repesca_15_baut04_1850b` (`filas 3433, 1535, 3434`, 1850, `02399..02404`) — `Sin tabla válida (0 chars)`.
 
 ---
 
