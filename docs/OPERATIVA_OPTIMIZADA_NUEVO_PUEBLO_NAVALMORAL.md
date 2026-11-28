@@ -69,3 +69,17 @@ Si `NMRL` dispone de libros de Índices:
 1. Con el Censo de Manos Pareto de `NMRL`, comprobar qué escribanos coinciden con los **485 ya censados en `JMOL` + `NRDL`**.
 2. Aplicar directamente el segmentador **`blla_alto_alberche.mlmodel`** y los 3 motores de reconocimiento **`M1 (C01–C05)`**, **`M2 (C06–C10)`** y **`M3 (C11+C12)`**, reservando solo un **micro-*fine-tuning* de ~10–15 folios** en **Google Colab Pro (`genealo.ipynb`)** para las principales manos exclusivas de `NMRL` (en especial s. XVI–principios XVIII).
 3. Volcar primero los índices como esqueleto en **ArcadeDB** y enlazar progresivamente las partidas completas con su `url_ark` para resolver el entronque comarcal **`NMRL` $\leftrightarrow$ `JMOL` / `NDRN` / `VLLR` / `NRDL`**.
+
+---
+
+## 7. Tratamiento Específico de Listas y Padrones de Confirmaciones (`Molde LISTA --tipo confirmaciones`)
+Los padrones de confirmaciones (aparecidos intercalados dentro de libros de bautismos como en `1649`, `1681`, `1726–1786`, `1827`, `1850`, `1856` o `1868`) tienen un enorme valor censal y de rescate de lagunas bautismales, pero su morfología exige un tratamiento distinto al de las partidas narrativas:
+
+1. **Separación Híbrida (`Cabecera` + `Nómina`):**
+   - **Acta / Auto de Apertura:** extraer fecha exacta, obispo confirmante, sede física (ej. parroquia matriz o anexa) y padrino/madrina general.
+   - **Nómina de Confirmados (`LISTA`):** adaptar el script [`extraer_lista_gemini.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_lista_gemini.py) con `--tipo confirmaciones`:
+     - En listas **tabulares/multi-columna (s. XIX)**, segmentar por plana + tira/columna igual que los índices y extraer con `Gemini 4 Hydrogen` (coste \$0).
+     - En nóminas **corridas en prosa o procesal densa (s. XVII–XVIII)**, extraer por micro-lotes de 1–2 imágenes con `Gemini 4 Neon` o NotebookLM (`[L-03]`) anclados en el diccionario `01`.
+2. **Esquema estructurado mínimo:** `fecha_confirmacion`, `obispo`, `sede`, `aldea`, `sexo` (`V`/`H`), `nombre_confirmado`, `padre`, `madre`, `padrino_o_conyuge`, `observaciones`, `imagen`, `plana`, `duda`.
+3. **Resolución de hijos sin apellido explícito:** conservar literal lo escrito y enlazar automáticamente por la dupla `(padre, madre)` + fecha al árbol/índice bautismal para confirmar filiación en `ArcadeDB`.
+
