@@ -320,10 +320,10 @@ def main() -> int:
         prompt_file = prompt_dir / f"{serie}_{tag}.txt"
         prompt_file.write_text(prompt_text, encoding="utf-8")
 
-        ans, is_auth, err = ask_nlm(CLI_PATH, n_id, prompt_file, source_ids=sids, timeout_sec=240)
+        ans, is_auth, err = ask_nlm(CLI_PATH, n_id, prompt_file, source_ids=sids, timeout_sec=360)
         if is_auth:
             refresh_token(CLI_PATH)
-            ans, is_auth, err = ask_nlm(CLI_PATH, n_id, prompt_file, source_ids=sids, timeout_sec=240)
+            ans, is_auth, err = ask_nlm(CLI_PATH, n_id, prompt_file, source_ids=sids, timeout_sec=360)
 
         if ans:
             out_file.write_text(ans + "\n", encoding="utf-8")
