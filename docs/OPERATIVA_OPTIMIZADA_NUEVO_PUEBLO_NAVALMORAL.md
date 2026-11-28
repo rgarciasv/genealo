@@ -73,8 +73,21 @@ Si `NMRL` dispone de libros de Índices:
 ---
 
 ## 7. Tratamiento Específico de Listas y Padrones de Confirmaciones (`Molde LISTA --tipo confirmaciones`)
-Los padrones de confirmaciones (aparecidos intercalados dentro de libros de bautismos como en `1649`, `1681`, `1726–1786`, `1827`, `1850`, `1856` o `1868`) tienen un enorme valor censal y de rescate de lagunas bautismales, pero su morfología exige un tratamiento distinto al de las partidas narrativas:
+Los padrones de confirmaciones tienen un enorme valor censal (capturan familias enteras en un solo día, incluyendo **San Juan del Molinillo y sus pedanías de Navandrinal y El Villarejo**, **Navarredondilla** y **Navalmoral de la Sierra** cuando las visitas episcopales reunían a todos los anejos en la matriz). Además permiten rescatar lagunas bautismales (como el periodo `1843–1849`).
 
+### Inventario ya localizado vs. pendiente de extraer/descargar (`NRDL`, `JMOL+NDRN+VLLR`, `NMRL`)
+
+| Ámbito / Parroquia | Años localizados | Cuaderno / Ubicación `.jpg` | Notas clave de anejos / matriz |
+| :--- | :---: | :--- | :--- |
+| **`JMOL` + `NDRN` + `VLLR` + `NMRL`** | **11-V-1742** | `JMOL-BAUT-01` (`004298570_01761`–`01764`) | Nómina general conjunta en **Navalmoral y San Juan del Molinillo**. |
+| **`JMOL` (+ pedanías)** | **13-X-1745** | `JMOL-BAUT-01` (`004298570_01764`–`01767`) | Administradas en San Juan del Molinillo. |
+| **`JMOL` + `NDRN` + `VLLR`** | **14-IX-1827** | `JMOL-BAUT-04` (`004298570_02413`–`02421` izq.) | Confirmados en **Navalmoral** para Molinillo y anejos (`NDRN`/`VLLR`). |
+| **`JMOL` + `NDRN` + `VLLR`** | **12-VI-1850** | `JMOL-BAUT-04` (`004298570_02421` dcha.–`02427` izq.) | Desglosados por **Molinillo, Villarejo y Navandrinal** (**386 confirmados**). |
+| **`JMOL` (+ pedanías)** | **16-VI-1856** | `JMOL-BAUT-05` (`004298570_02571` dcha.–`02572`) | **124 confirmados** + expósitos y forasteros. |
+| **`NRDL` (y visita 1868 en Molinillo)** | **1649, 1681, 1726, 1735, 1742, 1747, 1759, 1776, 1786, 1850, 1856, 1868, 1876, 1889** | `NRDL-BAUT-01, 02, 03, 05, 06, 07` (`02067`..`00426`) | En 1759–1776 en Burgohondo; en **1868** en **San Juan del Molinillo** (`NRDL-BAUT-06`). |
+| **`JMOL` (`1752–1800` y `post-1862`) y `NMRL` (completo)** | **Pendiente de localizar/extraer** | En `JMOL-BAUT-02` (`1752–1800`) no constan listas $\rightarrow$ buscar en fondos de **`NMRL`** (y rollos `post-1862` de `JMOL`) | Durante los siglos XVII–XVIII (y visitas en la matriz), los confirmados de Molinillo y pedanías se asentaban a menudo en Navalmoral. |
+
+### Pipeline Técnico (`--tipo confirmaciones`)
 1. **Separación Híbrida (`Cabecera` + `Nómina`):**
    - **Acta / Auto de Apertura:** extraer fecha exacta, obispo confirmante, sede física (ej. parroquia matriz o anexa) y padrino/madrina general.
    - **Nómina de Confirmados (`LISTA`):** adaptar el script [`extraer_lista_gemini.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_lista_gemini.py) con `--tipo confirmaciones`:

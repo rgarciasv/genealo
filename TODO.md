@@ -38,8 +38,11 @@
     1. Generador de **Hojas de Contacto (`4×4` / `5×5`)** con Python + OpenCV + verificador automático de huecos de fotogramas para nuevos rollos.
     2. Unificación de **Auditoría Codicológica + Censo de Manos en 1 sola pasada** (directo en tramos $\le 75$ imgs).
     3. Agrupador de **cuadernos equilibrados AI Pro (`200–260` imgs por Serie Pura)** previa separación de mixtos en local antes de subir a NotebookLM.
-- [ ] **A.10. Extracción Masiva de Padrones y Listas de Confirmaciones (`--tipo confirmaciones`):**
-  - Implementar soporte `--tipo confirmaciones` en [`extraer_lista_gemini.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_lista_gemini.py) para las nóminas ya inventariadas en las 33 auditorías (`JMOL`: `1742`, `1827`, `1850` [386 confirmados], `1856`; `NRDL`: `1649`, `1681`, `1726`, `1735`, `1742`, `1747`, `1759`, `1776`, `1786`, `1868`...), usando recorte por columna/tira + `Hydrogen` en el s. XIX y `Neon`/NotebookLM en s. XVII–XVIII para cruzar lagunas bautismales en ArcadeDB.
+- [ ] **A.10. Extracción Masiva de Padrones y Listas de Confirmaciones (`NRDL`, `JMOL + NDRN + VLLR` y futuro `NMRL`, `--tipo confirmaciones`):**
+  - Implementar soporte `--tipo confirmaciones` en [`extraer_lista_gemini.py`](file:///c:/TRABAJOS/personal/genealo/scripts/vllm_notebooklm/extraer_lista_gemini.py) para extraer **todas las localidades**:
+    1. **`JMOL` + pedanías (`Navandrinal` y `El Villarejo`, ya en disco/NLM):** `1742` *(conjunta con Navalmoral)*, `1745`, `1827` *(en Navalmoral)*, `1850` *(386 confirmados por localidad)* y `1856` *(124 confirmados)*.
+    2. **`NRDL` (ya en disco/NLM):** `1649`, `1681`, `1726`, `1735`, `1742`, `1747`, `1759`, `1776`, `1786`, `1850`, `1856`, `1868` *(celebrada en Molinillo)*, `1876` y `1889`.
+    3. **`NMRL` (Navalmoral de la Sierra) + huecos `JMOL` (`1752–1800` y `post-1862`):** localizar y extraer las confirmaciones en los futuros rollos DGS de Navalmoral (matriz comarcal) y del eventual Libro 6.º de `JMOL`.
 
 ### 🔵 CESTA B — ARQUITECTURA DE PRODUCTO (Inferencia Kraken Offline + NER 6 Tipologías + App Nativa en Rust + ArcadeDB)
 - [ ] **B.1. Motor de Inferencia Kraken 100% Local + Enlazador Automático de Partidas**:
